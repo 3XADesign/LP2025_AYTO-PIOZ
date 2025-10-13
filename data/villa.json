@@ -1,0 +1,57 @@
+{
+  "demographics": {
+    "population": 5204,
+    "year": 2024,
+    "women": 2470,
+    "men": 2734,
+    "note": "Crecimiento extraordinario de la población en los últimos diez años debido a nuevas urbanizaciones y llegada de familias desde el área metropolitana."
+  },
+  "geography": {
+    "altitude_m": 856,
+    "province": "Guadalajara",
+    "comarca": "Alcarria Baja",
+    "postal_code": "19162",
+    "roads": ["CM-2004","A-2 (desde Madrid)"]
+  },
+  "urbanizations": [
+    "Trascastillo","Los Molinos","El Bosque del Henares","Valcastillo","Madrebuena","Las Matillas","Las Suertes","Montealto","La Arboleda","Los Charquillos","Los Llanos"
+  ],
+  "companies": [
+    {"name":"Panadería Pastelería Fatima Gismero","address":"Carretera de Loranca, 9","desc":"Pastelería tradicional con toques de gastronomía molecular. Especialidades: perrunillas, tarta San Marcos, tabletas de chocolate gourmet.","category":"Alimentación"},
+    {"name":"Taller Mecánico Pioz","address":"Polígono Industrial, Parcela 3","desc":"Reparación y mantenimiento de vehículos.","category":"Servicios"},
+    {"name":"Construcciones Pioz S.L.","address":"Calle Real, 12","desc":"Obras y reformas", "category":"Construcción"}
+  ],
+  "heritage": {
+    "castle": {
+      "title":"Castillo de Pioz",
+      "description":"Castillo-palacio renacentista construido en sillar, de planta cuadrada, con barbacana defensiva y foso. Nunca tuvo uso militar. Encargado por el Cardenal Mendoza y concluido por Álvar Gómez de Ciudad Real a finales del siglo XV.",
+      "access":"Exterior de acceso libre. Visitas al interior mediante petición al Ayuntamiento (Tel. 949 272 076).",
+      "notes":"Se han encontrado restos arqueológicos de gran valor en las excavaciones del patio del Castillo.",
+      "links": [
+        {"name":"Guardianes del Castillo","url":"#guardianes"},
+        {"name":"Visita Fotográfica","url":"#visita-fotografica"}
+      ]
+    },
+    "church": {
+      "title":"Iglesia de San Sebastián",
+      "description":"Edificio del siglo XVI con ábside semicircular y torre achatada. Ábside levantado con sillarejo alternado con filas de ladrillo cocido, técnica de alarifes mudéjares.",
+      "protection":"Bien de Interés Cultural (BIC)"
+    }
+  },
+  "traditions": [
+    {"name":"San Donato","date":"Cuarto domingo de agosto","desc":"Fiestas mayores con procesiones y actividades populares."},
+    {"name":"San Isidro","date":"15 de mayo","desc":"Patrón de los labradores."},
+    {"name":"La Candelaria","date":"Inicio de febrero","desc":"Celebración tradicional con actos sociales."},
+    {"name":"Fiesta del Castillo / Jornadas Medievales","date":"Mayo-Junio (variable)","desc":"Recreaciones históricas y representaciones teatrales."}
+  ],
+  "map_points": [
+    {"id":"nucleo","title":"Núcleo Urbano","lat":40.4800,"lon":-3.2620},
+    {"id":"castillo","title":"Castillo de Pioz","lat":40.4812,"lon":-3.2615},
+    {"id":"iglesia","title":"Iglesia de San Sebastián","lat":40.4805,"lon":-3.2618},
+    {"id":"fatima","title":"Panadería Fatima Gismero","lat":40.4798,"lon":-3.2626}
+  ],
+  "press_feed": [
+    {"id":"p1","title":"Apertura de nuevas empresas en Pioz 2025","date":"2025-06-10","excerpt":"El municipio consolida su crecimiento económico con la apertura de 5 nuevos comercios."},
+    {"id":"p2","title":"Jornadas medievales del Castillo registran alta afluencia","date":"2025-05-25","excerpt":"Las jornadas superaron las expectativas con actividades para toda la familia."}
+  ]
+}

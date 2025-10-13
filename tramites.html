@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Trámites - Ayuntamiento de Pioz</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-top">
+      <a class="logo" href="index.html">Ayuntamiento de Pioz</a>
+      <nav class="main-nav" aria-label="Menú principal">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu">Menú</button>
+        <ul id="main-menu" class="menu">
+          <li><a href="ayuntamiento.html">Ayuntamiento</a></li>
+          <li><a href="tramites.html">Trámites</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="cultura.html">Cultura</a></li>
+          <li><a href="villa_de_pioz.html">Villa de Pioz</a></li>
+          <li><a href="index.html#tablon">Tablón / Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Trámites</h1>
+    <p>Accede a los servicios electrónicos y a la información necesaria para realizar tus gestiones.</p>
+
+    <section class="card">
+      <h2>Accesos principales</h2>
+      <div class="grid-6">
+        <a class="btn primary" href="#sede">Sede Electrónica</a>
+        <a class="btn" href="#perfil">Perfil del Contratante</a>
+        <a class="btn" href="#impresos">Impresos</a>
+        <a class="btn" href="#ordenanzas">Ordenanzas Municipales</a>
+        <a class="btn" href="#empleo">Empleo Municipal</a>
+        <a class="btn" href="#procedimientos">Procedimientos</a>
+      </div>
+    </section>
+
+    <section id="sede" class="card">
+      <h2>Sede Electrónica</h2>
+      <p>Enlace destacado: <a href="#" class="btn">Ir a la Sede Electrónica</a></p>
+      <p>Instrucciones: Para pagos, presentación de solicitudes y consulta de expedientes usa la sede electrónica. Si necesitas ayuda, consulta la sección de Ayuda o llama al <a href="tel:+34949272076">949 272 076</a>.</p>
+      <p>Ofrecemos cursos de formación en herramientas telemáticas orientados a todas las edades. Consulta el calendario cultural o solicita más información en el Ayuntamiento.</p>
+    </section>
+
+    <section id="perfil" class="card">
+      <h2>Perfil del Contratante</h2>
+      <p>Acceso público a la información contractual (Licitaciones, Adjudicaciones, Pliegos y documentación asociada). La información permanece disponible por 5 años.</p>
+      <div>
+        <input id="search-contracts" placeholder="Buscar licitaciones, adjudicaciones..." aria-label="Buscar contratos">
+      </div>
+      <div id="contracts-list"></div>
+    </section>
+
+    <section id="impresos" class="card">
+      <h2>Impresos y Formularios</h2>
+      <p>Descarga los formularios oficiales en formato PDF y la guía de cumplimentación.</p>
+      <ul id="forms-list"></ul>
+    </section>
+
+    <section id="ordenanzas" class="card">
+      <h2>Ordenanzas Municipales</h2>
+      <p>Consulta y descarga las ordenanzas municipales en formato PDF.</p>
+      <ul id="ordenanzas-list"></ul>
+    </section>
+
+    <section id="empleo" class="card">
+      <h2>Empleo Municipal / Bolsa de Trabajo</h2>
+      <div id="jobs-list"></div>
+    </section>
+
+    <section id="procedimientos" class="card">
+      <h2>Procedimientos</h2>
+      <p>Guía de trámites frecuentes y procedimientos, con especial atención a Urbanismo.</p>
+      <div id="procedures-list"></div>
+    </section>
+
+    <section id="contacto" class="card">
+      <h2>Ayuda y Contacto</h2>
+      <p>Teléfono: <a href="tel:+34949272076">949 272 076</a></p>
+      <p>Dirección: Plaza Mayor, s/n, 19162 Pioz, Guadalajara</p>
+      <p>Horario: L-V 9:00 - 14:00</p>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">&copy; Ayuntamiento de Pioz</div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

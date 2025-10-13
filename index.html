@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Ayuntamiento de Pioz</title>
+  <meta name="description" content="Sitio oficial del Ayuntamiento de Pioz, Guadalajara. Noticias, trámites, servicios y cultura.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-top">
+      <a class="logo" href="#">Ayuntamiento de Pioz</a>
+      <nav class="main-nav" aria-label="Menú principal">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu">Menú</button>
+        <ul id="main-menu" class="menu">
+          <li><a href="ayuntamiento.html">Ayuntamiento</a></li>
+          <li><a href="tramites.html">Trámites</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="cultura.html">Cultura</a></li>
+          <li><a href="villa_de_pioz.html">Villa de Pioz</a></li>
+          <li><a href="#tablon">Tablón / Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="hero">
+    <div class="container">
+      <h1>Bienvenido al Ayuntamiento de Pioz</h1>
+      <p>Portal oficial del Ayuntamiento. Información, trámites y cultura para vecinos y visitantes.</p>
+      <div class="quick-actions">
+        <a class="btn primary" href="tramites.html#sede">Sede Electrónica</a>
+        <a class="btn" href="tramites.html#perfil">Transparencia</a>
+        <a class="btn" href="tramites.html#perfil">Perfil del Contratante</a>
+      </div>
+    </div>
+  </div>
+  </header>
+
+  <main class="container">
+    <section id="noticias" aria-labelledby="noticias-title" class="card">
+      <h2 id="noticias-title">Últimas Noticias / Tablón de Anuncios</h2>
+      <div id="news-feed" class="news-feed" aria-live="polite">
+        <!-- Noticias cargadas por JS -->
+      </div>
+    </section>
+
+    <section id="empleo" class="card two-col">
+      <h2>Bolsa de Trabajo</h2>
+      <div id="jobs">
+        <p>No hay ofertas publicadas actualmente. Consulta periódicamente.</p>
+      </div>
+    </section>
+
+    <section id="calendario" class="card">
+      <h2>Calendario Cultural</h2>
+      <div id="calendar"></div>
+    </section>
+
+    <section id="ayuntamiento" class="card">
+      <h2>Tu Ayuntamiento</h2>
+      <p>Saluda del Alcalde: <strong>Manuel López Carvajal</strong>. Este portal fomenta las gestiones electrónicas y la participación ciudadana.</p>
+      <h3>Equipo de Gobierno</h3>
+      <div id="equipo" class="team-grid">
+        <!-- Equipo cargado por JS -->
+      </div>
+    </section>
+
+    <section id="biblioteca" class="card">
+      <h2>Biblioteca Municipal "Miguel de Cervantes"</h2>
+      <p>Horario: Lunes 10:30-19:00; Martes a Viernes 14:30-19:30.</p>
+      <ul>
+        <li>Préstamo</li>
+        <li>Consulta en sala</li>
+        <li>6 ordenadores con acceso a Internet</li>
+        <li>Red Wi-Fi</li>
+        <li>Reprografía</li>
+        <li>Apoyo para gestiones por internet</li>
+      </ul>
+    </section>
+
+    <section id="mapa" class="card">
+      <h2>Mapa de la Villa</h2>
+      <div id="map" style="height:320px;"></div>
+    </section>
+
+    <section id="villa" class="card">
+      <h2>Villa de Pioz</h2>
+      <p>Población: <strong>5131 habitantes</strong>.</p>
+      <p>Destacados: Castillo de Pioz, Casco Urbano, Tradiciones como la Fiesta del Castillo y las Fiestas de San Donato.</p>
+    </section>
+
+    <section id="tablon" class="card">
+      <h2>Tablón y Contacto</h2>
+      <address>
+        Plaza Mayor, s/n<br>
+        19162 Pioz, Guadalajara<br>
+        Tel: <a href="tel:+34949272076">949 272 076</a><br>
+        Horario de atención: L-V 9:00 - 14:00
+      </address>
+      <div class="legal-links">
+        <a href="#">Política de cookies</a> | <a href="#">Política de privacidad</a> | <a href="#">Aviso legal</a>
+      </div>
+      <div class="social-links">
+        <a href="#" aria-label="Facebook">Facebook</a>
+        <a href="#" aria-label="YouTube">YouTube</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; Ayuntamiento de Pioz - Plaza Mayor, s/n · 19162 Pioz (Guadalajara) · Tel: 949 272 076</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Tu Ayuntamiento - Pioz</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-top">
+      <a class="logo" href="index.html">Ayuntamiento de Pioz</a>
+      <nav class="main-nav" aria-label="Menú principal">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu">Menú</button>
+        <ul id="main-menu" class="menu">
+          <li><a href="ayuntamiento.html">Ayuntamiento</a></li>
+          <li><a href="tramites.html">Trámites</a></li>
+          <li><a href="servicios.html">Servicios</a></li>
+          <li><a href="cultura.html">Cultura</a></li>
+          <li><a href="villa_de_pioz.html">Villa de Pioz</a></li>
+          <li><a href="index.html#tablon">Tablón / Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section id="saluda" class="card">
+      <h1>Saluda del Alcalde</h1>
+      <p>Bienvenidos al portal del Ayuntamiento de Pioz. Las nuevas tecnologías son un canal prioritario para la transparencia y la gestión pública. Muchas de las gestiones pueden realizarse electrónicamente para evitar desplazamientos inútiles. En este sitio encontrará emails, teléfonos, bandos, agendas y actividades culturales al alcance de todos.</p>
+    </section>
+
+    <section id="equipo-gobierno" class="card">
+      <h2>Equipo de Gobierno</h2>
+      <p>El Equipo de Gobierno es el órgano colegiado del gobierno ejecutivo municipal que colabora con el Alcalde en la dirección política.</p>
+      <div id="ayuntamiento-equipo" class="team-grid"></div>
+    </section>
+
+    <section id="perfil-contratante" class="card">
+      <h2>Perfil del Contratante</h2>
+      <p>Acceso libre y público a la actividad contractual. La información se publica en formatos abiertos y permanece disponible por un periodo no inferior a 5 años.</p>
+      <div>
+        <input id="search-contracts-ayto" placeholder="Buscar en Perfil del Contratante" aria-label="Buscar contratos ayuntamiento">
+      </div>
+      <div id="contracts-list-ayto"></div>
+    </section>
+
+    <section id="bandos" class="card">
+      <h2>Bandos Municipales</h2>
+      <div id="bandos-list"></div>
+    </section>
+
+    <section id="plenos" class="card">
+      <h2>Plenos del Ayuntamiento</h2>
+      <div id="plenos-list"></div>
+    </section>
+
+    <section id="contacto" class="card">
+      <h2>Contacto</h2>
+      <address>
+        Plaza Mayor, s/n<br>
+        19162 Pioz, Guadalajara<br>
+        Tel: <a href="tel:+34949272076">949 272 076</a><br>
+        Horario: L-V 9:00 - 14:00
+      </address>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; Ayuntamiento de Pioz - <a href="#">Política de cookies</a> | <a href="#">Política de privacidad</a> | <a href="#">Aviso legal</a></p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
