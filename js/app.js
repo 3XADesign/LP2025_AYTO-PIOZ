@@ -523,6 +523,8 @@ document.addEventListener('DOMContentLoaded', ()=>{
   initThemeToggle();
   // inicializar buscador en header
   initHeaderSearch();
+  // inicializar menú de ajustes
+  initSettingsMenu();
 });
 
 // Theme toggling: detect system preference, persist in localStorage, inject button in header
@@ -541,30 +543,155 @@ function applyTheme(dark){
 
 function initThemeToggle(){
   try{
-    const header = document.querySelector('.site-header .header-top');
-    if(!header) return;
-    // create toggle button (sol / luna)
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'theme-toggle';
-    btn.setAttribute('aria-label','Cambiar tema: modo claro/oscuro');
-    btn.innerHTML = '<span class="sun" aria-hidden="true">☀️</span><span class="moon" aria-hidden="true">🌙</span>';
-    // prepend to header-top (right side)
-    header.appendChild(btn);
-
-    // determine initial theme
+    // solo aplicar tema inicial (no insertar UI aquí). El control se gestiona desde el menú de Ajustes.
+    // preferir settings guardados en localStorage bajo 'site-settings'
+    const storedSettings = localStorage.getItem('site-settings');
+    if(storedSettings){
+      try{
+        const s = JSON.parse(storedSettings);
+        if(typeof s.darkMode !== 'undefined'){
+          applyTheme(!!s.darkMode);
+          return;
+        }
+      }catch(e){}
+    }
+    // fallback al site-theme o preferencia del sistema
     const stored = localStorage.getItem('site-theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     if(stored){ applyTheme(stored === 'dark'); }
     else{ applyTheme(prefersDark); }
-
-    btn.addEventListener('click', ()=>{
-      const isDark = document.documentElement.classList.contains('dark-mode');
-      applyTheme(!isDark);
-      // update aria-pressed
-      btn.setAttribute('aria-pressed', String(!isDark));
-    });
   }catch(e){ console.error('Error inicializando theme toggle', e); }
+}
+
+// Ajustes / Settings: tamaño de texto y contraste alto
+function applySettings(settings){
+  // font size: 'normal' | 'small' | 'large'
+  document.documentElement.classList.remove('text-size-small','text-size-large');
+  if(settings.textSize === 'small') document.documentElement.classList.add('text-size-small');
+  if(settings.textSize === 'large') document.documentElement.classList.add('text-size-large');
+  // high contrast
+  if(settings.highContrast) document.documentElement.classList.add('high-contrast'); else document.documentElement.classList.remove('high-contrast');
+}
+
+function initSettingsMenu(){
+  try{
+    const header = document.querySelector('.site-header .header-top');
+    if(!header) return;
+    // Prevent multiple initializations
+    if(header._hasSettings) return;
+
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'settings-toggle';
+    btn.setAttribute('aria-haspopup','menu');
+    btn.setAttribute('aria-expanded','false');
+    btn.setAttribute('aria-label','Ajustes de visualización');
+    btn.innerHTML = '⚙️';
+
+    const menu = document.createElement('div');
+    menu.className = 'settings-menu';
+    menu.setAttribute('role','menu');
+    menu.setAttribute('aria-hidden','true');
+    menu.innerHTML = `
+      <h4>Ajustes</h4>
+      <div class="settings-group">
+        <div class="muted">Tamaño de texto</div>
+        <div class="size-controls" role="radiogroup" aria-label="Tamaño de texto">
+          <button role="radio" data-size="small">A-</button>
+          <button role="radio" data-size="normal" aria-pressed="true">A</button>
+          <button role="radio" data-size="large">A+</button>
+        </div>
+      </div>
+      <div class="settings-group">
+        <label><input type="checkbox" id="dark-mode-toggle"> Modo oscuro</label>
+      </div>
+      
+      <div class="settings-actions"><button class="reset-btn">Restablecer</button></div>
+    `;
+
+    header.appendChild(btn);
+    header.appendChild(menu);
+
+  // load stored settings
+  const stored = localStorage.getItem('site-settings');
+  let settings = { textSize:'normal', darkMode: undefined };
+  if(stored){ try{ settings = Object.assign(settings, JSON.parse(stored)); }catch(e){} }
+  // if darkMode explicitly set in settings, apply it
+  if(typeof settings.darkMode !== 'undefined') applyTheme(!!settings.darkMode);
+  applySettings(settings);
+
+  // reflect initial state on controls
+  const rgButtons = menu.querySelectorAll('[role="radio"]');
+  rgButtons.forEach(b=>{ b.setAttribute('aria-checked', b.dataset.size === settings.textSize ? 'true' : 'false'); b.setAttribute('aria-pressed', b.dataset.size === settings.textSize ? 'true' : 'false'); });
+  // (Alto contraste eliminado por redundancia con modo oscuro)
+  const dm = menu.querySelector('#dark-mode-toggle'); if(dm) dm.checked = !!settings.darkMode;
+
+    function openMenu(){ menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); btn.setAttribute('aria-expanded','true'); header.classList.add('settings-open');
+      // focus first actionable control
+      setTimeout(()=> menu.querySelector('button[role="radio"]')?.focus(), 10);
+      // trap focus inside menu
+      document.addEventListener('focus', focusTrap, true);
+    }
+    function closeMenu(){ menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); btn.setAttribute('aria-expanded','false'); header.classList.remove('settings-open');
+      document.removeEventListener('focus', focusTrap, true);
+      btn.focus();
+    }
+
+    btn.addEventListener('click', (e)=>{ const open = btn.getAttribute('aria-expanded') === 'true'; if(open) closeMenu(); else openMenu(); });
+
+    // click outside to close
+    document.addEventListener('click', (e)=>{ if(btn.getAttribute('aria-expanded') !== 'true') return; if(!e.target.closest('.settings-menu') && e.target !== btn){ closeMenu(); } });
+
+    // keyboard handling
+    menu.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ closeMenu(); }
+      // left/right or up/down to switch radio-like buttons
+      if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'ArrowLeft' || e.key === 'ArrowUp'){
+        const radios = Array.from(menu.querySelectorAll('[role="radio"]'));
+        const idx = radios.indexOf(document.activeElement);
+        if(idx === -1) return;
+        let next = idx;
+        if(e.key === 'ArrowRight' || e.key === 'ArrowDown') next = (idx +1) % radios.length;
+        if(e.key === 'ArrowLeft' || e.key === 'ArrowUp') next = (idx -1 + radios.length) % radios.length;
+        radios[next].focus();
+      }
+    });
+
+    // radiogroup clicks
+    menu.addEventListener('click', (e)=>{
+      const btnRadio = e.target.closest('[role="radio"]');
+      if(btnRadio){
+        const size = btnRadio.dataset.size;
+        settings.textSize = size;
+        applySettings(settings);
+        // update controls
+        menu.querySelectorAll('[role="radio"]').forEach(b=>{ b.setAttribute('aria-checked', b.dataset.size === size ? 'true' : 'false'); b.setAttribute('aria-pressed', b.dataset.size === size ? 'true' : 'false'); });
+        localStorage.setItem('site-settings', JSON.stringify(settings));
+        return;
+      }
+      // dark mode toggle
+      if(e.target.id === 'dark-mode-toggle' || e.target.closest('#dark-mode-toggle')){
+        const dmInput = menu.querySelector('#dark-mode-toggle');
+        settings.darkMode = !!dmInput.checked;
+        applyTheme(!!settings.darkMode);
+        localStorage.setItem('site-settings', JSON.stringify(settings));
+        return;
+      }
+      // reset
+      if(e.target.classList.contains('reset-btn')){
+        settings = { textSize:'normal' };
+        applySettings(settings);
+        menu.querySelectorAll('[role="radio"]').forEach(b=>{ b.setAttribute('aria-checked', b.dataset.size === 'normal' ? 'true' : 'false'); b.setAttribute('aria-pressed', b.dataset.size === 'normal' ? 'true' : 'false'); });
+        localStorage.setItem('site-settings', JSON.stringify(settings));
+        return;
+      }
+    });
+
+    // simple focus trap: if focus leaves menu, bring it back when open
+    function focusTrap(e){ if(btn.getAttribute('aria-expanded') !== 'true') return; if(!e.target.closest('.settings-menu')){ e.stopPropagation(); menu.querySelector('[role="radio"]')?.focus(); } }
+
+    header._hasSettings = true;
+  }catch(e){ console.error('Error inicializando menú de Ajustes', e); }
 }
 
 // Inyectar barra de búsqueda en el header (visible en desktop, icon-expand en mobile)

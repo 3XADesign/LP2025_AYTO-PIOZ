@@ -1,0 +1,48 @@
+/* Tablón de Anuncios — estilos locales */
+:root{
+  --card-bg: #fff;
+  --card-border: #e6e6e6;
+  --accent: #0066a1;
+  --muted: #666;
+  --radius: 8px;
+  --shadow: 0 6px 18px rgba(17,24,39,0.06);
+}
+
+/* Reset pequeño para el tablón */
+.tablon-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;margin:1.25rem 0}
+
+.tablon-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.tablon-card img{width:100%;height:180px;object-fit:cover;display:block}
+.tablon-card .card-body{padding:0.75rem 1rem;display:flex;flex-direction:column;gap:0.5rem}
+.tablon-card .card-meta{font-size:0.85rem;color:var(--muted)}
+.tablon-card h3{margin:0;font-size:1.05rem;color:#102a43}
+.tablon-card p{margin:0;color:#334155}
+.tablon-card .card-actions{margin-top:auto;padding:0.75rem 1rem;border-top:1px solid var(--card-border);display:flex;justify-content:space-between;align-items:center}
+.tablon-card .read-more{background:var(--accent);color:#fff;padding:0.5rem 0.75rem;border-radius:6px;text-decoration:none;font-weight:600;font-size:0.95rem}
+.tablon-card .read-more:focus{outline:3px solid rgba(0,102,161,0.18);outline-offset:2px}
+
+/* Adaptaciones para accesibilidad */
+.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+/* Layout general container override para integrar con el sitio existente */
+.tablon-section .lead{margin-top:0.25rem;color:var(--muted)}
+
+/* Responsivo: cards más altas en pantallas grandes */
+@media(min-width:900px){
+  .tablon-card img{height:220px}
+}
+
+/* Contraste en modo oscuro (si el sitio define .dark-mode en body) */
+body.dark-mode .tablon-card{background:#0b1220;border-color:#111827}
+body.dark-mode .tablon-card h3{color:#e6edf3}
+body.dark-mode .tablon-card p,.tablon-card .card-meta{color:#a8b3c2}
+body.dark-mode .read-more{background:#1e90ff}
+
+/* Pequeños ajustes para que las tarjetas mantengan la misma altura visual */
+.tablon-card .card-body{min-height:120px}
+
+/* Focus visible for keyboard users */
+.tablon-card:focus-within{box-shadow:0 8px 24px rgba(0,0,0,0.12);transform:translateY(-2px);transition:transform 150ms}
+
+/* Footer spacing debug */
+.site-footer{margin-top:2rem;padding:1rem 0;text-align:center;color:var(--muted)}

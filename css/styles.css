@@ -11,6 +11,8 @@
   --gap:1rem;
   /* altura por defecto del header (mobile-first). Usar para compensar contenido y anchors */
   --header-height:72px;
+  /* espacio adicional para que el header no oculte el contenido al anclar */
+  --header-gap:12px;
   /* Theme variables (Light mode defaults) */
   --color-fondo-principal: #ffffff;
   --color-texto-principal: #1A1A1A;
@@ -43,10 +45,16 @@ html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Seg
 .container{max-width:var(--max-width);margin:0 auto;padding:1rem}
 .header-top{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0}
 .logo{font-weight:700;color:var(--accent);text-decoration:none;font-size:1.1rem}
-.main-nav .menu{list-style:none;margin:0;padding:1rem;display:none;flex-direction:column;gap:1rem;position:fixed;inset:var(--header-height) 0 0 0;background:#fff;overflow:auto;z-index:1001}
+.main-nav .menu{list-style:none;margin:0;padding:1rem;display:none;flex-direction:column;gap:1rem;position:fixed;inset:var(--header-height) 0 0 0;background:var(--color-header-fondo);color:var(--color-texto-principal);overflow:auto;z-index:1001}
 .main-nav a{color:var(--color-texto-principal);text-decoration:none;padding:.6rem 0;display:block}
 .nav-toggle{display:inline-block;background:transparent;border:none;font-size:1.1rem;padding:.4rem;margin-left:.5rem}
 .nav-toggle[aria-expanded="true"]{opacity:0.9}
+
+/* Ensure the menu toggle (label/icon) is visible in dark mode */
+.nav-toggle{ color: var(--color-texto-principal); }
+.nav-toggle svg, .nav-toggle *{ color: inherit; fill: currentColor; }
+.dark-mode .nav-toggle{ color: var(--color-texto-principal) !important; }
+.dark-mode .nav-toggle svg{ fill: currentColor !important; }
 .site-header{position:fixed;top:0;width:100%;z-index:1000;background:var(--color-header-fondo);box-shadow:0 2px 6px rgba(0,0,0,0.08);padding:12px 0}
 .site-header .container{display:flex;align-items:center;gap:.5rem}
 .site-header .logo{margin-right:1rem}
@@ -58,11 +66,14 @@ html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Seg
 .site-header.scrolled{padding:6px 0}
 
 /* compensar el main para que no quede oculto por el header fijo (móvil) */
-main.container{padding-top:var(--header-height)}
+main.container{padding-top:calc(var(--header-height) + var(--header-gap))}
 /* indicar al navegador cuanto espacio reservar cuando se hace scroll-to/anchor */
 html{scroll-padding-top:calc(var(--header-height) + 8px)}
 .hero{background:linear-gradient(90deg, rgba(139,58,43,0.08), rgba(216,198,180,0.04));padding:2rem 0;border-top:4px solid var(--masonry)}
 .hero h1{margin:0 0 .5rem}
+
+/* Compensar header fijo para la hero (evita que el header la oculte) */
+.hero{ padding-top: calc(var(--header-height) + var(--header-gap)); }
 .quick-actions{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
 .btn{display:inline-block;padding:.6rem 1rem;border-radius:6px;background:transparent;border:2px solid var(--primary);color:var(--primary);text-decoration:none}
 .btn.primary{background:var(--primary);color:#fff}
@@ -93,7 +104,7 @@ img{max-width:100%;height:auto;display:block}
   .two-col{grid-template-columns:1fr 300px}
   .news-feed{grid-template-columns:repeat(2,1fr)}
   .companies-grid{grid-template-columns:repeat(2,1fr)}
-  main.container{padding-top:var(--header-height)}
+  main.container{padding-top:calc(var(--header-height) + var(--header-gap))}
 }
 
 /* Mostrar menú móvil cuando .main-nav está abierto mediante clase */
@@ -105,6 +116,10 @@ img{max-width:100%;height:auto;display:block}
   transform-origin:top;
   animation:menu-slide 180ms ease-out;
 }
+
+/* En dark mode asegurar que el menú principal tenga fondo y enlaces legibles */
+.dark-mode .main-nav .menu{ background: var(--color-header-fondo) !important; color: var(--color-texto-principal) !important; }
+.dark-mode .main-nav .menu a{ color: var(--color-texto-principal) !important; }
 
 @keyframes menu-slide{
   from{opacity:0;transform:translateY(-6px)}
@@ -123,8 +138,11 @@ body.nav-open{overflow:hidden}
   .companies-grid{grid-template-columns:repeat(3,1fr)}
   .two-col{grid-template-columns:1fr 320px}
   .container{padding:1.25rem}
-  main.container{padding-top:var(--header-height)}
+  main.container{padding-top:calc(var(--header-height) + var(--header-gap))}
 }
+
+/* Evitar que anclas y encabezados queden ocultos por el header fijo */
+h1, h2, h3, section[id], .card{ scroll-margin-top: calc(var(--header-height) + var(--header-gap)); }
 
 /* Accessibility */
 a:focus,button:focus{outline:3px solid var(--focus);outline-offset:2px}
@@ -134,6 +152,45 @@ a:focus,button:focus{outline:3px solid var(--focus);outline-offset:2px}
 .header-search input{display:block;border:1px solid var(--color-bordes-lineas);background:transparent;color:var(--color-texto-principal);padding:.4rem .6rem;border-radius:6px;min-width:160px}
 .header-search button{background:transparent;border:none;font-size:1rem;padding:.4rem}
 .header-search .search-toggle{display:none}
+
+/* Settings (Ajustes) button and menu in header */
+.header-top .settings-toggle{display:inline-block;background:transparent;border:none;font-size:1.1rem;padding:.4rem;margin-left:.5rem;cursor:pointer}
+.settings-menu{position:absolute;right:1rem;top:calc(var(--header-height) + 8px);background:var(--color-card-bg);border:1px solid var(--color-bordes-lineas);border-radius:8px;padding:.5rem;min-width:220px;display:none;box-shadow:0 8px 20px rgba(0,0,0,0.08);z-index:1002}
+.settings-menu.open{display:block}
+.settings-menu h4{margin:0 0 .5rem;font-size:1rem}
+.settings-group{margin-bottom:.5rem}
+.settings-group .size-controls button{margin-right:.35rem;padding:.35rem .5rem;border-radius:6px;border:1px solid var(--color-bordes-lineas);background:transparent}
+.settings-group .size-controls button[aria-pressed="true"]{background:var(--primary);color:#fff;border-color:var(--primary)}
+.settings-actions{display:flex;justify-content:flex-end}
+.reset-btn{background:transparent;border:1px solid var(--color-bordes-lineas);padding:.4rem .6rem;border-radius:6px;color:var(--color-texto-principal)}
+
+/* Make settings menu elements readable in dark mode */
+.dark-mode .settings-menu{background:var(--color-card-bg);border-color:var(--color-bordes-lineas);color:var(--color-texto-principal)}
+.dark-mode .settings-menu .settings-group .size-controls button{border-color:var(--color-bordes-lineas);color:var(--color-texto-principal)}
+.dark-mode .settings-menu .settings-group .size-controls button[aria-pressed="true"]{background:var(--primary);color:#fff}
+.dark-mode .settings-menu .reset-btn{border-color:var(--color-bordes-lineas);color:var(--color-texto-principal);background:transparent}
+.dark-mode .settings-menu label{color:var(--color-texto-principal)}
+
+/* Regla más específica por si en móvil hay conflictos de cascada: forzar color en el menú y sus hijos */
+.dark-mode .settings-menu, .dark-mode .settings-menu *{
+  color: var(--color-texto-principal) !important;
+}
+.dark-mode .settings-menu{ background: var(--color-card-bg) !important; border-color: var(--color-bordes-lineas) !important; }
+.dark-mode .settings-menu.open{ z-index: 2002 !important; }
+.dark-mode .settings-menu .size-controls button{ background: transparent !important; color: var(--color-texto-principal) !important; border-color: var(--color-bordes-lineas) !important; }
+.dark-mode .settings-menu .size-controls button[aria-pressed="true"]{ background: var(--primary) !important; color: #fff !important; }
+.dark-mode .settings-menu .reset-btn{ color: var(--color-texto-principal) !important; border-color: var(--color-bordes-lineas) !important; background: transparent !important; }
+
+/* Text size utility classes applied on html element */
+html.text-size-small{font-size:14px}
+html.text-size-large{font-size:18px}
+
+/* (Alto contraste eliminado) */
+
+/* Mobile adjustments: keep menu reachable inside header */
+@media (max-width:767px){
+  .settings-menu{right:0;left:auto;top:calc(var(--header-height) + 6px);min-width:180px}
+}
 
 /* utility for accessibility */
 .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
