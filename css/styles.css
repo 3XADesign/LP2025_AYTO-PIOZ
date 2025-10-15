@@ -203,9 +203,13 @@ a:hover, a:focus {
     z-index: 100;
 }
 
-.has-submenu:hover .submenu,
-.has-submenu:focus-within .submenu {
+.has-submenu:hover > .submenu,
+.has-submenu:focus-within > .submenu {
     display: block;
+}
+
+.submenu li {
+    position: relative;
 }
 
 .submenu li a {
@@ -218,6 +222,33 @@ a:hover, a:focus {
 .submenu li a:hover {
     background-color: var(--submenu-hover);
     text-decoration: none;
+}
+
+/* Submenú de segundo nivel (submenu dentro de submenu) */
+.submenu .has-submenu > .submenu {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    min-width: 200px;
+}
+
+.submenu .has-submenu:hover > .submenu,
+.submenu .has-submenu:focus-within > .submenu {
+    display: block;
+}
+
+/* Indicador visual para items con submenu */
+.has-submenu > a::after {
+    content: ' ▼';
+    font-size: 0.7em;
+    opacity: 0.7;
+}
+
+.submenu .has-submenu > a::after {
+    content: ' ▶';
+    float: right;
+    margin-left: var(--spacing-sm);
 }
 
 /* ...existing code... */

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Colegios de Educación Infantil y Primaria de Pioz - Información de contacto y recursos">
+    <title>Colegios de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .colegios-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-colegios {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-colegios h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-colegios p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .intro-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-box h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .colegios-grid {
+            display: grid;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .colegio-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid #3498db;
+            transition: all var(--transition-base);
+        }
+        
+        .colegio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .colegio-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+        
+        .colegio-icon {
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+        
+        .colegio-header h3 {
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .colegio-ubicacion {
+            opacity: 0.95;
+            font-size: var(--font-size-small);
+        }
+        
+        .colegio-body {
+            padding: var(--spacing-xl);
+        }
+        
+        .contacto-info {
+            display: grid;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #3498db;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content {
+            flex: 1;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #3498db;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .colegio-descripcion {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-top: var(--spacing-lg);
+        }
+        
+        .colegio-descripcion p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .papas-section {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .papas-section h2 {
+            color: white;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .papas-content {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .papas-icon {
+            font-size: 5rem;
+        }
+        
+        .papas-text p {
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+        
+        .papas-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .papas-feature {
+            background: rgba(255,255,255,0.2);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .papas-feature span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .papas-feature p {
+            margin: 0;
+        }
+        
+        .btn-papas {
+            background: white;
+            color: #e67e22;
+            padding: var(--spacing-md) var(--spacing-xl);
+            font-size: var(--font-size-large);
+            font-weight: 700;
+            margin-top: var(--spacing-lg);
+            display: inline-block;
+        }
+        
+        .btn-papas:hover {
+            background: rgba(255,255,255,0.95);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .ampas-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .ampas-section h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .ampas-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-xl);
+        }
+        
+        .ampas-info {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .ampas-list {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .ampas-list h3 {
+            color: #3498db;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .ampas-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .ampas-list li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+        }
+        
+        .ampas-list li::before {
+            content: '✓';
+            color: #3498db;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .avisos-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .avisos-section h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .aviso-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #e67e22;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .aviso-card h3 {
+            color: #e67e22;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .aviso-card p {
+            color: var(--text-primary);
+        }
+        
+        .contacto-ayto {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-ayto h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-grid-item {
+            text-align: center;
+        }
+        
+        .contacto-grid-item h3 {
+            color: #3498db;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contacto-grid-item p {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 767px) {
+            .colegio-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .papas-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .ampas-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../cultura.html">Cultura</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Colegios de Pioz</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container colegios-container">
+                <div class="hero-colegios">
+                    <h1>🏫 Colegios de Educación Infantil y Primaria</h1>
+                    <p>Información de contacto y recursos educativos</p>
+                </div>
+
+                <div class="intro-box">
+                    <h2>Centros Educativos de Pioz</h2>
+                    <p>
+                        El municipio de Pioz cuenta con dos Centros de Educación Infantil y Primaria (CEIP) que ofrecen 
+                        una educación de calidad a los niños y niñas del municipio. Esta página centraliza toda la 
+                        información de contacto y recursos disponibles para facilitar la comunicación entre las familias, 
+                        los centros educativos y el Ayuntamiento.
+                    </p>
+                </div>
+
+                <div class="colegios-grid">
+                    <!-- CEIP Castillo de Pioz -->
+                    <article class="colegio-card">
+                        <div class="colegio-header">
+                            <span class="colegio-icon">🏰</span>
+                            <div>
+                                <h3>CEIP "Castillo de Pioz"</h3>
+                                <p class="colegio-ubicacion">📍 Situado en el pueblo de Pioz</p>
+                            </div>
+                        </div>
+                        
+                        <div class="colegio-body">
+                            <div class="contacto-info">
+                                <div class="contacto-item">
+                                    <span class="contacto-icon">📍</span>
+                                    <div class="contacto-content">
+                                        <strong>Dirección</strong>
+                                        <p>Camino de Aranzueque, s/n<br>19162 Pioz (Guadalajara)</p>
+                                    </div>
+                                </div>
+
+                                <div class="contacto-item">
+                                    <span class="contacto-icon">📞</span>
+                                    <div class="contacto-content">
+                                        <strong>Teléfono</strong>
+                                        <p><a href="tel:949272262">949 272 262</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="contacto-item">
+                                    <span class="contacto-icon">📧</span>
+                                    <div class="contacto-content">
+                                        <strong>Correo Electrónico</strong>
+                                        <p><a href="mailto:19008149.cp@edu.jccm.es">19008149.cp@edu.jccm.es</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="colegio-descripcion">
+                                <p>
+                                    <strong>ℹ️ Información:</strong> Centro de Educación Infantil y Primaria ubicado 
+                                    en el núcleo urbano de Pioz. Ofrece educación desde los 3 años hasta los 12 años, 
+                                    cubriendo las etapas de Infantil y Primaria.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- CEIP La Arboleda de Pioz -->
+                    <article class="colegio-card">
+                        <div class="colegio-header">
+                            <span class="colegio-icon">🌳</span>
+                            <div>
+                                <h3>CEIP "La Arboleda de Pioz"</h3>
+                                <p class="colegio-ubicacion">📍 Situado en la Urbanización La Arboleda</p>
+                            </div>
+                        </div>
+                        
+                        <div class="colegio-body">
+                            <div class="contacto-info">
+                                <div class="contacto-item">
+                                    <span class="contacto-icon">📍</span>
+                                    <div class="contacto-content">
+                                        <strong>Dirección</strong>
+                                        <p>Calle Los Pinos, s/n<br>19162 Urbanización La Arboleda<br>Pioz (Guadalajara)</p>
+                                    </div>
+                                </div>
+
+                                <div class="contacto-item">
+                                    <span class="contacto-icon">📞</span>
+                                    <div class="contacto-content">
+                                        <strong>Teléfono</strong>
+                                        <p><a href="tel:949050144">949 050 144</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="contacto-item">
+                                    <span class="contacto-icon">📧</span>
+                                    <div class="contacto-content">
+                                        <strong>Correo Electrónico</strong>
+                                        <p><a href="mailto:19008681.cp@edu.jccm.es">19008681.cp@edu.jccm.es</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="colegio-descripcion">
+                                <p>
+                                    <strong>ℹ️ Información:</strong> Centro de Educación Infantil y Primaria situado 
+                                    en la urbanización de La Arboleda. Ofrece educación desde los 3 años hasta los 12 años, 
+                                    cubriendo las etapas de Infantil y Primaria.
+                                </p>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- P.A.P.A.S. 2.0 -->
+                <div class="papas-section">
+                    <h2>💻 P.A.P.A.S. 2.0 - Plataforma de Comunicación Escolar</h2>
+                    
+                    <div class="papas-content">
+                        <span class="papas-icon">📱</span>
+                        <div class="papas-text">
+                            <p>
+                                <strong>P.A.P.A.S. 2.0</strong> (Plataforma para la Administración de Padres y Alumnos de Secundaria) 
+                                es el programa oficial de la Junta de Comunidades de Castilla-La Mancha que facilita la 
+                                <strong>comunicación directa entre familias y centros educativos</strong>.
+                            </p>
+                            <p>
+                                A través de esta plataforma, las familias pueden consultar información académica de sus hijos, 
+                                comunicarse con los tutores, acceder a las calificaciones y estar al tanto de todas las 
+                                novedades del centro educativo.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="papas-features">
+                        <div class="papas-feature">
+                            <span>📊</span>
+                            <p><strong>Calificaciones</strong><br>Consulta las notas y evaluaciones</p>
+                        </div>
+                        <div class="papas-feature">
+                            <span>📅</span>
+                            <p><strong>Horarios</strong><br>Accede al horario escolar</p>
+                        </div>
+                        <div class="papas-feature">
+                            <span>✉️</span>
+                            <p><strong>Mensajería</strong><br>Comunicación con tutores</p>
+                        </div>
+                        <div class="papas-feature">
+                            <span>📢</span>
+                            <p><strong>Avisos</strong><br>Notificaciones del centro</p>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
+                        <a href="https://papas.jccm.es" target="_blank" rel="noopener noreferrer" class="btn btn-papas">
+                            🔗 Acceder a P.A.P.A.S. 2.0
+                        </a>
+                        <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-small);">
+                            Requiere usuario y contraseña proporcionados por el centro educativo
+                        </p>
+                    </div>
+                </div>
+
+                <!-- AMPAs -->
+                <div class="ampas-section">
+                    <h2>👨‍👩‍👧‍👦 Asociaciones de Madres y Padres de Alumnos (AMPA)</h2>
+                    
+                    <div class="ampas-content">
+                        <div class="ampas-info">
+                            <p style="margin-bottom: var(--spacing-md);">
+                                Las <strong>Asociaciones de Madres y Padres de Alumnos (AMPA)</strong> mantienen una 
+                                colaboración constante con los colegios de Pioz y La Arboleda en actividades docentes, 
+                                lúdicas y extraescolares.
+                            </p>
+                            <p style="margin-bottom: var(--spacing-md);">
+                                Las AMPAs actúan como <strong>correa de transmisión entre profesores, dirección y órganos 
+                                oficiales de cultura y el Ayuntamiento</strong>, promoviendo la participación familiar 
+                                en la educación.
+                            </p>
+                            <p>
+                                Para más información sobre las asociaciones, consulta la sección de 
+                                <a href="asociaciones.html" style="color: #3498db; font-weight: 600;">Asociaciones Culturales</a>.
+                            </p>
+                        </div>
+
+                        <div class="ampas-list">
+                            <h3>Actividades de las AMPAs</h3>
+                            <ul>
+                                <li>Colaboración en actividades docentes y educativas</li>
+                                <li>Organización de actividades lúdicas y extraescolares</li>
+                                <li>Representación de las familias ante la dirección escolar</li>
+                                <li>Coordinación con órganos oficiales de cultura</li>
+                                <li>Promoción de la participación familiar en la educación</li>
+                                <li>Organización de eventos escolares y festividades</li>
+                            </ul>
+                            
+                            <div style="margin-top: var(--spacing-lg); padding: var(--spacing-md); background: var(--card-bg); border-radius: 4px;">
+                                <strong style="color: #3498db;">📧 AMPA Castillo de Pioz:</strong><br>
+                                <a href="mailto:ampacastillodepioz@gmail.com" style="color: #3498db; font-weight: 600;">
+                                    ampacastillodepioz@gmail.com
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avisos Importantes -->
+                <div class="avisos-section">
+                    <h2>📢 Avisos y Comunicados</h2>
+                    
+                    <div class="aviso-card">
+                        <h3>📋 Proceso de Admisión de Alumnos</h3>
+                        <p>
+                            Consulta periódicamente esta sección para estar al tanto de los periodos de admisión 
+                            en los centros educativos. El Ayuntamiento publicará aquí todos los avisos oficiales 
+                            relacionados con el proceso de admisión de alumnos en los CEIP de Pioz.
+                        </p>
+                        <p style="margin-top: var(--spacing-sm);">
+                            <strong>Información oficial:</strong> Los procesos de admisión son gestionados por la 
+                            Consejería de Educación de Castilla-La Mancha siguiendo criterios establecidos legalmente.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Contacto Ayuntamiento -->
+                <div class="contacto-ayto">
+                    <h2>📞 Consultas Administrativas</h2>
+                    <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
+                        Para consultas administrativas relacionadas con los centros educativos, 
+                        contacta con el Ayuntamiento de Pioz
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-grid-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📍</span>
+                            <h3>Dirección</h3>
+                            <p>Plaza Mayor, s/n<br>19162 Pioz, Guadalajara</p>
+                        </div>
+
+                        <div class="contacto-grid-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📞</span>
+                            <h3>Teléfono</h3>
+                            <p><a href="tel:949272076" style="color: #3498db; font-size: 1.5rem; font-weight: 700;">949 272 076</a></p>
+                        </div>
+
+                        <div class="contacto-grid-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🕐</span>
+                            <h3>Horario</h3>
+                            <p>Lunes a Viernes<br>9:00 - 14:00 horas</p>
+                        </div>
+
+                        <div class="contacto-grid-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">✉️</span>
+                            <h3>Email</h3>
+                            <p>
+                                <a href="mailto:oficinarecepcion@aytopioz.com" style="color: #3498db; word-break: break-all;">
+                                    oficinarecepcion@aytopioz.com
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

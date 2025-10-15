@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Calendario Cultural - Eventos, fiestas y actividades en Pioz">
+    <title>Calendario Cultural | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .calendario-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-cultura {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-cultura h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-cultura p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .search-filter-bar {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .filter-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: var(--spacing-md);
+            align-items: end;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--input-bg);
+            color: var(--text-primary);
+        }
+        
+        .calendar-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+            padding: var(--spacing-md);
+            background: var(--card-bg);
+            border-radius: 8px;
+        }
+        
+        .calendar-nav h2 {
+            color: var(--color-primary);
+            margin: 0;
+        }
+        
+        .calendar-nav-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+        
+        .calendar-wrapper {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .calendar-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .calendar-table th {
+            text-align: center;
+            padding: var(--spacing-md);
+            color: var(--color-primary);
+            font-weight: 700;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .calendar-table td {
+            text-align: center;
+            padding: var(--spacing-md);
+            border: 1px solid var(--border-color);
+            vertical-align: top;
+            height: 100px;
+            position: relative;
+            background: var(--bg-tertiary);
+        }
+        
+        .calendar-table td:hover {
+            background: var(--color-primary);
+            opacity: 0.1;
+        }
+        
+        .day-number {
+            display: block;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .day-empty {
+            background: transparent;
+        }
+        
+        .day-with-event {
+            cursor: pointer;
+            background: #e8f5e9;
+        }
+        
+        [data-theme="dark"] .day-with-event {
+            background: #1b5e20;
+        }
+        
+        .event-indicator {
+            font-size: 0.7rem;
+            display: block;
+            background: var(--color-primary);
+            color: white;
+            padding: 2px 4px;
+            border-radius: 3px;
+            margin: 2px 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .fiestas-destacadas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .fiesta-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-top: 4px solid #8e44ad;
+            text-align: center;
+            transition: all var(--transition-base);
+        }
+        
+        .fiesta-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .fiesta-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .fiesta-card h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .fiesta-card .fecha {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .fiesta-card .descripcion {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        .eventos-lista {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+        
+        .evento-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #8e44ad;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--spacing-lg);
+            align-items: start;
+            transition: all var(--transition-base);
+        }
+        
+        .evento-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .evento-fecha {
+            background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .evento-dia {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+        
+        .evento-mes {
+            font-size: var(--font-size-small);
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-top: var(--spacing-xs);
+        }
+        
+        .evento-content h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .evento-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .evento-descripcion {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1000;
+            padding: var(--spacing-lg);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 767px) {
+            .filter-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .calendar-table td {
+                height: 60px;
+                padding: var(--spacing-xs);
+            }
+            
+            .event-indicator {
+                font-size: 0.6rem;
+            }
+            
+            .evento-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../cultura.html">Cultura</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Calendario Cultural</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container calendario-container">
+                <div class="hero-cultura">
+                    <h1>🎭 Calendario Cultural</h1>
+                    <p>Todos los eventos, fiestas y actividades culturales de Pioz</p>
+                </div>
+
+                <!-- Barra de búsqueda y filtros -->
+                <div class="search-filter-bar">
+                    <form class="filter-grid">
+                        <div class="form-group">
+                            <label for="searchEvent">Buscar evento</label>
+                            <input type="text" id="searchEvent" placeholder="Teatro, música, talleres...">
+                        </div>
+                        <div class="form-group">
+                            <label for="filterCategory">Categoría</label>
+                            <select id="filterCategory">
+                                <option value="">Todas</option>
+                                <option value="fiestas">Fiestas</option>
+                                <option value="teatro">Teatro</option>
+                                <option value="musica">Música</option>
+                                <option value="talleres">Talleres/Cursos</option>
+                                <option value="charlas">Charlas/Conferencias</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filterMonth">Mes</label>
+                            <select id="filterMonth">
+                                <option value="">Todos</option>
+                                <option value="1">Enero</option>
+                                <option value="2">Febrero</option>
+                                <option value="3">Marzo</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Mayo</option>
+                                <option value="6">Junio</option>
+                                <option value="7">Julio</option>
+                                <option value="8">Agosto</option>
+                                <option value="9" selected>Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Fiestas Destacadas -->
+                <h2 style="color: #8e44ad; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-sm); border-bottom: 3px solid #8e44ad;">
+                    🎉 Fiestas y Tradiciones Anuales
+                </h2>
+                
+                <div class="fiestas-destacadas">
+                    <div class="fiesta-card">
+                        <span class="fiesta-icon">🕯️</span>
+                        <h3>San Sebastián</h3>
+                        <p class="fecha">20 de Enero</p>
+                        <p class="descripcion">Patrón del pueblo. Celebración tradicional con misa y procesión.</p>
+                    </div>
+
+                    <div class="fiesta-card">
+                        <span class="fiesta-icon">🕯️</span>
+                        <h3>La Candelaria</h3>
+                        <p class="fecha">Primer sábado de Febrero</p>
+                        <p class="descripcion">Fiesta tradicional con hogueras y actividades populares.</p>
+                    </div>
+
+                    <div class="fiesta-card">
+                        <span class="fiesta-icon">🌾</span>
+                        <h3>San Isidro</h3>
+                        <p class="fecha">15 de Mayo</p>
+                        <p class="descripcion">Patrón de los labradores. Bendición de los campos y romería.</p>
+                    </div>
+
+                    <div class="fiesta-card">
+                        <span class="fiesta-icon">🎊</span>
+                        <h3>San Donato</h3>
+                        <p class="fecha">Cuarto domingo de Agosto</p>
+                        <p class="descripcion">Fiestas Mayores y Patrón del pueblo. Programa completo de festejos.</p>
+                    </div>
+                </div>
+
+                <!-- Navegación del calendario -->
+                <div class="calendar-nav">
+                    <button class="btn btn-secondary" id="prevMonth">← Mes anterior</button>
+                    <h2 id="currentMonth">Septiembre 2025</h2>
+                    <button class="btn btn-secondary" id="nextMonth">Mes siguiente →</button>
+                </div>
+
+                <!-- Calendario -->
+                <div class="calendar-wrapper">
+                    <table class="calendar-table">
+                        <thead>
+                            <tr>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                                <th>Sábado</th>
+                                <th>Domingo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="calendarBody">
+                            <!-- Septiembre 2025 -->
+                            <tr>
+                                <td><span class="day-number">1</span></td>
+                                <td><span class="day-number">2</span></td>
+                                <td><span class="day-number">3</span></td>
+                                <td><span class="day-number">4</span></td>
+                                <td class="day-with-event" data-date="2025-09-05">
+                                    <span class="day-number">5</span>
+                                    <span class="event-indicator">School of Rock</span>
+                                </td>
+                                <td><span class="day-number">6</span></td>
+                                <td><span class="day-number">7</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="day-number">8</span></td>
+                                <td><span class="day-number">9</span></td>
+                                <td class="day-with-event" data-date="2025-09-10">
+                                    <span class="day-number">10</span>
+                                    <span class="event-indicator">Taller Robótica</span>
+                                </td>
+                                <td><span class="day-number">11</span></td>
+                                <td><span class="day-number">12</span></td>
+                                <td><span class="day-number">13</span></td>
+                                <td><span class="day-number">14</span></td>
+                            </tr>
+                            <tr>
+                                <td class="day-with-event" data-date="2025-09-15">
+                                    <span class="day-number">15</span>
+                                    <span class="event-indicator">Programa San Donato</span>
+                                </td>
+                                <td><span class="day-number">16</span></td>
+                                <td><span class="day-number">17</span></td>
+                                <td class="day-with-event" data-date="2025-09-18">
+                                    <span class="day-number">18</span>
+                                    <span class="event-indicator">Corte San Donato</span>
+                                </td>
+                                <td><span class="day-number">19</span></td>
+                                <td class="day-with-event" data-date="2025-09-20">
+                                    <span class="day-number">20</span>
+                                    <span class="event-indicator">Jornadas Medievales</span>
+                                </td>
+                                <td class="day-with-event" data-date="2025-09-21">
+                                    <span class="day-number">21</span>
+                                    <span class="event-indicator">Jornadas Medievales</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><span class="day-number">22</span></td>
+                                <td><span class="day-number">23</span></td>
+                                <td><span class="day-number">24</span></td>
+                                <td class="day-with-event" data-date="2025-09-25">
+                                    <span class="day-number">25</span>
+                                    <span class="event-indicator">Charla Jurídica</span>
+                                </td>
+                                <td><span class="day-number">26</span></td>
+                                <td class="day-with-event" data-date="2025-09-27">
+                                    <span class="day-number">27</span>
+                                    <span class="event-indicator">La Casa de Bernarda Alba</span>
+                                </td>
+                                <td><span class="day-number">28</span></td>
+                            </tr>
+                            <tr>
+                                <td><span class="day-number">29</span></td>
+                                <td><span class="day-number">30</span></td>
+                                <td class="day-empty"></td>
+                                <td class="day-empty"></td>
+                                <td class="day-empty"></td>
+                                <td class="day-empty"></td>
+                                <td class="day-empty"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Lista de próximos eventos -->
+                <h2 style="color: #8e44ad; margin-bottom: var(--spacing-lg); padding-bottom: var(--spacing-sm); border-bottom: 3px solid #8e44ad;">
+                    📅 Próximos Eventos
+                </h2>
+                
+                <div class="eventos-lista">
+                    <div class="evento-card">
+                        <div class="evento-fecha">
+                            <div class="evento-dia">05</div>
+                            <div class="evento-mes">SEP</div>
+                        </div>
+                        <div class="evento-content">
+                            <h3>SCHOOL OF ROCK - Escuela de Música</h3>
+                            <div class="evento-meta">
+                                <span>🎵 Música</span>
+                                <span>📍 Centro Cultural</span>
+                                <span>🕐 18:00h</span>
+                            </div>
+                            <p class="evento-descripcion">
+                                Abierto el plazo de inscripción para la Escuela Municipal de Música. 
+                                Clases de guitarra, bajo, batería y canto. Plazas limitadas.
+                            </p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" onclick="openModal('school-rock')">Ver más</button>
+                        </div>
+                    </div>
+
+                    <div class="evento-card">
+                        <div class="evento-fecha">
+                            <div class="evento-dia">20-21</div>
+                            <div class="evento-mes">SEP</div>
+                        </div>
+                        <div class="evento-content">
+                            <h3>Jornadas Medievales de Pioz</h3>
+                            <div class="evento-meta">
+                                <span>🏰 Festejos</span>
+                                <span>📍 Plaza Mayor</span>
+                                <span>🕐 Todo el día</span>
+                            </div>
+                            <p class="evento-descripcion">
+                                Mercado medieval, espectáculos de cetrería, música medieval, talleres infantiles 
+                                y exhibición de combate. Dos días de diversión en familia.
+                            </p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" onclick="openModal('medievales')">Ver más</button>
+                        </div>
+                    </div>
+
+                    <div class="evento-card">
+                        <div class="evento-fecha">
+                            <div class="evento-dia">25</div>
+                            <div class="evento-mes">SEP</div>
+                        </div>
+                        <div class="evento-content">
+                            <h3>CHARLA JURÍDICA: Sucesiones y Herencias</h3>
+                            <div class="evento-meta">
+                                <span>📚 Charla</span>
+                                <span>📍 Salón de Actos</span>
+                                <span>🕐 19:00h</span>
+                            </div>
+                            <p class="evento-descripcion">
+                                Charla informativa sobre aspectos legales de sucesiones y herencias. 
+                                Ponente: Letrado del Colegio de Abogados de Guadalajara. Entrada libre.
+                            </p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" onclick="openModal('charla-juridica')">Ver más</button>
+                        </div>
+                    </div>
+
+                    <div class="evento-card">
+                        <div class="evento-fecha">
+                            <div class="evento-dia">27</div>
+                            <div class="evento-mes">SEP</div>
+                        </div>
+                        <div class="evento-content">
+                            <h3>LA CASA DE BERNARDA ALBA</h3>
+                            <div class="evento-meta">
+                                <span>🎭 Teatro</span>
+                                <span>📍 Teatro Municipal</span>
+                                <span>🕐 20:30h</span>
+                            </div>
+                            <p class="evento-descripcion">
+                                Representación de la obra maestra de Federico García Lorca por el Grupo Teatral 
+                                "Despertares" de Pioz. Entrada: 5€ (anticipada) / 7€ (taquilla).
+                            </p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" onclick="openModal('bernarda-alba')">Ver más</button>
+                        </div>
+                    </div>
+
+                    <div class="evento-card">
+                        <div class="evento-fecha">
+                            <div class="evento-dia">31</div>
+                            <div class="evento-mes">OCT</div>
+                        </div>
+                        <div class="evento-content">
+                            <h3>Juan Tenorio</h3>
+                            <div class="evento-meta">
+                                <span>🎭 Teatro</span>
+                                <span>📍 Teatro Municipal</span>
+                                <span>🕐 20:00h</span>
+                            </div>
+                            <p class="evento-descripcion">
+                                Representación tradicional del clásico de José Zorrilla. 
+                                Una cita imprescindible en la víspera de Todos los Santos.
+                            </p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" onclick="openModal('juan-tenorio')">Ver más</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información adicional -->
+                <div style="background: var(--bg-tertiary); padding: var(--spacing-xl); border-radius: 8px; margin-top: var(--spacing-xl);">
+                    <h3 style="color: #8e44ad; margin-bottom: var(--spacing-md);">📧 Mantente Informado</h3>
+                    <p style="color: var(--text-primary); margin-bottom: var(--spacing-md);">
+                        Para recibir información sobre próximos eventos culturales o proponer actividades, 
+                        contacta con la Concejalía de Cultura:
+                    </p>
+                    <p style="color: var(--text-primary);">
+                        <strong>Email:</strong> <a href="mailto:cultura.ayto.2327.pioz@gmail.com" style="color: #8e44ad;">cultura.ayto.2327.pioz@gmail.com</a><br>
+                        <strong>Teléfono:</strong> <a href="tel:949272076" style="color: #8e44ad;">949 272 076</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal para detalles de evento -->
+    <div id="eventModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" style="color: #8e44ad;"></h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script>
+        function openModal(eventId) {
+            const modal = document.getElementById('eventModal');
+            modal.classList.add('active');
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('eventModal');
+            modal.classList.remove('active');
+        }
+        
+        // Cerrar modal al hacer clic fuera
+        document.getElementById('eventModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

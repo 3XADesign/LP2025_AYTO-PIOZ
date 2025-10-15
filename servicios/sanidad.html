@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sanidad - Servicios sanitarios y salud pública en Pioz">
+    <title>Sanidad | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .sanidad-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-sanidad {
+            background: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-sanidad h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-sanidad p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+        }
+        
+        .urgencias-box {
+            background: #dc3545;
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .urgencias-box h2 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .telefono-urgencia {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: var(--spacing-lg) 0;
+            display: block;
+        }
+        
+        .sanidad-responde {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #4a90e2;
+        }
+        
+        .sanidad-responde h2 {
+            color: #4a90e2;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .sanidad-responde p,
+        .sanidad-responde li {
+            color: var(--text-primary);
+        }
+        
+        .telefono-box {
+            background: #4a90e2;
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .telefono-box h3 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .telefono-destacado {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin: var(--spacing-sm) 0;
+        }
+        
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .servicio-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #4a90e2;
+        }
+        
+        .servicio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .servicio-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .servicio-card h3 {
+            color: #4a90e2;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .servicio-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .enlaces-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .enlaces-section h2 {
+            color: #4a90e2;
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .enlaces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .enlace-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: all var(--transition-base);
+            border: 2px solid transparent;
+        }
+        
+        .enlace-card:hover {
+            border-color: #4a90e2;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+        
+        .enlace-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .enlace-card h3 {
+            color: #4a90e2;
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+        
+        .avisos-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .avisos-section h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .aviso-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-md);
+            border-left: 4px solid var(--color-primary);
+        }
+        
+        .aviso-item h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .aviso-item p {
+            color: var(--text-primary);
+        }
+        
+        .contacto-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-section h2 {
+            color: #4a90e2;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            text-align: center;
+        }
+        
+        .contacto-item h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contacto-item p {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 767px) {
+            .telefono-urgencia {
+                font-size: 2rem;
+            }
+            
+            .telefono-destacado {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Sanidad</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container sanidad-container">
+                <div class="hero-sanidad">
+                    <h1>🏥 Sanidad y Salud Pública</h1>
+                    <p>Información sanitaria, servicios de salud y teléfonos de emergencia</p>
+                </div>
+
+                <!-- Urgencias -->
+                <div class="urgencias-box">
+                    <h2>🚨 Teléfonos de Emergencia</h2>
+                    <p>Ante cualquier emergencia sanitaria, llama inmediatamente a:</p>
+                    <a href="tel:112" class="telefono-urgencia" style="color: white; text-decoration: none;">112</a>
+                    <p style="font-size: var(--font-size-small); margin-top: var(--spacing-md);">
+                        Teléfono único de urgencias y emergencias<br>
+                        Disponible 24 horas, 365 días al año
+                    </p>
+                </div>
+
+                <!-- Sanidad Responde -->
+                <div class="sanidad-responde">
+                    <h2>📞 Sanidad Responde - Servicio Integral 24/7</h2>
+                    
+                    <div class="telefono-box">
+                        <h3>Teléfono Gratuito</h3>
+                        <a href="tel:900252530" class="telefono-destacado" style="color: white; text-decoration: none;">900 25 25 30</a>
+                        <p style="margin: 0; font-size: var(--font-size-small);">Coordinado con el 112</p>
+                    </div>
+
+                    <h3 style="color: #4a90e2; margin-top: var(--spacing-lg); margin-bottom: var(--spacing-md);">
+                        ¿Qué es Sanidad Responde?
+                    </h3>
+                    <p>
+                        Sanidad Responde es un <strong>servicio sanitario integral</strong> disponible las <strong>24 horas del día, 
+                        los 365 días del año</strong>, atendido por <strong>profesionales sanitarios expertos en telemedicina</strong>.
+                    </p>
+
+                    <h3 style="color: #4a90e2; margin-top: var(--spacing-lg); margin-bottom: var(--spacing-md);">
+                        Servicios que ofrece:
+                    </h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--border-color);">
+                            ✓ <strong>Orientación al nivel asistencial adecuado</strong> - Evitando desplazamientos innecesarios a centros de urgencias
+                        </li>
+                        <li style="padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--border-color);">
+                            ✓ <strong>Consejos preventivos</strong> - Información sobre efectos del exceso de temperaturas, gripe y otras situaciones de salud
+                        </li>
+                        <li style="padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--border-color);">
+                            ✓ <strong>Asesoramiento sanitario</strong> - Consejos específicos ante urgencias sanitarias
+                        </li>
+                        <li style="padding: var(--spacing-sm) 0;">
+                            ✓ <strong>Seguimiento telefónico</strong> - Acompañamiento continuado en tu proceso de salud
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Enlaces de Interés SESCAM -->
+                <div class="enlaces-section">
+                    <h2>🔗 Enlaces de Interés - SESCAM</h2>
+                    <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--text-primary);">
+                        Acceso directo a los servicios del Servicio de Salud de Castilla-La Mancha
+                    </p>
+                    
+                    <div class="enlaces-grid">
+                        <a href="https://sescam.castillalamancha.es/ciudadanos/cita-previa" class="enlace-card" target="_blank" rel="noopener">
+                            <span class="enlace-icon">📅</span>
+                            <h3>Cita Previa SESCAM</h3>
+                        </a>
+
+                        <a href="https://sescam.castillalamancha.es/ciudadanos/cita-hospitalaria" class="enlace-card" target="_blank" rel="noopener">
+                            <span class="enlace-icon">🏥</span>
+                            <h3>Cita Previa Hospital</h3>
+                        </a>
+
+                        <a href="https://sescam.castillalamancha.es/ciudadanos/carnet-vacunas" class="enlace-card" target="_blank" rel="noopener">
+                            <span class="enlace-icon">💉</span>
+                            <h3>Carnet de Vacunas</h3>
+                        </a>
+
+                        <a href="https://sanidad.castillalamancha.es/ciudadanos/vacunaciones/calendario-vacunal-infantil" class="enlace-card" target="_blank" rel="noopener">
+                            <span class="enlace-icon">👶</span>
+                            <h3>Calendario Vacunación Infantil</h3>
+                        </a>
+
+                        <a href="https://sescam.castillalamancha.es/ciudadanos/historia-clinica-digital" class="enlace-card" target="_blank" rel="noopener">
+                            <span class="enlace-icon">📋</span>
+                            <h3>Historia Clínica Digital</h3>
+                        </a>
+
+                        <a href="https://sanidad.castillalamancha.es/ciudadanos/enfermedades-infecciosas/coronavirus" class="enlace-card" target="_blank" rel="noopener">
+                            <span class="enlace-icon">🦠</span>
+                            <h3>Información Coronavirus</h3>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Avisos Sanitarios -->
+                <div class="avisos-section">
+                    <h2>📢 Avisos y Comunicaciones Sanitarias</h2>
+                    
+                    <div class="aviso-item">
+                        <h3>Tratamiento contra Moscas y Mosquitos</h3>
+                        <p>
+                            Información sobre el tratamiento preventivo contra moscas y mosquitos en el municipio. 
+                            Consulta el bando municipal para conocer las fechas y zonas de actuación.
+                        </p>
+                        <a href="../ayuntamiento/bandos.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                            Ver bando completo
+                        </a>
+                    </div>
+
+                    <div class="aviso-item">
+                        <h3>Ordenanza de Animales Domésticos</h3>
+                        <p>
+                            Normativa municipal sobre tenencia responsable de animales de compañía. 
+                            Consulta tus obligaciones como propietario.
+                        </p>
+                        <a href="../tramites/ordenanzas.html#cat-reglamentos" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                            Ver ordenanza
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="contacto-section">
+                    <h2>📍 Información de Contacto</h2>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🏛️</span>
+                            <h3>Concejalía de Sanidad</h3>
+                            <p><strong>Concejala:</strong> Susana Cisneros Granado</p>
+                            <p><strong>Teléfono:</strong> 949 272 076</p>
+                            <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">💊</span>
+                            <h3>Farmacias</h3>
+                            <p>Consulta los horarios de guardias</p>
+                            <p><strong>Información:</strong> 949 272 076</p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🏥</span>
+                            <h3>Centro de Salud</h3>
+                            <p>Atención Primaria</p>
+                            <p><strong>Cita Previa:</strong> 900 25 25 30</p>
+                            <p><strong>Urgencias:</strong> 112</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Cargar componentes primero -->
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    
+    <!-- Luego cargar el resto de scripts -->
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

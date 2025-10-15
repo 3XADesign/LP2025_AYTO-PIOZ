@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Urbanismo - Ayuntamiento de Pioz - Normativa, planos y trámites urbanísticos">
+    <title>Urbanismo | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .urbanismo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-urbanismo {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-urbanismo h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-urbanismo p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+            color: white;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+        }
+        
+        .section-urbanismo {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .section-urbanismo h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid #2c3e50;
+        }
+        
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .doc-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #2c3e50;
+        }
+        
+        .doc-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .doc-icon {
+            font-size: 3rem;
+            display: block;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .doc-card h3 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        
+        .doc-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .doc-card a {
+            display: block;
+            text-align: center;
+            padding: var(--spacing-sm);
+            background: #2c3e50;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background var(--transition-fast);
+        }
+        
+        .doc-card a:hover {
+            background: #34495e;
+            text-decoration: none;
+        }
+        
+        .destacado-urbanismo {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .destacado-urbanismo h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .destacado-urbanismo p {
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .tramites-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .tramite-item {
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 3px solid #2c3e50;
+        }
+        
+        .tramite-item h4 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .tramite-item p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+        }
+        
+        .contacto-urbanismo {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-top: var(--spacing-xl);
+        }
+        
+        .contacto-urbanismo h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            text-align: center;
+        }
+        
+        .contacto-item h3 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contacto-item p {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 767px) {
+            .docs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Urbanismo</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container urbanismo-container">
+                <div class="hero-urbanismo">
+                    <h1>🏗️ Urbanismo</h1>
+                    <p>Planificación, normativa y trámites urbanísticos del municipio</p>
+                </div>
+
+                <div class="intro-box">
+                    <p>
+                        El Departamento de Urbanismo es de <strong>gran importancia para el desarrollo del Municipio</strong>. 
+                        En esta sección encontrarás toda la información, normativa e impresos necesarios para trámites de 
+                        licencias y permisos para obras y construcciones, con el consiguiente <strong>ahorro de tiempo</strong>.
+                    </p>
+                </div>
+
+                <!-- Planificación General -->
+                <div class="section-urbanismo">
+                    <h2>📋 Planificación Urbanística General</h2>
+                    
+                    <div class="destacado-urbanismo">
+                        <h3>Normas Urbanísticas de Pioz</h3>
+                        <p>
+                            Documento integral que regula el régimen del suelo, clasificación, licencias de obras, 
+                            condiciones de edificación y protección del patrimonio en el municipio de Pioz.
+                        </p>
+                    </div>
+
+                    <div class="docs-grid">
+                        <div class="doc-card">
+                            <span class="doc-icon">📘</span>
+                            <h3>Plan de Ordenación Municipal</h3>
+                            <p>Documento completo del Plan de Ordenación Municipal de Pioz</p>
+                            <a href="#" download>📄 Descargar PDF</a>
+                        </div>
+
+                        <div class="doc-card">
+                            <span class="doc-icon">📕</span>
+                            <h3>Normas Urbanísticas de Pioz</h3>
+                            <p>Normativa completa que regula la actividad urbanística en el municipio</p>
+                            <a href="#" download>📄 Descargar PDF</a>
+                        </div>
+
+                        <div class="doc-card">
+                            <span class="doc-icon">📙</span>
+                            <h3>Modificación Normas 2012</h3>
+                            <p>Actualización y modificaciones de las Normas Urbanísticas (2012)</p>
+                            <a href="#" download>📄 Descargar PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cartografía y Planos -->
+                <div class="section-urbanismo">
+                    <h2>🗺️ Cartografía y Planos</h2>
+                    
+                    <div class="docs-grid">
+                        <div class="doc-card">
+                            <span class="doc-icon">🗺️</span>
+                            <h3>Plano Casco Antiguo</h3>
+                            <p>Plano detallado del casco histórico de Pioz</p>
+                            <a href="#" download>📄 Descargar PDF</a>
+                        </div>
+
+                        <div class="doc-card">
+                            <span class="doc-icon">🗺️</span>
+                            <h3>Plano Término Municipal</h3>
+                            <p>Plano completo del término municipal de Pioz</p>
+                            <a href="#" download>📄 Descargar PDF</a>
+                        </div>
+
+                        <div class="doc-card">
+                            <span class="doc-icon">🗺️</span>
+                            <h3>Planos de Urbanizaciones</h3>
+                            <p>Planos detallados de las distintas urbanizaciones del municipio</p>
+                            <a href="#" download>📄 Descargar PDF</a>
+                        </div>
+
+                        <div class="doc-card">
+                            <span class="doc-icon">📗</span>
+                            <h3>Resumen Normativo Urbanizaciones</h3>
+                            <p>Ordenanzas residenciales y planos de las distintas urbanizaciones</p>
+                            <a href="#" download>📄 Descargar PDF</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trámites y Licencias -->
+                <div class="section-urbanismo">
+                    <h2>📝 Trámites, Licencias y Fiscalidad</h2>
+                    
+                    <p style="color: var(--text-primary); margin-bottom: var(--spacing-lg);">
+                        Documentación necesaria para la gestión de licencias urbanísticas y sus impuestos asociados.
+                    </p>
+
+                    <div class="tramites-list">
+                        <div class="tramite-item">
+                            <h4>💰 Impuesto de Construcciones y Obras</h4>
+                            <p>Ordenanza fiscal del ICIO para obras y construcciones</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                                📄 Descargar
+                            </a>
+                        </div>
+
+                        <div class="tramite-item">
+                            <h4>🏠 Impuesto Bienes Inmuebles</h4>
+                            <p>Ordenanza del IBI - Actualización 2012</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                                📄 Descargar
+                            </a>
+                        </div>
+
+                        <div class="tramite-item">
+                            <h4>🚗 Ordenanza de Vados</h4>
+                            <p>Normativa y tasas para la instalación de vados permanentes</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                                📄 Descargar
+                            </a>
+                        </div>
+
+                        <div class="tramite-item">
+                            <h4>🏗️ Ocupación Terrenos Uso Público</h4>
+                            <p>Ordenanza para ocupación de vía pública con obras</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                                📄 Descargar
+                            </a>
+                        </div>
+
+                        <div class="tramite-item">
+                            <h4>♻️ Gestión de Residuos de Construcción</h4>
+                            <p>Normativa de gestión de residuos de construcción y demolición</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                                📄 Descargar
+                            </a>
+                        </div>
+
+                        <div class="tramite-item">
+                            <h4>📋 Comunicación Previa Actividades</h4>
+                            <p>Formulario de comunicación previa para apertura de actividades</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                                📄 Descargar
+                            </a>
+                        </div>
+
+                        <div class="tramite-item">
+                            <h4>🌿 Vallado y Limpieza de Solares</h4>
+                            <p>Ordenanza sobre vallado y limpieza de solares urbanos</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                                📄 Descargar
+                            </a>
+                        </div>
+
+                        <div class="tramite-item">
+                            <h4>🏢 Licencias de Obra Mayor</h4>
+                            <p>Documentación necesaria para solicitud de licencia de obra mayor</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                                📄 Descargar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sede Electrónica -->
+                <div class="intro-box" style="background: var(--bg-tertiary);">
+                    <h3 style="color: #2c3e50; margin-bottom: var(--spacing-md);">💻 Tramitación Online</h3>
+                    <p>
+                        Muchos de estos trámites pueden realizarse de forma telemática a través de nuestra 
+                        <strong>Sede Electrónica</strong>, ahorrando tiempo y desplazamientos.
+                    </p>
+                    <p style="margin-top: var(--spacing-md);">
+                        <a href="../tramites/sede_electronica.html" class="btn btn-primary">
+                            🔐 Acceder a Sede Electrónica
+                        </a>
+                    </p>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="contacto-urbanismo">
+                    <h2>📍 Información y Consultas</h2>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🏛️</span>
+                            <h3>Oficina de Urbanismo</h3>
+                            <p><strong>Dirección:</strong> Plaza Mayor, s/n</p>
+                            <p>19162 Pioz, Guadalajara</p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📞</span>
+                            <h3>Teléfono</h3>
+                            <p><a href="tel:949272076" style="color: #2c3e50; font-size: 1.5rem; font-weight: 700;">949 272 076</a></p>
+                            <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">✉️</span>
+                            <h3>Correo Electrónico</h3>
+                            <p>
+                                <a href="mailto:oficinarecepcion@aytopioz.com" style="color: #2c3e50; word-break: break-all;">
+                                    oficinarecepcion@aytopioz.com
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: var(--spacing-xl); padding: var(--spacing-md); background: var(--card-bg); border-radius: 4px;">
+                        <p style="text-align: center; color: var(--text-primary);">
+                            <strong>💡 Consejo:</strong> Para cualquier consulta urbanística, utiliza nuestros 
+                            <strong>formularios disponibles</strong> en la Sede Electrónica o contacta con nosotros 
+                            por correo electrónico. Responderemos lo antes posible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Empleo - Bolsa de trabajo, formación y recursos para el empleo en Pioz">
+    <title>Empleo | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .empleo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-empleo {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-empleo h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-empleo p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+            color: white;
+        }
+        
+        .section-empleo {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .section-empleo h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .oferta-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #3498db;
+            transition: all var(--transition-base);
+        }
+        
+        .oferta-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(5px);
+        }
+        
+        .oferta-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--spacing-md);
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .oferta-title {
+            color: #3498db;
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .oferta-date {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        .oferta-excerpt {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .formacion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .formacion-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #3498db;
+            text-align: center;
+        }
+        
+        .formacion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .formacion-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .formacion-card h3 {
+            color: #3498db;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .formacion-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .formacion-card a {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: #3498db;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background var(--transition-fast);
+        }
+        
+        .formacion-card a:hover {
+            background: #2980b9;
+            text-decoration: none;
+        }
+        
+        .redes-sociales-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .red-card {
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            border-left: 3px solid #3498db;
+            transition: all var(--transition-base);
+        }
+        
+        .red-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .red-card h4 {
+            color: #3498db;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .red-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .red-card a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .red-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .consejos-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .consejos-box h3 {
+            color: #3498db;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .consejos-box ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .consejos-box li {
+            padding: var(--spacing-sm) 0;
+            color: var(--text-primary);
+        }
+        
+        .consejos-box li::before {
+            content: '✓ ';
+            color: #3498db;
+            font-weight: bold;
+            margin-right: var(--spacing-xs);
+        }
+        
+        @media (max-width: 767px) {
+            .oferta-header {
+                flex-direction: column;
+            }
+            
+            .formacion-grid,
+            .redes-sociales-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Empleo</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container empleo-container">
+                <div class="hero-empleo">
+                    <h1>💼 Empleo</h1>
+                    <p>Bolsa de trabajo, formación y recursos para tu futuro profesional</p>
+                </div>
+
+                <!-- Tablón de Anuncios -->
+                <div class="section-empleo">
+                    <h2>📢 Tablón de Anuncios - Bolsa de Trabajo Municipal</h2>
+                    
+                    <div class="oferta-card">
+                        <div class="oferta-header">
+                            <div>
+                                <h3 class="oferta-title">ACTA VALORACIÓN ALUMNOS RECUAL JARDINERÍA</h3>
+                                <p class="oferta-date">📅 21 de marzo de 2023</p>
+                            </div>
+                        </div>
+                        <p class="oferta-excerpt">
+                            Acta de valoración de los alumnos participantes en el programa de Recualificación en Jardinería.
+                        </p>
+                        <a href="#" class="btn btn-primary" download>📄 Descargar documento</a>
+                    </div>
+
+                    <div class="oferta-card">
+                        <div class="oferta-header">
+                            <div>
+                                <h3 class="oferta-title">Acta segundo ejercicio plaza Arquitecto Municipal</h3>
+                                <p class="oferta-date">📅 14 de febrero de 2023</p>
+                            </div>
+                        </div>
+                        <p class="oferta-excerpt">
+                            Acta del segundo ejercicio del proceso de selección para la plaza de Arquitecto Municipal.
+                        </p>
+                        <a href="#" class="btn btn-primary" download>📄 Descargar documento</a>
+                    </div>
+
+                    <div class="oferta-card">
+                        <div class="oferta-header">
+                            <div>
+                                <h3 class="oferta-title">Acta selección plan de empleo</h3>
+                                <p class="oferta-date">📅 7 de febrero de 2023</p>
+                            </div>
+                        </div>
+                        <p class="oferta-excerpt">
+                            Acta de selección de candidatos para el plan de empleo municipal.
+                        </p>
+                        <a href="#" class="btn btn-primary" download>📄 Descargar documento</a>
+                    </div>
+
+                    <div class="oferta-card">
+                        <div class="oferta-header">
+                            <div>
+                                <h3 class="oferta-title">PREGUNTAS Y RESPUESTAS 1º EXAMEN – ARQUITECTO MUNICIPAL</h3>
+                                <p class="oferta-date">📅 18 de enero de 2023</p>
+                            </div>
+                        </div>
+                        <p class="oferta-excerpt">
+                            Preguntas y respuestas del primer examen para la plaza de Arquitecto Municipal.
+                        </p>
+                        <a href="#" class="btn btn-primary" download>📄 Descargar documento</a>
+                    </div>
+
+                    <div class="oferta-card">
+                        <div class="oferta-header">
+                            <div>
+                                <h3 class="oferta-title">Lista definitiva de admitidos y excluidos plaza Arquitecto Municipal</h3>
+                                <p class="oferta-date">📅 9 de diciembre de 2022</p>
+                            </div>
+                        </div>
+                        <p class="oferta-excerpt">
+                            Lista definitiva de candidatos admitidos y excluidos para la plaza de Arquitecto Municipal.
+                        </p>
+                        <a href="#" class="btn btn-primary" download>📄 Descargar documento</a>
+                    </div>
+
+                    <div class="oferta-card">
+                        <div class="oferta-header">
+                            <div>
+                                <h3 class="oferta-title">Bases y convocatoria Bolsa de trabajo peones/operarios</h3>
+                                <p class="oferta-date">📅 4 de noviembre de 2022</p>
+                            </div>
+                        </div>
+                        <p class="oferta-excerpt">
+                            Bases y convocatoria para la creación de una bolsa de trabajo de peones y operarios de servicios múltiples.
+                        </p>
+                        <a href="#" class="btn btn-primary" download>📄 Descargar bases</a>
+                    </div>
+
+                    <div class="oferta-card">
+                        <div class="oferta-header">
+                            <div>
+                                <h3 class="oferta-title">Bases de selección de una plaza de bibliotecario</h3>
+                                <p class="oferta-date">📅 Archivo histórico</p>
+                            </div>
+                        </div>
+                        <p class="oferta-excerpt">
+                            Bases del proceso de selección para cubrir una plaza de bibliotecario municipal.
+                        </p>
+                        <a href="#" class="btn btn-primary" download>📄 Descargar bases</a>
+                    </div>
+
+                    <div class="oferta-card">
+                        <div class="oferta-header">
+                            <div>
+                                <h3 class="oferta-title">Bases selección auxiliar administrativo</h3>
+                                <p class="oferta-date">📅 Archivo histórico</p>
+                            </div>
+                        </div>
+                        <p class="oferta-excerpt">
+                            Bases del proceso de selección para plaza de auxiliar administrativo.
+                        </p>
+                        <a href="#" class="btn btn-primary" download>📄 Descargar bases</a>
+                    </div>
+                </div>
+
+                <!-- Cursos de Formación -->
+                <div class="section-empleo">
+                    <h2>🎓 Cursos de Formación y Capacitación Profesional</h2>
+                    
+                    <p style="color: var(--text-primary); margin-bottom: var(--spacing-lg);">
+                        Accede a programas de formación para desempleados y trabajadores en Castilla-La Mancha
+                    </p>
+
+                    <div class="formacion-grid">
+                        <div class="formacion-card">
+                            <span class="formacion-icon">🔍</span>
+                            <h3>Buscador de Cursos</h3>
+                            <p>Servicio de Empleo de Castilla-La Mancha</p>
+                            <a href="https://www.castillalamancha.es" target="_blank" rel="noopener">Acceder</a>
+                        </div>
+
+                        <div class="formacion-card">
+                            <span class="formacion-icon">📋</span>
+                            <h3>Programa Prepara</h3>
+                            <p>Información sobre el Programa Prepara para desempleados</p>
+                            <a href="#" target="_blank" rel="noopener">Más información</a>
+                        </div>
+
+                        <div class="formacion-card">
+                            <span class="formacion-icon">🎓</span>
+                            <h3>Certificados de Profesionalidad</h3>
+                            <p>Castilla-La Mancha</p>
+                            <a href="#" target="_blank" rel="noopener">Ver certificados</a>
+                        </div>
+
+                        <div class="formacion-card">
+                            <span class="formacion-icon">👥</span>
+                            <h3>Cursos para Desempleados</h3>
+                            <p>Búsqueda por provincia e inscripción directa</p>
+                            <a href="#" target="_blank" rel="noopener">Buscar cursos</a>
+                        </div>
+
+                        <div class="formacion-card">
+                            <span class="formacion-icon">💼</span>
+                            <h3>Cursos para Trabajadores</h3>
+                            <p>Búsqueda por provincia e inscripción directa</p>
+                            <a href="#" target="_blank" rel="noopener">Buscar cursos</a>
+                        </div>
+
+                        <div class="formacion-card">
+                            <span class="formacion-icon">🏛️</span>
+                            <h3>Cursos Dipuemplea</h3>
+                            <p>Formación de la Diputación Provincial</p>
+                            <a href="#" target="_blank" rel="noopener">Acceder</a>
+                        </div>
+
+                        <div class="formacion-card">
+                            <span class="formacion-icon">🚑</span>
+                            <h3>Primeros Auxilios</h3>
+                            <p>Cursos de primeros auxilios para desempleados/as</p>
+                            <a href="#" target="_blank" rel="noopener">Inscribirse</a>
+                        </div>
+
+                        <div class="formacion-card">
+                            <span class="formacion-icon">💻</span>
+                            <h3>Herramientas Telemáticas</h3>
+                            <p>Formación en herramientas digitales y telemáticas</p>
+                            <a href="#" target="_blank" rel="noopener">Ver cursos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orientación Laboral -->
+                <div class="section-empleo">
+                    <h2>🎯 Herramientas para la Búsqueda de Empleo</h2>
+                    
+                    <div class="consejos-box">
+                        <h3>📱 Consejos para Twitter</h3>
+                        <p style="color: var(--text-primary); margin-bottom: var(--spacing-md);">
+                            Las redes sociales son una herramienta fundamental en la búsqueda de empleo. 
+                            Sigue estos consejos para maximizar tus oportunidades en Twitter:
+                        </p>
+                        <ul>
+                            <li>Tuitea sobre el trabajo que buscas de forma clara y profesional</li>
+                            <li>Sigue a las empresas que ofrecen el tipo de empleo que deseas</li>
+                            <li>Genera contacto con profesionales de tu sector</li>
+                            <li>Crea interés compartiendo contenido relevante de tu área</li>
+                            <li>Mantén un perfil profesional y actualizado</li>
+                        </ul>
+                    </div>
+
+                    <h3 style="color: #3498db; margin-bottom: var(--spacing-lg);">🔗 Portales de Empleo y Redes Profesionales</h3>
+                    
+                    <div class="redes-sociales-grid">
+                        <div class="red-card">
+                            <h4>@Linkedin</h4>
+                            <p>Red profesional líder mundial. Presenta tu talento, expón tus conocimientos, participa en grupos, interactúa y transforma contactos en oportunidades.</p>
+                            <a href="https://linkedin.com" target="_blank" rel="noopener">Acceder a LinkedIn →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@Infoempleo</h4>
+                            <p>Portal de ofertas de trabajo y formación. Incluye la aplicación "Tuimpleo" de Twitter para búsqueda de empleo en tiempo real.</p>
+                            <a href="https://infoempleo.com" target="_blank" rel="noopener">Acceder a Infoempleo →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@Infojobs</h4>
+                            <p>Portal líder en España con miles de ofertas, orientación e información laboral actualizada diariamente.</p>
+                            <a href="https://infojobs.net" target="_blank" rel="noopener">Acceder a Infojobs →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@Ocupa2</h4>
+                            <p>Ofertas de empleo, programas de inserción laboral y formación para mejorar tu empleabilidad.</p>
+                            <a href="#" target="_blank" rel="noopener">Acceder a Ocupa2 →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@Portalparados</h4>
+                            <p>Ofertas de trabajo e información de interés sobre el mundo laboral, ayudas y recursos para desempleados.</p>
+                            <a href="#" target="_blank" rel="noopener">Acceder →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@bigopo</h4>
+                            <p>Red social innovadora que conecta empresas con talento de forma directa y eficiente.</p>
+                            <a href="#" target="_blank" rel="noopener">Acceder a Bigopo →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@domestikaempleo</h4>
+                            <p>Portal especializado en empleo para disciplinas artísticas: diseño, ilustración, música, cine, fotografía y más.</p>
+                            <a href="https://domestika.org" target="_blank" rel="noopener">Acceder →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@jobandtalent_es</h4>
+                            <p>Plataforma española que permite vincular tu currículum con Facebook y LinkedIn para mayor visibilidad.</p>
+                            <a href="#" target="_blank" rel="noopener">Acceder →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@primerempleo</h4>
+                            <p>Especializado en becas y prácticas para titulados con o sin experiencia. Ideal para empezar tu carrera profesional.</p>
+                            <a href="#" target="_blank" rel="noopener">Acceder →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@buscar_trabajo</h4>
+                            <p>Ofertas, demandas de empleo, bolsa de trabajo y consejos prácticos para entrevistas y procesos de selección.</p>
+                            <a href="#" target="_blank" rel="noopener">Acceder →</a>
+                        </div>
+
+                        <div class="red-card">
+                            <h4>@trovit</h4>
+                            <p>Equipo joven y activo especializado en la búsqueda inteligente de empleo en toda la red.</p>
+                            <a href="https://trovit.es" target="_blank" rel="noopener">Acceder a Trovit →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="consejos-box" style="margin-top: var(--spacing-xl);">
+                    <h3>📍 Información y Contacto</h3>
+                    <p>
+                        <strong>Ayuntamiento de Pioz - Concejalía de Empleo</strong><br>
+                        Concejal: Carlos Alberto Torre del Olmo<br>
+                        Plaza Mayor, s/n - 19162 Pioz, Guadalajara<br>
+                        <strong>Teléfono:</strong> <a href="tel:949272076" style="color: #3498db;">949 272 076</a><br>
+                        <strong>Horario de atención:</strong> Lunes a Viernes, 9:00 - 14:00 h
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

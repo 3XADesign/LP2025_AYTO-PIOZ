@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Piscina Municipal de Pioz - Horarios, tarifas y abonos de temporada">
+    <title>Piscina Municipal | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .piscina-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-piscina {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-piscina h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-piscina p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+            color: white;
+        }
+        
+        .temporada-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #3498db;
+        }
+        
+        .temporada-box h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .temporada-box p {
+            color: var(--text-primary);
+        }
+        
+        .horario-destacado {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-top: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .horario-destacado h3 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .horario-destacado p {
+            font-size: var(--font-size-large);
+            font-weight: 600;
+        }
+        
+        .section-piscina {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .section-piscina h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid #3498db;
+        }
+        
+        .tarifas-grid {
+            display: grid;
+            gap: var(--spacing-lg);
+        }
+        
+        .tarifa-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            overflow: hidden;
+        }
+        
+        .tarifa-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .tarifa-header h3 {
+            color: white;
+            margin: 0;
+        }
+        
+        .tarifa-body {
+            padding: var(--spacing-lg);
+        }
+        
+        .tarifa-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .tarifa-table th,
+        .tarifa-table td {
+            padding: var(--spacing-sm);
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+        
+        .tarifa-table th {
+            background: var(--bg-tertiary);
+            font-weight: 600;
+            color: #3498db;
+        }
+        
+        .tarifa-table td:last-child {
+            text-align: right;
+            font-weight: 600;
+            color: #3498db;
+        }
+        
+        .nota-especial {
+            background: #fff3cd;
+            border-left: 4px solid #856404;
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            border-radius: 4px;
+            color: #856404;
+        }
+        
+        [data-theme="dark"] .nota-especial {
+            background: #4a4000;
+            color: #ffd700;
+        }
+        
+        .proceso-abonos {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .proceso-abonos h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .proceso-step {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-md);
+            border-left: 4px solid #3498db;
+        }
+        
+        .proceso-step h3 {
+            color: #3498db;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .proceso-step p,
+        .proceso-step ul,
+        .proceso-step li {
+            color: var(--text-primary);
+        }
+        
+        .proceso-step ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .proceso-step li {
+            padding: var(--spacing-xs) 0;
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+        }
+        
+        .proceso-step li::before {
+            content: '✓';
+            color: #3498db;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .warning-box {
+            background: #dc3545;
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-top: var(--spacing-md);
+        }
+        
+        .warning-box strong {
+            color: white;
+        }
+        
+        .normativa-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .normativa-section h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .normativa-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-md);
+            border-left: 3px solid #3498db;
+        }
+        
+        .normativa-item h4 {
+            color: #3498db;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .normativa-item p {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 767px) {
+            .tarifa-table {
+                font-size: var(--font-size-small);
+            }
+            
+            .tarifa-table th,
+            .tarifa-table td {
+                padding: var(--spacing-xs);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Piscina Municipal</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container piscina-container">
+                <div class="hero-piscina">
+                    <h1>🏊 Piscina Municipal de Pioz</h1>
+                    <p>Disfruta del verano en nuestras instalaciones</p>
+                </div>
+
+                <!-- Temporada y Horarios -->
+                <div class="temporada-box">
+                    <h2>📅 Temporada 2025</h2>
+                    <p style="font-size: var(--font-size-large); margin-bottom: var(--spacing-md);">
+                        <strong>Del 28 de junio al 31 de agosto</strong>
+                    </p>
+                    
+                    <div class="horario-destacado">
+                        <h3>🕐 Horario de Apertura</h3>
+                        <p>De 12:00 a 20:00 horas</p>
+                        <p style="font-size: var(--font-size-base); margin-top: var(--spacing-xs);">
+                            Lunes a Domingo (incluidos festivos)
+                        </p>
+                    </div>
+
+                    <div class="nota-especial" style="margin-top: var(--spacing-lg);">
+                        <strong>ℹ️ Jornada de Puertas Abiertas:</strong> Consulta la fecha de apertura de temporada 
+                        y la jornada de puertas abiertas en nuestras redes sociales y tablón de anuncios.
+                    </div>
+                </div>
+
+                <!-- Tarifas -->
+                <div class="section-piscina">
+                    <h2>💰 Tarifas</h2>
+                    
+                    <div class="tarifas-grid">
+                        <!-- Entrada Diaria -->
+                        <div class="tarifa-card">
+                            <div class="tarifa-header">
+                                <h3>🎫 Entrada Diaria</h3>
+                            </div>
+                            <div class="tarifa-body">
+                                <table class="tarifa-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Lunes-Viernes</th>
+                                            <th>Sáb/Dom/Festivos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Adulto (18-65 años)</td>
+                                            <td>3,50€</td>
+                                            <td>5,00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Joven (6-17 años)</td>
+                                            <td>2,50€</td>
+                                            <td>4,00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Especial*</td>
+                                            <td>2,00€</td>
+                                            <td>3,00€</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="nota-especial">
+                                    <strong>*Entrada Especial:</strong> Pensionistas, jubilados y personas con discapacidad
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Abono 10 Baños -->
+                        <div class="tarifa-card">
+                            <div class="tarifa-header">
+                                <h3>🎟️ Abono 10 Baños</h3>
+                            </div>
+                            <div class="tarifa-body">
+                                <table class="tarifa-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de Abono</th>
+                                            <th>Tarifa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Adulto</td>
+                                            <td>30,00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Joven</td>
+                                            <td>20,00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Especial*</td>
+                                            <td>15,00€</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p style="margin-top: var(--spacing-md); color: var(--text-secondary); font-size: var(--font-size-small);">
+                                    Válido para cualquier día de la temporada
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Abono Temporada -->
+                        <div class="tarifa-card">
+                            <div class="tarifa-header">
+                                <h3>🏖️ Abono de Temporada</h3>
+                            </div>
+                            <div class="tarifa-body">
+                                <table class="tarifa-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo de Abono</th>
+                                            <th>Tarifa</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Adulto (18-65 años)</td>
+                                            <td>50,00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Joven (6-17 años)</td>
+                                            <td>30,00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Especial*</td>
+                                            <td>25,00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Familiar</td>
+                                            <td>75,00€</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Familia Numerosa</td>
+                                            <td>60,00€</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <p style="margin-top: var(--spacing-md); color: var(--text-secondary); font-size: var(--font-size-small);">
+                                    Acceso ilimitado durante toda la temporada
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proceso de Tramitación de Abonos -->
+                <div class="proceso-abonos">
+                    <h2>📋 Tramitación de Abonos 2025</h2>
+                    
+                    <div class="proceso-step">
+                        <h3>📍 Lugar y Horario de Formalización</h3>
+                        <p>
+                            Los abonos de temporada se formalizarán en el <strong>Ayuntamiento de Pioz</strong>:
+                        </p>
+                        <ul style="margin-top: var(--spacing-md);">
+                            <li>Lunes a Jueves</li>
+                            <li>Horario: 10:00 a 14:00 horas</li>
+                            <li>Dirección: Plaza Mayor, s/n - 19162 Pioz</li>
+                        </ul>
+                    </div>
+
+                    <div class="proceso-step">
+                        <h3>📄 Documentación Obligatoria</h3>
+                        <p style="margin-bottom: var(--spacing-md);">
+                            Para tramitar tu abono, deberás presentar la siguiente documentación:
+                        </p>
+                        <ul>
+                            <li><strong>Solicitud</strong> debidamente cumplimentada con todos los datos</li>
+                            <li><strong>Fotografía tamaño carnet</strong> (individual para cada persona que solicite abono)</li>
+                            <li><strong>Original y fotocopia del DNI</strong> de todos los miembros</li>
+                        </ul>
+                        
+                        <h4 style="color: #3498db; margin-top: var(--spacing-md); margin-bottom: var(--spacing-sm);">
+                            Documentación Adicional según Tipo de Abono:
+                        </h4>
+                        <ul>
+                            <li><strong>Abono Familiar:</strong> Original y fotocopia del libro de familia o documento de inscripción como pareja de hecho</li>
+                            <li><strong>Abono Familia Numerosa:</strong> Original y fotocopia del título de familia numerosa</li>
+                            <li><strong>Abono Especial (Pensionista):</strong> Carnet de pensionista o documento acreditativo</li>
+                            <li><strong>Abono Especial (Discapacidad):</strong> Certificado oficial de discapacidad</li>
+                        </ul>
+
+                        <div class="warning-box">
+                            <strong>⚠️ IMPORTANTE:</strong> No se admitirá ninguna solicitud que no contenga todos los datos 
+                            o que no aporte toda la documentación requerida.
+                        </div>
+                    </div>
+
+                    <div class="proceso-step">
+                        <h3>💳 Forma de Pago</h3>
+                        <ul>
+                            <li>Efectivo en el momento de la formalización</li>
+                            <li>Tarjeta bancaria (consultar disponibilidad)</li>
+                            <li>El abono se entregará una vez abonado el importe correspondiente</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Normativa -->
+                <div class="normativa-section">
+                    <h2>📜 Normativa de Uso</h2>
+                    
+                    <div class="normativa-item">
+                        <h4>🔒 Uso del Abono</h4>
+                        <p>
+                            El uso del carnet o abono es <strong>personal e intransferible</strong>. 
+                            El uso por una persona distinta al titular será sancionado con la 
+                            <strong>anulación inmediata</strong> del mismo sin derecho a devolución.
+                        </p>
+                    </div>
+
+                    <div class="normativa-item">
+                        <h4>🏥 Normas Higiénico-Sanitarias</h4>
+                        <p>
+                            Todos los usuarios están sujetos a las <strong>normas higiénico-sanitarias</strong> 
+                            establecidas por el Departamento de Salud Pública de la 
+                            <strong>Junta de Comunidades de Castilla-La Mancha</strong>.
+                        </p>
+                    </div>
+
+                    <div class="normativa-item">
+                        <h4>⚖️ Sanciones</h4>
+                        <p>
+                            El incumplimiento de las normas establecidas en el Reglamento de la Piscina Municipal 
+                            será sancionado con la <strong>expulsión temporal o definitiva</strong> del recinto.
+                        </p>
+                    </div>
+
+                    <div class="normativa-item">
+                        <h4>📖 Reglamento Completo</h4>
+                        <p>
+                            Consulta el Reglamento completo de la Piscina Municipal para conocer todas las normas 
+                            de uso, horarios especiales y servicios disponibles.
+                        </p>
+                        <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);" download>
+                            📥 Descargar Reglamento (PDF)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="temporada-box">
+                    <h2>📞 Información y Consultas</h2>
+                    <p>
+                        <strong>Ayuntamiento de Pioz - Tramitación de Abonos</strong><br>
+                        Plaza Mayor, s/n - 19162 Pioz, Guadalajara<br>
+                        <strong>Teléfono:</strong> <a href="tel:949272076" style="color: #3498db;">949 272 076</a><br>
+                        <strong>Email:</strong> <a href="mailto:oficinarecepcion@aytopioz.com" style="color: #3498db;">oficinarecepcion@aytopioz.com</a><br>
+                        <strong>Horario de atención:</strong> Lunes a Viernes, 9:00 - 14:00 h<br>
+                        <strong>Tramitación de abonos:</strong> Lunes a Jueves, 10:00 - 14:00 h
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

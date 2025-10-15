@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Asociaciones Culturales de Pioz - Directorio de asociaciones vecinales, culturales y juveniles">
+    <title>Asociaciones Culturales | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .asociaciones-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-asociaciones {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-asociaciones h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-asociaciones p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .intro-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border-left: 4px solid #16a085;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-box h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .search-asociaciones {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .search-asociaciones input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            font-size: var(--font-size-base);
+            background: var(--input-bg);
+            color: var(--text-primary);
+        }
+        
+        .asociaciones-grid {
+            display: grid;
+            gap: var(--spacing-xl);
+        }
+        
+        .asociacion-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid #16a085;
+            transition: all var(--transition-base);
+        }
+        
+        .asociacion-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .asociacion-header {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .asociacion-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+        
+        .asociacion-title {
+            flex: 1;
+        }
+        
+        .asociacion-title h3 {
+            color: #16a085;
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.5rem;
+        }
+        
+        .asociacion-tipo {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .asociacion-descripcion {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+        }
+        
+        .actividades-list {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .actividades-list h4 {
+            color: #16a085;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1rem;
+        }
+        
+        .actividades-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .actividades-list li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-xs);
+        }
+        
+        .actividades-list li::before {
+            content: '▸';
+            color: #16a085;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .contacto-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+        }
+        
+        .contacto-box h4 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contacto-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .contacto-icon {
+            color: #16a085;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        
+        .contacto-text {
+            color: var(--text-primary);
+        }
+        
+        .contacto-text a {
+            color: #16a085;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .soporte-institucional {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-top: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .soporte-institucional h2 {
+            color: white;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .soporte-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .soporte-item {
+            background: rgba(255,255,255,0.1);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .soporte-item h3 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .soporte-item p {
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .btn-download {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: var(--spacing-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-download:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 767px) {
+            .asociacion-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .asociacion-icon {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../cultura.html">Cultura</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Asociaciones Culturales</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container asociaciones-container">
+                <div class="hero-asociaciones">
+                    <h1>👥 Asociaciones Culturales de Pioz</h1>
+                    <p>Directorio de asociaciones vecinales, culturales y juveniles</p>
+                </div>
+
+                <div class="intro-box">
+                    <h2>🤝 El Ayuntamiento Está a Tu Disposición</h2>
+                    <p>
+                        El Ayuntamiento de Pioz está comprometido con el fomento de la participación ciudadana y el asociacionismo. 
+                        Estamos aquí para ayudarte si deseas <strong>conocer más sobre las asociaciones existentes</strong>, 
+                        <strong>formar parte de alguna de ellas</strong> o incluso <strong>crear una nueva asociación</strong>.
+                    </p>
+                    <p style="margin-top: var(--spacing-md);">
+                        Las asociaciones son fundamentales para la vida social y cultural de nuestro municipio, 
+                        promoviendo actividades que enriquecen la convivencia y fortalecen el tejido social de Pioz.
+                    </p>
+                </div>
+
+                <div class="search-asociaciones">
+                    <label for="searchAsociaciones" style="display: block; margin-bottom: var(--spacing-sm); font-weight: 600; color: var(--text-primary);">
+                        🔍 Buscar asociación
+                    </label>
+                    <input type="text" id="searchAsociaciones" placeholder="Buscar por nombre, actividad o ámbito...">
+                </div>
+
+                <div class="asociaciones-grid">
+                    <!-- Asociación de Mujeres Las Candelas -->
+                    <article class="asociacion-card">
+                        <div class="asociacion-header">
+                            <span class="asociacion-icon">🌸</span>
+                            <div class="asociacion-title">
+                                <h3>Asociación de Mujeres "Las Candelas"</h3>
+                                <span class="asociacion-tipo">Asociación Cultural</span>
+                            </div>
+                        </div>
+                        
+                        <p class="asociacion-descripcion">
+                            Asociación dedicada a actividades para la mujer con un marcado aspecto cultural. 
+                            Promueve el desarrollo personal y social de las mujeres del municipio a través de 
+                            diversas iniciativas culturales y recreativas.
+                        </p>
+                        
+                        <div class="actividades-list">
+                            <h4>Actividades principales</h4>
+                            <ul>
+                                <li>Actuaciones teatrales y representaciones escénicas</li>
+                                <li>Organización de viajes culturales y recreativos</li>
+                                <li>Concursos para mayores y niños (especialmente en fiestas patronales)</li>
+                                <li>Talleres formativos y de desarrollo personal</li>
+                                <li>Actividades de dinamización cultural</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contacto-box">
+                            <h4>📞 Información de Contacto</h4>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📧</span>
+                                <div class="contacto-text">
+                                    <strong>Email:</strong> <a href="mailto:lascandelaspioz@gmail.com">lascandelaspioz@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📍</span>
+                                <div class="contacto-text">
+                                    <strong>Dirección:</strong> Calle Mayor, 2 - 19162 Pioz
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Club Social 3ª Edad San Sebastián -->
+                    <article class="asociacion-card">
+                        <div class="asociacion-header">
+                            <span class="asociacion-icon">🎯</span>
+                            <div class="asociacion-title">
+                                <h3>Club Social 3ª Edad "San Sebastián"</h3>
+                                <span class="asociacion-tipo">Asociación de Mayores</span>
+                            </div>
+                        </div>
+                        
+                        <p class="asociacion-descripcion">
+                            Club dirigido a jubilados y prejubilados del municipio. Un espacio de encuentro 
+                            intergeneracional donde los mayores pueden disfrutar de actividades recreativas, 
+                            sociales y culturales adaptadas a sus intereses.
+                        </p>
+                        
+                        <div class="actividades-list">
+                            <h4>Actividades principales</h4>
+                            <ul>
+                                <li>Reuniones para juegos de mesa (dominó, cartas, parchís)</li>
+                                <li>Actividades recreativas y de ocio</li>
+                                <li>Eventos gastronómicos y celebraciones</li>
+                                <li>Organización de viajes turísticos</li>
+                                <li>Excursiones y viajes vacacionales</li>
+                                <li>Actividades de promoción del envejecimiento activo</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contacto-box">
+                            <h4>📞 Información de Contacto</h4>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📍</span>
+                                <div class="contacto-text">
+                                    <strong>Centro de Mayores:</strong> Consultar en el Ayuntamiento
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📞</span>
+                                <div class="contacto-text">
+                                    <strong>Información:</strong> <a href="tel:949272076">949 272 076</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- AMPA Castillo de Pioz -->
+                    <article class="asociacion-card">
+                        <div class="asociacion-header">
+                            <span class="asociacion-icon">📚</span>
+                            <div class="asociacion-title">
+                                <h3>AMPA Castillo de Pioz</h3>
+                                <span class="asociacion-tipo">Asociación Educativa</span>
+                            </div>
+                        </div>
+                        
+                        <p class="asociacion-descripcion">
+                            Asociación de Madres y Padres de Alumnos que mantiene una colaboración constante con los 
+                            colegios del municipio (PIOZ y LA ARBOLEDA). Actúa como nexo fundamental entre familias, 
+                            profesores, dirección de los centros y órganos oficiales de cultura y el Ayuntamiento.
+                        </p>
+                        
+                        <div class="actividades-list">
+                            <h4>Actividades principales</h4>
+                            <ul>
+                                <li>Colaboración en actividades docentes y educativas</li>
+                                <li>Organización de actividades lúdicas y extraescolares</li>
+                                <li>Representación de las familias ante la dirección escolar</li>
+                                <li>Coordinación con órganos oficiales de cultura</li>
+                                <li>Promoción de la participación familiar en la educación</li>
+                                <li>Organización de eventos escolares y festividades</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contacto-box">
+                            <h4>📞 Información de Contacto</h4>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📧</span>
+                                <div class="contacto-text">
+                                    <strong>Email:</strong> <a href="mailto:ampacastillodepioz@gmail.com">ampacastillodepioz@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">🏫</span>
+                                <div class="contacto-text">
+                                    <strong>Colegios:</strong> CEIP Pioz y CEIP La Arboleda
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asociación de Jóvenes EQUALITY -->
+                    <article class="asociacion-card">
+                        <div class="asociacion-header">
+                            <span class="asociacion-icon">🎨</span>
+                            <div class="asociacion-title">
+                                <h3>Asociación de Jóvenes "EQUALITY"</h3>
+                                <span class="asociacion-tipo">Asociación Juvenil</span>
+                            </div>
+                        </div>
+                        
+                        <p class="asociacion-descripcion">
+                            Asociación formada por jóvenes del pueblo con el objetivo de realizar actividades culturales 
+                            y ser un punto de encuentro donde compartir tiempo libre y aficiones comunes. Fomenta la 
+                            participación activa de la juventud en la vida cultural del municipio.
+                        </p>
+                        
+                        <div class="actividades-list">
+                            <h4>Actividades principales</h4>
+                            <ul>
+                                <li>Organización de eventos culturales para jóvenes</li>
+                                <li>Punto de encuentro y espacio de ocio</li>
+                                <li>Actividades de dinamización juvenil</li>
+                                <li>Promoción de aficiones y hobbies compartidos</li>
+                                <li>Eventos de integración social</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contacto-box">
+                            <h4>📞 Información de Contacto</h4>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">ℹ️</span>
+                                <div class="contacto-text">
+                                    Para más información, consulta en la Concejalía de Juventud:<br>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asociación Juvenil STEP by STEP -->
+                    <article class="asociacion-card">
+                        <div class="asociacion-header">
+                            <span class="asociacion-icon">🚀</span>
+                            <div class="asociacion-title">
+                                <h3>Asociación Juvenil "STEP by STEP"</h3>
+                                <span class="asociacion-tipo">Asociación Juvenil Social</span>
+                            </div>
+                        </div>
+                        
+                        <p class="asociacion-descripcion">
+                            Entidad dedicada a prestar servicios a la juventud, con especial enfoque en problemas 
+                            sociales emergentes. Propone programas formativos innovadores, actividades y talleres 
+                            que buscan integrar a jóvenes y sus familias en la vida social y cultural del municipio.
+                        </p>
+                        
+                        <div class="actividades-list">
+                            <h4>Actividades principales</h4>
+                            <ul>
+                                <li>Programas formativos para jóvenes</li>
+                                <li>Talleres de integración social</li>
+                                <li>Actividades de prevención de problemas sociales</li>
+                                <li>Programas de apoyo familiar</li>
+                                <li>Proyectos de desarrollo personal y competencias</li>
+                                <li>Iniciativas de cohesión intergeneracional</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contacto-box">
+                            <h4>📞 Información de Contacto</h4>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📞</span>
+                                <div class="contacto-text">
+                                    <strong>Teléfono:</strong> <a href="tel:667667514">667 667 514</a>
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📧</span>
+                                <div class="contacto-text">
+                                    <strong>Email:</strong> <a href="mailto:stepbysteptesalia@hotmail.com">stepbysteptesalia@hotmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📍</span>
+                                <div class="contacto-text">
+                                    <strong>Dirección:</strong> Calle Las Encinas, 78 - 19162 Pioz
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📄</span>
+                                <div class="contacto-text">
+                                    <a href="#" class="btn-download" download>📥 Descargar información</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asociación de Vecinos Bosque Henares Fase 3 -->
+                    <article class="asociacion-card">
+                        <div class="asociacion-header">
+                            <span class="asociacion-icon">🏘️</span>
+                            <div class="asociacion-title">
+                                <h3>Asociación de Vecinos Bosque Henares Fase 3</h3>
+                                <span class="asociacion-tipo">Asociación Vecinal</span>
+                            </div>
+                        </div>
+                        
+                        <p class="asociacion-descripcion">
+                            Asociación que agrupa a los vecinos de la urbanización Bosque Henares Fase 3. 
+                            Su finalidad principal es velar por el correcto mantenimiento de los elementos comunes 
+                            de la urbanización y promover las buenas costumbres vecinales.
+                        </p>
+                        
+                        <div class="actividades-list">
+                            <h4>Actividades principales</h4>
+                            <ul>
+                                <li>Vigilancia del mantenimiento de zonas comunes</li>
+                                <li>Promoción de la convivencia vecinal</li>
+                                <li>Representación de los vecinos ante el Ayuntamiento</li>
+                                <li>Organización de eventos vecinales</li>
+                                <li>Gestión de servicios comunes</li>
+                                <li>Fomento de las buenas prácticas comunitarias</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contacto-box">
+                            <h4>📞 Información de Contacto</h4>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📧</span>
+                                <div class="contacto-text">
+                                    <strong>Email:</strong> <a href="mailto:bosquehenares3@gmail.com">bosquehenares3@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">🏘️</span>
+                                <div class="contacto-text">
+                                    <strong>Ámbito:</strong> Urbanización Bosque Henares Fase 3
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Asociación La Espiga de Pioz -->
+                    <article class="asociacion-card">
+                        <div class="asociacion-header">
+                            <span class="asociacion-icon">🌾</span>
+                            <div class="asociacion-title">
+                                <h3>Asociación "La Espiga de Pioz"</h3>
+                                <span class="asociacion-tipo">Asociación Sociocultural</span>
+                            </div>
+                        </div>
+                        
+                        <p class="asociacion-descripcion">
+                            Asociación dedicada a realizar actividades en el ámbito sociocultural para los vecinos 
+                            del municipio. Promueve la participación ciudadana y el enriquecimiento cultural de 
+                            la comunidad a través de diversas iniciativas.
+                        </p>
+                        
+                        <div class="actividades-list">
+                            <h4>Actividades principales</h4>
+                            <ul>
+                                <li>Actividades socioculturales para vecinos</li>
+                                <li>Eventos de dinamización comunitaria</li>
+                                <li>Promoción de la cultura local</li>
+                                <li>Talleres y cursos formativos</li>
+                                <li>Organización de actos festivos y culturales</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="contacto-box">
+                            <h4>📞 Información de Contacto</h4>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📞</span>
+                                <div class="contacto-text">
+                                    <strong>Teléfono:</strong> <a href="tel:665357708">665 357 708</a>
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📧</span>
+                                <div class="contacto-text">
+                                    <strong>Email:</strong> <a href="mailto:laespigadepioz@gmail.com">laespigadepioz@gmail.com</a>
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">🕐</span>
+                                <div class="contacto-text">
+                                    <strong>Horario de atención:</strong> 18:00 - 20:00 horas
+                                </div>
+                            </div>
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📍</span>
+                                <div class="contacto-text">
+                                    <strong>Sede:</strong> Centro Cultural, Calle Mayor, 1 - 19162 Pioz
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Soporte Institucional -->
+                <div class="soporte-institucional">
+                    <h2>🏛️ Apoyo del Ayuntamiento</h2>
+                    <p style="text-align: center; margin-bottom: var(--spacing-lg);">
+                        ¿Quieres crear una nueva asociación o necesitas más información?<br>
+                        El Ayuntamiento te ofrece asesoramiento y apoyo en todo el proceso
+                    </p>
+                    
+                    <div class="soporte-grid">
+                        <div class="soporte-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📝</span>
+                            <h3>Asesoramiento</h3>
+                            <p>Te ayudamos con los trámites para crear tu asociación</p>
+                        </div>
+                        
+                        <div class="soporte-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📋</span>
+                            <h3>Documentación</h3>
+                            <p>Modelos y formularios necesarios</p>
+                            <a href="#" class="btn-download" download>📥 Descargar modelo</a>
+                        </div>
+                        
+                        <div class="soporte-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🤝</span>
+                            <h3>Apoyo Continuo</h3>
+                            <p>Seguimiento y soporte a asociaciones existentes</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.2); padding: var(--spacing-lg); border-radius: 8px; margin-top: var(--spacing-xl);">
+                        <h3 style="color: white; margin-bottom: var(--spacing-md); text-align: center;">📞 Contacto</h3>
+                        <p style="text-align: center;">
+                            <strong>Concejalía de Cultura</strong><br>
+                            📧 <a href="mailto:cultura.ayto.2327.pioz@gmail.com" style="color: white; text-decoration: underline;">cultura.ayto.2327.pioz@gmail.com</a><br>
+                            📞 <a href="tel:949272076" style="color: white; text-decoration: underline;">949 272 076</a><br>
+                            📍 Plaza Mayor, s/n - 19162 Pioz, Guadalajara<br>
+                            🕐 Lunes a Viernes, 9:00 - 14:00 h
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script>
+        // Búsqueda de asociaciones
+        document.getElementById('searchAsociaciones').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.asociacion-card');
+            
+            cards.forEach(card => {
+                const text = card.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

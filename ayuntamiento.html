@@ -7,108 +7,142 @@
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components.css">
+    <style>
+        /* ...existing code... */
+        
+        .bienvenida-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .bienvenida-content {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: var(--spacing-xl);
+            align-items: center;
+        }
+        
+        .bienvenida-text h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            font-size: 2rem;
+        }
+        
+        .bienvenida-text p {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.8;
+        }
+        
+        .horario-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-left: 4px solid var(--color-primary);
+            border-radius: 4px;
+            margin-top: var(--spacing-lg);
+        }
+        
+        .horario-box strong {
+            color: var(--color-primary);
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .horario-box p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .bienvenida-image {
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .bienvenida-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+        
+        @media (max-width: 767px) {
+            .bienvenida-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .bienvenida-image {
+                order: -1;
+            }
+        }
+    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     
-    <header class="header">
-        <div class="container">
-            <div class="header-top">
-                <div class="logo">
-                    <a href="index.html" class="logo-link">
-                        <img src="images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
-                    </a>
-                </div>
-                <div class="header-actions">
-                    <button class="search-toggle" aria-label="Abrir búsqueda">
-                        <span class="icon-search"></span>
-                    </button>
-                    <div class="contact-quick">
-                        <span class="icon-phone"></span>
-                        <span>949 272 076</span>
-                    </div>
-                </div>
-            </div>
-            
-            <nav class="main-nav" role="navigation" aria-label="Navegación principal">
-                <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <ul class="nav-list">
-                    <li><a href="index.html">Inicio</a></li>
-                    <li class="has-submenu">
-                        <a href="ayuntamiento.html" class="active">Ayuntamiento</a>
-                        <ul class="submenu">
-                            <li><a href="ayuntamiento/saluda.html">Saluda</a></li>
-                            <li><a href="ayuntamiento/equipo_gobierno.html">Equipo de Gobierno</a></li>
-                            <li><a href="ayuntamiento/perfil_contratante.html">Perfil del Contratante</a></li>
-                            <li><a href="ayuntamiento/bandos.html">Bandos Municipales</a></li>
-                            <li><a href="ayuntamiento/plenos_ayuntamiento.html">Plenos</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="tramites.html">Trámites</a>
-                        <ul class="submenu">
-                            <li><a href="tramites/sede_electronica.html">Sede Electrónica</a></li>
-                            <li><a href="tramites/ordenanzas.html">Ordenanzas</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="servicios.html">Servicios</a>
-                        <ul class="submenu">
-                            <li><a href="servicios.html#sanidad">Sanidad</a></li>
-                            <li><a href="servicios.html#urbanismo">Urbanismo</a></li>
-                            <li><a href="servicios.html#medio-ambiente">Medio Ambiente</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="cultura.html">Cultura</a>
-                        <ul class="submenu">
-                            <li><a href="cultura.html#calendario">Calendario Cultural</a></li>
-                            <li><a href="cultura.html#asociaciones">Asociaciones</a></li>
-                            <li><a href="cultura.html#biblioteca">Biblioteca</a></li>
-                        </ul>
-                    </li>
-                    <li class="has-submenu">
-                        <a href="villa.html">Villa de Pioz</a>
-                        <ul class="submenu">
-                            <li><a href="villa.html#historia">Historia</a></li>
-                            <li><a href="villa.html#castillo">Castillo de Pioz</a></li>
-                            <li><a href="villa.html#tradiciones">Tradiciones</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="tablon.html">Tablón / Contacto</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
 
-    <div class="search-overlay" id="searchOverlay">
-        <div class="search-container">
-            <form class="search-form" role="search">
-                <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
-                <button type="submit">Buscar</button>
-            </form>
-            <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
-        </div>
-    </div>
-    
     <main id="main-content">
         <section class="page-header">
             <div class="container">
-                <h1>Tu Ayuntamiento</h1>
                 <nav aria-label="Breadcrumb">
-                    <ol class="breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
                         <li><a href="index.html">Inicio</a></li>
-                        <li>Ayuntamiento</li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Ayuntamiento</li>
                     </ol>
                 </nav>
             </div>
         </section>
 
-        <section id="saluda" class="content-section">
+        <!-- Sección de Bienvenida al principio -->
+        <section class="content-section">
+            <div class="container">
+                <div class="bienvenida-section">
+                    <div class="bienvenida-content">
+                        <div class="bienvenida-text">
+                            <h2>Bienvenido al Ayuntamiento de Pioz, tu ayuntamiento</h2>
+                            
+                            <p>
+                                Ponemos a tu disposición un nuevo sitio web en el que pretendemos difundir toda la información 
+                                en relación a nuestro municipio.
+                            </p>
+                            
+                            <p>
+                                Con ello pretendemos asegurar la transparencia y el acceso público a todas las actividades y 
+                                funcionamiento de nuestro ayuntamiento, acercando así un poco más la vida municipal al ciudadano 
+                                de una manera ágil y clara.
+                            </p>
+                            
+                            <p>
+                                A través de este sitio web, los ciudadanos podrán encontrar las ordenanzas municipales, los 
+                                documentos para cualquier trámite administrativo y contactar con nosotros a través de los correos 
+                                electrónicos y teléfonos disponibles.
+                            </p>
+                            
+                            <p><strong>Estamos a tu disposición trabajando para el municipio.</strong></p>
+                            
+                            <div class="horario-box">
+                                <strong>📅 Nuestro horario de atención al público es el siguiente:</strong>
+                                <p>De lunes a viernes de 9:00 a 14:00 horas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bienvenida-image">
+                            <img src="images/ayuntamiento-pioz.jpg" alt="Edificio del Ayuntamiento de Pioz">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resto del contenido existente -->
+        <section class="content-section">
             <div class="container">
                 <h2>Saluda del Alcalde</h2>
                 <div class="alcalde-card">
@@ -266,55 +300,59 @@
                 </div>
             </div>
         </section>
-    </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h4>Ayuntamiento de Pioz</h4>
-                    <address>
-                        <p>Plaza Mayor, s/n</p>
-                        <p>19162 Pioz, Guadalajara</p>
-                        <p><strong>Tel:</strong> 949 272 076</p>
-                        <p><strong>Horario:</strong> L-V 9:00-14:00</p>
-                    </address>
-                </div>
-                <div class="footer-col">
-                    <h4>Enlaces Útiles</h4>
-                    <ul>
-                        <li><a href="tramites.html#sede-electronica">Sede Electrónica</a></li>
-                        <li><a href="tramites.html#transparencia">Transparencia</a></li>
-                        <li><a href="ayuntamiento.html#perfil-contratante">Perfil del Contratante</a></li>
-                        <li><a href="tablon.html">Tablón de Anuncios</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h4>Síguenos</h4>
-                    <div class="social-links">
-                        <a href="#" aria-label="Facebook" class="social-icon">
-                            <span class="icon-facebook"></span>
-                        </a>
-                        <a href="#" aria-label="Youtube" class="social-icon">
-                            <span class="icon-youtube"></span>
-                        </a>
+        <section class="content-section">
+            <div class="container">
+                <div class="bienvenida-section">
+                    <div class="bienvenida-content">
+                        <div class="bienvenida-text">
+                            <h2>Bienvenido al Ayuntamiento de Pioz, tu ayuntamiento</h2>
+                            
+                            <p>
+                                Ponemos a tu disposición un nuevo sitio web en la que pretendemos difundir toda la información 
+                                en relación a nuestro municipio.
+                            </p>
+                            
+                            <p>
+                                Con ello pretendemos asegurar la transparencia y el acceso público a todas las actividades y 
+                                funcionamiento de nuestro ayuntamiento, acercando así un poco más la vida municipal al ciudadano 
+                                de una manera ágil y clara.
+                            </p>
+                            
+                            <p>
+                                A través de este sitio web, los ciudadanos podrán encontrar las ordenanzas municipales, los 
+                                documentos para cualquier trámite administrativo y contactar con nosotros a través de los correos 
+                                electrónicos y teléfonos disponibles.
+                            </p>
+                            
+                            <p><strong>Estamos a tu disposición trabajando para el municipio.</strong></p>
+                            
+                            <div class="horario-box">
+                                <strong>📅 Nuestro horario de atención al público es el siguiente:</strong>
+                                <p>De lunes a viernes de 9:00 a 14:00 horas.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bienvenida-image">
+                            <img src="images/ayuntamiento-pioz.jpg" alt="Edificio del Ayuntamiento de Pioz">
+                        </div>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="legal.html#aviso">Aviso Legal</a></li>
-                        <li><a href="legal.html#privacidad">Política de Privacidad</a></li>
-                        <li><a href="legal.html#cookies">Política de Cookies</a></li>
-                    </ul>
-                </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Ayuntamiento de Pioz. Todos los derechos reservados.</p>
+        </section>
+
+        <!-- Resto del contenido existente -->
+        <section class="content-section">
+            <div class="container">
+                <!-- ...existing code... -->
             </div>
-        </div>
-    </footer>
-    
+        </section>
+    </main>        </section>            </div>                <!-- ...existing code... -->                </div>                    </div>                        </div>                            <img src="images/ayuntamiento-pioz.jpg" alt="Edificio del Ayuntamiento de Pioz">                        <div class="bienvenida-image">                                                </div>                            </div>                                <p>De lunes a viernes de 9:00 a 14:00 horas.</p>                                <strong>📅 Nuestro horario de atención al público es el siguiente:</strong>                            <div class="horario-box">                                                        <p><strong>Estamos a tu disposición trabajando para el municipio.</strong></p>                                                        </p>                                electrónicos y teléfonos disponibles.                                documentos para cualquier trámite administrativo y contactar con nosotros a través de los correos                                 A través de este sitio web, los ciudadanos podrán encontrar las ordenanzas municipales, los 
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
     <script src="js/theme-toggle.js"></script>
     <script src="js/search-engine.js"></script>
     <script src="js/navigation.js"></script>

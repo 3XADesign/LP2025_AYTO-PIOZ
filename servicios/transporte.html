@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transporte - Horarios de autobuses y accesos a Pioz">
+    <title>Transporte | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .transporte-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-transporte {
+            background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-transporte h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-transporte p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+            color: white;
+        }
+        
+        .horarios-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .horarios-section h2 {
+            color: #e67e22;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .horarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .horario-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+            border-top: 4px solid #e67e22;
+            transition: all var(--transition-base);
+        }
+        
+        .horario-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .horario-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .horario-card h3 {
+            color: #e67e22;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .horario-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .btn-download-horario {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-md) var(--spacing-xl);
+            background: #e67e22;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-download-horario:hover {
+            background: #d35400;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+        
+        .accesos-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .accesos-section h2 {
+            color: #e67e22;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid #e67e22;
+        }
+        
+        .acceso-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-md);
+            border-left: 4px solid #e67e22;
+        }
+        
+        .acceso-card h3 {
+            color: #e67e22;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .acceso-card p {
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .acceso-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: var(--spacing-md);
+        }
+        
+        .acceso-card li {
+            padding: var(--spacing-sm) 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+        }
+        
+        .acceso-card li::before {
+            content: '🚗';
+            flex-shrink: 0;
+        }
+        
+        .carreteras-locales {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .carreteras-locales h3 {
+            color: #e67e22;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .carreteras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .carretera-item {
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .carretera-item h4 {
+            color: #e67e22;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .carretera-item p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        .info-adicional {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .info-adicional h3 {
+            color: #e67e22;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .info-adicional p {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 767px) {
+            .horarios-grid,
+            .carreteras-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Transporte</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container transporte-container">
+                <div class="hero-transporte">
+                    <h1>🚌 Transporte</h1>
+                    <p>Horarios de autobuses y accesos a Pioz</p>
+                </div>
+
+                <!-- Horarios de Autobuses -->
+                <div class="horarios-section">
+                    <h2>📅 Horarios de Autobuses</h2>
+                    <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--text-primary);">
+                        Descarga los horarios actualizados del servicio de transporte público
+                    </p>
+                    
+                    <div class="horarios-grid">
+                        <div class="horario-card">
+                            <span class="horario-icon">📄</span>
+                            <h3>Horario General</h3>
+                            <p>Horarios completos de todas las líneas de autobús que dan servicio a Pioz</p>
+                            <a href="#" class="btn-download-horario" download>
+                                📥 Descargar Horario PDF
+                            </a>
+                        </div>
+
+                        <div class="horario-card">
+                            <span class="horario-icon">📋</span>
+                            <h3>Horario Complementario</h3>
+                            <p>Información adicional sobre rutas, paradas y servicios especiales</p>
+                            <a href="#" class="btn-download-horario" download>
+                                📥 Descargar Horario PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-lg); text-align: center;">
+                        <p style="color: var(--text-primary);">
+                            <strong>ℹ️ Nota:</strong> Los horarios están sujetos a posibles modificaciones. 
+                            Consulta siempre la versión más actualizada antes de planificar tu viaje.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Accesos por Carretera -->
+                <div class="accesos-section">
+                    <h2>🛣️ Cómo Llegar a Pioz</h2>
+                    
+                    <div class="acceso-card">
+                        <h3>
+                            <span>📍</span>
+                            Desde Guadalajara
+                        </h3>
+                        <p>
+                            Para llegar a Pioz desde Guadalajara, debes tomar la carretera <strong>CM-2004</strong>, 
+                            pasando por los municipios de <strong>Chiloeches</strong> y <strong>El Pozo de Guadalajara</strong>.
+                        </p>
+                        <ul>
+                            <li>Distancia aproximada: 25 km</li>
+                            <li>Tiempo estimado: 20-25 minutos</li>
+                            <li>Ruta: Guadalajara → Chiloeches → El Pozo de Guadalajara → Pioz</li>
+                        </ul>
+                    </div>
+
+                    <div class="acceso-card">
+                        <h3>
+                            <span>📍</span>
+                            Desde Madrid
+                        </h3>
+                        <p>
+                            Existen dos opciones principales para llegar desde Madrid:
+                        </p>
+                        <ul>
+                            <li>
+                                <strong>Opción 1:</strong> Autopista <strong>A-2</strong>, desvío en el p.k. 38 hacia 
+                                <strong>Los Santos de la Humosa</strong> y <strong>El Pozo de Guadalajara</strong> por las 
+                                carreteras <strong>M-226</strong> y <strong>M-235</strong>, enlazando con la <strong>CM-2004</strong>
+                            </li>
+                            <li>
+                                <strong>Opción 2:</strong> Radial <strong>R-2</strong>, desvío en el p.k. 38 hacia 
+                                <strong>Los Santos de la Humosa</strong> y <strong>El Pozo de Guadalajara</strong> por las 
+                                carreteras <strong>M-226</strong> y <strong>M-235</strong>, enlazando con la <strong>CM-2004</strong>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Carreteras Locales -->
+                <div class="carreteras-locales">
+                    <h3>🛤️ Carreteras del Término Municipal</h3>
+                    <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--text-primary);">
+                        Las siguientes carreteras atraviesan el término municipal de Pioz
+                    </p>
+                    
+                    <div class="carreteras-grid">
+                        <div class="carretera-item">
+                            <h4>CM-2004</h4>
+                            <p>Carretera autonómica principal que conecta Pioz con Guadalajara y otros municipios de la comarca</p>
+                        </div>
+
+                        <div class="carretera-item">
+                            <h4>GU-206</h4>
+                            <p>Carretera provincial que atraviesa el término municipal ofreciendo acceso a zonas rurales</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información Adicional -->
+                <div class="info-adicional">
+                    <h3>ℹ️ Información Adicional</h3>
+                    <p style="margin-bottom: var(--spacing-md);">
+                        <strong>Parada de autobús:</strong> La parada principal se encuentra en la Plaza Mayor del municipio, 
+                        frente al Ayuntamiento.
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md);">
+                        <strong>Consultas:</strong> Para cualquier consulta sobre el servicio de transporte público, 
+                        puedes contactar con el Ayuntamiento:
+                    </p>
+                    <p>
+                        📞 Teléfono: <a href="tel:949272076" style="color: #e67e22; font-weight: 600;">949 272 076</a><br>
+                        📧 Email: <a href="mailto:oficinarecepcion@aytopioz.com" style="color: #e67e22; font-weight: 600;">oficinarecepcion@aytopioz.com</a><br>
+                        🕐 Horario: Lunes a Viernes, 9:00 - 14:00 h
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

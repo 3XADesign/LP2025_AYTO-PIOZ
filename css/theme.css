@@ -16,6 +16,8 @@
     --color-secondary: #c8956e;
     --color-accent: #c07854;
     --color-ladrillo: #d4a574;
+    --color-teja-rojo: #b85c4e;
+    --color-teja-ocre: #c07854;
     
     --border-color: #e8dcc8;
     --shadow-sm: 0 1px 3px rgba(45, 37, 32, 0.1);
@@ -34,6 +36,16 @@
     --submenu-bg: #ffffff;
     --submenu-text: #2d2520;
     --submenu-hover: #e8dcc8;
+    
+    /* Variables adicionales para compatibilidad */
+    --color-text: #2d2520;
+    --color-text-light: #5a5048;
+    --color-border: #e8dcc8;
+    --color-background: #faf8f5;
+    
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
 }
 
 /* Modo Oscuro */
@@ -54,6 +66,8 @@
     --color-secondary: #d4a574;
     --color-accent: #d4906a;
     --color-ladrillo: #e0b590;
+    --color-teja-rojo: #e08977;
+    --color-teja-ocre: #d4906a;
     
     --border-color: #3a3a3a;
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
@@ -72,6 +86,12 @@
     --submenu-bg: #2a2a2a;
     --submenu-text: #e8e6e3;
     --submenu-hover: #3a3a3a;
+    
+    /* Variables adicionales para compatibilidad */
+    --color-text: #e8e6e3;
+    --color-text-light: #b8b6b3;
+    --color-border: #3a3a3a;
+    --color-background: #0a0a0a;
 }
 
 /* Transición suave al cambiar de tema */

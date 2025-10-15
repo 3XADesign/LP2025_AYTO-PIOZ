@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Protección Civil - Agrupación de Voluntarios de Pioz">
+    <title>Protección Civil | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .proteccion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-proteccion {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.95) 0%, rgba(192, 57, 43, 0.95) 100%), 
+                        url('../images/proteccion_civil/proteccion_civil.jpg') center/cover no-repeat;
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+        }
+        
+        .hero-proteccion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            z-index: 0;
+        }
+        
+        .hero-proteccion h1,
+        .hero-proteccion p {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-proteccion h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-proteccion p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+        }
+        
+        .lema-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .lema-box h2 {
+            color: #e74c3c;
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+            font-style: italic;
+        }
+        
+        .urgencias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .urgencia-card {
+            background: #dc3545;
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .urgencia-card.violencia {
+            background: #8e44ad;
+        }
+        
+        .urgencia-card h3 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .urgencia-card p {
+            color: white;
+        }
+        
+        .telefono-emergencia {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin: var(--spacing-sm) 0;
+        }
+        
+        .mision-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .mision-section h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .mision-section h3 {
+            color: #e74c3c;
+        }
+        
+        .mision-section p,
+        .mision-section li {
+            color: var(--text-primary);
+        }
+        
+        .funciones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .funcion-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 3px solid #e74c3c;
+        }
+        
+        .funcion-card h4 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .funcion-card p {
+            color: var(--text-primary);
+        }
+        
+        .voluntariado-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .voluntariado-section h2 {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .voluntariado-section > p {
+            color: var(--text-primary);
+        }
+        
+        .voluntariado-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .voluntario-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .voluntario-icon {
+            font-size: 3rem;
+            display: block;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .voluntario-card h3 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+        }
+        
+        .voluntario-card p {
+            color: var(--text-primary);
+            text-align: center;
+        }
+        
+        .proceso-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .proceso-section h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .proceso-section > p {
+            color: var(--text-primary);
+        }
+        
+        .pasos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .paso-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            position: relative;
+            border-top: 4px solid #e74c3c;
+        }
+        
+        .paso-numero {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #e74c3c;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .paso-card h3 {
+            color: #e74c3c;
+            margin-top: var(--spacing-md);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .paso-card p {
+            color: var(--text-primary);
+        }
+        
+        .destacado-box {
+            background: #fff3cd;
+            border-left: 4px solid #856404;
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+            border-radius: 4px;
+            color: #856404;
+        }
+        
+        [data-theme="dark"] .destacado-box {
+            background: #4a4000;
+            color: #ffd700;
+            border-left-color: #856404;
+        }
+        
+        .destacado-box strong {
+            color: inherit;
+        }
+        
+        .destacado-box.seguro {
+            background: #d4edda;
+            border-left-color: #155724;
+            color: #155724;
+        }
+        
+        [data-theme="dark"] .destacado-box.seguro {
+            background: #1a3d1a;
+            color: #90ee90;
+            border-left-color: #2d5a2d;
+        }
+        
+        .contacto-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-section h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+        
+        .contacto-item h3 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contacto-item p {
+            color: var(--text-primary);
+        }
+        
+        .contacto-item a {
+            color: #e74c3c;
+        }
+        
+        .btn-download {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-md) var(--spacing-xl);
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-download:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+        
+        @media (max-width: 767px) {
+            .telefono-emergencia {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Protección Civil</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container proteccion-container">
+                <div class="hero-proteccion">
+                    <h1>🚨 Protección Civil de Pioz</h1>
+                    <p>Agrupación de Voluntarios - Servicio de emergencias y prevención</p>
+                </div>
+
+                <!-- Lema -->
+                <div class="lema-box">
+                    <h2>"Saber para prevenir y prevenir para proteger"</h2>
+                </div>
+
+                <!-- Teléfonos de Emergencia -->
+                <div class="urgencias-grid">
+                    <div class="urgencia-card">
+                        <h3>🚨 Emergencias</h3>
+                        <a href="tel:112" class="telefono-emergencia" style="color: white; text-decoration: none;">112</a>
+                        <p style="font-size: var(--font-size-small);">24 horas / 365 días</p>
+                    </div>
+
+                    <div class="urgencia-card violencia">
+                        <h3>💜 Violencia de Género</h3>
+                        <a href="tel:016" class="telefono-emergencia" style="color: white; text-decoration: none;">016</a>
+                        <p style="font-size: var(--font-size-small);">Gratuito - No deja rastro</p>
+                    </div>
+
+                    <div class="urgencia-card" style="background: #3498db;">
+                        <h3>📞 Protección Civil Pioz</h3>
+                        <a href="tel:674131609" class="telefono-emergencia" style="color: white; text-decoration: none;">674 131 609</a>
+                        <p style="font-size: var(--font-size-small);">Móvil directo</p>
+                    </div>
+                </div>
+
+                <!-- Misión y Definición -->
+                <div class="mision-section">
+                    <h2>¿Qué es Protección Civil?</h2>
+                    
+                    <p style="font-size: var(--font-size-large); margin-bottom: var(--spacing-lg);">
+                        Protección Civil es la respuesta a las <strong>necesidades de la población</strong> ante avisos de emergencias 
+                        y para la <strong>prevención de riesgos personales y materiales</strong> en situaciones de peligro.
+                    </p>
+
+                    <h3 style="color: #e74c3c; margin-top: var(--spacing-lg); margin-bottom: var(--spacing-md);">Nuestra Misión</h3>
+                    <p>
+                        <strong>Evitar, corregir o reducir los daños</strong> que puedan causarse a personas y bienes por situaciones de 
+                        <strong>emergencia, grave riesgo, catástrofes o calamidad pública</strong>, ya sea por elementos rurales, 
+                        medios técnicos o conductas humanas, tanto en tiempo de paz como de guerra.
+                    </p>
+
+                    <h3 style="color: #e74c3c; margin-top: var(--spacing-lg); margin-bottom: var(--spacing-md);">Radio de Acción</h3>
+                    <p>
+                        Nuestro ámbito de actuación abarca desde el <strong>casco urbano de Pioz</strong>, pasando por 
+                        <strong>todas las urbanizaciones</strong>, las <strong>zonas forestales</strong>, los <strong>caminos</strong> 
+                        y las <strong>carreteras de acceso al pueblo</strong>.
+                    </p>
+
+                    <div class="destacado-box" style="margin-top: var(--spacing-lg);">
+                        <strong>⚡ Grupo de Respuesta Rápida:</strong> Los voluntarios residen en la localidad y se mantienen activos, 
+                        lo que nos permite actuar con rapidez ante emergencias de cualquier tipo.
+                    </div>
+
+                    <h3 style="color: #e74c3c; margin-top: var(--spacing-xl); margin-bottom: var(--spacing-md);">Funciones y Actividades</h3>
+                    <div class="funciones-grid">
+                        <div class="funcion-card">
+                            <h4>🔍 Identificación de Riesgos</h4>
+                            <p>Análisis y evaluación de riesgos en el municipio</p>
+                        </div>
+                        <div class="funcion-card">
+                            <h4>📋 Planificación</h4>
+                            <p>Elaboración de planes de intervención y planes territoriales municipales</p>
+                        </div>
+                        <div class="funcion-card">
+                            <h4>📊 Catálogo de Recursos</h4>
+                            <p>Gestión de recursos humanos y materiales movilizables</p>
+                        </div>
+                        <div class="funcion-card">
+                            <h4>📢 Información a la Población</h4>
+                            <p>Programas de divulgación sobre riesgos específicos</p>
+                        </div>
+                        <div class="funcion-card">
+                            <h4>🎓 Formación Continua</h4>
+                            <p>Programas de capacitación y perfeccionamiento del personal</p>
+                        </div>
+                        <div class="funcion-card">
+                            <h4>⚙️ Servicios Esenciales</h4>
+                            <p>Asegurar el funcionamiento normal de servicios críticos</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Voluntariado -->
+                <div class="voluntariado-section">
+                    <h2>🤝 Voluntariado en Protección Civil</h2>
+                    
+                    <p style="text-align: center; max-width: 800px; margin: 0 auto var(--spacing-xl); color: var(--text-primary); font-size: var(--font-size-large);">
+                        El servicio está formado por <strong>personas voluntarias</strong> que trabajan de manera <strong>altruista y solidaria</strong>, 
+                        con una relación <strong>gratuita y desinteresada</strong> con el municipio.
+                    </p>
+
+                    <div class="voluntariado-grid">
+                        <div class="voluntario-card">
+                            <span class="voluntario-icon">🚑</span>
+                            <h3>Primeros Auxilios</h3>
+                            <p>Formación en atención sanitaria de emergencia y técnicas de reanimación</p>
+                        </div>
+
+                        <div class="voluntario-card">
+                            <span class="voluntario-icon">🚦</span>
+                            <h3>Ordenación del Tráfico</h3>
+                            <p>Capacitación en gestión y regulación del tráfico rodado</p>
+                        </div>
+
+                        <div class="voluntario-card">
+                            <span class="voluntario-icon">🔥</span>
+                            <h3>Incendios</h3>
+                            <p>Formación en extinción de incendios forestales y estructurales</p>
+                        </div>
+
+                        <div class="voluntario-card">
+                            <span class="voluntario-icon">🛡️</span>
+                            <h3>Prevención y Seguridad</h3>
+                            <p>Grupo especializado de apoyo a Cuerpos y Fuerzas de Seguridad del Estado</p>
+                        </div>
+                    </div>
+
+                    <div class="destacado-box">
+                        <strong>👥 Sección Juvenil:</strong> Los menores de edad pueden participar en actividades formativas bajo consentimiento 
+                        de tutores legales, pero <strong>nunca</strong> en preventivos u operativos (incendios, intervenciones sanitarias).
+                    </div>
+
+                    <div class="destacado-box seguro">
+                        <strong>✅ Derecho a Seguro:</strong> Todos los voluntarios tienen derecho a estar asegurados contra posibles riesgos 
+                        durante su actividad.
+                    </div>
+                </div>
+
+                <!-- Proceso de Solicitud -->
+                <div class="proceso-section">
+                    <h2>📝 Proceso de Solicitud de Ingreso</h2>
+                    
+                    <p style="margin-bottom: var(--spacing-xl); color: var(--text-primary);">
+                        ¿Quieres formar parte de la Agrupación de Voluntarios de Protección Civil? 
+                        Sigue estos pasos para unirte:
+                    </p>
+
+                    <div class="pasos-grid">
+                        <div class="paso-card">
+                            <div class="paso-numero">1</div>
+                            <h3>Solicitud</h3>
+                            <p>
+                                Rellena la <strong>solicitud de ingreso</strong> y entrégala en la recepción del Ayuntamiento 
+                                (Plaza Mayor, s/n, 19162 Pioz).
+                            </p>
+                            <a href="#" class="btn-download" style="margin-top: var(--spacing-md);" download>
+                                📄 Descargar Solicitud
+                            </a>
+                        </div>
+
+                        <div class="paso-card">
+                            <div class="paso-numero">2</div>
+                            <h3>Entrevista</h3>
+                            <p>
+                                En un plazo máximo de <strong>15 días</strong>, te contactaremos para concertar una 
+                                <strong>entrevista personal</strong>. Se solicitarán datos y documentos para el proceso selectivo.
+                            </p>
+                        </div>
+
+                        <div class="paso-card">
+                            <div class="paso-numero">3</div>
+                            <h3>Selección</h3>
+                            <p>
+                                La comunicación de si eres <strong>apto o no apto</strong> se realizará en un plazo máximo de 
+                                <strong>15 días</strong> después de la entrevista.
+                            </p>
+                        </div>
+
+                        <div class="paso-card">
+                            <div class="paso-numero">4</div>
+                            <h3>Aceptación</h3>
+                            <p>
+                                Si eres seleccionado como apto, se abrirá tu ficha interna y se realizarán los trámites para 
+                                concederte la <strong>condición de Voluntario</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="destacado-box" style="margin-top: var(--spacing-lg);">
+                        <strong>ℹ️ Gestión de Reserva:</strong> Si no hay un proceso activo, las solicitudes se guardarán en reserva 
+                        hasta que se anuncie un nuevo proceso de selección en el sitio web.
+                    </div>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="contacto-section">
+                    <h2>📍 Información de Contacto</h2>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🏛️</span>
+                            <h3>Dirección</h3>
+                            <p>
+                                Ayuntamiento de Pioz<br>
+                                Plaza Mayor, s/n<br>
+                                19162 Pioz, Guadalajara
+                            </p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📞</span>
+                            <h3>Teléfono</h3>
+                            <p><strong>Móvil:</strong> <a href="tel:674131609" style="color: #e74c3c;">674 131 609</a></p>
+                            <p><strong>Fijo:</strong> <a href="tel:949272076" style="color: #e74c3c;">949 272 076</a></p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">✉️</span>
+                            <h3>Correo Electrónico</h3>
+                            <p><a href="mailto:proteccioncivil-pios@hotmail.com" style="color: #e74c3c; word-break: break-all;">
+                                proteccioncivil-pios@hotmail.com
+                            </a></p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📱</span>
+                            <h3>Redes Sociales</h3>
+                            <p>
+                                <a href="#" target="_blank" rel="noopener" class="btn btn-secondary" style="background: #1877f2;">
+                                    Facebook
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
+                        <a href="#" class="btn-download" download>
+                            📄 Descargar Información Completa (PDF)
+                        </a>
+                    </div>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body> </section>
+</html>ain>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>    <script src="../js/theme-toggle.js"></script>    <script src="../js/search-engine.js"></script>    <script src="../js/navigation.js"></script></body></html>

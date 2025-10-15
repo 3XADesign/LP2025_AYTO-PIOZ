@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bienestar Social - Servicio de Asistencia Social del Ayuntamiento de Pioz">
+    <title>Bienestar Social | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .bienestar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-bienestar {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-bienestar h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-bienestar p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+            color: white;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #8e44ad;
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+        }
+        
+        .cita-previa-box {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .cita-previa-box h2 {
+            color: white;
+            margin-bottom: var(--spacing-lg);
+            font-size: 2rem;
+        }
+        
+        .telefono-cita {
+            font-size: 3rem;
+            font-weight: 700;
+            display: block;
+            margin: var(--spacing-lg) 0;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .telefono-cita:hover {
+            opacity: 0.9;
+        }
+        
+        .horario-atencion {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .horario-atencion h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .horario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .horario-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            border-top: 4px solid #8e44ad;
+        }
+        
+        .horario-item h4 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .horario-item p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            font-weight: 600;
+        }
+        
+        .servicios-relacionados {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .servicios-relacionados h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid #8e44ad;
+        }
+        
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .servicio-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #8e44ad;
+        }
+        
+        .servicio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .servicio-icon {
+            font-size: 3rem;
+            display: block;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .servicio-card h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+        }
+        
+        .servicio-card p {
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .servicio-card a {
+            display: block;
+            text-align: center;
+            padding: var(--spacing-sm);
+            background: #8e44ad;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background var(--transition-fast);
+        }
+        
+        .servicio-card a:hover {
+            background: #9b59b6;
+            text-decoration: none;
+        }
+        
+        .contacto-bienestar {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .contacto-bienestar h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            text-align: center;
+        }
+        
+        .contacto-item h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contacto-item p {
+            color: var(--text-primary);
+        }
+        
+        .destacado-info {
+            background: #fff3cd;
+            border-left: 4px solid #856404;
+            padding: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+            border-radius: 4px;
+            color: #856404;
+        }
+        
+        [data-theme="dark"] .destacado-info {
+            background: #4a4000;
+            color: #ffd700;
+        }
+        
+        @media (max-width: 767px) {
+            .telefono-cita {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Bienestar Social</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container bienestar-container">
+                <div class="hero-bienestar">
+                    <h1>🤝 Bienestar Social</h1>
+                    <p>Servicio de Asistencia Social para todos los ciudadanos</p>
+                </div>
+
+                <div class="intro-box">
+                    <p>
+                        El Ayuntamiento de Pioz dispone del <strong>Servicio de Asistencia Social</strong> para 
+                        atender a todas aquellas personas que lo necesiten, ofreciendo apoyo, orientación y 
+                        acompañamiento en situaciones de necesidad social.
+                    </p>
+                </div>
+
+                <!-- Cita Previa -->
+                <div class="cita-previa-box">
+                    <h2>📞 Concertar Cita Previa</h2>
+                    <p style="margin-bottom: var(--spacing-md); font-size: var(--font-size-large);">
+                        Para acceder al servicio, es necesario concertar cita previa llamando al:
+                    </p>
+                    <a href="tel:949291182" class="telefono-cita">949 291 182</a>
+                    <p style="font-size: var(--font-size-small); opacity: 0.9;">
+                        Servicio de referencia en Horche
+                    </p>
+                </div>
+
+                <!-- Horarios de Atención -->
+                <div class="horario-atencion">
+                    <h3>🕐 Horario de Atención en Pioz</h3>
+                    
+                    <div class="horario-grid">
+                        <div class="horario-item">
+                            <h4>📅 Día de Atención</h4>
+                            <p>Martes</p>
+                        </div>
+                        
+                        <div class="horario-item">
+                            <h4>⏰ Horario</h4>
+                            <p>10:00 - 11:30 horas</p>
+                        </div>
+                        
+                        <div class="horario-item">
+                            <h4>📍 Modalidad</h4>
+                            <p>Presencial con cita previa</p>
+                        </div>
+                    </div>
+
+                    <div class="destacado-info" style="margin-top: var(--spacing-lg);">
+                        <strong>⚠️ Importante:</strong> Recuerde solicitar su cita con antelación llamando al 
+                        <strong>949 291 182</strong> para asegurar su atención en el horario establecido.
+                    </div>
+                </div>
+
+                <!-- Servicios Relacionados -->
+                <div class="servicios-relacionados">
+                    <h2>🔗 Servicios y Recursos Relacionados</h2>
+                    
+                    <div class="servicios-grid">
+                        <div class="servicio-card">
+                            <span class="servicio-icon">👴</span>
+                            <h3>IMSERSO</h3>
+                            <p>Información sobre prestaciones y servicios del Instituto de Mayores y Servicios Sociales</p>
+                            <a href="https://imserso.es" target="_blank" rel="noopener">Acceder a IMSERSO</a>
+                        </div>
+
+                        <div class="servicio-card">
+                            <span class="servicio-icon">💜</span>
+                            <h3>Violencia de Género</h3>
+                            <p>Recursos y apoyo para víctimas de violencia de género. Teléfono 016 (gratuito y sin rastro)</p>
+                            <a href="tel:016">Llamar al 016</a>
+                        </div>
+
+                        <div class="servicio-card">
+                            <span class="servicio-icon">🧠</span>
+                            <h3>Salud Mental</h3>
+                            <p>Programas de prevención e intervención en salud mental</p>
+                            <a href="#contacto">Más información</a>
+                        </div>
+
+                        <div class="servicio-card">
+                            <span class="servicio-icon">⚖️</span>
+                            <h3>Asesoramiento Jurídico</h3>
+                            <p>Charlas y orientación sobre sucesiones, herencias y otros temas legales</p>
+                            <a href="#contacto">Solicitar información</a>
+                        </div>
+
+                        <div class="servicio-card">
+                            <span class="servicio-icon">👨‍👩‍👧‍👦</span>
+                            <h3>Servicios Familiares</h3>
+                            <p>Apoyo y orientación a familias en situación de necesidad</p>
+                            <a href="#contacto">Contactar</a>
+                        </div>
+
+                        <div class="servicio-card">
+                            <span class="servicio-icon">🎓</span>
+                            <h3>Talleres y Formación</h3>
+                            <p>Programas formativos y talleres de desarrollo personal y social</p>
+                            <a href="#contacto">Ver calendario</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="contacto-bienestar" id="contacto">
+                    <h2>📍 Información de Contacto</h2>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🏛️</span>
+                            <h3>Ayuntamiento de Pioz</h3>
+                            <p><strong>Dirección:</strong> Plaza Mayor, s/n</p>
+                            <p>19162 Pioz, Guadalajara</p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📞</span>
+                            <h3>Teléfonos</h3>
+                            <p><strong>Cita Previa (Horche):</strong></p>
+                            <p><a href="tel:949291182" style="color: #8e44ad; font-size: 1.5rem; font-weight: 700;">949 291 182</a></p>
+                            <p style="margin-top: var(--spacing-sm);"><strong>Información General:</strong></p>
+                            <p><a href="tel:949272076" style="color: #8e44ad;">949 272 076</a></p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">✉️</span>
+                            <h3>Correo Electrónico</h3>
+                            <p>
+                                <a href="mailto:oficinarecepcion@aytopioz.com" style="color: #8e44ad; word-break: break-all;">
+                                    oficinarecepcion@aytopioz.com
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🕐</span>
+                            <h3>Horario General</h3>
+                            <p><strong>Atención:</strong> Lunes a Viernes</p>
+                            <p>9:00 - 14:00 horas</p>
+                            <p style="margin-top: var(--spacing-sm);"><strong>Asistencia Social:</strong> Martes</p>
+                            <p>10:00 - 11:30 horas</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="intro-box" style="background: var(--bg-tertiary);">
+                    <h3 style="color: #8e44ad; margin-bottom: var(--spacing-md);">ℹ️ ¿Necesitas ayuda?</h3>
+                    <p>
+                        Si te encuentras en una situación de necesidad o conoces a alguien que requiera asistencia social, 
+                        no dudes en contactar con nosotros. El servicio es <strong>confidencial</strong> y está disponible 
+                        para todos los ciudadanos.
+                    </p>
+                    <p style="margin-top: var(--spacing-md);">
+                        Para consultas generales o solicitar información sobre programas específicos, puedes llamar al 
+                        Ayuntamiento en horario de oficina o enviar un correo electrónico.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

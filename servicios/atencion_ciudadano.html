@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Atención al Ciudadano - Quejas, sugerencias y denuncias del Ayuntamiento de Pioz">
+    <title>Atención al Ciudadano | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .atencion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-atencion {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-atencion h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-atencion p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+            color: white;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #16a085;
+        }
+        
+        .intro-box h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .servicio-card {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #16a085;
+            text-align: center;
+        }
+        
+        .servicio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .servicio-icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .servicio-card h3 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .servicio-card p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .servicio-card a {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: #16a085;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background var(--transition-fast);
+        }
+        
+        .servicio-card a:hover {
+            background: #1abc9c;
+            text-decoration: none;
+        }
+        
+        .impresos-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .impresos-section h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .impresos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .impreso-item {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 3px solid #16a085;
+            transition: all var(--transition-base);
+        }
+        
+        .impreso-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .impreso-item h4 {
+            color: #16a085;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .impreso-item p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .impreso-item a {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: #16a085;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .impreso-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .contacto-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .contacto-section h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            text-align: center;
+            padding: var(--spacing-md);
+        }
+        
+        .contacto-item h3 {
+            color: #16a085;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contacto-item p {
+            color: var(--text-primary);
+        }
+        
+        .contacto-item a {
+            color: #16a085;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .compromiso-box {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .compromiso-box h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .compromiso-box p {
+            font-size: var(--font-size-large);
+        }
+        
+        @media (max-width: 767px) {
+            .servicios-grid,
+            .impresos-grid,
+            .contacto-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Atención al Ciudadano</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container atencion-container">
+                <div class="hero-atencion">
+                    <h1>👥 Atención al Ciudadano</h1>
+                    <p>Tu voz importa - Escuchamos tus necesidades, quejas y sugerencias</p>
+                </div>
+
+                <!-- Introducción del Servicio -->
+                <div class="intro-box">
+                    <h2>¿Qué es Atención al Ciudadano?</h2>
+                    <p style="margin-bottom: var(--spacing-md);">
+                        <strong>Atención al Ciudadano</strong> es un nuevo servicio ofrecido por el Ayuntamiento de Pioz 
+                        cuyo objetivo es <strong>recoger las necesidades, denuncias y quejas de los vecinos</strong> para 
+                        que sean atendidas con la máxima diligencia.
+                    </p>
+                    <p>
+                        Todos los asuntos recibidos serán <strong>atendidos personalmente por el Concejal</strong> responsable, 
+                        garantizando que sean <strong>solucionados a la mayor brevedad posible</strong>.
+                    </p>
+                </div>
+
+                <!-- Servicios Disponibles -->
+                <div class="servicios-grid">
+                    <div class="servicio-card">
+                        <span class="servicio-icon">📝</span>
+                        <h3>Quejas y Reclamaciones</h3>
+                        <p>Presenta tus quejas sobre servicios municipales o situaciones que requieran atención</p>
+                        <a href="#impresos">Ver formularios</a>
+                    </div>
+
+                    <div class="servicio-card">
+                        <span class="servicio-icon">💡</span>
+                        <h3>Sugerencias</h3>
+                        <p>Comparte tus ideas para mejorar los servicios y la calidad de vida en Pioz</p>
+                        <a href="#impresos">Ver formularios</a>
+                    </div>
+
+                    <div class="servicio-card">
+                        <span class="servicio-icon">⚠️</span>
+                        <h3>Denuncias</h3>
+                        <p>Comunica situaciones irregulares o que requieran intervención municipal</p>
+                        <a href="#impresos">Ver formularios</a>
+                    </div>
+
+                    <div class="servicio-card">
+                        <span class="servicio-icon">❓</span>
+                        <h3>Consultas</h3>
+                        <p>Solicita información sobre trámites, servicios o procedimientos municipales</p>
+                        <a href="#contacto">Contactar</a>
+                    </div>
+                </div>
+
+                <!-- Compromiso -->
+                <div class="compromiso-box">
+                    <h3>🤝 Nuestro Compromiso</h3>
+                    <p>
+                        Todas las comunicaciones recibidas serán registradas, estudiadas y atendidas personalmente. 
+                        Nos comprometemos a dar respuesta y solución en el menor tiempo posible.
+                    </p>
+                </div>
+
+                <!-- Impresos y Formularios -->
+                <div id="impresos" class="impresos-section">
+                    <h2>📄 Impresos y Formularios</h2>
+                    <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--text-primary);">
+                        Descarga los impresos necesarios para ejercer tus derechos como ciudadano
+                    </p>
+                    
+                    <div class="impresos-grid">
+                        <div class="impreso-item">
+                            <h4>Hoja de Quejas y Reclamaciones</h4>
+                            <p>Formulario oficial para presentar quejas sobre servicios municipales</p>
+                            <a href="#" download>
+                                📥 Descargar PDF
+                            </a>
+                        </div>
+
+                        <div class="impreso-item">
+                            <h4>Formulario de Sugerencias</h4>
+                            <p>Presenta tus propuestas de mejora para el municipio</p>
+                            <a href="#" download>
+                                📥 Descargar PDF
+                            </a>
+                        </div>
+
+                        <div class="impreso-item">
+                            <h4>Hoja de Denuncia</h4>
+                            <p>Formulario para comunicar situaciones irregulares o incidencias</p>
+                            <a href="#" download>
+                                📥 Descargar PDF
+                            </a>
+                        </div>
+
+                        <div class="impreso-item">
+                            <h4>Solicitud General</h4>
+                            <p>Formulario genérico para cualquier solicitud al Ayuntamiento</p>
+                            <a href="#" download>
+                                📥 Descargar PDF
+                            </a>
+                        </div>
+
+                        <div class="impreso-item">
+                            <h4>Formulario de Consulta</h4>
+                            <p>Para realizar consultas sobre trámites o servicios municipales</p>
+                            <a href="#" download>
+                                📥 Descargar PDF
+                            </a>
+                        </div>
+
+                        <div class="impreso-item">
+                            <h4>Solicitud de Información Pública</h4>
+                            <p>Ejercicio del derecho de acceso a información pública</p>
+                            <a href="#" download>
+                                📥 Descargar PDF
+                            </a>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card-bg); padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-lg); text-align: center;">
+                        <p style="color: var(--text-primary);">
+                            <strong>💻 ¿Prefieres la vía telemática?</strong><br>
+                            Puedes presentar tus solicitudes de forma electrónica a través de nuestra 
+                            <a href="../tramites/sede_electronica.html" style="color: #16a085; font-weight: 600;">Sede Electrónica</a>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div id="contacto" class="contacto-section">
+                    <h2>📍 Información de Contacto</h2>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🏛️</span>
+                            <h3>Registro de Entrada</h3>
+                            <p>
+                                <strong>Ayuntamiento de Pioz</strong><br>
+                                Plaza Mayor, s/n<br>
+                                19162 Pioz, Guadalajara
+                            </p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📞</span>
+                            <h3>Teléfono y Fax</h3>
+                            <p>
+                                <a href="tel:949272076" style="font-size: 1.5rem; display: block; margin: var(--spacing-sm) 0;">
+                                    949 272 076
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🕐</span>
+                            <h3>Horario de Atención</h3>
+                            <p>
+                                <strong>Lunes a Viernes</strong><br>
+                                9:00 - 14:00 horas
+                            </p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">✉️</span>
+                            <h3>Correos Electrónicos</h3>
+                            <p>
+                                <strong>Oficina de Recepción:</strong><br>
+                                <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a>
+                            </p>
+                            <p style="margin-top: var(--spacing-sm);">
+                                <strong>Alcaldía:</strong><br>
+                                <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a>
+                            </p>
+                            <p style="margin-top: var(--spacing-sm);">
+                                <strong>Cultura:</strong><br>
+                                <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información adicional -->
+                <div class="intro-box" style="background: var(--bg-tertiary);">
+                    <h3 style="color: #16a085; margin-bottom: var(--spacing-md);">ℹ️ Información Importante</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: var(--spacing-sm) 0; color: var(--text-primary);">
+                            ✓ <strong>Confidencialidad:</strong> Toda la información proporcionada será tratada de forma confidencial según la normativa de protección de datos
+                        </li>
+                        <li style="padding: var(--spacing-sm) 0; color: var(--text-primary);">
+                            ✓ <strong>Registro:</strong> Todas las comunicaciones quedan registradas con número de entrada
+                        </li>
+                        <li style="padding: var(--spacing-sm) 0; color: var(--text-primary);">
+                            ✓ <strong>Seguimiento:</strong> Podrás consultar el estado de tu solicitud en cualquier momento
+                        </li>
+                        <li style="padding: var(--spacing-sm) 0; color: var(--text-primary);">
+                            ✓ <strong>Respuesta:</strong> Recibirás notificación de la resolución adoptada
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

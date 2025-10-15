@@ -10,18 +10,11 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-    <header class="header-top">
-        <div class="container">
-            <div class="logo">
-                <a href="index.html" class="logo-link">
-                    <img src="images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
-                </a>
-            </div>
-            <div class="header-actions">
-                <!-- ...existing code... -->
-            </div>
-        </div>
-    </header>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
     <main id="main-content">
         <section class="page-header">
             <div class="container">
@@ -57,7 +50,11 @@
         </section>
     </main>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
     <script src="js/theme-toggle.js"></script>
     <script src="js/search-engine.js"></script>
     <script src="js/navigation.js"></script>

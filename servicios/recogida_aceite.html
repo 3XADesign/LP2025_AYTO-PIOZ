@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Recogida de Aceite Usado - Servicio de reciclaje de aceite de cocina en Pioz">
+    <title>Recogida de Aceite Usado | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .aceite-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-aceite {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-aceite h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-aceite p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+            color: white;
+        }
+        
+        .obligatoriedad-box {
+            background: #dc3545;
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .obligatoriedad-box h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-size: 2rem;
+        }
+        
+        .fecha-obligatoria {
+            font-size: 2.5rem;
+            font-weight: 700;
+            display: block;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .info-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #f39c12;
+        }
+        
+        .info-box h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .info-box p {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .colaboradores-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .colaboradores-section h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .colaboradores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .colaborador-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .colaborador-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .colaborador-card h3 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .colaborador-card p {
+            color: var(--text-secondary);
+        }
+        
+        .material-section {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .material-section h2 {
+            color: white;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .material-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .material-item {
+            background: rgba(255,255,255,0.2);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .material-item h3 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .puntos-recogida {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .puntos-recogida h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid #f39c12;
+        }
+        
+        .punto-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-md);
+            border-left: 4px solid #f39c12;
+        }
+        
+        .punto-item h3 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .punto-item p {
+            color: var(--text-primary);
+        }
+        
+        .impacto-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .impacto-box h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .impacto-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #f39c12;
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: var(--spacing-sm);
+        }
+        
+        .contacto-aceite {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-aceite h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            text-align: center;
+        }
+        
+        .contacto-item h3 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .contacto-item p {
+            color: var(--text-primary);
+        }
+        
+        @media (max-width: 767px) {
+            .fecha-obligatoria {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="medio_ambiente.html">Medio Ambiente</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Recogida de Aceite Usado</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container aceite-container">
+                <div class="hero-aceite">
+                    <h1>🛢️ Recogida de Aceite Usado de Cocina</h1>
+                    <p>Sistema de reciclaje para la protección del medio ambiente</p>
+                </div>
+
+                <!-- Obligatoriedad -->
+                <div class="obligatoriedad-box">
+                    <h2>⚠️ Servicio Obligatorio</h2>
+                    <p style="font-size: var(--font-size-large); margin-bottom: var(--spacing-md);">
+                        La implantación de la recogida selectiva de aceite de cocina usado será <strong>OBLIGATORIA</strong> a partir de:
+                    </p>
+                    <span class="fecha-obligatoria">31 de Diciembre de 2024</span>
+                </div>
+
+                <!-- Información del Servicio -->
+                <div class="info-box">
+                    <h2>📋 ¿Qué es este servicio?</h2>
+                    <p style="margin-bottom: var(--spacing-md);">
+                        El Ayuntamiento de Pioz ha implementado un sistema de recogida selectiva de aceite usado de cocina 
+                        para contribuir a la protección del medio ambiente y dar cumplimiento a la normativa vigente.
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md);">
+                        <strong>¿Por qué es importante?</strong> Un solo litro de aceite usado puede contaminar hasta 
+                        <strong>1.000 litros de agua</strong>. El aceite vertido por el desagüe crea una película que 
+                        impide la oxigenación del agua, daña los ecosistemas acuáticos y dificulta el tratamiento de 
+                        aguas residuales.
+                    </p>
+                    <p>
+                        <strong>Beneficios del reciclaje:</strong> El aceite usado correctamente reciclado puede 
+                        transformarse en biodiesel, jabones y otros productos útiles, contribuyendo a la economía circular.
+                    </p>
+                </div>
+
+                <!-- Gestión y Colaboradores -->
+                <div class="colaboradores-section">
+                    <h2>🤝 Gestión del Servicio</h2>
+                    <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--text-primary);">
+                        Este servicio se gestiona a través de una colaboración institucional y social
+                    </p>
+                    
+                    <div class="colaboradores-grid">
+                        <div class="colaborador-card">
+                            <span class="colaborador-icon">🏛️</span>
+                            <h3>Consorcio de Guadalajara</h3>
+                            <p>
+                                El servicio es gestionado por el <strong>Consorcio para la Gestión de Residuos Urbanos 
+                                de la Provincia de Guadalajara</strong>
+                            </p>
+                        </div>
+
+                        <div class="colaborador-card">
+                            <span class="colaborador-icon">🏢</span>
+                            <h3>ECO-OLEUM, S.L.</h3>
+                            <p>
+                                Empresa adjudicataria del servicio, responsable de la recogida y gestión del aceite usado
+                            </p>
+                        </div>
+
+                        <div class="colaborador-card">
+                            <span class="colaborador-icon">💜</span>
+                            <h3>AFAUS pro Salud Mental</h3>
+                            <p>
+                                Organización de integración de personas en riesgo de exclusión social que colabora 
+                                en el desarrollo del servicio
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--card-bg); padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-lg);">
+                        <p style="text-align: center; color: var(--text-primary);">
+                            <strong>🌟 Compromiso Social:</strong> Este servicio no solo protege el medio ambiente, 
+                            sino que también genera oportunidades de empleo para personas en situación de vulnerabilidad.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Fase Piloto -->
+                <div class="info-box">
+                    <h2>🚀 Implementación y Expansión</h2>
+                    <p style="margin-bottom: var(--spacing-md);">
+                        El reparto de contenedores, material complementario e informativo se está llevando a cabo en los 
+                        municipios de una <strong>primera fase de implantación</strong> que servirá como <strong>prueba piloto</strong>.
+                    </p>
+                    <p style="margin-bottom: var(--spacing-md);">
+                        Esta fase se basa en criterios de:
+                    </p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">
+                            ✓ <strong>Población</strong> - Densidad y número de habitantes
+                        </li>
+                        <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">
+                            ✓ <strong>Áreas geográficas y administrativas</strong> - Distribución territorial
+                        </li>
+                        <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">
+                            ✓ <strong>Optimización de rutas</strong> - Eficiencia en la recogida
+                        </li>
+                    </ul>
+                    <p style="margin-top: var(--spacing-md);">
+                        El servicio <strong>se irá ampliando año a año</strong> en función de los resultados obtenidos 
+                        y las obligaciones normativas que surjan.
+                    </p>
+                </div>
+
+                <!-- Material Disponible -->
+                <div class="material-section">
+                    <h2>📦 Material Disponible para los Vecinos</h2>
+                    <p style="text-align: center; margin-bottom: var(--spacing-md);">
+                        En las oficinas del Ayuntamiento disponemos de material gratuito para facilitar el reciclaje
+                    </p>
+                    
+                    <div class="material-grid">
+                        <div class="material-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📄</span>
+                            <h3>Folletos Explicativos</h3>
+                            <p>Información detallada sobre cómo, cuándo y dónde depositar el aceite usado</p>
+                        </div>
+
+                        <div class="material-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🫙</span>
+                            <h3>Embudos</h3>
+                            <p>Para facilitar el trasvase del aceite usado a los recipientes adecuados</p>
+                        </div>
+
+                        <div class="material-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">ℹ️</span>
+                            <h3>Información</h3>
+                            <p>Consejos y buenas prácticas para el correcto reciclaje del aceite de cocina</p>
+                        </div>
+                    </div>
+
+                    <div style="background: rgba(255,255,255,0.2); padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-lg); text-align: center;">
+                        <p><strong>📍 Recoge tu material en:</strong> Ayuntamiento de Pioz - Plaza Mayor, s/n</p>
+                        <p style="margin-top: var(--spacing-xs);"><strong>🕐 Horario:</strong> Lunes a Viernes, 9:00 - 14:00 h</p>
+                    </div>
+                </div>
+
+                <!-- Puntos de Recogida -->
+                <div class="puntos-recogida">
+                    <h2>📍 PUNTOS HABILITADOS PARA LA RECOGIDA DE ACEITE DE COCINA USADO</h2>
+                    
+                    <div class="punto-item">
+                        <h3>🏛️ Ayuntamiento de Pioz</h3>
+                        <p><strong>Ubicación:</strong> Plaza Mayor, s/n - 19162 Pioz, Guadalajara</p>
+                        <p><strong>Horario de acceso:</strong> Lunes a Viernes, 9:00 - 14:00 horas</p>
+                        <p style="margin-top: var(--spacing-sm);">
+                            Contenedor específico para aceite usado ubicado en las instalaciones municipales
+                        </p>
+                    </div>
+
+                    <div class="punto-item">
+                        <h3>♻️ Punto Limpio Municipal</h3>
+                        <p><strong>Ubicación:</strong> Consultar en Medio Ambiente</p>
+                        <p><strong>Horario:</strong> Ver horarios del Punto Limpio según temporada</p>
+                        <p style="margin-top: var(--spacing-sm);">
+                            <a href="medio_ambiente.html#punto-limpio" style="color: #f39c12; font-weight: 600;">
+                                Ver horarios completos →
+                            </a>
+                        </p>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-lg);">
+                        <p style="text-align: center; color: var(--text-primary);">
+                            <strong>ℹ️ Nota:</strong> Se están evaluando ubicaciones adicionales para facilitar el acceso. 
+                            Consulta las actualizaciones en esta página.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Impacto Ambiental -->
+                <div class="impacto-box">
+                    <h2>🌍 Impacto Ambiental</h2>
+                    <div class="impacto-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">1.000</span>
+                            <p class="stat-label">Litros de agua contamina<br>1 litro de aceite</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <p class="stat-label">El aceite es<br>reciclable</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">0,9 L</span>
+                            <p class="stat-label">De biodiesel por<br>cada litro reciclado</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Información de Contacto -->
+                <div class="contacto-aceite">
+                    <h2>📞 Información y Consultas</h2>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🏛️</span>
+                            <h3>Dirección</h3>
+                            <p>Ayuntamiento de Pioz</p>
+                            <p>Plaza Mayor, s/n</p>
+                            <p>19162 Pioz, Guadalajara</p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📞</span>
+                            <h3>Teléfono / Fax</h3>
+                            <p><a href="tel:949272076" style="color: #f39c12; font-size: 1.5rem; font-weight: 700;">949 272 076</a></p>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">✉️</span>
+                            <h3>Correo Electrónico</h3>
+                            <p>
+                                <a href="mailto:oficinarecepcion@aytopioz.com" style="color: #f39c12; word-break: break-all;">
+                                    oficinarecepcion@aytopioz.com
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

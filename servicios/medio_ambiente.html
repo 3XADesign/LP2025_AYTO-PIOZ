@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Medio Ambiente - Servicios de reciclaje, punto limpio y políticas ambientales en Pioz">
+    <title>Medio Ambiente | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .medioambiente-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-ambiente {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-ambiente h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-ambiente p {
+            font-size: var(--font-size-large);
+            opacity: 0.95;
+            color: white;
+        }
+        
+        .compromiso-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #27ae60;
+        }
+        
+        .compromiso-box h2 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .compromiso-box p {
+            color: var(--text-primary);
+        }
+        
+        .section-ambiente {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .section-ambiente h2 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-lg);
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 3px solid #27ae60;
+        }
+        
+        .punto-limpio-box {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .punto-limpio-box h2 {
+            color: white;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .horarios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .horario-temporada {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            color: var(--text-primary);
+        }
+        
+        .horario-temporada h3 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .horario-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .horario-item:last-child {
+            border-bottom: none;
+        }
+        
+        .residuos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .residuo-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+        
+        .residuo-card h4 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .residuo-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        .residuo-limite {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xs);
+            border-radius: 4px;
+            margin-top: var(--spacing-xs);
+            font-size: var(--font-size-small);
+            color: var(--text-primary);
+        }
+        
+        .contenedores-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .contenedores-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .contenedor-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contenedor-amarillo {
+            border-top: 6px solid #ffd700;
+        }
+        
+        .contenedor-azul {
+            border-top: 6px solid #1e90ff;
+        }
+        
+        .contenedor-verde {
+            border-top: 6px solid #228b22;
+        }
+        
+        .contenedor-card h3 {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .contenedor-amarillo h3 { color: #d4a574; }
+        .contenedor-azul h3 { color: #1e90ff; }
+        .contenedor-verde h3 { color: #228b22; }
+        
+        .contenedor-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .contenedor-card li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+        }
+        
+        .contenedor-card li::before {
+            content: '✓ ';
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .consejo-box {
+            background: #fff3cd;
+            border-left: 4px solid #856404;
+            padding: var(--spacing-md);
+            margin-top: var(--spacing-md);
+            border-radius: 4px;
+            color: #856404;
+        }
+        
+        [data-theme="dark"] .consejo-box {
+            background: #4a4000;
+            color: #ffd700;
+        }
+        
+        .enlaces-externos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .enlace-externo {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            transition: all var(--transition-base);
+            border: 2px solid transparent;
+        }
+        
+        .enlace-externo:hover {
+            border-color: #27ae60;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+        
+        .enlace-externo h3 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .enlace-externo p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        @media (max-width: 767px) {
+            .horarios-grid,
+            .residuos-grid,
+            .contenedores-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../servicios.html">Servicios</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Medio Ambiente</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container medioambiente-container">
+                <div class="hero-ambiente">
+                    <h1>🌱 Medio Ambiente</h1>
+                    <p>Sostenibilidad, reciclaje y preservación del entorno natural</p>
+                </div>
+
+                <!-- Compromiso Ambiental -->
+                <div class="compromiso-box">
+                    <h2>🍃 Nuestro Compromiso con el Medio Ambiente</h2>
+                    <p>
+                        El Equipo de Gobierno del Ayuntamiento de Pioz se compromete a <strong>NO utilizar herbicidas</strong> 
+                        como el <strong>"glifosato"</strong> en el mantenimiento de parques, jardines y suelo público.
+                    </p>
+                    <p style="margin-top: var(--spacing-md);">
+                        En su lugar, empleamos <strong>métodos no contaminantes</strong> que no dañan la salud ni el medio 
+                        ambiente, incluyendo métodos <strong>mecánicos y térmicos</strong> para el control de malas hierbas.
+                    </p>
+                    <p style="margin-top: var(--spacing-md);">
+                        Esta sección mantiene informados a los ciudadanos sobre el mantenimiento del medio ambiente, consejos 
+                        para su preservación, noticias, comentarios y fotografías del entorno natural de Pioz.
+                    </p>
+                </div>
+
+                <!-- Punto Limpio -->
+                <div id="punto-limpio" class="section-ambiente">
+                    <h2>♻️ Punto Limpio en Pioz</h2>
+                    
+                    <div class="punto-limpio-box">
+                        <h2>🏗️ ¿Qué es el Punto Limpio?</h2>
+                        <p style="margin-bottom: var(--spacing-lg);">
+                            El Punto Limpio es una instalación de <strong>titularidad mancomunada</strong>, cerrada y controlada, 
+                            para la recogida selectiva de <strong>residuos urbanos de origen doméstico, voluminosos y especiales</strong>.
+                        </p>
+                        <div style="background: rgba(255,255,255,0.2); padding: var(--spacing-md); border-radius: 4px;">
+                            <p><strong>⚠️ Importante:</strong></p>
+                            <ul style="list-style: none; padding: 0; margin-top: var(--spacing-sm);">
+                                <li>✓ Uso exclusivo para <strong>particulares</strong></li>
+                                <li>✓ Se debe acreditar que eres <strong>residente de un municipio</strong> integrante de la Mancomunidad La Alcarria</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Horarios -->
+                    <h3 style="color: #27ae60; margin-bottom: var(--spacing-lg);">📅 Horarios del Punto Limpio</h3>
+                    <div class="horarios-grid">
+                        <div class="horario-temporada">
+                            <h3>☀️ Verano (16 abril - 15 octubre)</h3>
+                            <div class="horario-item">
+                                <span><strong>Viernes:</strong></span>
+                                <span>17:00 - 20:00 h</span>
+                            </div>
+                            <div class="horario-item">
+                                <span><strong>Sábado:</strong></span>
+                                <span>9:00 - 14:00 h y 16:00 - 18:00 h</span>
+                            </div>
+                            <div class="horario-item">
+                                <span><strong>Lunes:</strong></span>
+                                <span>9:00 - 14:00 h</span>
+                            </div>
+                        </div>
+
+                        <div class="horario-temporada">
+                            <h3>❄️ Invierno (16 octubre - 15 abril)</h3>
+                            <div class="horario-item">
+                                <span><strong>Viernes:</strong></span>
+                                <span>15:00 - 17:00 h</span>
+                            </div>
+                            <div class="horario-item">
+                                <span><strong>Sábado:</strong></span>
+                                <span>9:00 - 17:00 h</span>
+                            </div>
+                            <div class="horario-item">
+                                <span><strong>Lunes:</strong></span>
+                                <span>9:00 - 14:00 h</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Residuos Admisibles -->
+                    <h3 style="color: #27ae60; margin: var(--spacing-xl) 0 var(--spacing-lg);">📦 Residuos Admisibles</h3>
+                    <div class="residuos-grid">
+                        <div class="residuo-card">
+                            <h4>🛋️ Muebles y Enseres</h4>
+                            <p>Muebles voluminosos, colchones, sofás y enseres domésticos</p>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>🏗️ Escombros</h4>
+                            <p>Restos de pequeñas obras y reformas domésticas</p>
+                            <div class="residuo-limite"><strong>Límite:</strong> 50 kg/persona/día</div>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>🌿 Restos de Poda</h4>
+                            <p>Ramas, hojas y residuos de jardín</p>
+                            <div class="residuo-limite"><strong>Límite:</strong> 50 kg/persona/día</div>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>🛢️ Aceites Vegetales</h4>
+                            <p>Aceite de cocina usado</p>
+                            <div class="residuo-limite"><strong>Límite:</strong> 5 litros/persona/día</div>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>🎨 Pinturas</h4>
+                            <p>Botes de pintura, barnices y disolventes</p>
+                            <div class="residuo-limite"><strong>Límite:</strong> 20 kg/persona/día</div>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>🖥️ RAEE</h4>
+                            <p>Aparatos eléctricos y electrónicos: frigoríficos, ordenadores, televisores, etc.</p>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>🔋 Pilas</h4>
+                            <p>Pilas y baterías de todo tipo</p>
+                            <div class="residuo-limite"><strong>Límite:</strong> 1 kg/persona/día</div>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>📱 Otros Residuos</h4>
+                            <p>Fluorescentes, bombillas, cartuchos de tinta, radiografías</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Guía de Reciclaje por Contenedores -->
+                <div class="contenedores-section">
+                    <h2 style="color: #27ae60; margin-bottom: var(--spacing-lg); text-align: center;">
+                        🗑️ Guía de Reciclaje por Contenedores
+                    </h2>
+                    
+                    <div class="contenedores-grid">
+                        <div class="contenedor-card contenedor-amarillo">
+                            <h3>🟡 Contenedor Amarillo</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); font-size: var(--font-size-small);">
+                                <strong>Envases de plástico, metal y briks</strong>
+                            </p>
+                            <ul>
+                                <li>Botellas de plástico</li>
+                                <li>Envases de productos de limpieza</li>
+                                <li>Tarrinas de mantequilla y yogur</li>
+                                <li>Envoltorios de plástico</li>
+                                <li>Bolsas de aperitivos</li>
+                                <li>Latas de bebidas y conservas</li>
+                                <li>Bandejas de aluminio</li>
+                                <li>Briks de leche y zumos</li>
+                            </ul>
+                            <div class="consejo-box">
+                                <strong>💡 Consejo:</strong> Deposítalos vacíos y plegados para ahorrar espacio
+                            </div>
+                        </div>
+
+                        <div class="contenedor-card contenedor-azul">
+                            <h3>🔵 Contenedor Azul</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); font-size: var(--font-size-small);">
+                                <strong>Papel y cartón</strong>
+                            </p>
+                            <ul>
+                                <li>Cajas de cartón</li>
+                                <li>Periódicos y revistas</li>
+                                <li>Bolsas de papel</li>
+                                <li>Folios y cuadernos</li>
+                                <li>Libros sin encuadernar</li>
+                                <li>Sobres</li>
+                                <li>Hueveras de cartón</li>
+                            </ul>
+                            <div class="consejo-box">
+                                <strong>💡 Consejo:</strong> Pliega las cajas antes de depositarlas
+                            </div>
+                        </div>
+
+                        <div class="contenedor-card contenedor-verde">
+                            <h3>🟢 Contenedor Verde</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md); font-size: var(--font-size-small);">
+                                <strong>Vidrio</strong>
+                            </p>
+                            <ul>
+                                <li>Botellas de vidrio</li>
+                                <li>Tarros de mermelada y conservas</li>
+                                <li>Frascos de perfume</li>
+                                <li>Tarros de cosmética</li>
+                            </ul>
+                            <div class="consejo-box">
+                                <strong>💡 Consejo:</strong> No deposites cristales, espejos ni cerámica
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recogida de Aceite Usado -->
+                <div class="section-ambiente">
+                    <h2>🛢️ Recogida de Aceite Usado</h2>
+                    <div class="compromiso-box">
+                        <p>
+                            El Ayuntamiento de Pioz dispone de un servicio especial para la <strong>recogida de aceite vegetal usado</strong>.
+                        </p>
+                        <p style="margin-top: var(--spacing-md);">
+                            Puedes depositar el aceite usado en el <strong>Punto Limpio</strong> durante su horario de apertura, 
+                            o en los <strong>contenedores específicos</strong> ubicados en puntos estratégicos del municipio.
+                        </p>
+                        <p style="margin-top: var(--spacing-md);">
+                            <strong>¿Por qué es importante?</strong> Un litro de aceite puede contaminar hasta 1.000 litros de agua. 
+                            Tu colaboración es fundamental para proteger el medio ambiente.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Bandos y Comunicaciones -->
+                <div class="section-ambiente">
+                    <h2>📢 Bandos y Comunicaciones Ambientales</h2>
+                    <div class="residuos-grid">
+                        <div class="residuo-card">
+                            <h4>🦟 Tratamiento Moscas y Mosquitos</h4>
+                            <p>Información sobre el tratamiento preventivo contra moscas y mosquitos</p>
+                            <a href="../ayuntamiento/bandos.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                                Ver bando
+                            </a>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>🌿 Bando de Desbroce</h4>
+                            <p>Obligaciones de limpieza y desbroce de parcelas urbanas</p>
+                            <a href="../ayuntamiento/bandos.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                                Ver bando
+                            </a>
+                        </div>
+
+                        <div class="residuo-card">
+                            <h4>📚 Cursos de Medio Ambiente</h4>
+                            <p>Cursos gratuitos sobre sostenibilidad y gestión de residuos</p>
+                            <a href="#" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                                Más información
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Normativa -->
+                <div class="section-ambiente">
+                    <h2>📋 Normativa Ambiental</h2>
+                    <p style="color: var(--text-primary); margin-bottom: var(--spacing-lg);">
+                        Consulta las ordenanzas municipales relacionadas con el medio ambiente:
+                    </p>
+                    <div class="residuos-grid">
+                        <div class="residuo-card">
+                            <h4>Limpieza Urbana</h4>
+                            <a href="../tramites/ordenanzas.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                                Ver ordenanza
+                            </a>
+                        </div>
+                        <div class="residuo-card">
+                            <h4>Recogida de Basuras y Residuos</h4>
+                            <a href="../tramites/ordenanzas.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                                Ver ordenanza
+                            </a>
+                        </div>
+                        <div class="residuo-card">
+                            <h4>Gestión de Residuos de Construcción</h4>
+                            <a href="../tramites/ordenanzas.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                                Ver ordenanza
+                            </a>
+                        </div>
+                        <div class="residuo-card">
+                            <h4>Animales Domésticos</h4>
+                            <a href="../tramites/ordenanzas.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                                Ver ordenanza
+                            </a>
+                        </div>
+                        <div class="residuo-card">
+                            <h4>Vallado y Limpieza de Solares</h4>
+                            <a href="../tramites/ordenanzas.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">
+                                Ver ordenanza
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enlaces de Interés -->
+                <div class="section-ambiente">
+                    <h2>🔗 Enlaces de Interés</h2>
+                    <div class="enlaces-externos">
+                        <a href="https://www.castillalamancha.es/gobierno/desarrollosostenible" class="enlace-externo" target="_blank" rel="noopener">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🏛️</span>
+                            <h3>Consejería de Medio Ambiente</h3>
+                            <p>Castilla-La Mancha</p>
+                        </a>
+
+                        <a href="https://www.castillalamancha.es/gobierno/desarrollosostenible/estructura/dgapn/actuaciones/red-de-%C3%A1reas-protegidas" class="enlace-externo" target="_blank" rel="noopener">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🌳</span>
+                            <h3>Red de Áreas Protegidas</h3>
+                            <p>Castilla-La Mancha</p>
+                        </a>
+
+                        <a href="../tramites/ordenanzas.html" class="enlace-externo">
+                            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📜</span>
+                            <h3>Ordenanzas Municipales</h3>
+                            <p>Normativa ambiental local</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Contacto -->
+                <div class="compromiso-box" style="margin-top: var(--spacing-xl);">
+                    <h3 style="color: #27ae60; margin-bottom: var(--spacing-md);">📍 Información y Contacto</h3>
+                    <p>
+                        <strong>Concejalía de Medio Ambiente</strong><br>
+                        Ayuntamiento de Pioz<br>
+                        Plaza Mayor, s/n - 19162 Pioz, Guadalajara<br>
+                        <strong>Teléfono:</strong> <a href="tel:949272076" style="color: #27ae60;">949 272 076</a><br>
+                        <strong>Horario:</strong> Lunes a Viernes, 9:00 - 14:00 h
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>
