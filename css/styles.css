@@ -1,225 +1,455 @@
-:root{
-  --bg:#f7f5f0;
-  --brick:#b85b3b; /* ladrillo de tejar */
-  --masonry:#d9cdbd; /* mampostería clara */
-  --accent:#8b3a2b; /* teja más oscura */
-  --text:#222;
-  --muted:#666;
-  --primary:#8b3a2b;
-  --focus: #ffaa33;
-  --max-width:1100px;
-  --gap:1rem;
-  /* altura por defecto del header (mobile-first). Usar para compensar contenido y anchors */
-  --header-height:72px;
-  /* espacio adicional para que el header no oculte el contenido al anclar */
-  --header-gap:12px;
-  /* Theme variables (Light mode defaults) */
-  --color-fondo-principal: #ffffff;
-  --color-texto-principal: #1A1A1A;
-  --color-header-fondo: #ffffff;
-  --color-enlace-acento: #8b3a2b; /* ocre/rojo terroso */
-  --color-bordes-lineas: #dddddd;
-  --color-noticia-fondo: #f8f8f8;
-  --color-card-bg: #ffffff;
+:root {
+    /* Paleta de colores inspirada en materiales locales */
+    --color-ladrillo-claro: #d4a574;
+    --color-ladrillo: #c8956e;
+    --color-teja-rojo: #b85c4e;
+    --color-teja-ocre: #c07854;
+    --color-piedra-caliza: #e8dcc8;
+    --color-piedra-oscura: #8b8370;
+    --color-terracota: #a86c52;
+    
+    /* Colores funcionales - ELIMINAR estos ya que theme.css los define */
+    
+    /* Tipografía */
+    --font-primary: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-base: 16px;
+    --font-size-small: 0.875rem;
+    --font-size-large: 1.125rem;
+    --font-size-h1: 2.5rem;
+    --font-size-h2: 2rem;
+    --font-size-h3: 1.5rem;
+    --line-height-base: 1.6;
+    
+    /* Espaciado */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-base: 0.3s ease;
 }
 
-/* Dark mode: override theme variables when .dark-mode is present on root (html or body) */
-.dark-mode{
-  --color-fondo-principal: #121212;
-  --color-texto-principal: #e0e0e0;
-  --color-header-fondo: #1e1e1e;
-  --color-enlace-acento: #bb86fc; /* tono de acento para modo oscuro */
-  --color-bordes-lineas: #333333;
-  --color-noticia-fondo: #2c2c2c;
-  --color-card-bg: #181818;
-  --muted: #bdbdbd;
-  /* reduce sombras en modo oscuro */
-  --shadow-elevation: 0 1px 3px rgba(0,0,0,0.6);
+/* Reset y Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-/* Use the dark-mode shadow variable where appropriate */
-.card{box-shadow:var(--shadow-elevation,0 1px 4px rgba(0,0,0,0.06));}
+html {
+    font-size: var(--font-size-base);
+    scroll-behavior: smooth;
+}
 
-*{box-sizing:border-box}
-html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:var(--color-fondo-principal);color:var(--color-texto-principal);}
-.container{max-width:var(--max-width);margin:0 auto;padding:1rem}
-.header-top{display:flex;justify-content:space-between;align-items:center;padding:0.5rem 0}
-.logo{font-weight:700;color:var(--accent);text-decoration:none;font-size:1.1rem}
-.main-nav .menu{list-style:none;margin:0;padding:1rem;display:none;flex-direction:column;gap:1rem;position:fixed;inset:var(--header-height) 0 0 0;background:var(--color-header-fondo);color:var(--color-texto-principal);overflow:auto;z-index:1001}
-.main-nav a{color:var(--color-texto-principal);text-decoration:none;padding:.6rem 0;display:block}
-.nav-toggle{display:inline-block;background:transparent;border:none;font-size:1.1rem;padding:.4rem;margin-left:.5rem}
-.nav-toggle[aria-expanded="true"]{opacity:0.9}
+body {
+    font-family: var(--font-primary);
+    line-height: var(--line-height-base);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-/* Ensure the menu toggle (label/icon) is visible in dark mode */
-.nav-toggle{ color: var(--color-texto-principal); }
-.nav-toggle svg, .nav-toggle *{ color: inherit; fill: currentColor; }
-.dark-mode .nav-toggle{ color: var(--color-texto-principal) !important; }
-.dark-mode .nav-toggle svg{ fill: currentColor !important; }
-.site-header{position:fixed;top:0;width:100%;z-index:1000;background:var(--color-header-fondo);box-shadow:0 2px 6px rgba(0,0,0,0.08);padding:12px 0}
-.site-header .container{display:flex;align-items:center;gap:.5rem}
-.site-header .logo{margin-right:1rem}
+/* Accesibilidad */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: var(--spacing-sm);
+    text-decoration: none;
+    z-index: 100;
+}
 
-/* cuando se hace scroll aplicamos clase .scrolled para reducir altura */
-.site-header.scrolled{padding:6px 0}
+.skip-link:focus {
+    top: 0;
+}
 
-/* compensar el main para que no quede oculto por el header fijo */
-.site-header.scrolled{padding:6px 0}
+/* Tipografía */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
 
-/* compensar el main para que no quede oculto por el header fijo (móvil) */
-main.container{padding-top:calc(var(--header-height) + var(--header-gap))}
-/* indicar al navegador cuanto espacio reservar cuando se hace scroll-to/anchor */
-html{scroll-padding-top:calc(var(--header-height) + 8px)}
-.hero{background:linear-gradient(90deg, rgba(139,58,43,0.08), rgba(216,198,180,0.04));padding:2rem 0;border-top:4px solid var(--masonry)}
-.hero h1{margin:0 0 .5rem}
+h1 { font-size: var(--font-size-h1); }
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
 
-/* Compensar header fijo para la hero (evita que el header la oculte) */
-.hero{ padding-top: calc(var(--header-height) + var(--header-gap)); }
-.quick-actions{display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap}
-.btn{display:inline-block;padding:.6rem 1rem;border-radius:6px;background:transparent;border:2px solid var(--primary);color:var(--primary);text-decoration:none}
-.btn.primary{background:var(--primary);color:#fff}
+p {
+    color: var(--text-primary);
+}
 
-.card{background:var(--color-card-bg);border-radius:8px;padding:1rem;margin:1rem 0;box-shadow:0 1px 4px rgba(0,0,0,0.06)}
-.two-col{display:grid;grid-template-columns:1fr;gap:1rem}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
-.news-feed{display:grid;gap:.75rem}
-.news-item{padding:0.75rem;border-left:4px solid var(--brick);background:var(--color-noticia-fondo)}
-.news-item h3{margin:.25rem 0}
-.news-item h3{margin:.25rem 0}
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
 
-.site-footer{padding:1rem 0;margin-top:2rem;border-top:1px solid var(--color-bordes-lineas);text-align:center;color:var(--muted)}
+a:hover, a:focus {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+}
 
-/* Images responsive */
-img{max-width:100%;height:auto;display:block}
-.gallery figure{margin:0 0 1rem 0}
-.companies-grid{display:grid;grid-template-columns:1fr;gap:1rem}
+/* Contenedor */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
 
+/* Header */
+.header {
+    background: var(--bg-header);
+    border-bottom: 3px solid var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md) 0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-link {
+    display: block;
+    transition: transform var(--transition-fast);
+}
+
+.logo-link:hover {
+    transform: scale(1.05);
+}
+
+.logo img {
+    width: auto;
+    height: 80px;
+    object-fit: contain;
+    display: block;
+}
+
+.logo-text {
+    display: none;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.contact-quick {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: var(--font-size-small);
+    color: var(--text-primary);
+}
+
+/* ...existing code... */
+
+/* Navegación */
+.main-nav {
+    background-color: var(--nav-bg);
+}
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-list > li {
+    position: relative;
+}
+
+.nav-list > li > a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--nav-text);
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color var(--transition-fast);
+}
+
+.nav-list > li > a:hover,
+.nav-list > li > a.active {
+    background-color: var(--nav-hover);
+}
+
+.submenu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--submenu-bg);
+    min-width: 220px;
+    box-shadow: var(--shadow-lg);
+    list-style: none;
+    z-index: 100;
+}
+
+.has-submenu:hover .submenu,
+.has-submenu:focus-within .submenu {
+    display: block;
+}
+
+.submenu li a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--submenu-text);
+    transition: background-color var(--transition-fast);
+}
+
+.submenu li a:hover {
+    background-color: var(--submenu-hover);
+    text-decoration: none;
+}
+
+/* ...existing code... */
+
+/* Búsqueda */
+.search-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(10, 10, 10, 0.95);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-overlay.active {
+    display: flex;
+}
+
+.search-container {
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+}
+
+.search-form input {
+    width: 100%;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-large);
+    border: 3px solid var(--color-primary);
+    border-radius: 4px;
+    background: var(--input-bg);
+    color: var(--text-primary);
+}
+
+/* ...existing code... */
+
+/* Secciones */
+.hero {
+    background: var(--bg-hero);
+    color: white;
+    padding: var(--spacing-xl) 0;
+    text-align: center;
+}
+
+.hero h2 {
+    color: white;
+    margin-bottom: var(--spacing-sm);
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-primary);
+    position: relative;
+    padding-bottom: var(--spacing-sm);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-accent);
+}
+
+.quick-access, .news-section, .events-section, .info-section, .content-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-primary);
+}
+
+.bg-light {
+    background-color: var(--bg-tertiary) !important;
+}
+
+/* Footer */
+.footer {
+    background: var(--bg-footer);
+    color: var(--text-inverse);
+    padding: var(--spacing-xl) 0 var(--spacing-md);
+    margin-top: var(--spacing-xl);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.footer h4 {
+    color: var(--color-ladrillo);
+    margin-bottom: var(--spacing-sm);
+}
+
+.footer address {
+    font-style: normal;
+}
+
+.footer ul {
+    list-style: none;
+}
+
+.footer ul li {
+    margin-bottom: var(--spacing-xs);
+}
+
+.footer a {
+    color: var(--text-inverse);
+}
+
+.footer a:hover {
+    color: var(--color-ladrillo);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-sm);
+}
+
+.social-icon {
+    display: inline-flex;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    transition: background-color var(--transition-fast);
+}
+
+.social-icon:hover {
+    background-color: var(--color-accent);
+}
+
+/* Utilidades */
+.text-center {
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-base);
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--text-inverse);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-color);
+}
 
 /* Responsive */
-@media (min-width:768px){
-  /* Tablet: horizontal menu, two-column layouts */
-  /* ajustar altura del header en tablet */
-  :root{ --header-height:84px; }
-  .nav-toggle{display:none}
-  .main-nav .menu{display:flex;flex-direction:row;position:static;background:transparent;padding:0;gap:1rem}
-  .two-col{grid-template-columns:1fr 300px}
-  .news-feed{grid-template-columns:repeat(2,1fr)}
-  .companies-grid{grid-template-columns:repeat(2,1fr)}
-  main.container{padding-top:calc(var(--header-height) + var(--header-gap))}
+@media (min-width: 768px) {
+    .contact-quick {
+        display: flex; /* Asegurar que se muestre en desktop */
+    }
 }
 
-/* Mostrar menú móvil cuando .main-nav está abierto mediante clase */
-.main-nav.open .menu{
-  display:flex;
-  flex-direction:column;
-  /* ocupar todo el espacio por debajo del header */
-  inset:var(--header-height) 0 0 0;
-  transform-origin:top;
-  animation:menu-slide 180ms ease-out;
+@media (max-width: 767px) {
+    .nav-toggle {
+        display: block;
+    }
+    
+    .nav-toggle span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: var(--color-primary);
+        margin: 5px 0;
+        transition: var(--transition-fast);
+    }
+    
+    .main-nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        transform: translateY(-100%);
+        transition: transform var(--transition-base);
+        opacity: 0;
+    }
+    
+    .main-nav.active {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    
+    .nav-list {
+        flex-direction: column;
+    }
+    
+    .submenu {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .has-submenu.active .submenu {
+        display: block;
+    }
 }
-
-/* En dark mode asegurar que el menú principal tenga fondo y enlaces legibles */
-.dark-mode .main-nav .menu{ background: var(--color-header-fondo) !important; color: var(--color-texto-principal) !important; }
-.dark-mode .main-nav .menu a{ color: var(--color-texto-principal) !important; }
-
-@keyframes menu-slide{
-  from{opacity:0;transform:translateY(-6px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* Evitar scroll del body cuando el menú está abierto (se aplica por JS añadiendo .nav-open al body) */
-body.nav-open{overflow:hidden}
-
-@media (min-width:1025px){
-  /* Desktop: full navigation, denser grids */
-  /* ajustar altura del header en desktop */
-  :root{ --header-height:96px; }
-  .main-nav .menu{gap:1.25rem}
-  .news-feed{grid-template-columns:repeat(3,1fr)}
-  .companies-grid{grid-template-columns:repeat(3,1fr)}
-  .two-col{grid-template-columns:1fr 320px}
-  .container{padding:1.25rem}
-  main.container{padding-top:calc(var(--header-height) + var(--header-gap))}
-}
-
-/* Evitar que anclas y encabezados queden ocultos por el header fijo */
-h1, h2, h3, section[id], .card{ scroll-margin-top: calc(var(--header-height) + var(--header-gap)); }
-
-/* Accessibility */
-a:focus,button:focus{outline:3px solid var(--focus);outline-offset:2px}
-
-/* Header search styles */
-.header-search{display:flex;align-items:center;gap:.5rem;margin-left:auto}
-.header-search input{display:block;border:1px solid var(--color-bordes-lineas);background:transparent;color:var(--color-texto-principal);padding:.4rem .6rem;border-radius:6px;min-width:160px}
-.header-search button{background:transparent;border:none;font-size:1rem;padding:.4rem}
-.header-search .search-toggle{display:none}
-
-/* Settings (Ajustes) button and menu in header */
-.header-top .settings-toggle{display:inline-block;background:transparent;border:none;font-size:1.1rem;padding:.4rem;margin-left:.5rem;cursor:pointer}
-.settings-menu{position:absolute;right:1rem;top:calc(var(--header-height) + 8px);background:var(--color-card-bg);border:1px solid var(--color-bordes-lineas);border-radius:8px;padding:.5rem;min-width:220px;display:none;box-shadow:0 8px 20px rgba(0,0,0,0.08);z-index:1002}
-.settings-menu.open{display:block}
-.settings-menu h4{margin:0 0 .5rem;font-size:1rem}
-.settings-group{margin-bottom:.5rem}
-.settings-group .size-controls button{margin-right:.35rem;padding:.35rem .5rem;border-radius:6px;border:1px solid var(--color-bordes-lineas);background:transparent}
-.settings-group .size-controls button[aria-pressed="true"]{background:var(--primary);color:#fff;border-color:var(--primary)}
-.settings-actions{display:flex;justify-content:flex-end}
-.reset-btn{background:transparent;border:1px solid var(--color-bordes-lineas);padding:.4rem .6rem;border-radius:6px;color:var(--color-texto-principal)}
-
-/* Make settings menu elements readable in dark mode */
-.dark-mode .settings-menu{background:var(--color-card-bg);border-color:var(--color-bordes-lineas);color:var(--color-texto-principal)}
-.dark-mode .settings-menu .settings-group .size-controls button{border-color:var(--color-bordes-lineas);color:var(--color-texto-principal)}
-.dark-mode .settings-menu .settings-group .size-controls button[aria-pressed="true"]{background:var(--primary);color:#fff}
-.dark-mode .settings-menu .reset-btn{border-color:var(--color-bordes-lineas);color:var(--color-texto-principal);background:transparent}
-.dark-mode .settings-menu label{color:var(--color-texto-principal)}
-
-/* Regla más específica por si en móvil hay conflictos de cascada: forzar color en el menú y sus hijos */
-.dark-mode .settings-menu, .dark-mode .settings-menu *{
-  color: var(--color-texto-principal) !important;
-}
-.dark-mode .settings-menu{ background: var(--color-card-bg) !important; border-color: var(--color-bordes-lineas) !important; }
-.dark-mode .settings-menu.open{ z-index: 2002 !important; }
-.dark-mode .settings-menu .size-controls button{ background: transparent !important; color: var(--color-texto-principal) !important; border-color: var(--color-bordes-lineas) !important; }
-.dark-mode .settings-menu .size-controls button[aria-pressed="true"]{ background: var(--primary) !important; color: #fff !important; }
-.dark-mode .settings-menu .reset-btn{ color: var(--color-texto-principal) !important; border-color: var(--color-bordes-lineas) !important; background: transparent !important; }
-
-/* Text size utility classes applied on html element */
-html.text-size-small{font-size:14px}
-html.text-size-large{font-size:18px}
-
-/* (Alto contraste eliminado) */
-
-/* Mobile adjustments: keep menu reachable inside header */
-@media (max-width:767px){
-  .settings-menu{right:0;left:auto;top:calc(var(--header-height) + 6px);min-width:180px}
-}
-
-/* utility for accessibility */
-.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
-
-/* Mobile: show toggle icon and hide input until expanded */
-@media (max-width:767px){
-  .header-search{gap:.25rem}
-  .header-search input{display:none}
-  .header-search button[type="submit"]{display:none}
-  .header-search .search-toggle{display:inline-block}
-  .header-search.open input{display:block}
-  .header-search.open button[type="submit"]{display:inline-block}
-}
-
-/* Ensure search respects dark mode colors */
-.dark-mode .header-search input{background:transparent;color:var(--color-texto-principal);border-color:var(--color-bordes-lineas)}
-
-/* Search bar placeholder styles (if implemented) */
-.search{display:flex;gap:.5rem}
-.search input{flex:1;padding:.5rem;border:1px solid #ddd;border-radius:6px}
-
-/* Calendario mensual básico */
-.monthly-calendar{background:#fff;padding:1rem;border-radius:8px;margin-top:1rem}
-.calendar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}
-.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
-.calendar-cell{min-height:80px;padding:.5rem;border:1px solid rgba(0,0,0,0.06);border-radius:6px;background:linear-gradient(180deg, rgba(217,205,189,0.02), transparent)}
-.calendar-cell{min-height:80px;padding:.5rem;border:1px solid var(--color-bordes-lineas);border-radius:6px;background:var(--color-card-bg)}
-.calendar-cell .date{font-weight:600;font-size:.9rem}
-.calendar-cell .events{margin-top:.25rem;font-size:.85rem;color:var(--muted)}
-.calendar-nav button{background:transparent;border:1px solid #ddd;padding:.4rem .6rem;border-radius:6px}
-.calendar-weekdays{display:grid;grid-template-columns:repeat(7,1fr);font-weight:600;margin-bottom:.25rem}
-.calendar-weekdays div{text-align:center;font-size:.85rem;color:var(--muted)}

@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Equipo de Gobierno del Ayuntamiento de Pioz - Alcalde y Concejales">
+    <title>Equipo de Gobierno | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .equipo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .intro-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-section h1 {
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-section p {
+            color: var(--text-primary);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-text {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto var(--spacing-xl);
+            color: var(--text-secondary);
+        }
+        
+        /* Estilos para el Alcalde */
+        .alcalde-card {
+            max-width: 800px;
+            margin: 0 auto var(--spacing-xl);
+        }
+        
+        .alcalde-card .team-member-card {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: var(--spacing-lg);
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border-left: 4px solid var(--color-primary);
+        }
+        
+        .alcalde-card .member-photo-container {
+            width: 250px;
+            height: 300px;
+            overflow: hidden;
+            background: var(--bg-tertiary);
+        }
+        
+        .alcalde-card .member-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .alcalde-card .member-info {
+            padding: var(--spacing-lg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .alcalde-card .member-name {
+            color: var(--color-primary);
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .alcalde-card .member-role {
+            color: var(--text-secondary);
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+        
+        .alcalde-card .contact-info {
+            margin-top: var(--spacing-md);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+        }
+        
+        /* Estilos para el grid de concejales */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .team-member-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid var(--color-primary);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .team-member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+        
+        .team-grid .member-photo-container {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            background: var(--bg-tertiary);
+            position: relative;
+        }
+        
+        .team-grid .member-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        
+        .team-grid .member-info {
+            padding: var(--spacing-lg);
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .team-grid .member-name {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .team-grid .member-role {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-lg);
+            display: block;
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .member-responsibilities {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+        }
+        
+        .member-responsibilities li {
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            display: flex;
+            align-items: center;
+        }
+        
+        .member-responsibilities li:last-child {
+            border-bottom: none;
+        }
+        
+        .member-responsibilities li::before {
+            content: '▸';
+            color: var(--color-primary);
+            font-weight: bold;
+            margin-right: var(--spacing-xs);
+            flex-shrink: 0;
+        }
+        
+        @media (max-width: 1024px) {
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: var(--spacing-lg);
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .alcalde-card .team-member-card {
+                grid-template-columns: 1fr;
+            }
+            
+            .alcalde-card .member-photo-container {
+                width: 100%;
+                height: 300px;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid .member-photo-container {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <img src="../images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="search-toggle" aria-label="Abrir búsqueda">
+                        <span class="icon-search"></span>
+                    </button>
+                    <div class="contact-quick">
+                        <span class="icon-phone"></span>
+                        <span>949 272 076</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+                <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li class="has-submenu">
+                        <a href="../ayuntamiento.html" class="active">Ayuntamiento</a>
+                        <ul class="submenu">
+                            <li><a href="saluda.html">Saluda</a></li>
+                            <li><a href="equipo_gobierno.html" class="active">Equipo de Gobierno</a></li>
+                            <li><a href="perfil_contratante.html">Perfil del Contratante</a></li>
+                            <li><a href="bandos.html">Bandos Municipales</a></li>
+                            <li><a href="../ayuntamiento.html#plenos">Plenos</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../tramites.html">Trámites</a>
+                        <ul class="submenu">
+                            <li><a href="../tramites/sede_electronica.html">Sede Electrónica</a></li>
+                            <li><a href="../tramites/ordenanzas.html">Ordenanzas</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../servicios.html">Servicios</a>
+                        <ul class="submenu">
+                            <li><a href="../servicios.html#sanidad">Sanidad</a></li>
+                            <li><a href="../servicios.html#urbanismo">Urbanismo</a></li>
+                            <li><a href="../servicios.html#medio-ambiente">Medio Ambiente</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../cultura.html">Cultura</a>
+                        <ul class="submenu">
+                            <li><a href="../cultura.html#calendario">Calendario Cultural</a></li>
+                            <li><a href="../cultura.html#asociaciones">Asociaciones</a></li>
+                            <li><a href="../cultura.html#biblioteca">Biblioteca</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../villa.html">Villa de Pioz</a>
+                        <ul class="submenu">
+                            <li><a href="../villa.html#historia">Historia</a></li>
+                            <li><a href="../villa.html#castillo">Castillo de Pioz</a></li>
+                            <li><a href="../villa.html#tradiciones">Tradiciones</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../tablon.html">Tablón / Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form" role="search">
+                <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+            <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../ayuntamiento.html">Ayuntamiento</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Equipo de Gobierno</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container equipo-container">
+                <h1 class="section-title">Equipo de Gobierno</h1>
+                <p class="intro-text">
+                    El equipo de gobierno del Ayuntamiento de Pioz trabaja cada día para mejorar la calidad de vida 
+                    de todos los vecinos y vecinas, gestionando los servicios municipales con transparencia y compromiso.
+                </p>
+
+                <!-- Alcalde -->
+                <div class="alcalde-card">
+                    <article class="team-member-card">
+                        <div class="member-photo-container">
+                            <img src="../images/equipo_gobierno/Manuel.jpg" alt="Manuel López Carvajal" class="member-photo" onerror="this.src='../images/equipo_gobierno/Manuel.jpeg'; this.onerror=null;">
+                        </div>
+                        <div class="member-info">
+                            <h2 class="member-name">Manuel López Carvajal</h2>
+                            <span class="member-role">Alcalde Presidente</span>
+                            <ul class="member-responsibilities">
+                                <li>Coordinación general del gobierno municipal</li>
+                                <li>Representación institucional del Ayuntamiento</li>
+                                <li>Presidencia de los plenos municipales</li>
+                                <li>Dirección de la política municipal</li>
+                            </ul>
+                            <div class="contact-info">
+                                <strong>Contacto:</strong> 949 272 076 | <strong>Horario:</strong> L-V 9:00-14:00
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- Concejales -->
+                <div class="team-grid">
+                    <article class="team-member-card">
+                        <div class="member-photo-container">
+                            <img src="../images/equipo_gobierno/Alejandro.jpeg" alt="Alejandro Porcar Rodríguez" class="member-photo" onerror="this.src='../images/equipo_gobierno/Alejandro.jpg'; this.onerror=null;">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Alejandro Porcar Rodríguez</h3>
+                            <span class="member-role">Concejal</span>
+                            <ul class="member-responsibilities">
+                                <li>Parques y Jardines</li>
+                                <li>Medio Ambiente</li>
+                                <li>Festejos</li>
+                                <li>Mantenimiento</li>
+                                <li>Obras</li>
+                                <li>Gestión de Residuos</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="team-member-card">
+                        <div class="member-photo-container">
+                            <img src="../images/equipo_gobierno/Susana.jpg" alt="Susana Cisneros Granado" class="member-photo" onerror="this.src='../images/equipo_gobierno/Susana.jpeg'; this.onerror=null;">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Susana Cisneros Granado</h3>
+                            <span class="member-role">Concejala</span>
+                            <ul class="member-responsibilities">
+                                <li>Sanidad</li>
+                                <li>Economía</li>
+                                <li>Administración General</li>
+                                <li>Fomento Industrial</li>
+                                <li>Igualdad</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="team-member-card">
+                        <div class="member-photo-container">
+                            <img src="../images/equipo_gobierno/Hilario.png" alt="Hilario Fernández Blázquez" class="member-photo">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Hilario Fernández Blázquez</h3>
+                            <span class="member-role">Concejal</span>
+                            <ul class="member-responsibilities">
+                                <li>Cultura</li>
+                                <li>Juventud</li>
+                                <li>Participación Ciudadana</li>
+                                <li>Protección Civil</li>
+                                <li>Transparencia</li>
+                                <li>Asociaciones</li>
+                                <li>Movimientos Juveniles</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="team-member-card">
+                        <div class="member-photo-container">
+                            <img src="../images/equipo_gobierno/Antonino.jpg" alt="Antonino Delgado Menor" class="member-photo" onerror="this.src='../images/equipo_gobierno/Antonino.jpeg'; this.onerror=null;">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Antonino Delgado Menor</h3>
+                            <span class="member-role">Concejal</span>
+                            <ul class="member-responsibilities">
+                                <li>Tecnología y Redes</li>
+                                <li>Seguridad</li>
+                                <li>Eficiencia Energética</li>
+                                <li>Transporte</li>
+                                <li>Movilidad Urbana</li>
+                            </ul>
+                        </div>
+                    </article>
+
+                    <article class="team-member-card">
+                        <div class="member-photo-container">
+                            <img src="../images/equipo_gobierno/Carlos.jpg" alt="Carlos Alberto Torre del Olmo" class="member-photo" onerror="this.src='../images/equipo_gobierno/Carlos.jpeg'; this.onerror=null;">
+                        </div>
+                        <div class="member-info">
+                            <h3 class="member-name">Carlos Alberto Torre del Olmo</h3>
+                            <span class="member-role">Concejal</span>
+                            <ul class="member-responsibilities">
+                                <li>Hacienda</li>
+                                <li>Personal</li>
+                                <li>Recursos Humanos</li>
+                                <li>Empleo</li>
+                                <li>Bienestar Animal</li>
+                                <li>Mercado</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Contacto con el Ayuntamiento</h2>
+                <div class="info-grid">
+                    <div class="info-card">
+                        <h3>Dirección</h3>
+                        <p>Plaza Mayor, s/n<br>19162 Pioz, Guadalajara</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Teléfono</h3>
+                        <p class="info-number">949 272 076</p>
+                    </div>
+                    <div class="info-card">
+                        <h3>Horario</h3>
+                        <p><strong>Lunes a Viernes</strong><br>9:00 - 14:00 horas</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Ayuntamiento de Pioz</h4>
+                    <address>
+                        <p>Plaza Mayor, s/n</p>
+                        <p>19162 Pioz, Guadalajara</p>
+                        <p><strong>Tel:</strong> 949 272 076</p>
+                        <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Útiles</h4>
+                    <ul>
+                        <li><a href="../tramites.html#sede-electronica">Sede Electrónica</a></li>
+                        <li><a href="../tramites.html#transparencia">Transparencia</a></li> href="../tramites.html#transparencia">Transparencia</a></li>
+                        <li><a href="../ayuntamiento.html#perfil-contratante">Perfil del Contratante</a></li>nto.html#perfil-contratante">Perfil del Contratante</a></li>
+                        <li><a href="../tablon.html">Tablón de Anuncios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-icon">lass="social-icon">
+                            <span class="icon-facebook"></span>ebook"></span>
+                        </a>
+                        <a href="#" aria-label="Youtube" class="social-icon">f="#" aria-label="Youtube" class="social-icon">
+                            <span class="icon-youtube"></span>pan class="icon-youtube"></span>
+                        </a>                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>/h4>
+                    <ul>
+                        <li><a href="../legal.html#aviso">Aviso Legal</a></li>
+                        <li><a href="../legal.html#privacidad">Política de Privacidad</a></li>ca de Privacidad</a></li>
+                        <li><a href="../legal.html#cookies">Política de Cookies</a></li>tica de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ayuntamiento de Pioz. Todos los derechos reservados.</p>odos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

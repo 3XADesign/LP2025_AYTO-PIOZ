@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plenos del Ayuntamiento de Pioz - Acceso a vídeos y actas de las sesiones plenarias">
+    <title>Plenos del Ayuntamiento | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .plenos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .intro-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-box h1,
+        .intro-box p {
+            color: var(--text-primary);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .stat-box {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        .search-filter-bar {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .search-filter-form {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: var(--spacing-md);
+            align-items: end;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-text);
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-family: inherit;
+        }
+        
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-sm) 0;
+            border-bottom: 2px solid var(--color-border);
+        }
+        
+        .plenos-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-lg);
+        }
+        
+        .pleno-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-left: 4px solid var(--color-primary);
+        }
+        
+        .pleno-card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateX(5px);
+        }
+        
+        .pleno-header {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--spacing-lg);
+            align-items: center;
+        }
+        
+        .pleno-date-badge {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-teja-ocre) 100%);
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .badge-day {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            display: block;
+        }
+        
+        .badge-month {
+            font-size: var(--font-size-small);
+            text-transform: uppercase;
+            opacity: 0.9;
+            display: block;
+            margin-top: var(--spacing-xs);
+        }
+        
+        .pleno-info h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.25rem;
+        }
+        
+        .pleno-type {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 20px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .type-ordinario {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .type-extraordinario {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .pleno-body {
+            padding: var(--spacing-lg);
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .pleno-actions {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .btn-icon {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .btn-acta {
+            background: var(--color-teja-rojo);
+            color: white;
+        }
+        
+        .btn-acta:hover {
+            background: var(--color-teja-ocre);
+            text-decoration: none;
+        }
+        
+        .btn-youtube {
+            background: #FF0000;
+            color: white;
+        }
+        
+        .btn-youtube:hover {
+            background: #CC0000;
+            text-decoration: none;
+        }
+        
+        .orden-dia {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .orden-dia h4 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1rem;
+        }
+        
+        .orden-dia ol {
+            padding-left: var(--spacing-lg);
+            margin: 0;
+        }
+        
+        .orden-dia li {
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg) 0;
+        }
+        
+        .pagination button,
+        .pagination a {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background: white;
+            color: var(--color-text);
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .pagination button:hover:not(:disabled),
+        .pagination a:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        .pagination .active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        @media (max-width: 767px) {
+            .search-filter-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .pleno-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .pleno-date-badge {
+                margin: 0 auto;
+            }
+            
+            .pleno-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <img src="../images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="search-toggle" aria-label="Abrir búsqueda">
+                        <span class="icon-search"></span>
+                    </button>
+                    <div class="contact-quick">
+                        <span class="icon-phone"></span>
+                        <span>949 272 076</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+                <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li class="has-submenu">
+                        <a href="../ayuntamiento.html" class="active">Ayuntamiento</a>
+                        <ul class="submenu">
+                            <li><a href="saluda.html">Saluda</a></li>
+                            <li><a href="equipo_gobierno.html">Equipo de Gobierno</a></li>
+                            <li><a href="perfil_contratante.html">Perfil del Contratante</a></li>
+                            <li><a href="bandos.html">Bandos Municipales</a></li>
+                            <li><a href="plenos_ayuntamiento.html" class="active">Plenos</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../tramites.html">Trámites</a>
+                        <ul class="submenu">
+                            <li><a href="../tramites/sede_electronica.html">Sede Electrónica</a></li>
+                            <li><a href="../tramites/ordenanzas.html">Ordenanzas</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../servicios.html">Servicios</a>
+                        <ul class="submenu">
+                            <li><a href="../servicios.html#sanidad">Sanidad</a></li>
+                            <li><a href="../servicios.html#urbanismo">Urbanismo</a></li>
+                            <li><a href="../servicios.html#medio-ambiente">Medio Ambiente</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../cultura.html">Cultura</a>
+                        <ul class="submenu">
+                            <li><a href="../cultura.html#calendario">Calendario Cultural</a></li>
+                            <li><a href="../cultura.html#asociaciones">Asociaciones</a></li>
+                            <li><a href="../cultura.html#biblioteca">Biblioteca</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../villa.html">Villa de Pioz</a>
+                        <ul class="submenu">
+                            <li><a href="../villa.html#historia">Historia</a></li>
+                            <li><a href="../villa.html#castillo">Castillo de Pioz</a></li>
+                            <li><a href="../villa.html#tradiciones">Tradiciones</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../tablon.html">Tablón / Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form" role="search">
+                <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+            <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../ayuntamiento.html">Ayuntamiento</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Plenos del Ayuntamiento</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container plenos-container">
+                <div class="intro-box">
+                    <h1>Plenos del Ayuntamiento</h1>
+                    <p>Acceso completo a las sesiones plenarias del Ayuntamiento de Pioz. Consulta los vídeos 
+                    de las sesiones en directo y descarga las actas oficiales para garantizar la máxima transparencia 
+                    en la gestión municipal.</p>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <span class="stat-number" id="totalPlenos">127</span>
+                            <span class="stat-label">Plenos desde 2015</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number" id="plenosAnio">12</span>
+                            <span class="stat-label">Plenos in 2025</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-label">Transparencia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="search-filter-bar">
+                    <form class="search-filter-form" id="filterForm">
+                        <div class="form-group">
+                            <label for="searchText">Buscar por palabra clave</label>
+                            <input type="text" id="searchText" placeholder="Ej: presupuestos, ordenanza...">
+                        </div>
+                        <div class="form-group">
+                            <label for="filterYear">Año</label>
+                            <select id="filterYear">
+                                <option value="">Todos los años</option>
+                                <option value="2025" selected>2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                                <option value="2016">2016</option>
+                                <option value="2015">2015</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filterType">Tipo</label>
+                            <select id="filterType">
+                                <option value="">Todos</option>
+                                <option value="ordinario">Ordinario</option>
+                                <option value="extraordinario">Extraordinario</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="results-info">
+                    <span class="results-count" id="resultsCount">Mostrando 3 de 12 plenos</span>
+                    <div class="sort-options">
+                        <label for="sortBy">Ordenar por:</label>
+                        <select id="sortBy">
+                            <option value="date-desc">Más recientes primero</option>
+                            <option value="date-asc">Más antiguos primero</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="plenos-list" id="plenosList">
+                    <!-- Pleno 1 -->
+                    <article class="pleno-card">
+                        <div class="pleno-header">
+                            <div class="pleno-date-badge">
+                                <span class="badge-day">28</span>
+                                <span class="badge-month">ENE 2025</span>
+                            </div>
+                            <div class="pleno-info">
+                                <h3>Pleno Ordinario - Enero 2025</h3>
+                                <span class="pleno-type type-ordinario">Ordinario</span>
+                            </div>
+                        </div>
+                        <div class="pleno-body">
+                            <div class="orden-dia">
+                                <h4>Orden del Día</h4>
+                                <ol>
+                                    <li>Aprobación del acta de la sesión anterior</li>
+                                    <li>Aprobación del presupuesto municipal 2025</li>
+                                    <li>Modificación de la Ordenanza Fiscal nº 3</li>
+                                    <li>Moción sobre mejora de infraestructuras</li>
+                                    <li>Ruegos y preguntas</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="Pleno Ordinario Enero 2025"
+                                    allowfullscreen
+                                    loading="lazy">
+                                </iframe>
+                            </div>
+                            
+                            <div class="pleno-actions">
+                                <a href="#" class="btn btn-acta btn-icon" download>
+                                    📄 Descargar Acta (PDF)
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-youtube btn-icon">
+                                    ▶ Ver en YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Pleno 2 -->
+                    <article class="pleno-card">
+                        <div class="pleno-header">
+                            <div class="pleno-date-badge">
+                                <span class="badge-day">15</span>
+                                <span class="badge-month">DIC 2024</span>
+                            </div>
+                            <div class="pleno-info">
+                                <h3>Pleno Extraordinario - Presupuestos 2025</h3>
+                                <span class="pleno-type type-extraordinario">Extraordinario</span>
+                            </div>
+                        </div>
+                        <div class="pleno-body">
+                            <div class="orden-dia">
+                                <h4>Orden del Día</h4>
+                                <ol>
+                                    <li>Debate y aprobación inicial del Presupuesto General 2025</li>
+                                    <li>Aprobación de las Bases de Ejecución del Presupuesto</li>
+                                    <li>Plantilla de personal para el ejercicio 2025</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="Pleno Extraordinario Diciembre 2024"
+                                    allowfullscreen
+                                    loading="lazy">
+                                </iframe>
+                            </div>
+                            
+                            <div class="pleno-actions">
+                                <a href="#" class="btn btn-acta btn-icon" download>
+                                    📄 Descargar Acta (PDF)
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-youtube btn-icon">
+                                    ▶ Ver en YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Pleno 3 -->
+                    <article class="pleno-card">
+                        <div class="pleno-header">
+                            <div class="pleno-date-badge">
+                                <span class="badge-day">30</span>
+                                <span class="badge-month">NOV 2024</span>
+                            </div>
+                            <div class="pleno-info">
+                                <h3>Pleno Ordinario - Noviembre 2024</h3>
+                                <span class="pleno-type type-ordinario">Ordinario</span>
+                            </div>
+                        </div>
+                        <div class="pleno-body">
+                            <div class="orden-dia">
+                                <h4>Orden del Día</h4>
+                                <ol>
+                                    <li>Aprobación del acta de la sesión anterior</li>
+                                    <li>Ratificación de decretos de Alcaldía</li>
+                                    <li>Aprobación de convenio de colaboración con la Diputación</li>
+                                    <li>Moción sobre actividades culturales de Navidad</li>
+                                    <li>Ruegos y preguntas</li>
+                                </ol>
+                            </div>
+                            
+                            <div class="video-container">
+                                <iframe 
+                                    src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                    title="Pleno Ordinario Noviembre 2024"
+                                    allowfullscreen
+                                    loading="lazy">
+                                </iframe>
+                            </div>
+                            
+                            <div class="pleno-actions">
+                                <a href="#" class="btn btn-acta btn-icon" download>
+                                    📄 Descargar Acta (PDF)
+                                </a>
+                                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-youtube btn-icon">
+                                    ▶ Ver en YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="pagination" id="pagination">
+                    <button id="prevPage" disabled>« Anterior</button>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <button id="nextPage">Siguiente »</button>
+                </div>
+
+                <div class="intro-box" style="margin-top: var(--spacing-xl);">
+                    <h3>Archivo Histórico</h3>
+                    <p>Todos los vídeos de los plenos celebrados desde julio de 2015 están disponibles en nuestro 
+                    canal de YouTube. Las actas oficiales se encuentran archivadas y disponibles para su consulta.</p>
+                    <p style="margin-top: var(--spacing-md);">
+                        <a href="https://www.youtube.com/@ayuntamientodepioz" target="_blank" class="btn btn-youtube btn-icon">
+                            ▶ Visitar canal de YouTube
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Ayuntamiento de Pioz</h4>
+                    <address>
+                        <p>Plaza Mayor, s/n</p>
+                        <p>19162 Pioz, Guadalajara</p>
+                        <p><strong>Tel:</strong> 949 272 076</p>
+                        <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Útiles</h4>
+                    <ul>
+                        <li><a href="../tramites.html#sede-electronica">Sede Electrónica</a></li>
+                        <li><a href="../tramites.html#transparencia">Transparencia</a></li>
+                        <li><a href="perfil_contratante.html">Perfil del Contratante</a></li>
+                        <li><a href="../tablon.html">Tablón de Anuncios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-icon">
+                            <span class="icon-facebook"></span>
+                        </a>
+                        <a href="#" aria-label="Youtube" class="social-icon">
+                            <span class="icon-youtube"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../legal.html#aviso">Aviso Legal</a></li>
+                        <li><a href="../legal.html#privacidad">Política de Privacidad</a></li>
+                        <li><a href="../legal.html#cookies">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ayuntamiento de Pioz. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/plenos.js"></script>
+</body>
+</html>

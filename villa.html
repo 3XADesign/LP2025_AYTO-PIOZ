@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <header class="header-top">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <img src="images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
+                </a>
+            </div>
+            <div class="header-actions">
+                <!-- ...existing code... -->
+            </div>
+        </div>
+    </header>
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <h1>Villa de Pioz</h1>
+            </div>
+        </section>
+
+        <section id="situacion" class="content-section">
+            <div class="container">
+                <h2>Situación y Población</h2>
+                <div class="villa-stats">
+                    <div class="stat-box">
+                        <span class="stat-number">5.131</span>
+                        <span class="stat-label">Habitantes</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">19162</span>
+                        <span class="stat-label">Código Postal</span>
+                    </div>
+                </div>
+                <div id="map" style="height: 400px; margin-top: 2rem; border-radius: 8px;"></div>
+            </div>
+        </section>
+
+        <section id="castillo" class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Castillo de Pioz</h2>
+                <p>El Castillo de Pioz es uno de los monumentos más emblemáticos de la localidad. Construido en el siglo XV, representa un importante ejemplo de arquitectura militar castellana.</p>
+                <p><strong>Coordenadas:</strong> 40°27′49″N 3°17′27″W</p>
+                <h3>Guardianes del Castillo</h3>
+                <p>Asociación dedicada a la conservación y promoción del patrimonio histórico del Castillo de Pioz.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/search-engine.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

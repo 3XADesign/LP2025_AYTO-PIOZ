@@ -1,0 +1,407 @@
+:root {
+    /* Modo Claro (por defecto) */
+    --bg-primary: #faf8f5;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e8dcc8;
+    --bg-header: linear-gradient(135deg, #ffffff 0%, #e8dcc8 100%);
+    --bg-footer: linear-gradient(135deg, #2d2520 0%, #8b8370 100%);
+    --bg-hero: linear-gradient(135deg, #b85c4e 0%, #c07854 100%);
+    
+    --text-primary: #2d2520;
+    --text-secondary: #5a5048;
+    --text-inverse: #ffffff;
+    
+    --color-primary: #b85c4e;
+    --color-primary-hover: #c07854;
+    --color-secondary: #c8956e;
+    --color-accent: #c07854;
+    --color-ladrillo: #d4a574;
+    
+    --border-color: #e8dcc8;
+    --shadow-sm: 0 1px 3px rgba(45, 37, 32, 0.1);
+    --shadow-md: 0 4px 6px rgba(45, 37, 32, 0.1);
+    --shadow-lg: 0 10px 25px rgba(45, 37, 32, 0.15);
+    
+    --input-bg: #ffffff;
+    --input-border: #e8dcc8;
+    --card-bg: #ffffff;
+    --card-hover-shadow: 0 10px 25px rgba(45, 37, 32, 0.15);
+    
+    --nav-bg: #b85c4e;
+    --nav-text: #ffffff;
+    --nav-hover: #c07854;
+    
+    --submenu-bg: #ffffff;
+    --submenu-text: #2d2520;
+    --submenu-hover: #e8dcc8;
+}
+
+/* Modo Oscuro */
+[data-theme="dark"] {
+    --bg-primary: #0a0a0a;
+    --bg-secondary: #1a1a1a;
+    --bg-tertiary: #2a2a2a;
+    --bg-header: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    --bg-footer: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+    --bg-hero: linear-gradient(135deg, #d4756a 0%, #d4906a 100%);
+    
+    --text-primary: #e8e6e3;
+    --text-secondary: #b8b6b3;
+    --text-inverse: #0a0a0a;
+    
+    --color-primary: #e08977;
+    --color-primary-hover: #f09d8b;
+    --color-secondary: #d4a574;
+    --color-accent: #d4906a;
+    --color-ladrillo: #e0b590;
+    
+    --border-color: #3a3a3a;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.5);
+    --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.6);
+    
+    --input-bg: #2a2a2a;
+    --input-border: #3a3a3a;
+    --card-bg: #1a1a1a;
+    --card-hover-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+    
+    --nav-bg: #1a1a1a;
+    --nav-text: #e8e6e3;
+    --nav-hover: #2a2a2a;
+    
+    --submenu-bg: #2a2a2a;
+    --submenu-text: #e8e6e3;
+    --submenu-hover: #3a3a3a;
+}
+
+/* Transición suave al cambiar de tema */
+body,
+.header,
+.footer,
+.main-nav,
+.quick-card,
+.news-card,
+.event-card,
+.info-card,
+.team-member,
+.bando-card,
+.pleno-card,
+.tramite-card,
+.contract-card,
+.ordenanza-item,
+input,
+select,
+textarea,
+button,
+.btn {
+    transition: background-color 0.3s ease, 
+                color 0.3s ease, 
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+/* Aplicar variables globales */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+/* Header */
+.header {
+    background: var(--bg-header);
+    border-bottom-color: var(--color-primary);
+}
+
+.logo img {
+    /* En modo oscuro, aplicar filtro sutil para reducir brillo */
+}
+
+[data-theme="dark"] .logo img {
+    filter: brightness(0.95) contrast(0.95);
+}
+
+/* Navegación */
+.main-nav {
+    background-color: var(--nav-bg);
+}
+
+.nav-list > li > a {
+    color: var(--nav-text);
+}
+
+.nav-list > li > a:hover,
+.nav-list > li > a.active {
+    background-color: var(--nav-hover);
+}
+
+.submenu {
+    background: var(--submenu-bg);
+}
+
+.submenu li a {
+    color: var(--submenu-text);
+}
+
+.submenu li a:hover {
+    background-color: var(--submenu-hover);
+}
+
+/* Hero y secciones */
+.hero {
+    background: var(--bg-hero);
+}
+
+.bg-light {
+    background-color: var(--bg-tertiary) !important;
+}
+
+.content-section {
+    background-color: var(--bg-primary);
+}
+
+/* Títulos */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-primary);
+}
+
+.section-title {
+    color: var(--color-primary);
+}
+
+.section-title::after {
+    background-color: var(--color-accent);
+}
+
+/* Tarjetas y componentes */
+.quick-card,
+.news-card,
+.event-card,
+.info-card,
+.team-member,
+.bando-card,
+.pleno-card,
+.tramite-card,
+.contract-card,
+.ordenanza-item,
+.result-card,
+.alcalde-card,
+.intro-box,
+.search-filter-bar,
+.category-header,
+.ordenanzas-list {
+    background: var(--card-bg);
+    color: var(--text-primary);
+}
+
+.quick-card:hover,
+.news-card:hover,
+.event-card:hover,
+.bando-card:hover,
+.pleno-card:hover {
+    box-shadow: var(--card-hover-shadow);
+}
+
+/* Enlaces */
+a {
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-primary-hover);
+}
+
+/* Botones */
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--text-inverse);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--border-color);
+}
+
+/* Formularios */
+input,
+select,
+textarea {
+    background-color: var(--input-bg);
+    border-color: var(--input-border);
+    color: var(--text-primary);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+}
+
+input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* Footer */
+.footer {
+    background: var(--bg-footer);
+    color: var(--text-inverse);
+}
+
+.footer h4 {
+    color: var(--color-ladrillo);
+}
+
+.footer a {
+    color: var(--text-inverse);
+}
+
+.footer a:hover {
+    color: var(--color-ladrillo);
+}
+
+/* Bordes */
+.breadcrumb,
+.results-info,
+.footer-bottom,
+.ordenanza-item {
+    border-color: var(--border-color);
+}
+
+/* Sombras */
+.header,
+.quick-card,
+.news-card,
+.search-filter-bar,
+.bando-card,
+.pleno-card {
+    box-shadow: var(--shadow-sm);
+}
+
+/* Overlay de búsqueda */
+.search-overlay {
+    background: rgba(10, 10, 10, 0.95);
+}
+
+[data-theme="dark"] .search-overlay {
+    background: rgba(0, 0, 0, 0.98);
+}
+
+.search-form input {
+    border-color: var(--color-primary);
+}
+
+/* Componentes específicos */
+.alcalde-info-box,
+.destacado-box {
+    background: var(--bg-tertiary);
+    border-left-color: var(--color-primary);
+}
+
+/* Textos secundarios */
+p,
+.bando-excerpt,
+.result-snippet,
+.ordenanza-meta,
+.pleno-meta {
+    color: var(--text-primary);
+}
+
+.text-light,
+.color-text-light {
+    color: var(--text-secondary);
+}
+
+/* Iconos sociales */
+.social-icon {
+    background-color: var(--color-primary);
+}
+
+.social-icon:hover {
+    background-color: var(--color-accent);
+}
+
+/* Embeds (YouTube) */
+[data-theme="dark"] iframe {
+    opacity: 0.95;
+    border-radius: 8px;
+}
+
+/* Imágenes - reducir brillo en modo oscuro */
+[data-theme="dark"] img:not(.logo img):not(.logo-link img) {
+    opacity: 0.92;
+    filter: brightness(0.9);
+}
+
+[data-theme="dark"] .member-photo,
+[data-theme="dark"] .alcalde-photo {
+    opacity: 1;
+    filter: brightness(0.95);
+}
+
+/* Tablas y listas */
+table {
+    background: var(--card-bg);
+    color: var(--text-primary);
+}
+
+table th {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+table td {
+    border-color: var(--border-color);
+}
+
+/* Mark (resaltado de búsqueda) */
+mark {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+[data-theme="dark"] mark {
+    background-color: #4a4000;
+    color: #ffd700;
+}
+
+/* Toggle de categorías */
+.category-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
+}
+
+/* Badges y etiquetas */
+.badge,
+.pleno-type,
+.contract-status {
+    border-color: var(--border-color);
+}
+
+/* Scrollbar personalizado para modo oscuro */
+[data-theme="dark"] ::-webkit-scrollbar {
+    width: 12px;
+    background: var(--bg-secondary);
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 6px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+/* Garantizar contraste AA mínimo */
+[data-theme="dark"] {
+    /* Ratio de contraste mínimo 4.5:1 para texto normal */
+    /* Ratio de contraste mínimo 3:1 para texto grande */
+}

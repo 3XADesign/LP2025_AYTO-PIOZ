@@ -1,97 +1,336 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Trámites - Ayuntamiento de Pioz</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Trámites y Servicios - Ayuntamiento de Pioz">
+    <title>Trámites | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-top">
-      <a class="logo" href="index.html">Ayuntamiento de Pioz</a>
-      <nav class="main-nav" aria-label="Menú principal">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu">Menú</button>
-        <ul id="main-menu" class="menu">
-          <li><a href="ayuntamiento.html">Ayuntamiento</a></li>
-          <li><a href="tramites.html">Trámites</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="cultura.html">Cultura</a></li>
-          <li><a href="villa_de_pioz.html">Villa de Pioz</a></li>
-          <li><a href="index.html#tablon">Tablón / Contacto</a></li>
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+  
+  <header class="header">
+    <div class="container">
+      <div class="header-top">
+        <div class="logo">
+          <a href="index.html" class="logo-link">
+            <img src="images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
+          </a>
+        </div>
+        <div class="header-actions">
+          <button class="search-toggle" aria-label="Abrir búsqueda">
+            <span class="icon-search"></span>
+          </button>
+        </div>
+      </div>
+      
+      <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+        <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <ul class="nav-list">
+          <li><a href="index.html">Inicio</a></li>
+          <li class="has-submenu">
+            <a href="ayuntamiento.html">Ayuntamiento</a>
+            <ul class="submenu">
+              <li><a href="ayuntamiento/saluda.html">Saluda</a></li>
+              <li><a href="ayuntamiento/equipo_gobierno.html">Equipo de Gobierno</a></li>
+              <li><a href="ayuntamiento/perfil_contratante.html">Perfil del Contratante</a></li>
+              <li><a href="ayuntamiento/bandos.html">Bandos Municipales</a></li>
+              <li><a href="ayuntamiento/plenos_ayuntamiento.html">Plenos</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="tramites.html" class="active">Trámites</a>
+            <ul class="submenu">
+              <li><a href="tramites/sede_electronica.html">Sede Electrónica</a></li>
+              <li><a href="tramites/ordenanzas.html">Ordenanzas</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="servicios.html">Servicios</a>
+            <ul class="submenu">
+              <li><a href="servicios.html#sanidad">Sanidad</a></li>
+              <li><a href="servicios.html#urbanismo">Urbanismo</a></li>
+              <li><a href="servicios.html#medio-ambiente">Medio Ambiente</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="cultura.html">Cultura</a>
+            <ul class="submenu">
+              <li><a href="cultura.html#calendario">Calendario Cultural</a></li>
+              <li><a href="cultura.html#asociaciones">Asociaciones</a></li>
+              <li><a href="cultura.html#biblioteca">Biblioteca</a></li>
+            </ul>
+          </li>
+          <li class="has-submenu">
+            <a href="villa.html">Villa de Pioz</a>
+            <ul class="submenu">
+              <li><a href="villa.html#historia">Historia</a></li>
+              <li><a href="villa.html#castillo">Castillo de Pioz</a></li>
+              <li><a href="villa.html#tradiciones">Tradiciones</a></li>
+            </ul>
+          </li>
+          <li><a href="tablon.html">Tablón / Contacto</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <h1>Trámites</h1>
-    <p>Accede a los servicios electrónicos y a la información necesaria para realizar tus gestiones.</p>
+  <div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+      <form class="search-form" role="search">
+        <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
+        <button type="submit">Buscar</button>
+      </form>
+      <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
+    </div>
+  </div>
 
-    <section class="card">
-      <h2>Accesos principales</h2>
-      <div class="grid-6">
-        <a class="btn primary" href="#sede">Sede Electrónica</a>
-        <a class="btn" href="#perfil">Perfil del Contratante</a>
-        <a class="btn" href="#impresos">Impresos</a>
-        <a class="btn" href="#ordenanzas">Ordenanzas Municipales</a>
-        <a class="btn" href="#empleo">Empleo Municipal</a>
-        <a class="btn" href="#procedimientos">Procedimientos</a>
+  <main id="main-content">
+    <section class="page-header">
+      <div class="container">
+        <h1>Trámites y Gestiones</h1>
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li><a href="index.html">Inicio</a></li>
+            <li>Trámites</li>
+          </ol>
+        </nav>
       </div>
     </section>
 
-    <section id="sede" class="card">
-      <h2>Sede Electrónica</h2>
-      <p>Enlace destacado: <a href="#" class="btn">Ir a la Sede Electrónica</a></p>
-      <p>Instrucciones: Para pagos, presentación de solicitudes y consulta de expedientes usa la sede electrónica. Si necesitas ayuda, consulta la sección de Ayuda o llama al <a href="tel:+34949272076">949 272 076</a>.</p>
-      <p>Ofrecemos cursos de formación en herramientas telemáticas orientados a todas las edades. Consulta el calendario cultural o solicita más información en el Ayuntamiento.</p>
-    </section>
+    <section id="sede-electronica" class="content-section">
+      <div class="container">
+        <div style="background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-teja-ocre) 100%); color: white; padding: var(--spacing-xl); border-radius: 8px; margin-bottom: var(--spacing-lg);">
+          <h2 style="color: white; margin-bottom: var(--spacing-md);">🔐 Sede Electrónica</h2>
+          <p style="font-size: var(--font-size-large); margin-bottom: var(--spacing-md);">
+            Realiza tus gestiones online las 24 horas del día, 365 días al año
+          </p>
+          <p>
+            La Sede Electrónica es tu punto de acceso oficial para tramitar de forma telemática con el Ayuntamiento, 
+            evitando desplazamientos y facilitando la gestión administrativa.
+          </p>
+        </div>
 
-    <section id="perfil" class="card">
-      <h2>Perfil del Contratante</h2>
-      <p>Acceso público a la información contractual (Licitaciones, Adjudicaciones, Pliegos y documentación asociada). La información permanece disponible por 5 años.</p>
-      <div>
-        <input id="search-contracts" placeholder="Buscar licitaciones, adjudicaciones..." aria-label="Buscar contratos">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-lg);">
+          <div style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: var(--shadow-sm); text-align: center;">
+            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🔐</span>
+            <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-sm);">Identificación Segura</h3>
+            <p>Accede con Certificado Digital, Cl@ve o DNI electrónico</p>
+          </div>
+          <div style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: var(--shadow-sm); text-align: center;">
+            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📋</span>
+            <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-sm);">Registro 24/7</h3>
+            <p>Presenta documentos con validez legal en cualquier momento</p>
+          </div>
+          <div style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: var(--shadow-sm); text-align: center;">
+            <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📱</span>
+            <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-sm);">Desde Casa</h3>
+            <p>Evita desplazamientos y gestiona online</p>
+          </div>
+        </div>
+
+        <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-md);">Servicios Disponibles en la Sede Electrónica</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-md); margin-bottom: var(--spacing-xl);">
+          <div style="background: white; padding: var(--spacing-md); border-radius: 4px; border-left: 4px solid var(--color-primary);">
+            <h4>📝 Procedimientos Administrativos</h4>
+            <p style="font-size: var(--font-size-small); color: var(--color-text-light);">Consulta y tramita procedimientos generales</p>
+          </div>
+          <div style="background: white; padding: var(--spacing-md); border-radius: 4px; border-left: 4px solid var(--color-primary);">
+            <h4>💼 Empleo Municipal</h4>
+            <p style="font-size: var(--font-size-small); color: var(--color-text-light);">Convocatorias y procesos de selección</p>
+          </div>
+          <div style="background: white; padding: var(--spacing-md); border-radius: 4px; border-left: 4px solid var(--color-primary);">
+            <h4>🏠 Urbanismo y Obras</h4>
+            <p style="font-size: var(--font-size-small); color: var(--color-text-light);">Licencias de obras y consultas urbanísticas</p>
+          </div>
+          <div style="background: white; padding: var(--spacing-md); border-radius: 4px; border-left: 4px solid var(--color-primary);">
+            <h4>🚗 Padrón Municipal</h4>
+            <p style="font-size: var(--font-size-small); color: var(--color-text-light);">Certificados de empadronamiento</p>
+          </div>
+          <div style="background: white; padding: var(--spacing-md); border-radius: 4px; border-left: 4px solid var(--color-primary);">
+            <h4>💰 Tasas e Impuestos</h4>
+            <p style="font-size: var(--font-size-small); color: var(--color-text-light);">Consulta y pago de tributos</p>
+          </div>
+          <div style="background: white; padding: var(--spacing-md); border-radius: 4px; border-left: 4px solid var(--color-primary);">
+            <h4>📊 Mis Expedientes</h4>
+            <p style="font-size: var(--font-size-small); color: var(--color-text-light);">Seguimiento del estado de tus trámites</p>
+          </div>
+        </div>
+
+        <div style="background: #fff3cd; padding: var(--spacing-md); border-left: 4px solid #856404; border-radius: 4px; margin-bottom: var(--spacing-md);">
+          <strong>💡 ¿No tienes certificado digital?</strong> El Ayuntamiento ofrece cursos gratuitos de formación en herramientas telemáticas para ciudadanos de todas las edades.
+        </div>
+
+        <div style="text-align: center;">
+          <a href="tramites/sede_electronica.html" class="btn btn-primary" style="font-size: var(--font-size-large); padding: var(--spacing-md) var(--spacing-xl);">
+            🔐 Acceder a la Sede Electrónica
+          </a>
+        </div>
       </div>
-      <div id="contracts-list"></div>
     </section>
 
-    <section id="impresos" class="card">
-      <h2>Impresos y Formularios</h2>
-      <p>Descarga los formularios oficiales en formato PDF y la guía de cumplimentación.</p>
-      <ul id="forms-list"></ul>
+    <section id="ordenanzas" class="content-section bg-light">
+      <div class="container">
+        <h2 class="section-title">📋 Ordenanzas Municipales</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto var(--spacing-xl); color: var(--color-text-light); font-size: var(--font-size-large);">
+          Acceso a toda la normativa municipal vigente que regula la vida en Pioz
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-lg); margin-bottom: var(--spacing-xl);">
+          <div style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-primary);">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: var(--spacing-sm);">🏗️</span>
+            <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-sm);">Urbanismo y Obras</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: var(--font-size-small); color: var(--color-text-light);">
+              <li style="padding: var(--spacing-xs) 0;">✓ Normas Urbanísticas de Pioz</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Ordenanza de Vados</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Vallado y Limpieza de Solares</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Gestión de Residuos Construcción</li>
+            </ul>
+            <p style="margin-top: var(--spacing-md); font-weight: 600;">7 documentos disponibles</p>
+          </div>
+
+          <div style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-accent);">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: var(--spacing-sm);">💰</span>
+            <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-sm);">Fiscales y Tasas</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: var(--font-size-small); color: var(--color-text-light);">
+              <li style="padding: var(--spacing-xs) 0;">✓ Impuesto de Vehículos (IVTM)</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Impuesto sobre Bienes Inmuebles</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Plusvalías</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Tasas de Agua y Depuración</li>
+            </ul>
+            <p style="margin-top: var(--spacing-md); font-weight: 600;">8 documentos disponibles</p>
+          </div>
+
+          <div style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-secondary);">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: var(--spacing-sm);">🏛️</span>
+            <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-sm);">Servicios Públicos</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: var(--font-size-small); color: var(--color-text-light);">
+              <li style="padding: var(--spacing-xs) 0;">✓ Limpieza Urbana</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Recogida de Residuos</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Piscina Municipal</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Bienes Municipales</li>
+            </ul>
+            <p style="margin-top: var(--spacing-md); font-weight: 600;">4 documentos disponibles</p>
+          </div>
+
+          <div style="background: white; padding: var(--spacing-lg); border-radius: 8px; box-shadow: var(--shadow-sm); border-top: 4px solid var(--color-teja-ocre);">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: var(--spacing-sm);">📋</span>
+            <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-sm);">Reglamentos</h3>
+            <ul style="list-style: none; padding: 0; margin: 0; font-size: var(--font-size-small); color: var(--color-text-light);">
+              <li style="padding: var(--spacing-xs) 0;">✓ Animales Domésticos</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Comunicación de Actividades</li>
+              <li style="padding: var(--spacing-xs) 0;">✓ Tramitación de Documentos</li>
+            </ul>
+            <p style="margin-top: var(--spacing-md); font-weight: 600;">3 documentos disponibles</p>
+          </div>
+        </div>
+
+        <div style="background: white; padding: var(--spacing-xl); border-radius: 8px; box-shadow: var(--shadow-sm); margin-bottom: var(--spacing-lg);">
+          <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-md); text-align: center;">📌 Documento Destacado</h3>
+          <div style="display: grid; grid-template-columns: auto 1fr auto; gap: var(--spacing-lg); align-items: center;">
+            <span style="font-size: 4rem;">📖</span>
+            <div>
+              <h4 style="color: var(--color-primary); margin-bottom: var(--spacing-xs);">Normas Urbanísticas de Pioz</h4>
+              <p style="color: var(--color-text-light); margin-bottom: var(--spacing-sm);">
+                Documento fundamental que regula la planificación y el desarrollo urbano del municipio. 
+                Incluye clasificación del suelo, condiciones de edificación, licencias y protección del patrimonio.
+              </p>
+              <p style="font-size: var(--font-size-small); color: var(--color-text-light);">
+                📅 Vigente desde 2010 • 📄 Documento completo con índice de capítulos
+              </p>
+            </div>
+            <a href="tramites/ordenanzas.html#cat-urbanismo" class="btn btn-secondary">Ver documento</a>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <a href="tramites/ordenanzas.html" class="btn btn-primary" style="font-size: var(--font-size-large); padding: var(--spacing-md) var(--spacing-xl);">
+            📋 Ver todas las ordenanzas municipales
+          </a>
+        </div>
+      </div>
     </section>
 
-    <section id="ordenanzas" class="card">
-      <h2>Ordenanzas Municipales</h2>
-      <p>Consulta y descarga las ordenanzas municipales en formato PDF.</p>
-      <ul id="ordenanzas-list"></ul>
+    <section class="content-section">
+      <div class="container">
+        <h2 class="section-title">💡 Información y Ayuda</h2>
+        <div class="info-grid">
+          <div class="info-card" style="text-align: center;">
+            <h3>📞 Atención Ciudadana</h3>
+            <p class="info-number">949 272 076</p>
+            <p>Lunes a Viernes<br>9:00 - 14:00 horas</p>
+          </div>
+          <div class="info-card" style="text-align: center;">
+            <h3>📧 Correo Electrónico</h3>
+            <p style="word-break: break-all; font-size: var(--font-size-small);">oficinarecepcion@aytopioz.com</p>
+            <p>Respuesta en 48 horas</p>
+          </div>
+          <div class="info-card" style="text-align: center;">
+            <h3>🎓 Formación Gratuita</h3>
+            <p>Cursos de herramientas telemáticas para todas las edades</p>
+            <a href="tramites/sede_electronica.html" class="btn btn-secondary" style="margin-top: var(--spacing-sm);">Más información</a>
+          </div>
+        </div>
+      </div>
     </section>
-
-    <section id="empleo" class="card">
-      <h2>Empleo Municipal / Bolsa de Trabajo</h2>
-      <div id="jobs-list"></div>
-    </section>
-
-    <section id="procedimientos" class="card">
-      <h2>Procedimientos</h2>
-      <p>Guía de trámites frecuentes y procedimientos, con especial atención a Urbanismo.</p>
-      <div id="procedures-list"></div>
-    </section>
-
-    <section id="contacto" class="card">
-      <h2>Ayuda y Contacto</h2>
-      <p>Teléfono: <a href="tel:+34949272076">949 272 076</a></p>
-      <p>Dirección: Plaza Mayor, s/n, 19162 Pioz, Guadalajara</p>
-      <p>Horario: L-V 9:00 - 14:00</p>
-    </section>
-
   </main>
 
-  <footer class="site-footer">
-    <div class="container">&copy; Ayuntamiento de Pioz</div>
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Ayuntamiento de Pioz</h4>
+          <address>
+            <p>Plaza Mayor, s/n</p>
+            <p>19162 Pioz, Guadalajara</p>
+            <p><strong>Tel:</strong> 949 272 076</p>
+            <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+          </address>
+        </div>
+        <div class="footer-col">
+          <h4>Enlaces Útiles</h4>
+          <ul>
+            <li><a href="tramites/sede_electronica.html">Sede Electrónica</a></li>
+            <li><a href="tramites/ordenanzas.html">Ordenanzas</a></li>
+            <li><a href="ayuntamiento/perfil_contratante.html">Perfil del Contratante</a></li>
+            <li><a href="tablon.html">Tablón de Anuncios</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Síguenos</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Facebook" class="social-icon">
+              <span class="icon-facebook"></span>
+            </a>
+            <a href="#" aria-label="Youtube" class="social-icon">
+              <span class="icon-youtube"></span>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="legal.html#aviso">Aviso Legal</a></li>
+            <li><a href="legal.html#privacidad">Política de Privacidad</a></li>
+            <li><a href="legal.html#cookies">Política de Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Ayuntamiento de Pioz. Todos los derechos reservados.</p>
+      </div>
+    </div>
   </footer>
 
-  <script src="js/app.js"></script>
+  <script src="js/theme-toggle.js"></script>
+  <script src="js/search-engine.js"></script>
+  <script src="js/navigation.js"></script>
 </body>
 </html>

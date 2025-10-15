@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bandos y Edictos Municipales del Ayuntamiento de Pioz - Archivo oficial de comunicados">
+    <title>Bandos Municipales | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .bandos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .intro-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-box h1,
+        .intro-box p {
+            color: var(--text-primary);
+        }
+        
+        .search-filter-bar {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .search-filter-form {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: var(--spacing-md);
+            align-items: end;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--text-primary);
+        }
+        
+        .form-group input,
+        .form-group select {
+            padding: var(--spacing-sm);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: inherit;
+            background: var(--input-bg);
+            color: var(--text-primary);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: 2px solid var(--color-primary);
+            border-color: var(--color-primary);
+        }
+        
+        .results-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-sm) 0;
+            border-bottom: 2px solid var(--color-border);
+        }
+        
+        .results-count {
+            color: var(--color-text-light);
+            font-size: var(--font-size-small);
+        }
+        
+        .sort-options {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .sort-options label {
+            font-size: var(--font-size-small);
+            color: var(--color-text-light);
+        }
+        
+        .sort-options select {
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+        }
+        
+        .bandos-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        
+        .bando-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--color-primary);
+            transition: all var(--transition-base);
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: var(--spacing-lg);
+            align-items: start;
+        }
+        
+        .bando-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(5px);
+        }
+        
+        .bando-date-badge {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-teja-ocre) 100%);
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            text-align: center;
+            min-width: 80px;
+        }
+        
+        .badge-day {
+            font-size: 2rem;
+            font-weight: 700;
+            line-height: 1;
+            display: block;
+        }
+        
+        .badge-month {
+            font-size: var(--font-size-small);
+            text-transform: uppercase;
+            opacity: 0.9;
+            display: block;
+            margin-top: var(--spacing-xs);
+        }
+        
+        .badge-year {
+            font-size: var(--font-size-small);
+            opacity: 0.8;
+            display: block;
+        }
+        
+        .bando-content h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.25rem;
+        }
+        
+        .bando-excerpt {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+        
+        .bando-meta {
+            display: flex;
+            gap: var(--spacing-lg);
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .bando-meta span {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .bando-actions {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+            align-items: flex-end;
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .btn-pdf {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-xs) var(--spacing-md);
+            background: var(--color-teja-rojo);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-pdf:hover {
+            background: var(--color-teja-ocre);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-xl);
+            padding: var(--spacing-lg) 0;
+        }
+        
+        .pagination button,
+        .pagination a {
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid var(--color-border);
+            background: white;
+            color: var(--color-text);
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .pagination button:hover:not(:disabled),
+        .pagination a:hover {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .pagination .active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xl);
+            background: white;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .empty-state-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-md);
+            opacity: 0.5;
+        }
+        
+        @media (max-width: 767px) {
+            .search-filter-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .bando-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .bando-date-badge {
+                margin: 0 auto;
+            }
+            
+            .bando-actions {
+                align-items: center;
+            }
+            
+            .results-info {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <img src="../images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="search-toggle" aria-label="Abrir búsqueda">
+                        <span class="icon-search"></span>
+                    </button>
+                    <div class="contact-quick">
+                        <span class="icon-phone"></span>
+                        <span>949 272 076</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+                <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li class="has-submenu">
+                        <a href="../ayuntamiento.html" class="active">Ayuntamiento</a>
+                        <ul class="submenu">
+                            <li><a href="saluda.html">Saluda</a></li>
+                            <li><a href="equipo_gobierno.html">Equipo de Gobierno</a></li>
+                            <li><a href="perfil_contratante.html">Perfil del Contratante</a></li>
+                            <li><a href="bandos.html" class="active">Bandos Municipales</a></li>
+                            <li><a href="../ayuntamiento.html#plenos">Plenos</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../tramites.html">Trámites</a>
+                        <ul class="submenu">
+                            <li><a href="../tramites/sede_electronica.html">Sede Electrónica</a></li>
+                            <li><a href="../tramites/ordenanzas.html">Ordenanzas</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../servicios.html">Servicios</a>
+                        <ul class="submenu">
+                            <li><a href="../servicios.html#sanidad">Sanidad</a></li>
+                            <li><a href="../servicios.html#urbanismo">Urbanismo</a></li>
+                            <li><a href="../servicios.html#medio-ambiente">Medio Ambiente</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../cultura.html">Cultura</a>
+                        <ul class="submenu">
+                            <li><a href="../cultura.html#calendario">Calendario Cultural</a></li>
+                            <li><a href="../cultura.html#asociaciones">Asociaciones</a></li>
+                            <li><a href="../cultura.html#biblioteca">Biblioteca</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../villa.html">Villa de Pioz</a>
+                        <ul class="submenu">
+                            <li><a href="../villa.html#historia">Historia</a></li>
+                            <li><a href="../villa.html#castillo">Castillo de Pioz</a></li>
+                            <li><a href="../villa.html#tradiciones">Tradiciones</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../tablon.html">Tablón / Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form" role="search">
+                <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+            <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../ayuntamiento.html">Ayuntamiento</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Bandos Municipales</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container bandos-container">
+                <div class="intro-box">
+                    <h1>Bandos y Edictos Municipales</h1>
+                    <p>Archivo oficial de todos los comunicados y edictos publicados por el Ayuntamiento de Pioz. 
+                    Acceso público y permanente a la información municipal.</p>
+                </div>
+
+                <div class="search-filter-bar">
+                    <form class="search-filter-form" id="filterForm">
+                        <div class="form-group">
+                            <label for="searchText">Buscar por palabra clave</label>
+                            <input type="text" id="searchText" placeholder="Ej: San Donato, limpieza, obras...">
+                        </div>
+                        <div class="form-group">
+                            <label for="filterYear">Año</label>
+                            <select id="filterYear">
+                                <option value="">Todos los años</option>
+                                <option value="2025" selected>2025</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="filterCategory">Categoría</label>
+                            <select id="filterCategory">
+                                <option value="">Todas</option>
+                                <option value="festejos">Festejos</option>
+                                <option value="obras">Obras</option>
+                                <option value="sanidad">Sanidad</option>
+                                <option value="servicios">Servicios</option>
+                                <option value="general">General</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="results-info">
+                    <span class="results-count" id="resultsCount">Mostrando 6 de 24 bandos</span>
+                    <div class="sort-options">
+                        <label for="sortBy">Ordenar por:</label>
+                        <select id="sortBy">
+                            <option value="date-desc">Más recientes primero</option>
+                            <option value="date-asc">Más antiguos primero</option>
+                            <option value="title-asc">Título (A-Z)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="bandos-list" id="bandosList">
+                    <!-- Bando 1 -->
+                    <article class="bando-card">
+                        <div class="bando-date-badge">
+                            <span class="badge-day">18</span>
+                            <span class="badge-month">SEP</span>
+                            <span class="badge-year">2025</span>
+                        </div>
+                        <div class="bando-content">
+                            <h3>BANDO CORTE SAN DONATO 2025</h3>
+                            <div class="bando-meta">
+                                <span>📁 Festejos</span>
+                                <span>👤 Alcaldía</span>
+                            </div>
+                            <p class="bando-excerpt">
+                                Se comunica a todos los vecinos el corte de tráfico en varias calles del municipio 
+                                con motivo de la celebración de las fiestas patronales de San Donato 2025.
+                            </p>
+                        </div>
+                        <div class="bando-actions">
+                            <a href="bando-detalle.html?id=1" class="btn btn-primary">Leer más</a>
+                            <a href="#" class="btn-pdf" download>
+                                📄 Descargar PDF
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bando 2 -->
+                    <article class="bando-card">
+                        <div class="bando-date-badge">
+                            <span class="badge-day">15</span>
+                            <span class="badge-month">SEP</span>
+                            <span class="badge-year">2025</span>
+                        </div>
+                        <div class="bando-content">
+                            <h3>PROGRAMA SAN DONATO 2025</h3>
+                            <div class="bando-meta">
+                                <span>📁 Festejos</span>
+                                <span>👤 Concejalía de Cultura</span>
+                            </div>
+                            <p class="bando-excerpt">
+                                Ya está disponible el programa completo de actividades para las fiestas patronales 
+                                de San Donato 2025. Consulta todos los actos programados.
+                            </p>
+                        </div>
+                        <div class="bando-actions">
+                            <a href="bando-detalle.html?id=2" class="btn btn-primary">Leer más</a>
+                            <a href="#" class="btn-pdf" download>
+                                📄 Descargar PDF
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bando 3 -->
+                    <article class="bando-card">
+                        <div class="bando-date-badge">
+                            <span class="badge-day">10</span>
+                            <span class="badge-month">SEP</span>
+                            <span class="badge-year">2025</span>
+                        </div>
+                        <div class="bando-content">
+                            <h3>BANDO TRATAMIENTO MOSCAS Y MOSQUITOS</h3>
+                            <div class="bando-meta">
+                                <span>📁 Sanidad</span>
+                                <span>👤 Concejalía de Sanidad</span>
+                            </div>
+                            <p class="bando-excerpt">
+                                Información sobre el tratamiento preventivo contra moscas y mosquitos que se 
+                                llevará a cabo en el municipio. Recomendaciones para los vecinos.
+                            </p>
+                        </div>
+                        <div class="bando-actions">
+                            <a href="bando-detalle.html?id=3" class="btn btn-primary">Leer más</a>
+                            <a href="#" class="btn-pdf" download>
+                                📄 Descargar PDF
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bando 4 -->
+                    <article class="bando-card">
+                        <div class="bando-date-badge">
+                            <span class="badge-day">05</span>
+                            <span class="badge-month">SEP</span>
+                            <span class="badge-year">2025</span>
+                        </div>
+                        <div class="bando-content">
+                            <h3>SCHOOL OF ROCK - ESCUELA DE MÚSICA</h3>
+                            <div class="bando-meta">
+                                <span>📁 Cultura</span>
+                                <span>👤 Concejalía de Cultura</span>
+                            </div>
+                            <p class="bando-excerpt">
+                                Abierto el plazo de inscripción para la Escuela Municipal de Música. 
+                                Plazas limitadas. Consulta las condiciones y horarios.
+                            </p>
+                        </div>
+                        <div class="bando-actions">
+                            <a href="bando-detalle.html?id=4" class="btn btn-primary">Leer más</a>
+                            <a href="#" class="btn-pdf" download>
+                                📄 Descargar PDF
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bando 5 -->
+                    <article class="bando-card">
+                        <div class="bando-date-badge">
+                            <span class="badge-day">01</span>
+                            <span class="badge-month">SEP</span>
+                            <span class="badge-year">2025</span>
+                        </div>
+                        <div class="bando-content">
+                            <h3>CORTE DE CALLES POR OBRAS DE MEJORA</h3>
+                            <div class="bando-meta">
+                                <span>📁 Obras</span>
+                                <span>👤 Concejalía de Obras</span>
+                            </div>
+                            <p class="bando-excerpt">
+                                Se informa del corte temporal de la Calle Mayor para la realización de obras 
+                                de mejora del pavimento. Itinerarios alternativos disponibles.
+                            </p>
+                        </div>
+                        <div class="bando-actions">
+                            <a href="bando-detalle.html?id=5" class="btn btn-primary">Leer más</a>
+                            <a href="#" class="btn-pdf" download>
+                                📄 Descargar PDF
+                            </a>
+                        </div>
+                    </article>
+
+                    <!-- Bando 6 -->
+                    <article class="bando-card">
+                        <div class="bando-date-badge">
+                            <span class="badge-day">25</span>
+                            <span class="badge-month">AGO</span>
+                            <span class="badge-year">2025</span>
+                        </div>
+                        <div class="bando-content">
+                            <h3>DESBROCE DE PARCELAS URBANAS</h3>
+                            <div class="bando-meta">
+                                <span>📁 Medio Ambiente</span>
+                                <span>👤 Concejalía de Medio Ambiente</span>
+                            </div>
+                            <p class="bando-excerpt">
+                                Recordatorio a los propietarios sobre la obligación de mantener limpias y desbrozadas 
+                                las parcelas urbanas. Plazo y sanciones aplicables.
+                            </p>
+                        </div>
+                        <div class="bando-actions">
+                            <a href="bando-detalle.html?id=6" class="btn btn-primary">Leer más</a>
+                            <a href="#" class="btn-pdf" download>
+                                📄 Descargar PDF
+                            </a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="pagination" id="pagination">
+                    <button id="prevPage" disabled>« Anterior</button>
+                    <a href="#" class="active">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <button id="nextPage">Siguiente »</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Ayuntamiento de Pioz</h4>
+                    <address>
+                        <p>Plaza Mayor, s/n</p>
+                        <p>19162 Pioz, Guadalajara</p>
+                        <p><strong>Tel:</strong> 949 272 076</p>
+                        <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Útiles</h4>
+                    <ul>
+                        <li><a href="../tramites.html#sede-electronica">Sede Electrónica</a></li>
+                        <li><a href="../tramites.html#transparencia">Transparencia</a></li>
+                        <li><a href="perfil_contratante.html">Perfil del Contratante</a></li>
+                        <li><a href="../tablon.html">Tablón de Anuncios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-icon">
+                            <span class="icon-facebook"></span>
+                        </a>
+                        <a href="#" aria-label="Youtube" class="social-icon">
+                            <span class="icon-youtube"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../legal.html#aviso">Aviso Legal</a></li>
+                        <li><a href="../legal.html#privacidad">Política de Privacidad</a></li>
+                        <li><a href="../legal.html#cookies">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ayuntamiento de Pioz. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/bandos.js"></script>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Perfil del Contratante del Ayuntamiento de Pioz - Transparencia en la contratación pública">
+    <title>Perfil del Contratante | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .perfil-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .intro-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-box h1,
+        .intro-box h3,
+        .intro-box p {
+            color: var(--text-primary);
+        }
+        
+        .legal-note {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-left: 4px solid var(--color-primary);
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-lg);
+            color: var(--text-primary);
+        }
+        
+        .contact-info-box {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .contact-info-box h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .contact-info-box p,
+        .contact-info-box strong {
+            color: var(--text-primary);
+        }
+        
+        .contracts-section {
+            margin-top: var(--spacing-xl);
+        }
+        
+        .contract-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: var(--spacing-lg);
+            margin-bottom: var(--spacing-md);
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid var(--color-primary);
+            transition: all var(--transition-base);
+        }
+        
+        .contract-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateX(5px);
+        }
+        
+        .contract-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: var(--spacing-md);
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+        }
+        
+        .contract-title {
+            color: var(--color-primary);
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contract-status {
+            display: inline-block;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 20px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .status-activo {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .status-adjudicado {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .status-desierto {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .contract-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--color-background);
+            border-radius: 4px;
+        }
+        
+        .detail-item {
+            font-size: var(--font-size-small);
+        }
+        
+        .detail-item strong {
+            display: block;
+            color: var(--color-text);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .detail-item span {
+            color: var(--color-text-light);
+        }
+        
+        .contract-documents {
+            margin-top: var(--spacing-md);
+        }
+        
+        .documents-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-sm) 0 0 0;
+        }
+        
+        .documents-list li {
+            padding: var(--spacing-xs) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        
+        .documents-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .documents-list a {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--color-primary);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+        
+        .documents-list a:hover {
+            color: var(--color-teja-ocre);
+            padding-left: var(--spacing-sm);
+        }
+        
+        .doc-icon {
+            font-size: 1.2rem;
+        }
+        
+        .filter-bar {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .filter-bar form {
+            display: flex;
+            gap: var(--spacing-md);
+            flex-wrap: wrap;
+            align-items: end;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: var(--spacing-xs);
+            color: var(--color-text);
+        }
+        
+        .filter-group input,
+        .filter-group select {
+            width: 100%;
+            padding: var(--spacing-sm);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: var(--spacing-xl);
+            color: var(--color-text-light);
+        }
+        
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        @media (max-width: 767px) {
+            .tabs-nav {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                text-align: left;
+            }
+            
+            .contract-header {
+                flex-direction: column;
+            }
+            
+            .contract-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <img src="../images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="search-toggle" aria-label="Abrir búsqueda">
+                        <span class="icon-search"></span>
+                    </button>
+                    <div class="contact-quick">
+                        <span class="icon-phone"></span>
+                        <span>949 272 076</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+                <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li class="has-submenu">
+                        <a href="../ayuntamiento.html" class="active">Ayuntamiento</a>
+                        <ul class="submenu">
+                            <li><a href="saluda.html">Saluda</a></li>
+                            <li><a href="equipo_gobierno.html">Equipo de Gobierno</a></li>
+                            <li><a href="perfil_contratante.html" class="active">Perfil del Contratante</a>
+                            <li><a href="bandos.html">Bandos Municipales</a></li>
+                            <li><a href="../ayuntamiento.html#plenos">Plenos</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../tramites.html">Trámites</a>
+                        <ul class="submenu">
+                            <li><a href="../tramites/sede_electronica.html">Sede Electrónica</a></li>
+                            <li><a href="../tramites/ordenanzas.html">Ordenanzas</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../servicios.html">Servicios</a>
+                        <ul class="submenu">
+                            <li><a href="../servicios.html#sanidad">Sanidad</a></li>
+                            <li><a href="../servicios.html#urbanismo">Urbanismo</a></li>
+                            <li><a href="../servicios.html#medio-ambiente">Medio Ambiente</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../cultura.html">Cultura</a>
+                        <ul class="submenu">
+                            <li><a href="../cultura.html#calendario">Calendario Cultural</a></li>
+                            <li><a href="../cultura.html#asociaciones">Asociaciones</a></li>
+                            <li><a href="../cultura.html#biblioteca">Biblioteca</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../villa.html">Villa de Pioz</a>
+                        <ul class="submenu">
+                            <li><a href="../villa.html#historia">Historia</a></li>
+                            <li><a href="../villa.html#castillo">Castillo de Pioz</a></li>
+                            <li><a href="../villa.html#tradiciones">Tradiciones</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../tablon.html">Tablón / Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form" role="search">
+                <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+            <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../ayuntamiento.html">Ayuntamiento</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Perfil del Contratante</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container perfil-container">
+                <div class="intro-box">
+                    <h1>Perfil del Contratante</h1>
+                    <p>El Perfil del Contratante del Ayuntamiento de Pioz es el medio de difusión de la actividad contractual del órgano de contratación, garantizando el acceso público y la transparencia en todos los procedimientos de contratación.</p>
+                </div>
+
+                <div class="legal-note">
+                    <strong>Marco Legal:</strong> Esta sección cumple con la Ley 9/2017, de 8 de noviembre, de Contratos del Sector Público (LCSP). 
+                    Toda la información permanecerá accesible durante un período no inferior a 5 años. 
+                    El acceso a la información es libre y no requiere identificación previa.
+                </div>
+
+                <div class="intro-box" style="margin-bottom: var(--spacing-xl);">
+                    <h3 style="color: var(--color-primary); margin-bottom: var(--spacing-md);">Artículo 63. Perfil del contratante</h3>
+                    
+                    <p style="margin-bottom: var(--spacing-md);">Los órganos de contratación difundirán exclusivamente a través de Internet su perfil de contratante, como elemento que agrupa la información y documentos relativos a su actividad contractual al objeto de asegurar la transparencia y el acceso público a los mismos. La forma de acceso al perfil de contratante deberá hacerse constar en los pliegos y documentos equivalentes, así como en los anuncios de licitación en todos los casos. La difusión del perfil de contratante no obstará la utilización de otros medios de publicidad adicionales en los casos en que así se establezca.</p>
+                    
+                    <p style="margin-bottom: var(--spacing-md);">El acceso a la información del perfil de contratante será libre, no requiriendo identificación previa. No obstante, podrá requerirse esta para el acceso a servicios personalizados asociados al contenido del perfil de contratante tales como suscripciones, envío de alertas, comunicaciones electrónicas y envío de ofertas, entre otras. Toda la información contenida en los perfiles de contratante se publicará en formatos abiertos y reutilizables, y permanecerá accesible al público durante un periodo de tiempo no inferior a 5 años, sin perjuicio de que se permita el acceso a expedientes anteriores ante solicitudes de información.</p>
+                    
+                    <p style="margin-bottom: var(--spacing-md);">El perfil de contratante podrá incluir cualesquiera datos y documentos referentes a la actividad contractual de los órganos de contratación. En cualquier caso, deberá contener tanto la información de tipo general que puede utilizarse para relacionarse con el órgano de contratación como puntos de contacto, números de teléfono y de fax, dirección postal y dirección electrónica, informaciones, anuncios y documentos generales, tales como las instrucciones internas de contratación y modelos de documentos, así como la información particular relativa a los contratos que celebre.</p>
+                    
+                    <p style="margin-bottom: var(--spacing-sm);"><strong>En el caso de la información relativa a los contratos, deberá publicarse al menos la siguiente información:</strong></p>
+                    
+                    <ul style="list-style: lower-alpha; padding-left: var(--spacing-xl); margin-bottom: var(--spacing-md);">
+                        <li style="margin-bottom: var(--spacing-sm);">La memoria justificativa del contrato, el informe de insuficiencia de medios en el caso de contratos de servicios, la justificación del procedimiento utilizado para su adjudicación cuando se utilice un procedimiento distinto del abierto o del restringido, el pliego de cláusulas administrativas particulares y el de prescripciones técnicas que hayan de regir el contrato o documentos equivalentes, en su caso, y el documento de aprobación del expediente.</li>
+                        
+                        <li style="margin-bottom: var(--spacing-sm);">El objeto detallado del contrato, su duración, el presupuesto base de licitación y el importe de adjudicación, incluido el Impuesto sobre el Valor Añadido.</li>
+                        
+                        <li style="margin-bottom: var(--spacing-sm);">Los anuncios de información previa, de convocatoria de las licitaciones, de adjudicación y de formalización de los contratos, los anuncios de modificación y su justificación, los anuncios de concursos de proyectos y de resultados de concursos de proyectos, con las excepciones establecidas en las normas de los negociados sin publicidad.</li>
+                        
+                        <li style="margin-bottom: var(--spacing-sm);">Los medios a través de los que, en su caso, se ha publicitado el contrato y los enlaces a esas publicaciones.</li>
+                        
+                        <li style="margin-bottom: var(--spacing-sm);">El número e identidad de los licitadores participantes en el procedimiento, así como todas las actas de la mesa de contratación relativas al procedimiento de adjudicación o, en el caso de no actuar la mesa, las resoluciones del servicio u órgano de contratación correspondiente, el informe de valoración de los criterios de adjudicación cuantificables mediante un juicio de valor de cada una de las ofertas, en su caso, los informes sobre las ofertas incursas en presunción de anormalidad a que se refiere el artículo 149.4 y, en todo caso, la resolución de adjudicación del contrato.</li>
+                    </ul>
+                    
+                    <p>Igualmente serán objeto de publicación en el perfil de contratante la decisión de no adjudicar o celebrar el contrato, el desistimiento del procedimiento de adjudicación, la declaración de desierto, así como la interposición de recursos y la eventual suspensión de los contratos con motivo de la interposición de recursos.</p>
+                </div>
+
+                <div class="contact-info-box">
+                    <h3>Datos del Órgano de Contratación</h3>
+                    <div class="contact-grid">
+                        <div class="contact-item">
+                            <strong>📍 Dirección Postal</strong>
+                            <span>Plaza Mayor, s/n<br>19162 Pioz, Guadalajara</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>📞 Teléfono / Fax</strong>
+                            <span>949 272 076</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>📧 Correo Electrónico</strong>
+                            <span>ayuntamiento@pioz.es</span>
+                        </div>
+                        <div class="contact-item">
+                            <strong>🕐 Horario de Atención</strong>
+                            <span>Lunes a Viernes<br>9:00 - 14:00 horas</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tabs-container">
+                    <div class="tabs-nav" role="tablist">
+                        <button class="tab-button active" role="tab" aria-selected="true" data-tab="licitaciones">
+                            Licitaciones en Curso
+                        </button>
+                        <button class="tab-button" role="tab" aria-selected="false" data-tab="adjudicaciones">
+                            Adjudicaciones
+                        </button>
+                        <button class="tab-button" role="tab" aria-selected="false" data-tab="desiertas">
+                            Licitaciones Desiertas
+                        </button>
+                        <button class="tab-button" role="tab" aria-selected="false" data-tab="documentacion">
+                            Documentación General
+                        </button>
+                    </div>
+
+                    <!-- Tab: Licitaciones en Curso -->
+                    <div class="tab-content active" id="licitaciones" role="tabpanel">
+                        <div class="filter-bar">
+                            <form>
+                                <div class="filter-group">
+                                    <label for="search-licitacion">Buscar por título</label>
+                                    <input type="text" id="search-licitacion" placeholder="Ej: Limpieza, obras...">
+                                </div>
+                                <div class="filter-group">
+                                    <label for="tipo-contrato">Tipo de contrato</label>
+                                    <select id="tipo-contrato">
+                                        <option value="">Todos</option>
+                                        <option value="servicios">Servicios</option>
+                                        <option value="obras">Obras</option>
+                                        <option value="suministros">Suministros</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📋</div>
+                            <h3>No hay licitaciones activas en este momento</h3>
+                            <p>Consulte periódicamente esta sección para conocer las nuevas convocatorias.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Adjudicaciones -->
+                    <div class="tab-content" id="adjudicaciones" role="tabpanel">
+                        <div class="filter-bar">
+                            <form>
+                                <div class="filter-group">
+                                    <label for="year-adjudicacion">Año</label>
+                                    <select id="year-adjudicacion">
+                                        <option value="2025">2025</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2023">2023</option>
+                                    </select>
+                                </div>
+                                <div class="filter-group">
+                                    <label for="search-adjudicacion">Buscar</label>
+                                    <input type="text" id="search-adjudicacion" placeholder="Buscar adjudicación...">
+                                </div>
+                                <div class="filter-group">
+                                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Ejemplo: Contrato de Limpieza -->
+                        <article class="contract-card">
+                            <div class="contract-header">
+                                <div>
+                                    <h3 class="contract-title">Concesión de Servicios de Limpieza de los Colegios Públicos de Pioz</h3>
+                                    <p style="color: var(--color-text-light); font-size: var(--font-size-small);">Expediente: 2024/SERV/001</p>
+                                </div>
+                                <span class="contract-status status-adjudicado">Adjudicado</span>
+                            </div>
+
+                            <div class="contract-details">
+                                <div class="detail-item">
+                                    <strong>Tipo de contrato</strong>
+                                    <span>Servicios</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Procedimiento</strong>
+                                    <span>Abierto Simplificado</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Presupuesto base</strong>
+                                    <span>45.000,00 € (IVA incluido)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Importe adjudicación</strong>
+                                    <span>42.350,00 € (IVA incluido)</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Duración</strong>
+                                    <span>24 meses</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Fecha de adjudicación</strong>
+                                    <span>15 de enero de 2024</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Adjudicatario</strong>
+                                    <span>Limpiezas Guadalajara S.L.</span>
+                                </div>
+                                <div class="detail-item">
+                                    <strong>Nº de licitadores</strong>
+                                    <span>3 empresas</span>
+                                </div>
+                            </div>
+
+                            <div class="contract-documents">
+                                <h4>Documentación del contrato</h4>
+                                <ul class="documents-list">
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Memoria justificativa del contrato</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Pliego de cláusulas administrativas particulares</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Pliego de prescripciones técnicas</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Documento de aprobación del expediente</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Anuncio de licitación</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Actas de la mesa de contratación</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Informe de valoración de criterios</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Resolución de adjudicación</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Anuncio de formalización</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" download>
+                                            <span class="doc-icon">📄</span>
+                                            <span>Contrato formalizado</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Tab: Licitaciones Desiertas -->
+                    <div class="tab-content" id="desiertas" role="tabpanel">
+                        <div class="empty-state">
+                            <div class="empty-state-icon">📭</div>
+                            <h3>No hay licitaciones desiertas</h3>
+                            <p>Actualmente no existen procedimientos declarados desiertos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Documentación General -->
+                    <div class="tab-content" id="documentacion" role="tabpanel">
+                        <article class="contract-card">
+                            <h3 class="contract-title">Modelos y Plantillas</h3>
+                            <ul class="documents-list">
+                                <li>
+                                    <a href="#" download>
+                                        <span class="doc-icon">📄</span>
+                                        <span>Modelo de declaración responsable</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" download>
+                                        <span class="doc-icon">📄</span>
+                                        <span>Modelo de oferta económica</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" download>
+                                        <span class="doc-icon">📄</span>
+                                        <span>Instrucciones para presentación de ofertas</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="contract-card">
+                            <h3 class="contract-title">Instrucciones Internas</h3>
+                            <ul class="documents-list">
+                                <li>
+                                    <a href="#" download>
+                                        <span class="doc-icon">📄</span>
+                                        <span>Instrucciones internas de contratación</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" download>
+                                        <span class="doc-icon">📄</span>
+                                        <span>Manual de procedimientos</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </article>
+
+                        <article class="contract-card">
+                            <h3 class="contract-title">Información Legal</h3>
+                            <ul class="documents-list">
+                                <li>
+                                    <a href="#" download>
+                                        <span class="doc-icon">📄</span>
+                                        <span>Ley 9/2017 de Contratos del Sector Público</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" download>
+                                        <span class="doc-icon">📄</span>
+                                        <span>Normativa aplicable en contratación pública</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="intro-box" style="margin-top: var(--spacing-xl);">
+                    <h3>Servicios Personalizados</h3>
+                    <p>Si desea recibir alertas y notificaciones sobre nuevas licitaciones, puede suscribirse a nuestro servicio de avisos.</p>
+                    <p style="margin-top: var(--spacing-md);">
+                        <a href="#" class="btn btn-primary">Suscribirse a alertas</a>
+                    </p>
+                    <p style="margin-top: var(--spacing-sm); font-size: var(--font-size-small); color: var(--color-text-light);">
+                        * Requiere identificación previa
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Ayuntamiento de Pioz</h4>
+                    <address>
+                        <p>Plaza Mayor, s/n</p>
+                        <p>19162 Pioz, Guadalajara</p>
+                        <p><strong>Tel:</strong> 949 272 076</p>
+                        <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Útiles</h4>
+                    <ul>
+                        <li><a href="../tramites.html#sede-electronica">Sede Electrónica</a></li>
+                        <li><a href="../tramites.html#transparencia">Transparencia</a></li>
+                        <li><a href="perfil_contratante.html">Perfil del Contratante</a></li>
+                        <li><a href="../tablon.html">Tablón de Anuncios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-icon">
+                            <span class="icon-facebook"></span>
+                        </a>
+                        <a href="#" aria-label="Youtube" class="social-icon">
+                            <span class="icon-youtube"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../legal.html#aviso">Aviso Legal</a></li>
+                        <li><a href="../legal.html#privacidad">Política de Privacidad</a></li>
+                        <li><a href="../legal.html#cookies">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ayuntamiento de Pioz. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

@@ -1,78 +1,322 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Tu Ayuntamiento - Pioz</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuntamiento - Tu Ayuntamiento | Pioz</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="container header-top">
-      <a class="logo" href="index.html">Ayuntamiento de Pioz</a>
-      <nav class="main-nav" aria-label="Menú principal">
-        <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu">Menú</button>
-        <ul id="main-menu" class="menu">
-          <li><a href="ayuntamiento.html">Ayuntamiento</a></li>
-          <li><a href="tramites.html">Trámites</a></li>
-          <li><a href="servicios.html">Servicios</a></li>
-          <li><a href="cultura.html">Cultura</a></li>
-          <li><a href="villa_de_pioz.html">Villa de Pioz</a></li>
-          <li><a href="index.html#tablon">Tablón / Contacto</a></li>
-        </ul>
-      </nav>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="index.html" class="logo-link">
+                        <img src="images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="search-toggle" aria-label="Abrir búsqueda">
+                        <span class="icon-search"></span>
+                    </button>
+                    <div class="contact-quick">
+                        <span class="icon-phone"></span>
+                        <span>949 272 076</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+                <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li class="has-submenu">
+                        <a href="ayuntamiento.html" class="active">Ayuntamiento</a>
+                        <ul class="submenu">
+                            <li><a href="ayuntamiento/saluda.html">Saluda</a></li>
+                            <li><a href="ayuntamiento/equipo_gobierno.html">Equipo de Gobierno</a></li>
+                            <li><a href="ayuntamiento/perfil_contratante.html">Perfil del Contratante</a></li>
+                            <li><a href="ayuntamiento/bandos.html">Bandos Municipales</a></li>
+                            <li><a href="ayuntamiento/plenos_ayuntamiento.html">Plenos</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="tramites.html">Trámites</a>
+                        <ul class="submenu">
+                            <li><a href="tramites/sede_electronica.html">Sede Electrónica</a></li>
+                            <li><a href="tramites/ordenanzas.html">Ordenanzas</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="servicios.html">Servicios</a>
+                        <ul class="submenu">
+                            <li><a href="servicios.html#sanidad">Sanidad</a></li>
+                            <li><a href="servicios.html#urbanismo">Urbanismo</a></li>
+                            <li><a href="servicios.html#medio-ambiente">Medio Ambiente</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="cultura.html">Cultura</a>
+                        <ul class="submenu">
+                            <li><a href="cultura.html#calendario">Calendario Cultural</a></li>
+                            <li><a href="cultura.html#asociaciones">Asociaciones</a></li>
+                            <li><a href="cultura.html#biblioteca">Biblioteca</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="villa.html">Villa de Pioz</a>
+                        <ul class="submenu">
+                            <li><a href="villa.html#historia">Historia</a></li>
+                            <li><a href="villa.html#castillo">Castillo de Pioz</a></li>
+                            <li><a href="villa.html#tradiciones">Tradiciones</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="tablon.html">Tablón / Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form" role="search">
+                <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+            <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
+        </div>
     </div>
-  </header>
+    
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <h1>Tu Ayuntamiento</h1>
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li>Ayuntamiento</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
 
-  <main class="container">
-    <section id="saluda" class="card">
-      <h1>Saluda del Alcalde</h1>
-      <p>Bienvenidos al portal del Ayuntamiento de Pioz. Las nuevas tecnologías son un canal prioritario para la transparencia y la gestión pública. Muchas de las gestiones pueden realizarse electrónicamente para evitar desplazamientos inútiles. En este sitio encontrará emails, teléfonos, bandos, agendas y actividades culturales al alcance de todos.</p>
-    </section>
+        <section id="saluda" class="content-section">
+            <div class="container">
+                <h2>Saluda del Alcalde</h2>
+                <div class="alcalde-card">
+                    <div class="alcalde-info">
+                        <h3>Manuel López Carvajal</h3>
+                        <p class="cargo">Saludo del Alcalde</p>
+                    </div>
+                    <div class="saluda-text">
+                        <p>Al entrar en la página web del Ayuntamiento de Pioz accedes a nuestro pueblo. En nombre de los vecinos y vecinas de Pioz, de la Corporación Municipal y en el mío propio te damos la bienvenida.</p>
+                        <p>Os animo a utilizar los servicios de gestión electrónica que ponemos a vuestra disposición, facilitando así vuestros trámites con la administración municipal.</p>
+                        <p>Estamos a vuestra disposición en el teléfono 949 272 076 o en nuestras oficinas de lunes a viernes de 9:00 a 14:00 horas.</p>
+                        <p><a href="ayuntamiento/saluda.html" class="btn btn-primary">Leer saludo completo</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="equipo-gobierno" class="card">
-      <h2>Equipo de Gobierno</h2>
-      <p>El Equipo de Gobierno es el órgano colegiado del gobierno ejecutivo municipal que colabora con el Alcalde en la dirección política.</p>
-      <div id="ayuntamiento-equipo" class="team-grid"></div>
-    </section>
+        <section id="equipo" class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Equipo de Gobierno</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto var(--spacing-lg); color: var(--color-text-light);">
+                    El equipo de gobierno del Ayuntamiento de Pioz trabaja cada día para mejorar la calidad de vida 
+                    de todos los vecinos y vecinas, gestionando los servicios municipales con transparencia y compromiso.
+                </p>
+                
+                <div class="team-grid">
+                    <article class="team-member">
+                        <h3>Manuel López Carvajal</h3>
+                        <p class="role">Alcalde-Presidente</p>
+                        <ul class="responsibilities">
+                            <li>Coordinación general del gobierno municipal</li>
+                            <li>Representación institucional del Ayuntamiento</li>
+                        </ul>
+                    </article>
 
-    <section id="perfil-contratante" class="card">
-      <h2>Perfil del Contratante</h2>
-      <p>Acceso libre y público a la actividad contractual. La información se publica en formatos abiertos y permanece disponible por un periodo no inferior a 5 años.</p>
-      <div>
-        <input id="search-contracts-ayto" placeholder="Buscar en Perfil del Contratante" aria-label="Buscar contratos ayuntamiento">
-      </div>
-      <div id="contracts-list-ayto"></div>
-    </section>
+                    <article class="team-member">
+                        <h3>Alejandro Porcar Rodríguez</h3>
+                        <p class="role">Concejal</p>
+                        <ul class="responsibilities">
+                            <li>Parques y Jardines</li>
+                            <li>Medio Ambiente</li>
+                        </ul>
+                    </article>
 
-    <section id="bandos" class="card">
-      <h2>Bandos Municipales</h2>
-      <div id="bandos-list"></div>
-    </section>
+                    <article class="team-member">
+                        <h3>Susana Cisneros Granado</h3>
+                        <p class="role">Concejala</p>
+                        <ul class="responsibilities">
+                            <li>Sanidad</li>
+                            <li>Economía</li>
+                        </ul>
+                    </article>
 
-    <section id="plenos" class="card">
-      <h2>Plenos del Ayuntamiento</h2>
-      <div id="plenos-list"></div>
-    </section>
+                    <article class="team-member">
+                        <h3>Hilario Fernández Blázquez</h3>
+                        <p class="role">Concejal</p>
+                        <ul class="responsibilities">
+                            <li>Cultura</li>
+                            <li>Juventud</li>
+                        </ul>
+                    </article>
 
-    <section id="contacto" class="card">
-      <h2>Contacto</h2>
-      <address>
-        Plaza Mayor, s/n<br>
-        19162 Pioz, Guadalajara<br>
-        Tel: <a href="tel:+34949272076">949 272 076</a><br>
-        Horario: L-V 9:00 - 14:00
-      </address>
-    </section>
+                    <article class="team-member">
+                        <h3>Antonino Delgado Menor</h3>
+                        <p class="role">Concejal</p>
+                        <ul class="responsibilities">
+                            <li>Tecnología y Redes</li>
+                            <li>Seguridad</li>
+                        </ul>
+                    </article>
 
-  </main>
+                    <article class="team-member">
+                        <h3>Carlos Alberto Torre del Olmo</h3>
+                        <p class="role">Concejal</p>
+                        <ul class="responsibilities">
+                            <li>Hacienda</li>
+                            <li>Personal</li>
+                        </ul>
+                    </article>
+                </div>
+                
+                <div class="text-center" style="margin-top: var(--spacing-lg);">
+                    <a href="ayuntamiento/equipo_gobierno.html" class="btn btn-primary">Ver equipo completo con fotografías</a>
+                </div>
+            </div>
+        </section>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; Ayuntamiento de Pioz - <a href="#">Política de cookies</a> | <a href="#">Política de privacidad</a> | <a href="#">Aviso legal</a></p>
-    </div>
-  </footer>
+        <section id="perfil-contratante" class="content-section">
+            <div class="container">
+                <h2>Perfil del Contratante</h2>
+                <p>Acceso a la información sobre contratos públicos, licitaciones y adjudicaciones del Ayuntamiento de Pioz.</p>
+                <p>Cumplimiento de la Ley 9/2017 de Contratos del Sector Público. Acceso libre y transparente a toda la actividad contractual.</p>
+                <a href="ayuntamiento/perfil_contratante.html" class="btn btn-primary">Acceder al Perfil del Contratante</a>
+            </div>
+        </section>
 
-  <script src="js/app.js"></script>
+        <section id="bandos" class="content-section bg-light">
+            <div class="container">
+                <h2 class="section-title">Bandos Municipales</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto var(--spacing-lg); color: var(--color-text-light);">
+                    Consulta los edictos y comunicados oficiales del Ayuntamiento. Acceso a todo el archivo histórico de bandos municipales.
+                </p>
+                
+                <div class="quick-grid" style="max-width: 900px; margin: 0 auto;">
+                    <div class="quick-card" style="text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📢</span>
+                        <h3>Últimos Bandos</h3>
+                        <p>Información oficial sobre cortes de tráfico, obras, tratamientos sanitarios y eventos municipales.</p>
+                    </div>
+                    <div class="quick-card" style="text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🔍</span>
+                        <h3>Búsqueda Avanzada</h3>
+                        <p>Filtra por año, categoría o busca por palabras clave en nuestro archivo completo de bandos.</p>
+                    </div>
+                    <div class="quick-card" style="text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📄</span>
+                        <h3>Descarga PDF</h3>
+                        <p>Todos los bandos disponibles para descargar en formato PDF oficial.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: var(--spacing-lg);">
+                    <a href="ayuntamiento/bandos.html" class="btn btn-primary">Ver todos los bandos municipales</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="plenos" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Plenos del Ayuntamiento</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto var(--spacing-lg); color: var(--color-text-light);">
+                    Acceso completo a las sesiones plenarias. Consulta vídeos de las sesiones en directo y descarga las actas oficiales.
+                </p>
+                
+                <div class="quick-grid" style="max-width: 900px; margin: 0 auto;">
+                    <div class="quick-card" style="text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📹</span>
+                        <h3>Vídeos Completos</h3>
+                        <p>Todas las sesiones plenarias desde julio de 2015 disponibles en YouTube.</p>
+                    </div>
+                    <div class="quick-card" style="text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">📋</span>
+                        <h3>Actas Oficiales</h3>
+                        <p>Descarga las actas de todas las sesiones ordinarias y extraordinarias.</p>
+                    </div>
+                    <div class="quick-card" style="text-align: center;">
+                        <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🗂️</span>
+                        <h3>Archivo Histórico</h3>
+                        <p>Más de 10 años de transparencia con acceso a todas las sesiones celebradas.</p>
+                    </div>
+                </div>
+                
+                <div class="text-center" style="margin-top: var(--spacing-lg);">
+                    <a href="ayuntamiento/plenos_ayuntamiento.html" class="btn btn-primary">Acceder a los plenos del ayuntamiento</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Ayuntamiento de Pioz</h4>
+                    <address>
+                        <p>Plaza Mayor, s/n</p>
+                        <p>19162 Pioz, Guadalajara</p>
+                        <p><strong>Tel:</strong> 949 272 076</p>
+                        <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Útiles</h4>
+                    <ul>
+                        <li><a href="tramites.html#sede-electronica">Sede Electrónica</a></li>
+                        <li><a href="tramites.html#transparencia">Transparencia</a></li>
+                        <li><a href="ayuntamiento.html#perfil-contratante">Perfil del Contratante</a></li>
+                        <li><a href="tablon.html">Tablón de Anuncios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-icon">
+                            <span class="icon-facebook"></span>
+                        </a>
+                        <a href="#" aria-label="Youtube" class="social-icon">
+                            <span class="icon-youtube"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="legal.html#aviso">Aviso Legal</a></li>
+                        <li><a href="legal.html#privacidad">Política de Privacidad</a></li>
+                        <li><a href="legal.html#cookies">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ayuntamiento de Pioz. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/search-engine.js"></script>
+    <script src="js/navigation.js"></script>
 </body>
 </html>

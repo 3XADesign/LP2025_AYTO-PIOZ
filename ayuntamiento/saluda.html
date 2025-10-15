@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Saludo del Alcalde de Pioz - Manuel López Carvajal">
+    <title>Saludo del Alcalde | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .saluda-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .saluda-header {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: var(--spacing-lg);
+            align-items: start;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .alcalde-photo {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            border: 4px solid var(--color-primary);
+        }
+        
+        .alcalde-info-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            color: var(--text-primary);
+        }
+        
+        .alcalde-info-box h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.75rem;
+        }
+        
+        .alcalde-info-box .cargo {
+            color: var(--text-secondary);
+            font-size: var(--font-size-large);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            display: block;
+        }
+        
+        .alcalde-info-box p {
+            color: var(--text-primary);
+        }
+        
+        .saluda-content {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            line-height: 1.8;
+        }
+        
+        .saluda-content h1 {
+            color: var(--color-primary);
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-h2);
+        }
+        
+        .saluda-content p {
+            margin-bottom: var(--spacing-md);
+            text-align: justify;
+            color: var(--text-primary);
+        }
+        
+        .saluda-content p:first-of-type {
+            font-size: var(--font-size-large);
+            font-weight: 500;
+        }
+        
+        .firma {
+            margin-top: var(--spacing-xl);
+            padding-top: var(--spacing-lg);
+            border-top: 2px solid var(--border-color);
+            text-align: right;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        
+        @media (max-width: 767px) {
+            .saluda-header {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .alcalde-photo {
+                max-width: 200px;
+                margin: 0 auto;
+            }
+            
+            .saluda-content {
+                padding: var(--spacing-md);
+            }
+            
+            .saluda-content p {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="../index.html" class="logo-link">
+                        <img src="../images/escudo_ayuntamiento.png" alt="Escudo del Ayuntamiento de Pioz">
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="search-toggle" aria-label="Abrir búsqueda">
+                        <span class="icon-search"></span>
+                    </button>
+                    <div class="contact-quick">
+                        <span class="icon-phone"></span>
+                        <span>949 272 076</span>
+                    </div>
+                </div>
+            </div>
+            
+            <nav class="main-nav" role="navigation" aria-label="Navegación principal">
+                <button class="nav-toggle" aria-label="Menú" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li class="has-submenu">
+                        <a href="../ayuntamiento.html" class="active">Ayuntamiento</a>
+                        <ul class="submenu">
+                            <li><a href="saluda.html" class="active">Saluda</a></li>
+                            <li><a href="equipo_gobierno.html">Equipo de Gobierno</a></li>
+                            <li><a href="perfil_contratante.html">Perfil del Contratante</a></li>
+                            <li><a href="bandos.html">Bandos Municipales</a></li>
+                            <li><a href="../ayuntamiento.html#plenos">Plenos</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../tramites.html">Trámites</a>
+                        <ul class="submenu">
+                            <li><a href="../tramites/sede_electronica.html">Sede Electrónica</a></li>
+                            <li><a href="../tramites/ordenanzas.html">Ordenanzas</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../servicios.html">Servicios</a>
+                        <ul class="submenu">
+                            <li><a href="../servicios.html#sanidad">Sanidad</a></li>
+                            <li><a href="../servicios.html#urbanismo">Urbanismo</a></li>
+                            <li><a href="../servicios.html#medio-ambiente">Medio Ambiente</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../cultura.html">Cultura</a>
+                        <ul class="submenu">
+                            <li><a href="../cultura.html#calendario">Calendario Cultural</a></li>
+                            <li><a href="../cultura.html#asociaciones">Asociaciones</a></li>
+                            <li><a href="../cultura.html#biblioteca">Biblioteca</a></li>
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="../villa.html">Villa de Pioz</a>
+                        <ul class="submenu">
+                            <li><a href="../villa.html#historia">Historia</a></li>
+                            <li><a href="../villa.html#castillo">Castillo de Pioz</a></li>
+                            <li><a href="../villa.html#tradiciones">Tradiciones</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../tablon.html">Tablón / Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="search-overlay" id="searchOverlay">
+        <div class="search-container">
+            <form class="search-form" role="search">
+                <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
+                <button type="submit">Buscar</button>
+            </form>
+            <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
+        </div>
+    </div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../ayuntamiento.html">Ayuntamiento</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Saluda del Alcalde</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container saluda-container">
+                <div class="saluda-header">
+                    <img src="../images/saluda.jpg" alt="Manuel López Carvajal - Alcalde de Pioz" class="alcalde-photo">
+                    <div class="alcalde-info-box">
+                        <h2>Manuel López Carvajal</h2>
+                        <span class="cargo">Alcalde de Pioz</span>
+                        <p><strong>Teléfono:</strong> 949 272 076</p>
+                        <p><strong>Horario de atención:</strong><br>Lunes a Viernes<br>9:00 - 14:00 horas</p>
+                    </div>
+                </div>
+
+                <div class="saluda-content">
+                    <h1>Saludo del Alcalde</h1>
+                    
+                    <p>Al entrar en la página web del Ayuntamiento de Pioz accedes a nuestro pueblo. En nombre de los vecinos y vecinas de Pioz, de la Corporación Municipal y en el mío propio te damos la bienvenida.</p>
+                    
+                    <p>Las nuevas tecnologías tienen una importantísima función de comunicación con los/as ciudadanos/as y constituyen un canal de información de la gestión pública que facilita la transparencia. Por ello, además de esta página web en donde se puede encontrar todo tipo de información sobre nuestro Ayuntamiento, se ha abierto una página Facebook mucho más dinámica que permitirá interactuar con cualquier ciudadano/a.</p>
+                    
+                    <p>Intentaremos que muchas de las gestiones puedan realizarse electrónicamente para evitar desplazamientos inútiles y para ello se impartirán cursos de formación en herramientas telemáticas dirigidos a todas las edades. Es un compromiso que adquiere el actual equipo de gobierno.</p>
+                    
+                    <p>La visita a estas páginas pone al alcance de todos/as, emails, teléfonos, direcciones de los departamentos, información sobre la vida pública, bandos, agendas, anuncios, actividades culturales y de cualquier tipo, situación económica, etc.</p>
+                    
+                    <p>Esperando que estas páginas sirvan de ayuda y os facilite la comunicación con todos/as nosotros/as, recibid nuestro más cordial saludo.</p>
+                    
+                    <div class="firma">
+                        <strong>Manuel López Carvajal</strong><br>
+                        Alcalde de Pioz
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section bg-light">
+            <div class="container">
+                <div class="info-grid">
+                    <a href="equipo_gobierno.html" class="quick-card">
+                        <span class="icon-document"></span>
+                        <h3>Equipo de Gobierno</h3>
+                        <p>Conoce a tu equipo municipal</p>
+                    </a>
+                    <a href="../tramites.html#sede-electronica" class="quick-card">
+                        <span class="icon-computer"></span>
+                        <h3>Sede Electrónica</h3>
+                        <p>Gestiones online</p>
+                    </a>
+                    <a href="../tablon.html" class="quick-card">
+                        <span class="icon-eye"></span>
+                        <h3>Tablón de Anuncios</h3>
+                        <p>Últimas noticias y bandos</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Ayuntamiento de Pioz</h4>
+                    <address>
+                        <p>Plaza Mayor, s/n</p>
+                        <p>19162 Pioz, Guadalajara</p>
+                        <p><strong>Tel:</strong> 949 272 076</p>
+                        <p><strong>Horario:</strong> L-V 9:00-14:00</p>
+                    </address>
+                </div>
+                <div class="footer-col">
+                    <h4>Enlaces Útiles</h4>
+                    <ul>
+                        <li><a href="../tramites.html#sede-electronica">Sede Electrónica</a></li>
+                        <li><a href="../tramites.html#transparencia">Transparencia</a></li>
+                        <li><a href="../ayuntamiento.html#perfil-contratante">Perfil del Contratante</a></li>
+                        <li><a href="../tablon.html">Tablón de Anuncios</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Síguenos</h4>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook" class="social-icon">
+                            <span class="icon-facebook"></span>
+                        </a>
+                        <a href="#" aria-label="Youtube" class="social-icon">
+                            <span class="icon-youtube"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="../legal.html#aviso">Aviso Legal</a></li>
+                        <li><a href="../legal.html#privacidad">Política de Privacidad</a></li>
+                        <li><a href="../legal.html#cookies">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Ayuntamiento de Pioz. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>
