@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prensa - Lo que se dice de Pioz en los medios de comunicación nacionales e internacionales">
+    <title>Prensa | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .prensa-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-prensa {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-prensa::before {
+            content: '📰';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-prensa h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-prensa .subtitle {
+            font-size: 1.5rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-prensa p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #16a085;
+        }
+        
+        .intro-box h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .colabora-box {
+            background: #d1f2eb;
+            padding: var(--spacing-lg);
+            border-left: 4px solid #0e6251;
+            border-radius: 4px;
+            margin-top: var(--spacing-lg);
+        }
+        
+        [data-theme="dark"] .colabora-box {
+            background: #1a3a34;
+        }
+        
+        .colabora-box strong {
+            color: #0e6251;
+            font-size: 1.2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        [data-theme="dark"] .colabora-box strong {
+            color: #52be80;
+        }
+        
+        .colabora-box p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .filtros-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .filtros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .filtro-btn {
+            background: var(--card-bg);
+            border: 2px solid #16a085;
+            color: var(--text-primary);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            text-align: center;
+        }
+        
+        .filtro-btn:hover,
+        .filtro-btn.active {
+            background: #16a085;
+            color: white;
+        }
+        
+        .search-prensa {
+            margin-top: var(--spacing-md);
+        }
+        
+        .search-prensa input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            font-size: var(--font-size-large);
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+        
+        .noticias-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .noticia-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+            transition: all var(--transition-base);
+        }
+        
+        .noticia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .noticia-header {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .noticia-icon {
+            font-size: 3rem;
+        }
+        
+        .noticia-meta {
+            flex: 1;
+        }
+        
+        .noticia-fecha {
+            font-size: var(--font-size-small);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .noticia-titulo {
+            color: white;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .noticia-medio {
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            display: inline-block;
+            margin-top: var(--spacing-xs);
+        }
+        
+        .noticia-content {
+            padding: var(--spacing-xl);
+        }
+        
+        .noticia-extracto {
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .noticia-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .tag {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+        }
+        
+        .btn-leer-mas {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: #16a085;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-leer-mas:hover {
+            background: #1abc9c;
+            text-decoration: none;
+            transform: translateX(5px);
+        }
+        
+        .estadisticas-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .estadisticas-section h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #16a085;
+            display: block;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            margin-top: var(--spacing-sm);
+        }
+        
+        .contacto-prensa {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-prensa h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #16a085;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #16a085;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #16a085;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-prensa h1 {
+                font-size: 2rem;
+            }
+            
+            .noticia-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Prensa</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container prensa-container">
+                <div class="hero-prensa">
+                    <h1>📰 Prensa</h1>
+                    <p class="subtitle">Lo que se dice de nosotros por el mundo</p>
+                    <p>Archivo de menciones de Pioz en medios de comunicación</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-box">
+                    <h2>Pioz en los Medios de Comunicación</h2>
+                    <p>
+                        Esta sección recoge <strong>todo lo que se dice en los medios de comunicación, ya sea 
+                        nacional o internacional</strong>, sobre nuestro pueblo. Un archivo de noticias, reportajes 
+                        y menciones que reflejan la vida, eventos y actividades de Pioz en la prensa.
+                    </p>
+                    <p>
+                        Desde temas de actualidad hasta reportajes sobre nuestro patrimonio histórico, pasando por 
+                        eventos culturales y logros deportivos, aquí encontrarás las apariciones de Pioz en diferentes 
+                        medios de comunicación.
+                    </p>
+
+                    <div class="colabora-box">
+                        <strong>🤝 ¡Tu colaboración es importante!</strong>
+                        <p>
+                            Si encuentras algo que no esté publicado aquí, <strong>mándanoslo para que podamos 
+                            añadirlo</strong> y así más personas puedan conocer nuestro pueblo. Cualquier noticia, 
+                            reportaje o mención en prensa, radio, televisión o medios digitales es bienvenida.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Filtros y Búsqueda -->
+                <section class="filtros-section">
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--spacing-md); text-align: center;">
+                        🔍 Filtrar Noticias
+                    </h3>
+                    <div class="filtros-grid">
+                        <button class="filtro-btn active" onclick="filtrarNoticias('todas')">
+                            📰 Todas
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('cultura')">
+                            🎭 Cultura
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('medio-ambiente')">
+                            ♻️ Medio Ambiente
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('patrimonio')">
+                            🏰 Patrimonio
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('actualidad')">
+                            📢 Actualidad
+                        </button>
+                    </div>
+                    <div class="search-prensa">
+                        <input type="text" id="searchPrensa" placeholder="Buscar por palabra clave...">
+                    </div>
+                </section>
+
+                <!-- Noticias -->
+                <section class="noticias-section">
+                    <div class="noticia-card" data-categoria="medio-ambiente">
+                        <div class="noticia-header">
+                            <span class="noticia-icon">♻️</span>
+                            <div class="noticia-meta">
+                                <div class="noticia-fecha">📅 22 de julio de 2022</div>
+                                <h3 class="noticia-titulo">Cursos Gratuitos de Medio Ambiente</h3>
+                                <span class="noticia-medio">📰 Medios Locales</span>
+                            </div>
+                        </div>
+                        <div class="noticia-content">
+                            <p class="noticia-extracto">
+                                El Ayuntamiento de Pioz impulsa una iniciativa de formación ambiental dirigida a todos 
+                                los vecinos. Los cursos gratuitos abarcan temas como reciclaje, gestión de residuos, 
+                                eficiencia energética y sostenibilidad. Una apuesta clara por la concienciación 
+                                medioambiental de la ciudadanía.
+                            </p>
+                            <div class="noticia-tags">
+                                <span class="tag">Medio Ambiente</span>
+                                <span class="tag">Formación</span>
+                                <span class="tag">Sostenibilidad</span>
+                            </div>
+                            <a href="#" class="btn-leer-mas">
+                                Leer más →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="noticia-card" data-categoria="medio-ambiente">
+                        <div class="noticia-header">
+                            <span class="noticia-icon">♻️</span>
+                            <div class="noticia-meta">
+                                <div class="noticia-fecha">📅 22 de junio de 2022</div>
+                                <h3 class="noticia-titulo">Semana Circular - Reciclaje</h3>
+                                <span class="noticia-medio">📰 Prensa Regional</span>
+                            </div>
+                        </div>
+                        <div class="noticia-content">
+                            <p class="noticia-extracto">
+                                Pioz celebra la Semana Circular con actividades orientadas a promover el reciclaje y 
+                                la economía circular entre sus vecinos. Talleres infantiles, charlas informativas y 
+                                actividades prácticas para aprender a separar correctamente los residuos y dar nueva 
+                                vida a los materiales.
+                            </p>
+                            <div class="noticia-tags">
+                                <span class="tag">Reciclaje</span>
+                                <span class="tag">Economía Circular</span>
+                                <span class="tag">Actividades</span>
+                            </div>
+                            <a href="#" class="btn-leer-mas">
+                                Leer más →
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="noticia-card" data-categoria="patrimonio">
+                        <div class="noticia-header">
+                            <span class="noticia-icon">🏛️</span>
+                            <div class="noticia-meta">
+                                <div class="noticia-fecha">📅 17 de junio de 2022</div>
+                                <h3 class="noticia-titulo">La Cueva del Eremita</h3>
+                                <span class="noticia-medio">📰 Patrimonio y Cultura</span>
+                            </div>
+                        </div>
+                        <div class="noticia-content">
+                            <p class="noticia-extracto">
+                                Reportaje sobre la histórica Cueva del Eremita, uno de los enclaves con mayor 
+                                tradición en el término municipal de Pioz. Un lugar de gran valor natural e histórico 
+                                que forma parte del patrimonio cultural del municipio y que continúa siendo visitado 
+                                por vecinos y turistas.
+                            </p>
+                            <div class="noticia-tags">
+                                <span class="tag">Patrimonio</span>
+                                <span class="tag">Historia</span>
+                                <span class="tag">Turismo</span>
+                            </div>
+                            <a href="#" class="btn-leer-mas">
+                                Leer más →
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Estadísticas -->
+                <section class="estadisticas-section">
+                    <h2>📊 Pioz en Cifras de Prensa</h2>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <p class="stat-label">Noticias publicadas</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">2022</span>
+                            <p class="stat-label">Año de las noticias</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">3</span>
+                            <p class="stat-label">Temas diferentes</p>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">∞</span>
+                            <p class="stat-label">Tu colaboración es clave</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-prensa">
+                    <h2>📞 Envíanos Noticias de Pioz</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        ¿Has visto a Pioz en algún medio? ¡Compártelo con nosotros!
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-lg); text-align: center;">
+                        <p style="color: var(--text-primary); margin: 0;">
+                            <strong>💡 Ayúdanos a ampliar este archivo</strong><br>
+                            Envíanos el enlace, captura de pantalla o recorte de prensa y lo añadiremos a esta sección
+                        </p>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script>
+        // Filtrar noticias por categoría
+        function filtrarNoticias(categoria) {
+            const noticias = document.querySelectorAll('.noticia-card');
+            const botones = document.querySelectorAll('.filtro-btn');
+            
+            // Actualizar botones activos
+            botones.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filtrar noticias
+            noticias.forEach(noticia => {
+                if (categoria === 'todas' || noticia.dataset.categoria === categoria) {
+                    noticia.style.display = 'block';
+                } else {
+                    noticia.style.display = 'none';
+                }
+            });
+        }
+
+        // Búsqueda en noticias
+        document.getElementById('searchPrensa').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const noticias = document.querySelectorAll('.noticia-card');
+            
+            noticias.forEach(noticia => {
+                const text = noticia.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    noticia.style.display = 'block';
+                } else {
+                    noticia.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tablón Municipal - Noticias, bandos y anuncios oficiales del Ayuntamiento de Pioz">
+    <title>Tablón Municipal | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        .tablon-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-tablon {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-tablon::before {
+            content: '📢';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-tablon h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tablon p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .filtros-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .filtros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-sm);
+        }
+        
+        .filtro-btn {
+            background: var(--card-bg);
+            border: 2px solid #e74c3c;
+            color: var(--text-primary);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+            text-align: center;
+        }
+        
+        .filtro-btn:hover,
+        .filtro-btn.active {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .search-tablon {
+            margin-top: var(--spacing-md);
+        }
+        
+        .search-tablon input {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--border-color);
+            border-radius: 4px;
+            font-size: var(--font-size-large);
+            background: var(--card-bg);
+            color: var(--text-primary);
+        }
+        
+        .noticias-grid {
+            display: grid;
+            gap: var(--spacing-lg);
+        }
+        
+        .noticia-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .noticia-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .noticia-header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: var(--spacing-lg);
+        }
+        
+        .noticia-fecha {
+            font-size: var(--font-size-small);
+            opacity: 0.9;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .noticia-categoria {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .noticia-titulo {
+            color: white;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .noticia-content {
+            padding: var(--spacing-xl);
+        }
+        
+        .noticia-extracto {
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .btn-leer-mas {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-leer-mas:hover {
+            background: #c0392b;
+            text-decoration: none;
+            transform: translateX(5px);
+        }
+        
+        .contacto-tablon {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-top: var(--spacing-xl);
+        }
+        
+        .contacto-tablon h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #e74c3c;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-tablon h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Tablón Municipal</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container tablon-container">
+                <div class="hero-tablon">
+                    <h1>📢 Tablón Municipal</h1>
+                    <p>Noticias, bandos y anuncios oficiales del Ayuntamiento de Pioz</p>
+                </div>
+
+                <!-- Filtros y Búsqueda -->
+                <section class="filtros-section">
+                    <h3 style="color: var(--text-primary); margin-bottom: var(--spacing-md); text-align: center;">
+                        🔍 Filtrar Noticias
+                    </h3>
+                    <div class="filtros-grid">
+                        <button class="filtro-btn active" onclick="filtrarNoticias('todas')">
+                            📰 Todas
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('bandos')">
+                            📢 Bandos
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('fiestas')">
+                            🎉 Fiestas
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('servicios')">
+                            🏛️ Servicios
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('cultura')">
+                            🎭 Cultura
+                        </button>
+                        <button class="filtro-btn" onclick="filtrarNoticias('urbanismo')">
+                            🏗️ Urbanismo
+                        </button>
+                    </div>
+                    <div class="search-tablon">
+                        <input type="text" id="searchTablon" placeholder="Buscar por palabra clave...">
+                    </div>
+                </section>
+
+                <!-- Noticias -->
+                <section>
+                    <div class="noticias-grid">
+                        <!-- Noticia Destacada -->
+                        <div class="noticia-card" data-categoria="bandos">
+                            <div class="noticia-header">
+                                <div class="noticia-fecha">📅 29 de enero de 2025</div>
+                                <span class="noticia-categoria">📢 BANDO MUNICIPAL</span>
+                                <h3 class="noticia-titulo">BANDO CORTE SAN DONATO 2025</h3>
+                            </div>
+                            <div class="noticia-content">
+                                <p class="noticia-extracto">
+                                    El Ayuntamiento de Pioz informa a todos los vecinos sobre el corte de calles y medidas 
+                                    especiales durante las Fiestas Patronales de San Donato 2025. Se detallan horarios, 
+                                    accesos alternativos y medidas de seguridad para garantizar el correcto desarrollo de 
+                                    las celebraciones.
+                                </p>
+                                <a href="tablon/bando-corte-san-donato-2025.html" class="btn-leer-mas">
+                                    Leer más →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Noticia 2 -->
+                        <div class="noticia-card" data-categoria="fiestas">
+                            <div class="noticia-header">
+                                <div class="noticia-fecha">📅 25 de enero de 2025</div>
+                                <span class="noticia-categoria">🎉 PROGRAMA DE FIESTAS</span>
+                                <h3 class="noticia-titulo">PROGRAMA SAN DONATO 2025</h3>
+                            </div>
+                            <div class="noticia-content">
+                                <p class="noticia-extracto">
+                                    Ya está disponible el programa oficial de las Fiestas Patronales de San Donato 2025. 
+                                    Consulta todos los actos, horarios y actividades programadas para disfrutar de nuestras 
+                                    fiestas mayores del 4º domingo de agosto.
+                                </p>
+                                <a href="tablon/programa-san-donato-2025.html" class="btn-leer-mas">
+                                    Leer más →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Noticia 3 -->
+                        <div class="noticia-card" data-categoria="cultura">
+                            <div class="noticia-header">
+                                <div class="noticia-fecha">📅 15 de enero de 2025</div>
+                                <span class="noticia-categoria">🕯️ ACTOS RELIGIOSOS</span>
+                                <h3 class="noticia-titulo">ACTOS VIRGEN DE LA CANDELARIA</h3>
+                            </div>
+                            <div class="noticia-content">
+                                <p class="noticia-extracto">
+                                    Programa de actos de las Fiestas de la Candelaria. El 1º sábado de febrero se celebrará 
+                                    la tradicional festividad con misa, presentación de niños, procesión y el tradicional 
+                                    Ramo con chocolate y limonada.
+                                </p>
+                                <a href="tablon/actos-candelaria-2025.html" class="btn-leer-mas">
+                                    Leer más →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Noticia 4 -->
+                        <div class="noticia-card" data-categoria="servicios">
+                            <div class="noticia-header">
+                                <div class="noticia-fecha">📅 10 de enero de 2025</div>
+                                <span class="noticia-categoria">♻️ MEDIO AMBIENTE</span>
+                                <h3 class="noticia-titulo">RECOGIDA DE ACEITE USADO - NUEVO SERVICIO</h3>
+                            </div>
+                            <div class="noticia-content">
+                                <p class="noticia-extracto">
+                                    El Ayuntamiento informa del nuevo servicio obligatorio de recogida selectiva de aceite 
+                                    usado de cocina. Puntos de recogida disponibles y material gratuito en las oficinas 
+                                    municipales. Servicio operativo desde el 31 de diciembre de 2024.
+                                </p>
+                                <a href="tablon/recogida-aceite-2025.html" class="btn-leer-mas">
+                                    Leer más →
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Noticia 5 -->
+                        <div class="noticia-card" data-categoria="urbanismo">
+                            <div class="noticia-header">
+                                <div class="noticia-fecha">📅 5 de enero de 2025</div>
+                                <span class="noticia-categoria">🏗️ OBRAS PÚBLICAS</span>
+                                <h3 class="noticia-titulo">MEJORA DEL PAVIMENTO EN CALLE MAYOR</h3>
+                            </div>
+                            <div class="noticia-content">
+                                <p class="noticia-extracto">
+                                    El Ayuntamiento de Pioz informa del inicio de las obras de mejora del pavimento en la 
+                                    Calle Mayor. Los trabajos tendrán una duración aproximada de 3 semanas. Se solicita 
+                                    la colaboración ciudadana para facilitar el desarrollo de las obras.
+                                </p>
+                                <a href="tablon/obras-calle-mayor-2025.html" class="btn-leer-mas">
+                                    Leer más →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Información de Contacto -->
+                <section class="contacto-tablon">
+                    <h2>📞 Información y Contacto</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para más información sobre bandos, noticias o trámites municipales
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/search-engine.js"></script>
+    <script src="js/navigation.js"></script>
+    <script>
+        // Filtrar noticias por categoría
+        function filtrarNoticias(categoria) {
+            const noticias = document.querySelectorAll('.noticia-card');
+            const botones = document.querySelectorAll('.filtro-btn');
+            
+            // Actualizar botones activos
+            botones.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Filtrar noticias
+            noticias.forEach(noticia => {
+                if (categoria === 'todas' || noticia.dataset.categoria === categoria) {
+                    noticia.style.display = 'block';
+                } else {
+                    noticia.style.display = 'none';
+                }
+            });
+        }
+
+        // Búsqueda en noticias
+        document.getElementById('searchTablon').addEventListener('input', function(e) {
+            const searchTerm = e.target.value.toLowerCase();
+            const noticias = document.querySelectorAll('.noticia-card');
+            
+            noticias.forEach(noticia => {
+                const text = noticia.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    noticia.style.display = 'block';
+                } else {
+                    noticia.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

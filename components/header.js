@@ -94,6 +94,27 @@
                                 <ul class="submenu">
                                     <li><a href="${basePath}villa/poblacion.html">Población</a></li>
                                     <li><a href="${basePath}villa/casco_urbano.html">Casco Urbano</a></li>
+                                    <li><a href="${basePath}villa/urbanizaciones.html">Urbanizaciones</a></li>
+                                    <li><a href="${basePath}villa/situacion.html">Situación</a></li>
+                                    <li><a href="${basePath}villa/historia.html">Historia</a></li>
+                                    <li class="has-submenu">
+                                        <a href="${basePath}villa/castillo.html">Castillo de Pioz</a>
+                                        <ul class="submenu">
+                                            <li><a href="${basePath}villa/guardianes_castillo.html">Guardianes del Castillo</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="${basePath}villa/iglesia.html">Iglesia de San Sebastián</a></li>
+                                    <li><a href="${basePath}villa/visita_fotografica.html">Visita Fotográfica</a></li>
+                                    <li class="has-submenu">
+                                        <a href="${basePath}villa/tradiciones.html">Tradiciones</a>
+                                        <ul class="submenu">
+                                            <li><a href="${basePath}villa/fiesta_castillo.html">Fiesta del Castillo</a></li>
+                                            <li><a href="${basePath}villa/fiestas_donato.html">Fiestas de San Donato</a></li>
+                                            <li><a href="${basePath}villa/fiestas_candelaria.html">Fiestas de la Candelaria</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="${basePath}villa/empresas.html">Empresas de Pioz</a></li>
+                                    <li><a href="${basePath}villa/prensa.html">Prensa</a></li>
                                 </ul>
                             </li>
                             <li><a href="${basePath}tablon.html">Tablón / Contacto</a></li>

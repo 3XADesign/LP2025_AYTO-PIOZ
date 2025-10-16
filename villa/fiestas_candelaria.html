@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fiestas de la Candelaria - Tradición religiosa y popular del 1º sábado de febrero en Pioz">
+    <title>Fiestas de la Candelaria | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .candelaria-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-candelaria {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-candelaria::before {
+            content: '🕯️';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-candelaria h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-candelaria .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-candelaria p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #f39c12;
+        }
+        
+        .intro-box h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .fecha-box {
+            background: #fff3cd;
+            padding: var(--spacing-lg);
+            border-left: 4px solid #856404;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: var(--spacing-lg);
+        }
+        
+        [data-theme="dark"] .fecha-box {
+            background: #3a3320;
+        }
+        
+        .fecha-box strong {
+            color: #856404;
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        [data-theme="dark"] .fecha-box strong {
+            color: #ffc107;
+        }
+        
+        .fecha-box p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .celebraciones-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .celebracion-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+            border-top: 5px solid #f39c12;
+        }
+        
+        .celebracion-header {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+        
+        .celebracion-icon {
+            font-size: 5rem;
+        }
+        
+        .celebracion-title h3 {
+            color: white;
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: 1.8rem;
+        }
+        
+        .celebracion-subtitle {
+            margin: 0;
+            opacity: 0.95;
+        }
+        
+        .celebracion-content {
+            padding: var(--spacing-xl);
+        }
+        
+        .celebracion-content h4 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .celebracion-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .celebracion-content li {
+            padding: var(--spacing-sm) 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+        }
+        
+        .celebracion-content li::before {
+            content: '✓';
+            color: #f39c12;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .ramo-section {
+            background: #f0f9ff;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .ramo-section {
+            background: #1a3a47;
+        }
+        
+        .ramo-section h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .ramo-content {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+        }
+        
+        .ramo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .ramo-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .ramo-item span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .ramo-item h3 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .ramo-item p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .hermandad-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        .hermandad-box h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .hermandad-box .icon {
+            font-size: 5rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .hermandad-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        
+        .noticias-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .noticias-section h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .noticia-destacada {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .noticia-destacada h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.8rem;
+        }
+        
+        .noticia-destacada .fecha {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 20px;
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .noticia-destacada p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .timeline-noticias {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+        
+        .noticia-item {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #f39c12;
+        }
+        
+        .noticia-fecha {
+            display: inline-block;
+            background: #f39c12;
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .noticia-titulo {
+            color: #f39c12;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.2rem;
+        }
+        
+        .noticia-descripcion {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .programas-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .programas-section h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .programas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .programa-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #f39c12;
+            transition: all var(--transition-fast);
+        }
+        
+        .programa-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .programa-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .programa-card h3 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+        }
+        
+        .programa-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .btn-descargar-programa {
+            display: block;
+            text-align: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: #f39c12;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-descargar-programa:hover {
+            background: #e67e22;
+            text-decoration: none;
+        }
+        
+        .galeria-promo {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .galeria-promo h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .galeria-promo p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-candelaria {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-candelaria h2 {
+            color: #f39c12;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #f39c12;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #f39c12;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #f39c12;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-candelaria h1 {
+                font-size: 2rem;
+            }
+            
+            .celebracion-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="tradiciones.html">Tradiciones</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Fiestas de la Candelaria</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container candelaria-container">
+                <div class="hero-candelaria">
+                    <h1>🕯️ Fiestas de la Candelaria</h1>
+                    <p class="subtitle">Virgen de la Candelaria</p>
+                    <p>Tradición religiosa y popular muy arraigada en Pioz</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-box">
+                    <h2>Una Festividad con Tradición</h2>
+                    <p>
+                        Las <strong>Fiestas de la Candelaria</strong> son una celebración <strong>muy arraigada en Pioz</strong>, 
+                        que combina la devoción religiosa a la Virgen de la Candelaria con la tradición popular del pueblo.
+                    </p>
+                    <p>
+                        Esta festividad mariana reúne cada año a vecinos de todas las edades en una jornada que mezcla 
+                        actos litúrgicos, procesiones y celebración popular, mantenida año tras año por la 
+                        <strong>Hermandad de Las Hermanas de La Candelaria</strong>.
+                    </p>
+
+                    <div class="fecha-box">
+                        <strong>📅 Fecha de celebración</strong>
+                        <p>1º sábado del mes de febrero</p>
+                    </div>
+                </article>
+
+                <!-- Celebraciones -->
+                <section class="celebraciones-section">
+                    <!-- Celebración Religiosa -->
+                    <div class="celebracion-card">
+                        <div class="celebracion-header">
+                            <span class="celebracion-icon">⛪</span>
+                            <div class="celebracion-title">
+                                <h3>Celebración Religiosa</h3>
+                                <p class="celebracion-subtitle">Actos litúrgicos y procesión</p>
+                            </div>
+                        </div>
+                        <div class="celebracion-content">
+                            <h4>Programa de Actos Religiosos</h4>
+                            <ul>
+                                <li>
+                                    <strong>Misa Solemne:</strong> Celebración eucarística en honor a la Virgen de la Candelaria
+                                </li>
+                                <li>
+                                    <strong>Presentación de los Niños:</strong> Tradición de presentar a la Virgen a los niños 
+                                    nacidos durante el año anterior, bendición especial de las familias
+                                </li>
+                                <li>
+                                    <strong>Procesión:</strong> Recorrido por las calles del pueblo con la imagen de la Virgen, 
+                                    acompañada por los fieles y las autoridades municipales
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Celebración Popular -->
+                    <div class="celebracion-card" style="border-top-color: #e67e22;">
+                        <div class="celebracion-header" style="background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);">
+                            <span class="celebracion-icon">🎉</span>
+                            <div class="celebracion-title">
+                                <h3>Celebración Popular</h3>
+                                <p class="celebracion-subtitle">El Ramo y el baile tradicional</p>
+                            </div>
+                        </div>
+                        <div class="celebracion-content">
+                            <h4>El Tradicional Ramo</h4>
+                            <p style="color: var(--text-primary); line-height: 1.8; margin-bottom: var(--spacing-lg);">
+                                Una de las tradiciones más queridas de la festividad es <strong>"El Ramo"</strong>, 
+                                un evento popular que combina la solidaridad vecinal con la celebración comunitaria.
+                            </p>
+                            <ul>
+                                <li>
+                                    <strong>Venta de Tortas Típicas:</strong> Dulces tradicionales elaborados especialmente para la ocasión
+                                </li>
+                                <li>
+                                    <strong>Productos del Pueblo:</strong> Venta de productos locales y artesanía
+                                </li>
+                                <li>
+                                    <strong>Recaudación Solidaria:</strong> Los fondos se destinan a costear la limonada y el chocolate 
+                                    que se sirven durante la jornada
+                                </li>
+                                <li>
+                                    <strong>Baile Popular:</strong> Al finalizar el día, baile tradicional donde se sirven chocolate 
+                                    y limonada a todos los asistentes
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- El Ramo en Detalle -->
+                <section class="ramo-section">
+                    <h2>🍰 El Ramo: Tradición y Solidaridad</h2>
+                    
+                    <div class="ramo-content">
+                        <p style="color: var(--text-primary); line-height: 1.8; margin-bottom: var(--spacing-lg);">
+                            El Ramo es mucho más que una actividad festiva: es un ejemplo de cómo la comunidad de Pioz 
+                            se une para mantener vivas sus tradiciones de forma cooperativa y solidaria.
+                        </p>
+
+                        <div class="ramo-grid">
+                            <div class="ramo-item">
+                                <span>🥧</span>
+                                <h3>Tortas Típicas</h3>
+                                <p>Elaboradas siguiendo recetas tradicionales transmitidas de generación en generación</p>
+                            </div>
+
+                            <div class="ramo-item">
+                                <span>🛍️</span>
+                                <h3>Productos Locales</h3>
+                                <p>Venta de productos artesanales y del pueblo para apoyar la economía local</p>
+                            </div>
+
+                            <div class="ramo-item">
+                                <span>🍋</span>
+                                <h3>Limonada</h3>
+                                <p>Bebida refrescante tradicional servida al final del baile popular</p>
+                            </div>
+
+                            <div class="ramo-item">
+                                <span>☕</span>
+                                <h3>Chocolate</h3>
+                                <p>Chocolate caliente para compartir en comunidad al cierre de las celebraciones</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Hermandad -->
+                <section class="hermandad-box">
+                    <h2>👥 Hermandad de Las Hermanas de La Candelaria</h2>
+                    <span class="icon">⛪</span>
+                    <p>
+                        La <strong>Hermandad de Las Hermanas de La Candelaria</strong> es la responsable de mantener 
+                        viva esta tradición religiosa año tras año. Formada por mujeres devotas del pueblo, esta 
+                        hermandad organiza los actos litúrgicos, cuida de la imagen de la Virgen y coordina las 
+                        celebraciones tanto religiosas como populares de la festividad.
+                    </p>
+                </section>
+
+                <!-- Últimas Noticias -->
+                <section class="noticias-section">
+                    <h2>📰 Últimas Noticias y Convocatorias</h2>
+                    
+                    <div class="noticia-destacada">
+                        <span class="fecha">📅 29 de enero de 2025</span>
+                        <h3>ACTOS VIRGEN DE LA CANDELARIA</h3>
+                        <p>
+                            Publicado el programa oficial de actos de las Fiestas de la Candelaria 2025. 
+                            Consulta los horarios de la misa, presentación de niños, procesión y el tradicional 
+                            baile popular con chocolate y limonada.
+                        </p>
+                    </div>
+
+                    <div class="timeline-noticias">
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">25 de enero de 2024</span>
+                            <h4 class="noticia-titulo">🕯️ CANDELARIA 2024</h4>
+                            <p class="noticia-descripcion">
+                                Anuncio de las Fiestas de la Candelaria 2024 con el programa de actos religiosos 
+                                y populares. Información sobre el Ramo y la venta de tortas típicas.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">2023</span>
+                            <h4 class="noticia-titulo">📸 Galería Fotográfica 2023</h4>
+                            <p class="noticia-descripcion">
+                                Publicada la galería de fotos de la celebración de la Candelaria 2023, mostrando 
+                                la procesión, la presentación de niños y el baile popular.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">2023</span>
+                            <h4 class="noticia-titulo">📋 Programa de Actos 2023</h4>
+                            <p class="noticia-descripcion">
+                                Programa completo de la festividad incluyendo horarios de misa, procesión, 
+                                actividades del Ramo y baile tradicional.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Programas y Documentos -->
+                <section class="programas-section">
+                    <h2>📋 Programas y Documentación</h2>
+                    
+                    <div class="programas-grid">
+                        <div class="programa-card">
+                            <span class="programa-icon">📄</span>
+                            <h3>Programa Actual</h3>
+                            <p>Programa de actos religiosos y populares de la próxima Candelaria</p>
+                            <a href="#" class="btn-descargar-programa" download>
+                                📥 Descargar Programa
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <span class="programa-icon">📸</span>
+                            <h3>Galería de Fotos</h3>
+                            <p>Imágenes de celebraciones anteriores</p>
+                            <a href="visita_fotografica.html" class="btn-descargar-programa">
+                                📷 Ver Galería
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <span class="programa-icon">📚</span>
+                            <h3>Ediciones Anteriores</h3>
+                            <p>Consulta los programas de años pasados</p>
+                            <a href="#" class="btn-descargar-programa">
+                                📂 Ver Archivo
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Galería de Fotos -->
+                <section class="galeria-promo">
+                    <h2>📸 Galería de Fotos</h2>
+                    <p>
+                        Revive los mejores momentos de las Fiestas de la Candelaria a través de imágenes
+                    </p>
+                    <a href="visita_fotografica.html" class="btn btn-primary" style="background: white; color: #f39c12;">
+                        Ver Galería Fotográfica →
+                    </a>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-candelaria">
+                    <h2>📞 Información sobre las Fiestas de la Candelaria</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para más información sobre programas o participación
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
+                        <a href="tradiciones.html" class="btn btn-secondary">
+                            ← Volver a Tradiciones
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

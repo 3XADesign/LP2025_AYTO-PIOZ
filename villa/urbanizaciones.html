@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Urbanizaciones de Pioz - Documentación urbanística, planos y normativas de los desarrollos residenciales">
+    <title>Urbanizaciones | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .urbanizaciones-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-urbanizaciones {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-urbanizaciones h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-urbanizaciones p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .intro-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-section p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .stat-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .stat-box strong {
+            display: block;
+            color: #16a085;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .urbanizacion-section {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .urbanizacion-header {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+        
+        .urbanizacion-header:hover {
+            transform: translateX(5px);
+        }
+        
+        .urbanizacion-title {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .urbanizacion-icon {
+            font-size: 2rem;
+        }
+        
+        .urbanizacion-title h2 {
+            color: white;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .urbanizacion-toggle {
+            font-size: 1.5rem;
+            transition: transform var(--transition-fast);
+        }
+        
+        .urbanizacion-section.collapsed .urbanizacion-toggle {
+            transform: rotate(-90deg);
+        }
+        
+        .urbanizacion-content {
+            background: var(--card-bg);
+            border-radius: 0 0 8px 8px;
+            box-shadow: var(--shadow-sm);
+            padding: var(--spacing-lg);
+        }
+        
+        .urbanizacion-section.collapsed .urbanizacion-content {
+            display: none;
+        }
+        
+        .documentos-grid {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+        
+        .documento-item {
+            display: grid;
+            grid-template-columns: 1fr auto auto;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            align-items: center;
+            transition: all var(--transition-fast);
+        }
+        
+        .documento-item:hover {
+            background: var(--card-bg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .documento-info h3 {
+            color: #16a085;
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: 1rem;
+        }
+        
+        .documento-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+        }
+        
+        .documento-size {
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+        
+        .btn-documento {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: #16a085;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: var(--font-size-small);
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+        
+        .btn-documento:hover {
+            background: #1abc9c;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .ordenanza-section {
+            background: #e8f8f5;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .ordenanza-section {
+            background: #1a3a34;
+        }
+        
+        .ordenanza-section h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .ordenanza-content {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #16a085;
+        }
+        
+        .ordenanza-content h3 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .ordenanza-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .ordenanza-content li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+        
+        .ordenanza-content li::before {
+            content: '✓';
+            color: #16a085;
+            font-weight: bold;
+        }
+        
+        .destacado-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-top: var(--spacing-md);
+        }
+        
+        [data-theme="dark"] .destacado-box {
+            background: #3a3320;
+        }
+        
+        .destacado-box p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .contacto-urbanizaciones {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-urbanizaciones h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #16a085;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #16a085;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #16a085;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-urbanizaciones h1 {
+                font-size: 2rem;
+            }
+            
+            .documento-item {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-sm);
+            }
+            
+            .documento-size,
+            .btn-documento {
+                justify-self: start;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Urbanizaciones</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container urbanizaciones-container">
+                <div class="hero-urbanizaciones">
+                    <h1>🏘️ Urbanizaciones de Pioz</h1>
+                    <p>Documentación urbanística, planos y normativas de los desarrollos residenciales</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-section">
+                    <p>
+                        El <strong>término municipal de Pioz posee una extensión de 19,44 km²</strong> y limita con 
+                        los municipios de <strong>Loranca de Tajuña</strong> y <strong>El Pozo de Guadalajara</strong> 
+                        en la provincia de Guadalajara, así como con <strong>Pezuela de las Torres</strong> y 
+                        <strong>Santorcaz</strong> en la Comunidad de Madrid.
+                    </p>
+                    <p>
+                        La población del municipio se distribuye entre el casco antiguo y varios <strong>núcleos de 
+                        población en diferentes urbanizaciones</strong>. En esta página encontrarás acceso a los 
+                        <strong>planos y normativas urbanísticas</strong> de todas las urbanizaciones del municipio.
+                    </p>
+
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <strong>19,44 km²</strong>
+                            <p>Extensión municipal</p>
+                        </div>
+                        <div class="stat-box">
+                            <strong>13</strong>
+                            <p>Urbanizaciones</p>
+                        </div>
+                        <div class="stat-box">
+                            <strong>+40</strong>
+                            <p>Documentos disponibles</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Documentación General -->
+                <div class="urbanizacion-section" id="urb-general">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-general')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">📋</span>
+                            <h2>Documentación General</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Modificación Varias Normativas Urbanísticas</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 Documento general</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">850 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- La Arboleda -->
+                <div class="urbanizacion-section" id="urb-arboleda">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-arboleda')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🌳</span>
+                            <h2>La Arboleda</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Normativa La Arboleda</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 23/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">420 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">1.2 MB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial Modificación</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 08/06/2006</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">680 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Plan Técnico Tratamientos Servicolas</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">520 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- El Bosque -->
+                <div class="urbanizacion-section" id="urb-bosque">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-bosque')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🌲</span>
+                            <h2>El Bosque del Henares</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="destacado-box" style="margin-bottom: var(--spacing-md);">
+                            <p>
+                                <strong>⚠️ Importante:</strong> En las ampliaciones de "El Bosque" (1, 2 y 3) se debe 
+                                respetar al máximo la vegetación arbórea existente.
+                            </p>
+                        </div>
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Normativa El Bosque</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">390 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial Refundido O.A.1.1-1.2-1.3</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">1.4 MB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Plan Técnico Tratamientos Servicolas</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">540 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Los Charquillos -->
+                <div class="urbanizacion-section" id="urb-charquillos">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-charquillos')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🏡</span>
+                            <h2>Los Charquillos</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Los Charquillos - PERIM - TEXTO</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">720 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Los Charquillos - PERIM - Plano Ordenación OD.1</h3>
+                                    <div class="documento-meta">
+                                        <span>🗺️ Plano</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">980 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Residencial PERIM Charquillos</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 02/10/2022</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">410 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- El Chaparral -->
+                <div class="urbanizacion-section" id="urb-chaparral">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-chaparral')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🌾</span>
+                            <h2>El Chaparral</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="destacado-box" style="margin-bottom: var(--spacing-md);">
+                            <p>
+                                <strong>⚠️ Importante:</strong> En las ampliaciones de "El Chaparral" se debe respetar 
+                                al máximo la vegetación arbórea existente.
+                            </p>
+                        </div>
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial y Tratamientos Servicolas</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">1.1 MB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Normativa El Chaparral</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">380 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Los Llanos -->
+                <div class="urbanizacion-section" id="urb-llanos">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-llanos')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🏘️</span>
+                            <h2>Los Llanos</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">950 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Plano Zonificación</h3>
+                                    <div class="documento-meta">
+                                        <span>🗺️ Plano</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">1.2 MB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">370 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Madrebuena -->
+                <div class="urbanizacion-section" id="urb-madrebuena">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-madrebuena')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🏡</span>
+                            <h2>Madrebuena</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">880 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">365 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Las Matillas -->
+                <div class="urbanizacion-section" id="urb-matillas">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-matillas')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🏘️</span>
+                            <h2>Las Matillas</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="destacado-box" style="margin-bottom: var(--spacing-md);">
+                            <p>
+                                <strong>ℹ️ Información especial:</strong> En la Urbanización "Las Matillas" se permiten 
+                                segregaciones con una parcela mínima de <strong>450 m²</strong> debido a contradicciones 
+                                en el Plan Parcial aprobado.
+                            </p>
+                        </div>
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">920 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial - Modificación 2003</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 2003</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">650 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">385 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Los Molinos -->
+                <div class="urbanizacion-section" id="urb-molinos">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-molinos')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">⚙️</span>
+                            <h2>Los Molinos</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">870 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">360 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Las Suertes -->
+                <div class="urbanizacion-section" id="urb-suertes">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-suertes')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🏡</span>
+                            <h2>Las Suertes</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">890 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">375 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Montealto -->
+                <div class="urbanizacion-section" id="urb-montealto">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-montealto')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">⛰️</span>
+                            <h2>Montealto</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">910 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">370 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trascastillo -->
+                <div class="urbanizacion-section" id="urb-trascastillo">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-trascastillo')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🏰</span>
+                            <h2>Trascastillo</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">930 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">380 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Valcastillo -->
+                <div class="urbanizacion-section" id="urb-valcastillo">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-valcastillo')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🏘️</span>
+                            <h2>Valcastillo</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">900 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">365 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Las Villas -->
+                <div class="urbanizacion-section" id="urb-villas">
+                    <div class="urbanizacion-header" onclick="toggleUrbanizacion('urb-villas')">
+                        <div class="urbanizacion-title">
+                            <span class="urbanizacion-icon">🏡</span>
+                            <h2>Las Villas</h2>
+                        </div>
+                        <span class="urbanizacion-toggle">▼</span>
+                    </div>
+                    <div class="urbanizacion-content">
+                        <div class="documentos-grid">
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Memoria Plan Parcial</h3>
+                                    <div class="documento-meta">
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">960 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Plano Parcelario</h3>
+                                    <div class="documento-meta">
+                                        <span>🗺️ Plano</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">1.1 MB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                            <div class="documento-item">
+                                <div class="documento-info">
+                                    <h3>Resumen Ordenanza Residencial</h3>
+                                    <div class="documento-meta">
+                                        <span>📅 03/10/2023</span>
+                                        <span>📄 PDF</span>
+                                    </div>
+                                </div>
+                                <div class="documento-size">375 KB</div>
+                                <a href="#" class="btn-documento" download>
+                                    📥 Descargar
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ordenanza 3ª -->
+                <section class="ordenanza-section">
+                    <h2>📜 Ordenanza 3ª - Zona de Urbanizaciones</h2>
+                    <div class="ordenanza-content">
+                        <h3>Condiciones Generales de Edificación</h3>
+                        <ul>
+                            <li><strong>Uso Característico:</strong> Residencial Unifamiliar (Aislada, Pareada)</li>
+                            <li><strong>Altura Máxima:</strong> 2 plantas + Ático retranqueado</li>
+                            <li><strong>Altura de Cornisa:</strong> Máximo 7,50 metros</li>
+                            <li><strong>Altura de Cumbrera:</strong> Máximo 10,00 metros</li>
+                            <li><strong>Retranqueo Mínimo:</strong> 3 metros a la alineación y linderos</li>
+                        </ul>
+
+                        <h3 style="margin-top: var(--spacing-lg);">Condiciones Especiales</h3>
+                        <ul>
+                            <li>En ampliaciones de "El Bosque" (1, 2 y 3) y "El Chaparral": Máximo respeto a la vegetación arbórea existente</li>
+                            <li>Reducción de afección a la hidrología superficial en futuros desarrollos (P.A.U.S.)</li>
+                            <li>En "Las Matillas": Permitidas segregaciones con parcela mínima de 450 m²</li>
+                        </ul>
+
+                        <div class="destacado-box">
+                            <p>
+                                <strong>📋 Consulta completa:</strong> Para conocer el detalle completo de las condiciones 
+                                de edificación y normativa, consulta la 
+                                <a href="../tramites/ordenanzas.html#cat-urbanismo" style="color: #16a085; font-weight: 600;">
+                                    Ordenanza 3ª en la sección de Ordenanzas Municipales
+                                </a>.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-urbanizaciones">
+                    <h2>📞 Información Urbanística</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para consultas sobre urbanismo, licencias de obras o documentación
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
+                        <a href="../servicios/urbanismo.html" class="btn btn-primary">
+                            Ver más sobre Urbanismo →
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script>
+        // Función para colapsar/expandir urbanizaciones
+        function toggleUrbanizacion(urbanizacionId) {
+            const urbanizacion = document.getElementById(urbanizacionId);
+            urbanizacion.classList.toggle('collapsed');
+        }
+    </script>
+</body>
+</html>

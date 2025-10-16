@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Historia de Pioz - Desde la Reconquista hasta nuestros días, descubre el pasado histórico del municipio">
+    <title>Historia | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .historia-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-historia {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-historia h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-historia .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .hero-historia p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .intro-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #8b4513;
+        }
+        
+        .intro-section p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .cronista-box {
+            background: #f5e6d3;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-top: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .cronista-box {
+            background: #3a2f20;
+        }
+        
+        .cronista-box p {
+            margin: 0;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .periodo-historico {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .periodo-header {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .periodo-icon {
+            font-size: 2.5rem;
+        }
+        
+        .periodo-title h2 {
+            color: white;
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: 1.8rem;
+        }
+        
+        .periodo-title p {
+            margin: 0;
+            opacity: 0.95;
+            font-size: var(--font-size-small);
+        }
+        
+        .periodo-content {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 0 0 8px 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .evento-item {
+            position: relative;
+            padding-left: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            border-left: 3px solid #8b4513;
+        }
+        
+        .evento-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evento-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 13px;
+            height: 13px;
+            background: #8b4513;
+            border-radius: 50%;
+            border: 3px solid var(--card-bg);
+        }
+        
+        .evento-fecha {
+            font-weight: 700;
+            color: #8b4513;
+            font-size: 1.2rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .evento-titulo {
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .evento-descripcion {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .destacado-box {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin: var(--spacing-md) 0;
+        }
+        
+        [data-theme="dark"] .destacado-box {
+            background: #3a3320;
+        }
+        
+        .destacado-box p {
+            margin: 0;
+            color: var(--text-primary);
+        }
+        
+        .datos-historicos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .dato-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .dato-box strong {
+            display: block;
+            color: #8b4513;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .dato-box p {
+            margin: 0;
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+        }
+        
+        .monumentos-relacionados {
+            background: #f5e6d3;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .monumentos-relacionados {
+            background: #3a2f20;
+        }
+        
+        .monumentos-relacionados h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .monumentos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .monumento-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #8b4513;
+        }
+        
+        .monumento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .monumento-header {
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .monumento-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .monumento-header h3 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .monumento-header p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .monumento-body {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+        }
+        
+        .monumento-body p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .monumento-link {
+            display: block;
+            background: #8b4513;
+            color: white;
+            text-align: center;
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .monumento-link:hover {
+            background: #a0522d;
+            text-decoration: none;
+        }
+        
+        .contacto-historia {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-historia h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #8b4513;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #8b4513;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #8b4513;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-historia h1 {
+                font-size: 2rem;
+            }
+            
+            .periodo-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Historia</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container historia-container">
+                <div class="hero-historia">
+                    <h1>📜 Historia de Pioz</h1>
+                    <p class="subtitle">Un enclave relevante en la historia de Guadalajara</p>
+                    <p>Desde la Reconquista hasta nuestros días</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-section">
+                    <p>
+                        <strong>Pioz</strong> es un lugar significativo en la llanura Alcarreña, situado en la 
+                        <strong>zona media occidental de Guadalajara</strong> y que constituye la frontera de esta 
+                        provincia con la de Madrid y, por tanto, entre las <strong>Comunidades Autónomas de 
+                        Castilla-La Mancha y Madrid</strong>.
+                    </p>
+                    <p>
+                        A pesar de ser tradicionalmente un enclave menor, su historia está marcada por la 
+                        <strong>incidencia directa de notables familias de la nobleza castellana</strong> (como los 
+                        <strong>Mendoza</strong> o los <strong>Álvar Gómez de Ciudad Real</strong>), su posición 
+                        estratégica en los movimientos trashumantes de ganado (amparados por el Concejo de la Mesta) 
+                        y los movimientos comerciales.
+                    </p>
+
+                    <div class="cronista-box">
+                        <p>📖 <strong>Cronista Oficial de Pioz:</strong> César Gómez Fraguas</p>
+                    </div>
+                </article>
+
+                <!-- Orígenes y Reconquista -->
+                <div class="periodo-historico">
+                    <div class="periodo-header">
+                        <span class="periodo-icon">⚔️</span>
+                        <div class="periodo-title">
+                            <h2>Orígenes y Reconquista</h2>
+                            <p>Siglos XI y XII</p>
+                        </div>
+                    </div>
+                    <div class="periodo-content">
+                        <div class="evento-item">
+                            <div class="evento-fecha">1057 / 1085</div>
+                            <div class="evento-titulo">Conquista Cristiana</div>
+                            <div class="evento-descripcion">
+                                La versión más probable es que <strong>Pioz formara parte de los movimientos de 
+                                repoblación</strong> tras la reconquista de los territorios por los reyes castellanos 
+                                entre los siglos XI y XII. La conquista de Guadalajara y su entorno se atribuye a 
+                                <strong>Alvar Fáñez Minaya en 1085</strong>, o a un acto administrativo consecuente 
+                                a la conquista de Toledo ese mismo año. La fecha 1057 también aparece en registros antiguos.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">Siglos XI-XII</div>
+                            <div class="evento-titulo">Tierras Realengas</div>
+                            <div class="evento-descripcion">
+                                Pioz se integró inicialmente en el <strong>Común de Villa y Tierra de Guadalajara</strong>, 
+                                como una aldea más del alfoz de Guadalajara, siendo una de las <strong>Tierras Realengas</strong> 
+                                bajo dominio directo del Rey.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1133</div>
+                            <div class="evento-titulo">Primer Fuero de Guadalajara</div>
+                            <div class="evento-descripcion">
+                                Los <strong>Fueros de Guadalajara</strong> regían Pioz. El primer Fuero fue otorgado 
+                                por <strong>Alfonso VII en 1133</strong>.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1219</div>
+                            <div class="evento-titulo">Fuero Largo</div>
+                            <div class="evento-descripcion">
+                                El segundo Fuero (o <strong>"Fuero Largo"</strong>) fue otorgado por 
+                                <strong>Fernando III, el Santo, en 1219</strong>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- El Señorío y la Familia Mendoza -->
+                <div class="periodo-historico">
+                    <div class="periodo-header">
+                        <span class="periodo-icon">👑</span>
+                        <div class="periodo-title">
+                            <h2>El Señorío y la Familia Mendoza</h2>
+                            <p>Siglo XV</p>
+                        </div>
+                    </div>
+                    <div class="periodo-content">
+                        <div class="evento-item">
+                            <div class="evento-fecha">1428</div>
+                            <div class="evento-titulo">Primera Desagregación</div>
+                            <div class="evento-descripcion">
+                                Pioz fue una de las <strong>12 aldeas que Juan II de Castilla entregó como dote</strong> 
+                                a su hermana, la Infanta Catalina, para su matrimonio con el Infante Enrique de Aragón. 
+                                Esto la extrajo del Común de Guadalajara.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1430</div>
+                            <div class="evento-titulo">Confiscación y Cesión</div>
+                            <div class="evento-descripcion">
+                                Tras la derrota del Infante Enrique, Juan II confiscó la villa y, como premio a su apoyo, 
+                                donó Pioz a <strong>Íñigo López de Mendoza</strong> (I Marqués de Santillana).
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1458</div>
+                            <div class="evento-titulo">El Cardenal Mendoza</div>
+                            <div class="evento-descripcion">
+                                A la muerte de Íñigo López de Mendoza en 1458, el señorío de Pioz fue cedido a su hijo, 
+                                <strong>Pedro González de Mendoza</strong> (el <strong>Gran Cardenal Mendoza</strong>).
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">c. 1469</div>
+                            <div class="evento-titulo">Construcción del Castillo</div>
+                            <div class="evento-descripcion">
+                                El Cardenal Mendoza ordenó la construcción del <strong>Castillo de Pioz hacia el año 1469</strong>, 
+                                con posible participación de <strong>Lorenzo Vázquez</strong> como maestro de obras.
+                            </div>
+                        </div>
+
+                        <div class="destacado-box">
+                            <p>
+                                <strong>💡 Dato histórico:</strong> El Castillo de Pioz es uno de los pocos ejemplos 
+                                de arquitectura militar del siglo XV que se conservan en la provincia de Guadalajara.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Casa de Álvar Gómez -->
+                <div class="periodo-historico">
+                    <div class="periodo-header">
+                        <span class="periodo-icon">🏰</span>
+                        <div class="periodo-title">
+                            <h2>La Casa de Álvar Gómez de Ciudad Real</h2>
+                            <p>Fines del Siglo XV - Siglo XVI</p>
+                        </div>
+                    </div>
+                    <div class="periodo-content">
+                        <div class="evento-item">
+                            <div class="evento-fecha">1469</div>
+                            <div class="evento-titulo">Trueque de Señoríos</div>
+                            <div class="evento-descripcion">
+                                El Cardenal Mendoza trocó el señorío de Pioz por el de Maqueda con 
+                                <strong>Álvar Gómez de Ciudad Real</strong> (secretario de Enrique IV). 
+                                Álvar Gómez se convirtió en el <strong>I Señor de Pioz</strong>.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1470-1492</div>
+                            <div class="evento-titulo">Impulso Constructivo del Castillo</div>
+                            <div class="evento-descripcion">
+                                Álvar Gómez impulsó la construcción del <strong>Castillo-Fortaleza</strong>, que se puede 
+                                acotar entre <strong>1470 y 1492</strong>.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1493-1495</div>
+                            <div class="evento-titulo">Ampliación de la Iglesia</div>
+                            <div class="evento-descripcion">
+                                Su hijo, <strong>Pedro Gómez de Ciudad Real</strong> (II Señor), participó en la financiación 
+                                de las sucesivas ampliaciones de la <strong>Iglesia de San Sebastián</strong> 
+                                (la primera nave lateral entre 1493 y 1495).
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1579</div>
+                            <div class="evento-titulo">Relaciones Topográficas de Felipe II</div>
+                            <div class="evento-descripcion">
+                                El censo de Felipe II documenta la existencia de la <strong>Iglesia Parroquial de 
+                                San Sebastián</strong> (entonces solo la nave central), el <strong>Castillo</strong> 
+                                (descrito como fuerte, bien labrado y con puente levadizo), y dos ermitas: 
+                                <strong>San Roque</strong> y <strong>Nuestra Señora de la Mata</strong>.
+                            </div>
+                        </div>
+
+                        <div class="datos-historicos">
+                            <div class="dato-box">
+                                <strong>124</strong>
+                                <p>Casas en 1579</p>
+                            </div>
+                            <div class="dato-box">
+                                <strong>130</strong>
+                                <p>Vecinos cabeza de familia</p>
+                            </div>
+                            <div class="dato-box">
+                                <strong>500-600</strong>
+                                <p>Habitantes aproximados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Crisis y Devastación -->
+                <div class="periodo-historico">
+                    <div class="periodo-header">
+                        <span class="periodo-icon">⚔️</span>
+                        <div class="periodo-title">
+                            <h2>Crisis y Devastación</h2>
+                            <p>Siglo XVIII</p>
+                        </div>
+                    </div>
+                    <div class="periodo-content">
+                        <div class="evento-item">
+                            <div class="evento-fecha">1706</div>
+                            <div class="evento-titulo">Primer Saqueo</div>
+                            <div class="evento-descripcion">
+                                Durante la <strong>Guerra de Sucesión Española</strong>, las tropas del ejército aliado 
+                                (Galloway) tomaron la Villa el <strong>12 de agosto de 1706</strong>. Arrasaron las 
+                                <strong>Casas Consistoriales</strong>, lo que resultó en la pérdida de todos los archivos 
+                                y registros. También devastaron cultivos, vides y olivos.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1710</div>
+                            <div class="evento-titulo">Segunda Invasión</div>
+                            <div class="evento-descripcion">
+                                Las tropas invasoras volvieron a tomar Pioz en <strong>1710</strong>, completando 
+                                la devastación del municipio.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1751-1752</div>
+                            <div class="evento-titulo">Catastro de la Ensenada</div>
+                            <div class="evento-descripcion">
+                                El Catastro de la Ensenada reflejó las consecuencias devastadoras de la guerra: 
+                                solo <strong>57 cabezas de casa</strong>, una población de <strong>202 personas</strong> 
+                                y <strong>41 casas</strong>, una disminución dramática debido a la guerra y las epidemias.
+                            </div>
+                        </div>
+
+                        <div class="datos-historicos">
+                            <div class="dato-box">
+                                <strong>57</strong>
+                                <p>Cabezas de casa (1751)</p>
+                            </div>
+                            <div class="dato-box">
+                                <strong>202</strong>
+                                <p>Habitantes (1751)</p>
+                            </div>
+                            <div class="dato-box">
+                                <strong>41</strong>
+                                <p>Casas (1751)</p>
+                            </div>
+                        </div>
+
+                        <div class="destacado-box">
+                            <p>
+                                <strong>⚠️ Pérdida irreparable:</strong> La destrucción de las Casas Consistoriales en 1706 
+                                supuso la pérdida de todos los archivos y registros históricos anteriores, dejando vacíos 
+                                importantes en la documentación histórica de Pioz.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Edad Contemporánea -->
+                <div class="periodo-historico">
+                    <div class="periodo-header">
+                        <span class="periodo-icon">🏛️</span>
+                        <div class="periodo-title">
+                            <h2>Fin de la Época Señorial y Edad Contemporánea</h2>
+                            <p>Siglo XIX hasta la actualidad</p>
+                        </div>
+                    </div>
+                    <div class="periodo-content">
+                        <div class="evento-item">
+                            <div class="evento-fecha">1820</div>
+                            <div class="evento-titulo">Disolución del Señorío</div>
+                            <div class="evento-descripcion">
+                                El sistema de <strong>Señoríos y Mayorazgos</strong> fue suprimido por la 
+                                <strong>legislación liberal</strong> (Decreto de 1820).
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1840</div>
+                            <div class="evento-titulo">Última Señora de Pioz</div>
+                            <div class="evento-descripcion">
+                                <strong>Vicenta de la Cerda y Oña</strong> fue la última persona en ostentar el título 
+                                de Señorío de Pioz. Falleció en <strong>1840 sin descendencia</strong>.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">1849</div>
+                            <div class="evento-titulo">Diccionario de Madoz</div>
+                            <div class="evento-descripcion">
+                                La población en la mitad del siglo XIX era de <strong>274 habitantes</strong> con 
+                                <strong>70 casas</strong>, la casa consistorial con cárcel y escuela, una posada y 
+                                la Iglesia de San Sebastián.
+                            </div>
+                        </div>
+
+                        <div class="evento-item">
+                            <div class="evento-fecha">Siglo XXI</div>
+                            <div class="evento-titulo">Crecimiento Moderno</div>
+                            <div class="evento-descripcion">
+                                Pioz experimenta una <strong>explosión demográfica</strong> causada por la construcción 
+                                de numerosas <strong>urbanizaciones residenciales</strong>, pasando de 190 habitantes 
+                                en 1991 a más de <strong>5.131 habitantes</strong> en la actualidad.
+                            </div>
+                        </div>
+
+                        <div class="datos-historicos">
+                            <div class="dato-box">
+                                <strong>274</strong>
+                                <p>Habitantes (1849)</p>
+                            </div>
+                            <div class="dato-box">
+                                <strong>190</strong>
+                                <p>Habitantes (1991)</p>
+                            </div>
+                            <div class="dato-box">
+                                <strong>5.131</strong>
+                                <p>Habitantes (Actualidad)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monumentos Relacionados -->
+                <section class="monumentos-relacionados">
+                    <h2>🏛️ Monumentos Históricos de Pioz</h2>
+                    
+                    <div class="monumentos-grid">
+                        <div class="monumento-card">
+                            <div class="monumento-header">
+                                <span class="monumento-icon">🏰</span>
+                                <h3>Castillo de Pioz</h3>
+                                <p>Castillo del Cardenal Mendoza</p>
+                            </div>
+                            <div class="monumento-body">
+                                <p>
+                                    Fortaleza construida hacia 1469 por el Cardenal Mendoza y ampliada por Álvar Gómez 
+                                    de Ciudad Real entre 1470-1492. Bien de Interés Cultural y símbolo emblemático del 
+                                    patrimonio histórico de Pioz.
+                                </p>
+                                <a href="../villa.html#castillo" class="monumento-link">Más información →</a>
+                            </div>
+                        </div>
+
+                        <div class="monumento-card">
+                            <div class="monumento-header">
+                                <span class="monumento-icon">⛪</span>
+                                <h3>Iglesia de San Sebastián</h3>
+                                <p>Iglesia Parroquial</p>
+                            </div>
+                            <div class="monumento-body">
+                                <p>
+                                    Templo de origen medieval con ampliaciones realizadas entre 1493-1495. Documentada 
+                                    en las Relaciones Topográficas de Felipe II de 1579. Dedicada a San Sebastián, 
+                                    patrón del municipio.
+                                </p>
+                                <a href="iglesia.html" class="monumento-link">Más información →</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-historia">
+                    <h2>📞 Más Información</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para consultas sobre la historia de Pioz o acceso a documentación histórica
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

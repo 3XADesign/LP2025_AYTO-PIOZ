@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Visita Fotográfica por Pioz - Galería de imágenes del Castillo, Iglesia y patrimonio del municipio">
+    <title>Visita Fotográfica | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .fotografia-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .hero-fotografia {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-fotografia::before {
+            content: '📸';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-fotografia h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-fotografia p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .intro-box h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        [data-theme="dark"] .intro-box h2 {
+            color: #ecf0f1;
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .proximos-box {
+            background: #d1ecf1;
+            padding: var(--spacing-md);
+            border-left: 4px solid #0c5460;
+            border-radius: 4px;
+            margin-top: var(--spacing-md);
+        }
+        
+        [data-theme="dark"] .proximos-box {
+            background: #1a3a47;
+        }
+        
+        .proximos-box strong {
+            color: #0c5460;
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .proximos-box strong {
+            color: #5dade2;
+        }
+        
+        .proximos-box p {
+            margin: 0;
+            font-size: var(--font-size-small);
+        }
+        
+        .galeria-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .galeria-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .galeria-header h2 {
+            color: white;
+            margin: 0 0 var(--spacing-sm) 0;
+            font-size: 2rem;
+        }
+        
+        .galeria-header p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .galeria-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .foto-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            cursor: pointer;
+        }
+        
+        .foto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .foto-placeholder {
+            background: linear-gradient(135deg, #bdc3c7 0%, #95a5a6 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        
+        .foto-info {
+            padding: var(--spacing-lg);
+        }
+        
+        .foto-numero {
+            display: inline-block;
+            background: #2c3e50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .foto-info h3 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+        
+        [data-theme="dark"] .foto-info h3 {
+            color: #ecf0f1;
+        }
+        
+        .foto-info p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .historicas-section {
+            background: #f4ecf7;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .historicas-section {
+            background: #3d2a47;
+        }
+        
+        .historicas-section h2 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .historicas-intro {
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .historicas-intro p {
+            color: var(--text-primary);
+            margin: 0;
+            font-size: var(--font-size-small);
+        }
+        
+        .historicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .historica-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .historica-placeholder {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .historica-placeholder span {
+            font-size: 3rem;
+        }
+        
+        .historica-info {
+            padding: var(--spacing-lg);
+        }
+        
+        .historica-info h3 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .historica-info .autor {
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .historica-info p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .relacionados-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .relacionados-section h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .relacionados-section h2 {
+            color: #ecf0f1;
+        }
+        
+        .enlaces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .enlace-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 3px solid #2c3e50;
+            transition: all var(--transition-fast);
+        }
+        
+        .enlace-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .enlace-card a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .enlace-card a {
+            color: #5dade2;
+        }
+        
+        .enlace-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .contacto-fotografia {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-fotografia h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .contacto-fotografia h2 {
+            color: #ecf0f1;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            flex-shrink: 0;
+        }
+        
+        [data-theme="dark"] .contacto-icon {
+            color: #ecf0f1;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #2c3e50;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .contacto-content strong {
+            color: #ecf0f1;
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        [data-theme="dark"] .contacto-content a {
+            color: #3498db;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-fotografia h1 {
+                font-size: 2rem;
+            }
+            
+            .galeria-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Visita Fotográfica</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container fotografia-container">
+                <div class="hero-fotografia">
+                    <h1>📸 Visita Fotográfica por Pioz</h1>
+                    <p>
+                        Descubre el patrimonio y la belleza de nuestro municipio a través de imágenes
+                    </p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-box">
+                    <h2>🎨 Reportaje Fotográfico en Desarrollo</h2>
+                    <p>
+                        Actualmente estamos <strong>realizando un completo reportaje fotográfico de todo el 
+                        término municipal de Pioz</strong>, que <strong>próximamente se dará a conocer en esta 
+                        sección</strong> del sitio web oficial del Ayuntamiento.
+                    </p>
+                    <p>
+                        Este ambicioso proyecto incluirá imágenes de:
+                    </p>
+                    <ul style="list-style: none; padding: 0; margin: var(--spacing-md) 0;">
+                        <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">📍 <strong>Casco Urbano:</strong> Centro histórico y Plaza Mayor</li>
+                        <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">🏘️ <strong>Urbanizaciones:</strong> Los diferentes núcleos residenciales</li>
+                        <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">🏰 <strong>Lugares de Interés:</strong> Castillo, Iglesia y monumentos</li>
+                        <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">🌳 <strong>Sendas y Naturaleza:</strong> Caminos y paisajes naturales</li>
+                        <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">🎭 <strong>Vida Municipal:</strong> Eventos, fiestas y actividades</li>
+                    </ul>
+
+                    <div class="proximos-box">
+                        <strong>📌 De momento...</strong>
+                        <p>
+                            Puedes disfrutar de las fotografías del <strong>Castillo de Pioz</strong> y la 
+                            <strong>Iglesia de San Sebastián</strong>, dos de las joyas patrimoniales más importantes 
+                            de nuestro municipio.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Galería del Castillo -->
+                <section class="galeria-section">
+                    <div class="galeria-header">
+                        <h2>🏰 Castillo de Pioz</h2>
+                        <p>Fortaleza del siglo XV - Bien de Interés Cultural</p>
+                    </div>
+
+                    <div class="galeria-grid">
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen1.jpg" alt="Vista general del Castillo de Pioz" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#1</span>
+                                <h3>Vista General Desolada</h3>
+                                <p>
+                                    Desolado y, podríamos añadir abandonado a su suerte hasta hace pocos años, la construcción 
+                                    se levanta sobre un pequeño y pelado otero, destacando sobre el caserío de la villa la gran 
+                                    torre del homenaje.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen2.jpg" alt="Muro exterior con escarpa del Castillo" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#2</span>
+                                <h3>Muro Exterior y Escarpa</h3>
+                                <p>
+                                    Muro exterior del Castillo de Pioz donde se observa la escarpa (parte inclinada de 
+                                    la falsabraga) típica de las fortificaciones del siglo XV.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen3.jpg" alt="Detalle de la escarpa del muro exterior" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#3</span>
+                                <h3>Muro Exterior y Escarpa (Detalle)</h3>
+                                <p>
+                                    Muro exterior del Castillo de Pioz donde se observa la escarpa, elemento defensivo 
+                                    característico de la arquitectura militar medieval.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen4.jpg" alt="Baluarte junto a la Torre del Homenaje" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#4</span>
+                                <h3>Baluarte y Torre del Homenaje</h3>
+                                <p>
+                                    Baluarte del muro exterior del castillo situado al pie de la torre del Homenaje, 
+                                    elemento defensivo clave de la fortaleza.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen5.jpg" alt="Pontón sobre el foso del castillo" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#5</span>
+                                <h3>Acceso y Foso</h3>
+                                <p>
+                                    Pontón de acceso sobre el foso del castillo, hoy día prácticamente cegado, que en su 
+                                    día proporcionaba la primera línea de defensa.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen6.jpg" alt="Camino de acceso al castillo" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#6</span>
+                                <h3>Camino de Acceso</h3>
+                                <p>
+                                    Camino de acceso al interior del castillo que ocupa el lugar del antiguo puente levadizo, 
+                                    principal entrada a la fortaleza.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen7.jpg" alt="Ángulo Sureste del muro exterior" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#7</span>
+                                <h3>Ángulo Sureste</h3>
+                                <p>
+                                    Ángulo Sureste del muro exterior del castillo, mostrando la solidez de su construcción 
+                                    en piedra de sillería.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen8.jpg" alt="Torre central con canes" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#8</span>
+                                <h3>Torre Central y Canes</h3>
+                                <p>
+                                    Torre situada en el punto medio del muro exterior del castillo en el que se observan los 
+                                    canes situados en su parte superior destinados en su día a soportar la plataforma superior.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen9.jpg" alt="Escalera del portillo septentrional" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#9</span>
+                                <h3>Poterna del Muro Septentrional</h3>
+                                <p>
+                                    Escalera que comunica el portillo del muro septentrional con el recinto interior del castillo, 
+                                    acceso de emergencia disimulado.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen10.jpg" alt="Interior derruido de la Torre del Homenaje" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#10</span>
+                                <h3>Interior de la Torre del Homenaje</h3>
+                                <p>
+                                    Vista del derruido interior de la Torre del Homenaje del castillo, que fue convertida en el 
+                                    siglo XIX d.C. en un enorme palomar, uso que perduró hasta tiempos recientes.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen11.jpg" alt="Portillo del muro septentrional desde el interior" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#11</span>
+                                <h3>Portillo Septentrional Interior</h3>
+                                <p>
+                                    Vista del portillo abierto del muro septentrional del castillo desde el recinto interior, 
+                                    mostrando el acceso de salida de emergencia.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen12.jpg" alt="Acceso al torreón suroeste" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#12</span>
+                                <h3>Acceso al Torreón</h3>
+                                <p>
+                                    Acceso desde el recinto interior al torreón situado en el ángulo suroeste, parte del 
+                                    sistema defensivo del castillo-palacio.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen13.jpg" alt="Torre del Homenaje con planta irregular" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#13</span>
+                                <h3>Torre del Homenaje - Planta Irregular</h3>
+                                <p>
+                                    La Torre del Homenaje de planta exterior circular e interior cuadrada ocupa el ángulo 
+                                    noroeste de la fortaleza del castillo, diseño único en la arquitectura militar.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen14.jpg" alt="Interior de torre esquinera con tronera" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#14</span>
+                                <h3>Interior de Torre Esquinera y Tronera</h3>
+                                <p>
+                                    Vista del interior de una de las torres esquineras del castillo en la que se observa la 
+                                    saetera del tipo orbe con cruz y los huecos del nivel inferior para la artillería.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen15.jpg" alt="Acceso a la Torre del Homenaje con escalera de caracol" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#15</span>
+                                <h3>Acceso a la Torre del Homenaje</h3>
+                                <p>
+                                    Vista del acceso al interior de la Torre del Homenaje de la fortaleza del castillo, en el 
+                                    que se aprecia el arranque de la escalera de caracol de subida a las plantas superiores.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen16.jpg" alt="Puerta de acceso al recinto interior" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#16</span>
+                                <h3>Puerta de Acceso al Recinto</h3>
+                                <p>
+                                    Vista de la puerta de acceso al recinto interior del castillo en la que se observan los 
+                                    restos de los huecos en que se encajaba la puerta original de madera reforzada.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen17.jpg" alt="Muro interior del castillo" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#17</span>
+                                <h3>Muro Interior</h3>
+                                <p>
+                                    Inmenso muro de piedra al que los asaltantes debían enfrentarse una vez hubieron accedido 
+                                    al recinto interior del castillo, segunda línea de defensa.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen18.jpg" alt="Saetera de orbe y cruz" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#18</span>
+                                <h3>Tronera de Cruz y Orbe</h3>
+                                <p>
+                                    Vista de una de las saeteras del tipo orbe y cruz del interior de una de las torres 
+                                    centrales del castillo, características del siglo XV.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen19.jpg" alt="Interior de la fortaleza" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#19</span>
+                                <h3>Interior de la Fortaleza</h3>
+                                <p>
+                                    Interior de la fortaleza del castillo mostrando el patio central y la estructura del 
+                                    edificio principal residencial.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen20.jpg" alt="Restos del pozo del castillo" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#20</span>
+                                <h3>Pozo del Castillo</h3>
+                                <p>
+                                    Restos del antiguo pozo del castillo, situado en el recinto exterior (la liza), con 
+                                    paredes de sillares que proporcionaba agua a la fortaleza.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="foto-card">
+                            <img src="../images/vista_fotografica/imagen21.jpg" alt="Escalera doble de acceso al adarve" style="width: 100%; height: 250px; object-fit: cover;">
+                            <div class="foto-info">
+                                <span class="foto-numero">#21</span>
+                                <h3>Escaleras al Adarve</h3>
+                                <p>
+                                    Resto de una de las escaleras dobles de acceso al adarve del castillo, camino de ronda 
+                                    superior para la vigilancia y defensa.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Fotografías Históricas -->
+                <section class="historicas-section">
+                    <h2>📷 Fotografías Históricas</h2>
+                    
+                    <div class="historicas-intro">
+                        <p>
+                            <strong>Patrimonio religioso de Pioz</strong><br>
+                            Iglesia Parroquial de San Sebastián - Bien de Interés Cultural
+                        </p>
+                    </div>
+
+                    <div class="historicas-grid">
+                        <div class="historica-card">
+                            <img src="../images/vista_fotografica/imagen22.jpg" alt="Iglesia de San Sebastián" style="width: 100%; height: 200px; object-fit: cover;">
+                            <div class="historica-info">
+                                <h3>Iglesia de San Sebastián</h3>
+                                <p class="autor">Iglesia Parroquial - Monumento BIC</p>
+                                <p>
+                                    Vista de la Iglesia Parroquial de San Sebastián, templo histórico construido entre los 
+                                    siglos XIV y XVI con característico ábside mudéjar. Situada en la Plaza Mayor del 
+                                    casco urbano de Pioz.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="historica-card">
+                            <div class="historica-placeholder">
+                                <span>⛪</span>
+                            </div>
+                            <div class="historica-info">
+                                <h3>Iglesia de Pioz y Barbacana</h3>
+                                <p class="autor">Fotografía de Tomás Camarillo (principios S. XX)</p>
+                                <p>
+                                    Vista histórica de la Iglesia Parroquial de San Sebastián con su característica 
+                                    barbacana (atrio amurallado) y el entorno de la Plaza Mayor a principios del siglo XX.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="historica-card">
+                            <div class="historica-placeholder">
+                                <span>🏘️</span>
+                            </div>
+                            <div class="historica-info">
+                                <h3>Calle Estudio</h3>
+                                <p class="autor">Fotografía de Tomás Camarillo (principios S. XX)</p>
+                                <p>
+                                    Imagen histórica de la Calle Estudio de Pioz, mostrando la arquitectura popular 
+                                    y el aspecto del casco urbano a principios del siglo pasado.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="historica-card">
+                            <div class="historica-placeholder">
+                                <span>🏰</span>
+                            </div>
+                            <div class="historica-info">
+                                <h3>El Castillo y la Ermita de la Soledad</h3>
+                                <p class="autor">Fotografía de Tomás Camarillo (principios S. XX)</p>
+                                <p>
+                                    Vista conjunta del Castillo de Pioz y la desaparecida Ermita de la Soledad, 
+                                    documento invaluable del patrimonio histórico del municipio.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Enlaces Relacionados -->
+                <section class="relacionados-section">
+                    <h2>🔗 Explora Más Sobre Pioz</h2>
+                    
+                    <div class="enlaces-grid">
+                        <div class="enlace-card">
+                            <a href="castillo.html">
+                                🏰 Castillo de Pioz → Historia y arquitectura completa
+                            </a>
+                        </div>
+                        <div class="enlace-card">
+                            <a href="iglesia.html">
+                                ⛪ Iglesia de San Sebastián → Patrimonio religioso
+                            </a>
+                        </div>
+                        <div class="enlace-card">
+                            <a href="historia.html">
+                                📜 Historia de Pioz → Cronología del municipio
+                            </a>
+                        </div>
+                        <div class="enlace-card">
+                            <a href="casco_urbano.html">
+                                🏛️ Casco Urbano → Puntos de interés del centro
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-fotografia">
+                    <h2>📞 Información y Contacto</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para información sobre visitas o actividades culturales
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

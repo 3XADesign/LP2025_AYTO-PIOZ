@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fiesta del Castillo de Pioz - Jornada Medieval, programa de actos y actividades">
+    <title>Fiesta del Castillo | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .fiesta-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-fiesta {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-fiesta::before {
+            content: '🏰';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-fiesta h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-fiesta .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-fiesta p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #8b4513;
+        }
+        
+        .intro-box h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .fecha-destacada {
+            background: #fff3cd;
+            padding: var(--spacing-md);
+            border-left: 4px solid #856404;
+            border-radius: 4px;
+            margin-top: var(--spacing-md);
+        }
+        
+        [data-theme="dark"] .fecha-destacada {
+            background: #3a3320;
+        }
+        
+        .fecha-destacada strong {
+            color: #856404;
+        }
+        
+        [data-theme="dark"] .fecha-destacada strong {
+            color: #ffc107;
+        }
+        
+        .actividades-section {
+            background: #f5e6d3;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .actividades-section {
+            background: #3a2f20;
+        }
+        
+        .actividades-section h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .actividades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .actividad-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border-top: 3px solid #8b4513;
+        }
+        
+        .actividad-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .actividad-card h3 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .actividad-card p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .representacion-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .representacion-section h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .representacion-content {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            border-left: 4px solid #8b4513;
+        }
+        
+        .representacion-content h3 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .representacion-content p {
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .contexto-historico {
+            background: #e8f4f8;
+            padding: var(--spacing-md);
+            border-left: 4px solid #0c5460;
+            border-radius: 4px;
+            margin-top: var(--spacing-md);
+        }
+        
+        [data-theme="dark"] .contexto-historico {
+            background: #1a3a47;
+        }
+        
+        .contexto-historico strong {
+            color: #0c5460;
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .contexto-historico strong {
+            color: #5dade2;
+        }
+        
+        .noticias-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .noticias-section h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .noticia-destacada {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .noticia-destacada h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.8rem;
+        }
+        
+        .noticia-destacada .fecha {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 20px;
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .noticia-destacada p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .timeline-noticias {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+        
+        .noticia-item {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #8b4513;
+        }
+        
+        .noticia-fecha {
+            display: inline-block;
+            background: #8b4513;
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .noticia-titulo {
+            color: #8b4513;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.2rem;
+        }
+        
+        .noticia-descripcion {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .programas-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .programas-section h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .programas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .programa-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #8b4513;
+            transition: all var(--transition-fast);
+        }
+        
+        .programa-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .programa-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .programa-card h3 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+        }
+        
+        .programa-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .btn-descargar-programa {
+            display: block;
+            text-align: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: #8b4513;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-descargar-programa:hover {
+            background: #a0522d;
+            text-decoration: none;
+        }
+        
+        .galeria-promo {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .galeria-promo h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .galeria-promo p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-fiesta {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-fiesta h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #8b4513;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #8b4513;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #8b4513;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-fiesta h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="tradiciones.html">Tradiciones</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Fiesta del Castillo</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container fiesta-container">
+                <div class="hero-fiesta">
+                    <h1>🏰 Fiesta del Castillo de Pioz</h1>
+                    <p class="subtitle">Jornada Medieval</p>
+                    <p>Una celebración recuperada que transporta a Pioz a la Edad Media</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-box">
+                    <h2>Una Tradición Recuperada</h2>
+                    <p>
+                        La <strong>Fiesta del Castillo de Pioz</strong>, también conocida como <strong>Jornada Medieval</strong>, 
+                        es una tradición recuperada que se celebró por primera vez en su formato moderno en <strong>2011</strong>, 
+                        tras haberse suspendido en 2009.
+                    </p>
+                    <p>
+                        Esta celebración medieval recrea la época de esplendor del Castillo de Pioz, convirtiendo el municipio 
+                        en un auténtico mercado medieval con actividades para todas las edades, espectáculos, música y gastronomía 
+                        de época.
+                    </p>
+
+                    <div class="fecha-destacada">
+                        <strong>📅 Fecha de celebración:</strong> Variable entre mayo y junio de cada año. 
+                        Consulta el programa actualizado para conocer las fechas exactas de la próxima edición.
+                    </div>
+                </article>
+
+                <!-- Actividades y Elementos -->
+                <section class="actividades-section">
+                    <h2>🎭 Actividades y Elementos de la Jornada Medieval</h2>
+                    
+                    <div class="actividades-grid">
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎪</span>
+                            <h3>Mercado Medieval</h3>
+                            <p>
+                                Feria con puestos de artesanía tradicional, complementos, juguetes medievales 
+                                y productos artesanales.
+                            </p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🍖</span>
+                            <h3>Gastronomía de Época</h3>
+                            <p>
+                                Venta de productos de alimentación medieval, destacando las famosas 
+                                <strong>"Migas Medievales"</strong>.
+                            </p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎭</span>
+                            <h3>Animación y Espectáculos</h3>
+                            <p>
+                                Grupos de animación medieval, malabares, juglares, música en vivo y 
+                                representaciones teatrales.
+                            </p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">⚔️</span>
+                            <h3>Demostraciones</h3>
+                            <p>
+                                Exhibiciones de combate medieval, cetrería, oficios antiguos y 
+                                recreaciones históricas.
+                            </p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">👗</span>
+                            <h3>Ambiente Medieval</h3>
+                            <p>
+                                Vecinos y visitantes vestidos con trajes de época, creando una atmósfera 
+                                única y auténtica.
+                            </p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎨</span>
+                            <h3>Talleres Infantiles</h3>
+                            <p>
+                                Actividades para niños: tiro con arco, talleres de escudos y espadas, 
+                                juegos medievales.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Representación Teatralizada -->
+                <section class="representacion-section">
+                    <h2>🎬 Acto Central: Representación Teatralizada</h2>
+                    
+                    <div class="representacion-content">
+                        <h3>La Toma de Posesión del II Señor de Pioz</h3>
+                        <p>
+                            El <strong>acto central de la fiesta</strong> es una representación teatralizada que recrea 
+                            la <strong>toma de posesión de D. Pedro Gómez de Ciudad Real</strong> como 
+                            <strong>II Señor de Pioz</strong>.
+                        </p>
+                        <p>
+                            Este evento histórico tuvo lugar cuando Pedro Gómez heredó estas tierras de su padre, 
+                            Álvar Gómez de Ciudad Real, marcando el inicio de una nueva era de esplendor para el 
+                            municipio y su castillo.
+                        </p>
+
+                        <div class="contexto-historico">
+                            <strong>📜 Contexto Histórico:</strong>
+                            <p style="color: var(--text-primary); margin: 0; font-size: var(--font-size-small);">
+                                <strong>Álvar Gómez de Ciudad Real</strong> adquirió el señorío de Pioz del 
+                                <strong>Cardenal Mendoza</strong> en <strong>1469</strong>, convirtiéndose en el 
+                                I Señor de Pioz. Su hijo, <strong>Pedro Gómez de Ciudad Real</strong>, heredó el señorío 
+                                y fue un gran impulsor de las obras del castillo y la iglesia parroquial.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Últimas Noticias -->
+                <section class="noticias-section">
+                    <h2>📰 Últimas Ediciones y Noticias</h2>
+                    
+                    <div class="noticia-destacada">
+                        <span class="fecha">📅 Junio 2024</span>
+                        <h3>FIESTA MEDIEVAL DE PIOZ</h3>
+                        <p>
+                            Nueva edición de la Jornada Medieval con un programa ampliado de actividades. 
+                            Gran afluencia de público y éxito de las representaciones teatrales y el mercado artesano.
+                        </p>
+                    </div>
+
+                    <div class="timeline-noticias">
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">Mayo 2024</span>
+                            <h4 class="noticia-titulo">📢 XXII JORNADA MEDIEVAL - Horarios</h4>
+                            <p class="noticia-descripcion">
+                                Publicación del horario oficial de la XXII edición de la Jornada Medieval de Pioz. 
+                                Programa completo de actividades desde las 11:00 hasta las 20:00 horas.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">Mayo 2024</span>
+                            <h4 class="noticia-titulo">🚗 Bando Cierre Casco - Fiesta del Castillo</h4>
+                            <p class="noticia-descripcion">
+                                Bando municipal informando del cierre al tráfico del casco urbano durante la celebración 
+                                de la Fiesta del Castillo. Medidas de seguridad y accesos alternativos.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">Junio 2023</span>
+                            <h4 class="noticia-titulo">🏰 FIESTA DEL CASTILLO PIOZ</h4>
+                            <p class="noticia-descripcion">
+                                Celebración exitosa de la Fiesta del Castillo con récord de visitantes. 
+                                Destacaron las Migas Medievales y la representación teatralizada.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">Mayo 2023</span>
+                            <h4 class="noticia-titulo">📋 Programa Fiesta del Castillo 2023</h4>
+                            <p class="noticia-descripcion">
+                                Publicación del programa oficial de actividades de la edición 2023, 
+                                incluyendo horarios, ubicaciones y participantes.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Programas y Documentos -->
+                <section class="programas-section">
+                    <h2>📋 Programas y Documentos</h2>
+                    
+                    <div class="programas-grid">
+                        <div class="programa-card">
+                            <span class="programa-icon">📄</span>
+                            <h3>Programa Actual</h3>
+                            <p>Programa de actos de la próxima Jornada Medieval con horarios y ubicaciones</p>
+                            <a href="#" class="btn-descargar-programa" download>
+                                📥 Descargar Programa
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <span class="programa-icon">📢</span>
+                            <h3>Bandos Municipales</h3>
+                            <p>Comunicados oficiales sobre cierres de tráfico y medidas especiales</p>
+                            <a href="../ayuntamiento/bandos.html" class="btn-descargar-programa">
+                                📋 Ver Bandos
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <span class="programa-icon">📚</span>
+                            <h3>Ediciones Anteriores</h3>
+                            <p>Consulta los programas y documentos de celebraciones pasadas</p>
+                            <a href="#" class="btn-descargar-programa">
+                                📂 Ver Archivo
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Galería de Fotos -->
+                <section class="galeria-promo">
+                    <h2>📸 Galería de Fotos</h2>
+                    <p>
+                        Revive los mejores momentos de las Jornadas Medievales a través de imágenes
+                    </p>
+                    <a href="visita_fotografica.html" class="btn btn-primary" style="background: white; color: #8b4513;">
+                        Ver Galería Fotográfica →
+                    </a>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-fiesta">
+                    <h2>📞 Información sobre la Fiesta del Castillo</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para más información sobre programas, actividades o participación
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
+                        <a href="tradiciones.html" class="btn btn-secondary">
+                            ← Volver a Tradiciones
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

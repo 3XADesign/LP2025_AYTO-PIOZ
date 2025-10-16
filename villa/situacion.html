@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Situación de Pioz - Ubicación geográfica, orografía, clima y rutas de acceso al municipio">
+    <title>Situación | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .situacion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-situacion {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-situacion h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-situacion p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .intro-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-section p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .caracteristica-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .caracteristica-box strong {
+            display: block;
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .caracteristica-box p {
+            margin: 0;
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+        }
+        
+        .geografia-section {
+            background: #ecf0f1;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .geografia-section {
+            background: #2c3e50;
+        }
+        
+        .geografia-section h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .geografia-section h2 {
+            color: #ecf0f1;
+        }
+        
+        .geografia-content {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #2c3e50;
+        }
+        
+        .geografia-item {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .geografia-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .geografia-item h3 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        [data-theme="dark"] .geografia-item h3 {
+            color: #ecf0f1;
+        }
+        
+        .geografia-item h3 span {
+            font-size: 1.5rem;
+        }
+        
+        .geografia-item p {
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        
+        .rutas-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .rutas-section h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .rutas-section h2 {
+            color: #ecf0f1;
+        }
+        
+        .ruta-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            border-top: 4px solid #2c3e50;
+        }
+        
+        .ruta-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .ruta-icon {
+            font-size: 3rem;
+        }
+        
+        .ruta-header h3 {
+            color: #2c3e50;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        [data-theme="dark"] .ruta-header h3 {
+            color: #ecf0f1;
+        }
+        
+        .ruta-steps {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+        
+        .ruta-steps::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: #2c3e50;
+        }
+        
+        .ruta-steps li {
+            position: relative;
+            padding: var(--spacing-md) var(--spacing-md) var(--spacing-md) var(--spacing-xl);
+            color: var(--text-primary);
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            width: 30px;
+            height: 30px;
+            background: #2c3e50;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            z-index: 1;
+        }
+        
+        .step-content {
+            flex: 1;
+            padding-top: var(--spacing-xs);
+        }
+        
+        .step-road {
+            background: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            display: inline-block;
+            margin-right: var(--spacing-xs);
+        }
+        
+        .monumentos-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .monumentos-section h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .monumentos-section h2 {
+            color: #ecf0f1;
+        }
+        
+        .monumentos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .monumento-card {
+            background: var(--bg-tertiary);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #2c3e50;
+        }
+        
+        .monumento-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .monumento-header {
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .monumento-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .monumento-header h3 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .monumento-header h3 {
+            color: #ecf0f1;
+        }
+        
+        .monumento-header p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .monumento-body {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+        }
+        
+        .monumento-body p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .monumento-link {
+            display: block;
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .monumento-link:hover {
+            background: #34495e;
+            text-decoration: none;
+        }
+        
+        .contacto-situacion {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-situacion h2 {
+            color: #2c3e50;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .contacto-situacion h2 {
+            color: #ecf0f1;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #2c3e50;
+            flex-shrink: 0;
+        }
+        
+        [data-theme="dark"] .contacto-icon {
+            color: #ecf0f1;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #2c3e50;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .contacto-content strong {
+            color: #ecf0f1;
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        [data-theme="dark"] .contacto-content a {
+            color: #3498db;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-situacion h1 {
+                font-size: 2rem;
+            }
+            
+            .ruta-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        .consejo-box {
+            background: #d5e8ff;
+            padding: var(--spacing-md);
+            border-left: 4px solid #3498db;
+            border-radius: 4px;
+            margin-top: var(--spacing-lg);
+        }
+        
+        [data-theme="dark"] .consejo-box {
+            background: #1a3a4a;
+        }
+        
+        .consejo-box p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Situación</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container situacion-container">
+                <div class="hero-situacion">
+                    <h1>📍 Situación Geográfica</h1>
+                    <p>Ubicación, geografía y vías de acceso al municipio de Pioz</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-section">
+                    <p>
+                        La <strong>Villa de Pioz se sitúa en el límite entre la Comunidad de Madrid y la provincia 
+                        de Guadalajara (Comunidad de Castilla-La Mancha)</strong>, lo que hace que Madrid y Guadalajara 
+                        sean los principales puntos de partida para acceder al municipio.
+                    </p>
+                    <p>
+                        Esta ubicación estratégica convierte a Pioz en un municipio perfectamente comunicado, 
+                        disfrutando de las ventajas de estar cerca de dos importantes capitales.
+                    </p>
+
+                    <div class="caracteristicas-grid">
+                        <div class="caracteristica-box">
+                            <strong>19,33 km²</strong>
+                            <p>Extensión territorial</p>
+                        </div>
+                        <div class="caracteristica-box">
+                            <strong>850 m</strong>
+                            <p>Altitud media</p>
+                        </div>
+                        <div class="caracteristica-box">
+                            <strong>12°C</strong>
+                            <p>Temperatura media anual</p>
+                        </div>
+                        <div class="caracteristica-box">
+                            <strong>5.131</strong>
+                            <p>Habitantes</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Geografía y Características -->
+                <section class="geografia-section">
+                    <h2>🌍 Geografía y Características del Territorio</h2>
+                    
+                    <div class="geografia-content">
+                        <div class="geografia-item">
+                            <h3><span>📏</span> Extensión y Límites</h3>
+                            <p>
+                                El término municipal de Pioz tiene una extensión de <strong>19,33 km²</strong>. 
+                                Limita con la provincia de Guadalajara a través de los municipios de 
+                                <strong>Loranca de Tajuña</strong> y <strong>El Pozo de Guadalajara</strong>, 
+                                y con la Comunidad de Madrid mediante <strong>Pezuela de las Torres</strong> y 
+                                <strong>Santorcaz</strong>.
+                            </p>
+                        </div>
+
+                        <div class="geografia-item">
+                            <h3><span>⛰️</span> Orografía</h3>
+                            <p>
+                                Pioz se sitúa sobre una <strong>planicie</strong> integrada en el llamado 
+                                <strong>páramo alcarreño</strong>, cuya altitud media alcanza los <strong>850 metros</strong>. 
+                                Esta meseta se caracteriza por su relieve suave y sus amplias perspectivas visuales.
+                            </p>
+                        </div>
+
+                        <div class="geografia-item">
+                            <h3><span>💧</span> Hidrografía</h3>
+                            <p>
+                                El término municipal se extiende entre los valles de los <strong>ríos Henares y Tajuña</strong>, 
+                                dos importantes cursos fluviales de la región. El territorio está recorrido por diversos 
+                                <strong>arroyos de caudal irregular</strong> que drenan hacia estos ríos principales.
+                            </p>
+                        </div>
+
+                        <div class="geografia-item">
+                            <h3><span>🌡️</span> Clima</h3>
+                            <p>
+                                Pioz posee un clima de tipo <strong>mediterráneo continental</strong>, caracterizado por 
+                                <strong>inviernos fríos y veranos calurosos</strong>. La temperatura media anual supera 
+                                los <strong>12ºC</strong>, con marcadas oscilaciones térmicas entre las estaciones y 
+                                precipitaciones concentradas principalmente en primavera y otoño.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Rutas de Acceso -->
+                <section class="rutas-section">
+                    <h2>🛣️ Cómo Llegar a Pioz</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Rutas detalladas de acceso desde Madrid y Guadalajara
+                    </p>
+
+                    <!-- Desde Madrid -->
+                    <div class="ruta-card">
+                        <div class="ruta-header">
+                            <span class="ruta-icon">🏙️</span>
+                            <div>
+                                <h3>Desde Madrid Capital</h3>
+                                <p style="color: var(--text-secondary); margin: 0;">Aproximadamente 45 minutos en coche</p>
+                            </div>
+                        </div>
+
+                        <ol class="ruta-steps">
+                            <li>
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <span class="step-road">A-2</span> o <span class="step-road">R-2</span>
+                                    <p>Tomar la autovía <strong>A-2</strong> (Madrid-Barcelona) o la radial de peaje 
+                                    <strong>R-2</strong> (Madrid-Guadalajara) en dirección a Guadalajara.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <span class="step-road">KM 38</span>
+                                    <p>Tomar la salida en el <strong>punto kilométrico 38</strong> de la A-2.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <span class="step-road">M-226</span>
+                                    <p>Dirección a <strong>Los Santos de la Humosa</strong> por la carretera provincial M-226.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="step-number">4</span>
+                                <div class="step-content">
+                                    <span class="step-road">M-235</span>
+                                    <p>Tras cruzar el casco urbano de Los Santos de la Humosa, continuar por la carretera 
+                                    provincial M-235 en dirección a <strong>El Pozo de Guadalajara</strong>.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="step-number">5</span>
+                                <div class="step-content">
+                                    <span class="step-road">CM-2004</span>
+                                    <p>En El Pozo de Guadalajara, tomar la carretera autonómica <strong>CM-2004</strong> 
+                                    que conduce directamente hasta <strong>Pioz</strong>.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Desde Guadalajara -->
+                    <div class="ruta-card">
+                        <div class="ruta-header">
+                            <span class="ruta-icon">🏛️</span>
+                            <div>
+                                <h3>Desde Guadalajara</h3>
+                                <p style="color: var(--text-secondary); margin: 0;">Aproximadamente 20 minutos en coche</p>
+                            </div>
+                        </div>
+
+                        <ol class="ruta-steps">
+                            <li>
+                                <span class="step-number">1</span>
+                                <div class="step-content">
+                                    <span class="step-road">CM-2004</span>
+                                    <p>Tomar la carretera autonómica <strong>CM-2004</strong> en dirección sur.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="step-number">2</span>
+                                <div class="step-content">
+                                    <p>Pasar por el municipio de <strong>Chiloeches</strong>.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="step-number">3</span>
+                                <div class="step-content">
+                                    <p>Continuar hasta <strong>El Pozo de Guadalajara</strong>.</p>
+                                </div>
+                            </li>
+                            <li>
+                                <span class="step-number">4</span>
+                                <div class="step-content">
+                                    <span class="step-road">CM-2004</span>
+                                    <p>Seguir por la misma carretera hasta llegar a <strong>Pioz</strong>.</p>
+                                </div>
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="consejo-box">
+                        <p>
+                            <strong>💡 Consejo:</strong> Para una navegación precisa, te recomendamos utilizar GPS o aplicaciones 
+                            de mapas introduciendo "Pioz, Guadalajara" como destino.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Monumentos de Interés -->
+                <section class="monumentos-section">
+                    <h2>🏛️ Monumentos de Interés</h2>
+                    
+                    <div class="monumentos-grid">
+                        <div class="monumento-card">
+                            <div class="monumento-header">
+                                <span class="monumento-icon">⛪</span>
+                                <h3>La Iglesia Parroquial</h3>
+                                <p>Nuestra Señora de San Sebastián</p>
+                            </div>
+                            <div class="monumento-body">
+                                <p>
+                                    Templo de gran valor histórico y arquitectónico que preside el casco urbano de Pioz. 
+                                    Dedicada a Nuestra Señora de San Sebastián, patrón del municipio.
+                                </p>
+                                <a href="iglesia.html" class="monumento-link">Más información →</a>
+                            </div>
+                        </div>
+
+                        <div class="monumento-card">
+                            <div class="monumento-header">
+                                <span class="monumento-icon">🏰</span>
+                                <h3>El Castillo de Pioz</h3>
+                                <p>Castillo del Cardenal Mendoza</p>
+                            </div>
+                            <div class="monumento-body">
+                                <p>
+                                    Fortaleza histórica declarada Bien de Interés Cultural. Antigua residencia del 
+                                    Cardenal Mendoza, constituye el símbolo más emblemático del patrimonio de Pioz.
+                                </p>
+                                <a href="../villa.html#castillo" class="monumento-link">Más información →</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-situacion">
+                    <h2>📞 Información Turística y Municipal</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para más información sobre cómo llegar o visitar Pioz
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

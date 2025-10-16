@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tradiciones de Pioz - Fiestas patronales, celebraciones y costumbres del municipio">
+    <title>Tradiciones | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .tradiciones-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-tradiciones {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-tradiciones::before {
+            content: '🎉';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-tradiciones h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-tradiciones p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #e74c3c;
+        }
+        
+        .intro-box h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .calendario-section {
+            background: #fff3e0;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .calendario-section {
+            background: #3a2a1a;
+        }
+        
+        .calendario-section h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .calendario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .fecha-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            border-top: 3px solid #e74c3c;
+        }
+        
+        .fecha-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .fecha-card h3 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-xs);
+            font-size: 1.2rem;
+        }
+        
+        .fecha-date {
+            font-weight: 700;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .fecha-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .fiestas-principales {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .fiestas-principales h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .fiesta-destacada {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+            border-top: 5px solid #e74c3c;
+            transition: all var(--transition-base);
+        }
+        
+        .fiesta-destacada:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .fiesta-header {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+        
+        .fiesta-icon-large {
+            font-size: 5rem;
+        }
+        
+        .fiesta-title h3 {
+            color: white;
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: 1.8rem;
+        }
+        
+        .fiesta-subtitle {
+            margin: 0;
+            opacity: 0.95;
+        }
+        
+        .fiesta-content {
+            padding: var(--spacing-xl);
+        }
+        
+        .fiesta-description {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .fiesta-meta {
+            display: flex;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        .meta-item strong {
+            color: #e74c3c;
+        }
+        
+        .btn-ver-mas {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-md) var(--spacing-xl);
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-ver-mas:hover {
+            background: #c0392b;
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .programas-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .programas-section h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .programas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .programa-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #e74c3c;
+            transition: all var(--transition-fast);
+        }
+        
+        .programa-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .programa-card h3 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+        
+        .programa-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .btn-descargar-programa {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: #e74c3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-descargar-programa:hover {
+            background: #c0392b;
+            text-decoration: none;
+        }
+        
+        .galeria-promo {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .galeria-promo h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .galeria-promo p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-tradiciones {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-tradiciones h2 {
+            color: #e74c3c;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #e74c3c;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #e74c3c;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-tradiciones h1 {
+                font-size: 2rem;
+            }
+            
+            .fiesta-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Tradiciones</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container tradiciones-container">
+                <div class="hero-tradiciones">
+                    <h1>🎉 Tradiciones de Pioz</h1>
+                    <p>Fiestas, celebraciones y costumbres que nos unen como pueblo</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-box">
+                    <h2>Nuestras Tradiciones</h2>
+                    <p>
+                        <strong>Pioz</strong>, como todos los pueblos, posee sus propias tradiciones. Algunas de ellas 
+                        se están recuperando con el esfuerzo de los vecinos, mientras que otras se mantienen vivas a lo 
+                        largo del tiempo, transmitidas de generación en generación.
+                    </p>
+                    <p>
+                        Las principales tradiciones de nuestro municipio incluyen las <strong>fiestas patronales de 
+                        San Donato</strong>, la festividad de la Parroquia <strong>San Sebastián</strong>, 
+                        <strong>La Candelaria</strong>, <strong>San Isidro</strong> como patrón de los labradores, 
+                        y las recuperadas como <strong>La Jornada Medieval</strong> (Fiesta del Castillo de Pioz).
+                    </p>
+                    <p style="background: var(--bg-tertiary); padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-md);">
+                        <strong>ℹ️ Nota:</strong> Aunque cada celebración tiene su <strong>apartado específico con fechas, 
+                        detalles e información completa</strong>, esta página sirve para dejar constancia del calendario 
+                        festivo y la proximidad de los eventos.
+                    </p>
+                </article>
+
+                <!-- Calendario de Fiestas -->
+                <section class="calendario-section">
+                    <h2>📅 Calendario de Fiestas y Celebraciones</h2>
+                    
+                    <div class="calendario-grid">
+                        <div class="fecha-card">
+                            <span class="fecha-icon">⛪</span>
+                            <h3>San Sebastián</h3>
+                            <p class="fecha-date">20 de enero</p>
+                            <p>Patrón de nuestra iglesia parroquial</p>
+                        </div>
+
+                        <div class="fecha-card">
+                            <span class="fecha-icon">🕯️</span>
+                            <h3>La Candelaria</h3>
+                            <p class="fecha-date">1º sábado de febrero</p>
+                            <p>Fiesta tradicional mariana</p>
+                        </div>
+
+                        <div class="fecha-card">
+                            <span class="fecha-icon">🌾</span>
+                            <h3>San Isidro</h3>
+                            <p class="fecha-date">15 de mayo</p>
+                            <p>Patrón de los labradores</p>
+                        </div>
+
+                        <div class="fecha-card">
+                            <span class="fecha-icon">🏰</span>
+                            <h3>Fiesta del Castillo</h3>
+                            <p class="fecha-date">Mayo / Junio (variable)</p>
+                            <p>Jornada Medieval recuperada</p>
+                        </div>
+
+                        <div class="fecha-card">
+                            <span class="fecha-icon">🎉</span>
+                            <h3>San Donato</h3>
+                            <p class="fecha-date">4º domingo de agosto</p>
+                            <p>Patrón del pueblo - Fiestas mayores</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Fiestas Principales -->
+                <section class="fiestas-principales">
+                    <h2>🎭 Fiestas y Celebraciones Principales</h2>
+
+                    <!-- Fiesta del Castillo -->
+                    <div class="fiesta-destacada">
+                        <div class="fiesta-header">
+                            <span class="fiesta-icon-large">🏰</span>
+                            <div class="fiesta-title">
+                                <h3>Fiesta del Castillo de Pioz</h3>
+                                <p class="fiesta-subtitle">Jornada Medieval Recuperada</p>
+                            </div>
+                        </div>
+                        <div class="fiesta-content">
+                            <p class="fiesta-description">
+                                La <strong>Fiesta del Castillo</strong> o <strong>Jornada Medieval</strong> es una 
+                                tradición recuperada que recrea la época medieval con mercado artesano, actividades 
+                                culturales, música, teatro y recreaciones históricas en el entorno del Castillo de Pioz. 
+                                Una celebración que transporta a vecinos y visitantes a tiempos pasados.
+                            </p>
+                            <div class="fiesta-meta">
+                                <div class="meta-item">
+                                    <span>📅</span>
+                                    <div><strong>Fecha:</strong> Variable (Mayo/Junio)</div>
+                                </div>
+                                <div class="meta-item">
+                                    <span>📍</span>
+                                    <div><strong>Lugar:</strong> Castillo de Pioz y alrededores</div>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🎭</span>
+                                    <div><strong>Tipo:</strong> Fiesta cultural medieval</div>
+                                </div>
+                            </div>
+                            <a href="fiesta_castillo.html" class="btn-ver-mas">
+                                Ver información completa →
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Fiestas de San Donato -->
+                    <div class="fiesta-destacada" style="border-top-color: #27ae60;">
+                        <div class="fiesta-header" style="background: linear-gradient(135deg, #27ae60 0%, #229954 100%);">
+                            <span class="fiesta-icon-large">🎉</span>
+                            <div class="fiesta-title">
+                                <h3>Fiestas en Honor a San Donato</h3>
+                                <p class="fiesta-subtitle">Fiestas Patronales - 4º Domingo de Agosto</p>
+                            </div>
+                        </div>
+                        <div class="fiesta-content">
+                            <p class="fiesta-description">
+                                Las <strong>Fiestas Patronales de San Donato</strong> son las <strong>fiestas mayores 
+                                del municipio</strong>. Durante varios días, Pioz celebra a su patrón con procesiones 
+                                religiosas, verbenas populares, actividades deportivas, comidas vecinales y un completo 
+                                programa de actos para todas las edades.
+                            </p>
+                            <div class="fiesta-meta">
+                                <div class="meta-item">
+                                    <span>📅</span>
+                                    <div><strong>Fecha:</strong> 4º domingo de agosto y días previos</div>
+                                </div>
+                                <div class="meta-item">
+                                    <span>⛪</span>
+                                    <div><strong>Patrón:</strong> San Donato</div>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🎊</span>
+                                    <div><strong>Tipo:</strong> Fiestas patronales</div>
+                                </div>
+                            </div>
+                            <a href="fiestas_donato.html" class="btn-ver-mas" style="background: #27ae60;">
+                                Ver información completa →
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Fiestas de la Candelaria -->
+                    <div class="fiesta-destacada" style="border-top-color: #f39c12;">
+                        <div class="fiesta-header" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                            <span class="fiesta-icon-large">🕯️</span>
+                            <div class="fiesta-title">
+                                <h3>Fiestas de la Candelaria</h3>
+                                <p class="fiesta-subtitle">Festividad Mariana - 1º Sábado de Febrero</p>
+                            </div>
+                        </div>
+                        <div class="fiesta-content">
+                            <p class="fiesta-description">
+                                Las <strong>Fiestas de la Candelaria</strong> se celebran el primer sábado de febrero 
+                                en honor a la Virgen de la Candelaria. Es una festividad tradicional con raíces profundas 
+                                en el pueblo, mantenida por la <strong>Hermandad de las Hermanas de La Candelaria</strong>, 
+                                que incluye actos religiosos y celebraciones populares.
+                            </p>
+                            <div class="fiesta-meta">
+                                <div class="meta-item">
+                                    <span>📅</span>
+                                    <div><strong>Fecha:</strong> 1º sábado de febrero</div>
+                                </div>
+                                <div class="meta-item">
+                                    <span>🕯️</span>
+                                    <div><strong>Advocación:</strong> Virgen de la Candelaria</div>
+                                </div>
+                                <div class="meta-item">
+                                    <span>⛪</span>
+                                    <div><strong>Tipo:</strong> Fiesta religiosa tradicional</div>
+                                </div>
+                            </div>
+                            <a href="fiestas_candelaria.html" class="btn-ver-mas" style="background: #f39c12;">
+                                Ver información completa →
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Programas y Documentos -->
+                <section class="programas-section">
+                    <h2>📋 Programas de Fiestas y Bandos</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Consulta los programas oficiales y bandos municipales de las próximas celebraciones
+                    </p>
+                    
+                    <div class="programas-grid">
+                        <div class="programa-card">
+                            <h3>📢 BANDO Corte San Donato 2025</h3>
+                            <p>Bando municipal anunciando el corte de San Donato y detalles de las fiestas patronales</p>
+                            <a href="#" class="btn-descargar-programa" download>
+                                📥 Descargar Bando
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <h3>🎉 PROGRAMA San Donato 2025</h3>
+                            <p>Programa completo de actos de las fiestas patronales de San Donato</p>
+                            <a href="#" class="btn-descargar-programa" download>
+                                📥 Descargar Programa
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <h3>🕯️ Actos Virgen de la Candelaria</h3>
+                            <p>Programa de actos religiosos y celebraciones de la festividad de La Candelaria</p>
+                            <a href="#" class="btn-descargar-programa" download>
+                                📥 Descargar Programa
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <h3>🏰 Fiesta del Castillo 2022</h3>
+                            <p>Programa de la Jornada Medieval en el Castillo de Pioz (edición anterior de referencia)</p>
+                            <a href="#" class="btn-descargar-programa" download>
+                                📥 Descargar Programa
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Galería de Fotos -->
+                <section class="galeria-promo">
+                    <h2>📸 Galería de Fotos de Nuestras Fiestas</h2>
+                    <p>
+                        Revive los mejores momentos de nuestras tradiciones a través de imágenes
+                    </p>
+                    <a href="visita_fotografica.html" class="btn btn-primary" style="background: white; color: #e74c3c;">
+                        Ver Galería Fotográfica →
+                    </a>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-tradiciones">
+                    <h2>📞 Información sobre Fiestas y Eventos</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para más información sobre programas, actividades o colaborar en la organización
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

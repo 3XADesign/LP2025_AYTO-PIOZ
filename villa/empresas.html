@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Empresas de Pioz - Asociaciones, AMPAs y actividades cívicas, culturales y deportivas del municipio">
+    <title>Empresas de Pioz | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .empresas-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-empresas {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-empresas::before {
+            content: '🏢';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-empresas h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-empresas p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #3498db;
+        }
+        
+        .intro-box h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .cta-box {
+            background: #d1ecf1;
+            padding: var(--spacing-md);
+            border-left: 4px solid #0c5460;
+            border-radius: 4px;
+            margin-top: var(--spacing-lg);
+        }
+        
+        [data-theme="dark"] .cta-box {
+            background: #1a3a47;
+        }
+        
+        .cta-box strong {
+            color: #0c5460;
+        }
+        
+        [data-theme="dark"] .cta-box strong {
+            color: #5dade2;
+        }
+        
+        .section-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .section-header h2 {
+            color: white;
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: 2rem;
+        }
+        
+        .section-header p {
+            margin: 0;
+            opacity: 0.95;
+        }
+        
+        .ampas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .ampa-card {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid #3498db;
+        }
+        
+        .ampa-icon {
+            font-size: 4rem;
+            display: block;
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .ampa-card h3 {
+            color: #3498db;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        
+        .ampa-info {
+            color: var(--text-primary);
+        }
+        
+        .ampa-info p {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-sm);
+            font-size: var(--font-size-small);
+        }
+        
+        .ampa-info strong {
+            color: #3498db;
+            min-width: 80px;
+        }
+        
+        .actividades-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .location-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .location-header {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .location-icon {
+            font-size: 3rem;
+        }
+        
+        .location-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+        
+        .horarios-table {
+            padding: var(--spacing-lg);
+        }
+        
+        .horario-dia {
+            border-bottom: 1px solid var(--border-color);
+            padding: var(--spacing-md) 0;
+        }
+        
+        .horario-dia:last-child {
+            border-bottom: none;
+        }
+        
+        .dia-nombre {
+            font-weight: 700;
+            color: #2ecc71;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+        
+        .actividades-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-xs);
+        }
+        
+        .actividad-tag {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            color: var(--text-primary);
+            border-left: 3px solid #2ecc71;
+        }
+        
+        .asociaciones-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .centro-cultural-info {
+            background: #f0f9ff;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        [data-theme="dark"] .centro-cultural-info {
+            background: #1a3a47;
+        }
+        
+        .centro-cultural-info h3 {
+            color: #3498db;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .centro-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .centro-info-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+        
+        .centro-info-item span {
+            font-size: 1.5rem;
+        }
+        
+        .contacto-empresas {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-empresas h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #3498db;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #3498db;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-empresas h1 {
+                font-size: 2rem;
+            }
+            
+            .location-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Empresas de Pioz</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container empresas-container">
+                <div class="hero-empresas">
+                    <h1>🏢 Empresas de Pioz</h1>
+                    <p>Asociaciones, AMPAs y Actividades Cívicas del Municipio</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-box">
+                    <h2>Actividades y Organizaciones del Municipio</h2>
+                    <p>
+                        Esta sección está dedicada a las <strong>actividades y organizaciones cívicas, culturales y 
+                        educativas</strong> que operan en el municipio de Pioz. Aquí encontrarás información sobre las 
+                        <strong>Asociaciones de Padres y Madres de Alumnos (AMPAs)</strong>, las distintas 
+                        <strong>actividades deportivas y culturales</strong> organizadas, y los horarios de las 
+                        instalaciones municipales.
+                    </p>
+                    <p>
+                        El objetivo es difundir información relacionada con las <strong>oportunidades de participación 
+                        ciudadana</strong>, actividades formativas, deportivas y de ocio disponibles para todos los 
+                        vecinos de Pioz.
+                    </p>
+
+                    <div class="cta-box">
+                        <strong>📞 ¿Te interesa alguna actividad?</strong>
+                        <p style="color: var(--text-primary); margin: var(--spacing-xs) 0 0 0;">
+                            Si alguna actividad te causa interés y quieres participar, no dudes en ponerte en contacto 
+                            con nosotros en el <strong>949 272 076</strong> o visitar el Ayuntamiento para más información.
+                        </p>
+                    </div>
+                </article>
+
+                <!-- AMPAs -->
+                <section>
+                    <div class="section-header">
+                        <h2>👨‍👩‍👧‍👦 AMPAs - Asociaciones de Padres y Madres</h2>
+                        <p>Actividades organizadas por los AMPAs de los colegios de Pioz</p>
+                    </div>
+
+                    <div class="ampas-grid">
+                        <div class="ampa-card">
+                            <span class="ampa-icon">🏫</span>
+                            <h3>AMPA CEIP CASTILLO DE PIOZ</h3>
+                            <div class="ampa-info">
+                                <p>
+                                    <strong>📞 Teléfono:</strong>
+                                    <a href="tel:949272262">949 272 262</a>
+                                </p>
+                                <p>
+                                    <strong>📍 Ubicación:</strong>
+                                    Camino de Aranzueque, 19162 Pioz, Guadalajara
+                                </p>
+                                <p style="margin-top: var(--spacing-md); color: var(--text-secondary); font-size: var(--font-size-small);">
+                                    Organiza actividades extraescolares en el CEIP Castillo de Pioz, incluyendo deportes, 
+                                    idiomas, danza y artes marciales.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="ampa-card">
+                            <span class="ampa-icon">🌳</span>
+                            <h3>AMPA COLEGIO DE LA ARBOLEDA</h3>
+                            <div class="ampa-info">
+                                <p>
+                                    <strong>📞 Teléfono:</strong>
+                                    <a href="tel:949050144">949 050 144</a>
+                                </p>
+                                <p>
+                                    <strong>📍 Ubicación:</strong>
+                                    C. de los Pinos, 19162 Guadalajara, Guadalajara
+                                </p>
+                                <p style="margin-top: var(--spacing-md); color: var(--text-secondary); font-size: var(--font-size-small);">
+                                    Coordina actividades deportivas y culturales en el Colegio de la Arboleda y 
+                                    el Pabellón Municipal.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Actividades por Ubicación -->
+                <section class="actividades-section">
+                    <div class="section-header">
+                        <h2>📅 Horarios de Actividades</h2>
+                        <p>Programación semanal de actividades en las instalaciones municipales</p>
+                    </div>
+
+                    <!-- CEIP Castillo de Pioz - Sala Polivalente/Aula -->
+                    <div class="location-card">
+                        <div class="location-header">
+                            <span class="location-icon">🏫</span>
+                            <div>
+                                <h3>CEIP Castillo de Pioz</h3>
+                                <p style="margin: 0; opacity: 0.9;">Sala Polivalente / Aula</p>
+                            </div>
+                        </div>
+                        <div class="horarios-table">
+                            <div class="horario-dia">
+                                <div class="dia-nombre">LUNES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-17:00 Flamenco infantil/primaria</span>
+                                    <span class="actividad-tag">16:00-17:00 Inglés primaria</span>
+                                    <span class="actividad-tag">18:30-19:30 Danza Moderna</span>
+                                    <span class="actividad-tag">19:30-20:30 Danza Moderna</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">MARTES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">15:45-16:30 Taekwondo 3-4 años</span>
+                                    <span class="actividad-tag">16:30-17:30 Taekwondo 5-6 años</span>
+                                    <span class="actividad-tag">17:30-18:30 Taekwondo 7-9 años</span>
+                                    <span class="actividad-tag">18:30-19:30 Taekwondo +10 años</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">MIÉRCOLES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-17:00 Flamenco infantil/primaria</span>
+                                    <span class="actividad-tag">16:00-17:00 Inglés primaria</span>
+                                    <span class="actividad-tag">18:00-19:00 Danza Moderna</span>
+                                    <span class="actividad-tag">19:00-20:30 Danza Moderna</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">JUEVES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">15:45-16:30 Taekwondo 3-4 años</span>
+                                    <span class="actividad-tag">16:30-17:30 Taekwondo 5-6 años</span>
+                                    <span class="actividad-tag">17:30-18:30 Taekwondo 7-9 años</span>
+                                    <span class="actividad-tag">18:30-19:30 Taekwondo +10 años</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">VIERNES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">17:00-19:00 Patinaje primaria</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CEIP Castillo de Pioz - Pabellón -->
+                    <div class="location-card">
+                        <div class="location-header" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                            <span class="location-icon">🏀</span>
+                            <div>
+                                <h3>CEIP Castillo de Pioz</h3>
+                                <p style="margin: 0; opacity: 0.9;">Pabellón Deportivo</p>
+                            </div>
+                        </div>
+                        <div class="horarios-table">
+                            <div class="horario-dia">
+                                <div class="dia-nombre">LUNES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-18:00 Fútbol C. Alcarria FS</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">MARTES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-17:00 Baloncesto</span>
+                                    <span class="actividad-tag">17:00-18:00 Gimnasia rítmica</span>
+                                    <span class="actividad-tag">19:00-20:00 Varias</span>
+                                    <span class="actividad-tag">20:00-21:00 Zumba</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">MIÉRCOLES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-18:00 Fútbol Alcarria FS</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">JUEVES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-17:00 Baloncesto</span>
+                                    <span class="actividad-tag">17:00-18:00 Gimnasia rítmica</span>
+                                    <span class="actividad-tag">19:00-20:00 Varias</span>
+                                    <span class="actividad-tag">20:00-21:00 Zumba</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">VIERNES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">20:00-21:00 Pilates</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pabellón Municipal Pioz (Arboleda) -->
+                    <div class="location-card">
+                        <div class="location-header" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
+                            <span class="location-icon">⚽</span>
+                            <div>
+                                <h3>Pabellón Municipal Pioz</h3>
+                                <p style="margin: 0; opacity: 0.9;">Arboleda</p>
+                            </div>
+                        </div>
+                        <div class="horarios-table">
+                            <div class="horario-dia">
+                                <div class="dia-nombre">LUNES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-17:00 Fútbol / Gimnasia rítmica</span>
+                                    <span class="actividad-tag">19:00-21:00 Fútbol sala Charquillos</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">MARTES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-17:00 Fútbol cole</span>
+                                    <span class="actividad-tag">19:00-21:00 Fútbol Villa</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">MIÉRCOLES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-17:00 Fútbol / Gimnasia rítmica</span>
+                                    <span class="actividad-tag">19:00-21:00 Fútbol sala Charquillos</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">JUEVES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-17:00 Fútbol cole</span>
+                                    <span class="actividad-tag">19:00-21:00 Fútbol Villa</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">VIERNES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">19:00-21:00 Fútbol sala Charquillos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Asociaciones - Centro Cultural -->
+                <section class="asociaciones-section">
+                    <div class="section-header">
+                        <h2>🎭 Asociaciones - Centro Cultural</h2>
+                        <p>Actividades organizadas por las diferentes asociaciones del municipio</p>
+                    </div>
+
+                    <div class="centro-cultural-info">
+                        <h3>📍 Centro Cultural de Pioz</h3>
+                        <div class="centro-info-grid">
+                            <div class="centro-info-item">
+                                <span>📞</span>
+                                <div>
+                                    <strong>Teléfono:</strong>
+                                    <a href="tel:949272050" style="color: #3498db; text-decoration: none;">949 272 050</a>
+                                </div>
+                            </div>
+                            <div class="centro-info-item">
+                                <span>📍</span>
+                                <div>
+                                    <strong>Ubicación:</strong>
+                                    C. de las Eras, 19162 Pioz, Guadalajara
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="location-card">
+                        <div class="location-header" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                            <span class="location-icon">🎨</span>
+                            <div>
+                                <h3>Centro Cultural de Pioz</h3>
+                                <p style="margin: 0; opacity: 0.9;">Horarios de Asociaciones</p>
+                            </div>
+                        </div>
+                        <div class="horarios-table">
+                            <div class="horario-dia">
+                                <div class="dia-nombre">LUNES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">09:30-10:30 Capoeira</span>
+                                    <span class="actividad-tag">19:00-20:00 Fit Gipsy</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">MARTES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">09:30-11:30 Pilates</span>
+                                    <span class="actividad-tag">16:00-17:00 Esgrima</span>
+                                    <span class="actividad-tag">17:00-18:00 Gimnasia</span>
+                                    <span class="actividad-tag">18:00-20:00 Teatro</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">MIÉRCOLES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">09:30-10:30 Capoeira</span>
+                                    <span class="actividad-tag">18:30-19:00 Sevillanas</span>
+                                    <span class="actividad-tag">19:00-20:00 Fit Gipsy</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">JUEVES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">09:30-10:30 Zumba</span>
+                                    <span class="actividad-tag">10:30-11:30 Pilates</span>
+                                    <span class="actividad-tag">16:00-17:00 Esgrima</span>
+                                    <span class="actividad-tag">17:00-18:00 Gimnasia</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">VIERNES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">18:00-20:00 Teatro</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">SÁBADO</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">09:00-11:00 Esgrima</span>
+                                    <span class="actividad-tag">11:00-13:00 Batucada</span>
+                                </div>
+                            </div>
+                            <div class="horario-dia">
+                                <div class="dia-nombre">LUNES A JUEVES</div>
+                                <div class="actividades-list">
+                                    <span class="actividad-tag">16:00-20:00 Inglés</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-empresas">
+                    <h2>📞 Información y Contacto</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para más información sobre las actividades o inscripciones
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

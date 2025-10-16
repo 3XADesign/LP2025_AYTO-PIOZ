@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Castillo de Pioz - Bien de Interés Cultural, fortaleza del siglo XV, historia, arquitectura y visitas">
+    <title>Castillo de Pioz | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .castillo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-castillo {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-castillo::before {
+            content: '🏰';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-castillo h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-castillo .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-castillo p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .bic-badge {
+            background: #d4af37;
+            color: #000;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 700;
+            margin-top: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-destacada {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #34495e;
+        }
+        
+        .intro-destacada h2 {
+            color: #34495e;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .intro-destacada p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .destacados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .destacado-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .destacado-item span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .destacado-item strong {
+            display: block;
+            color: #34495e;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .historia-section {
+            background: #ecf0f1;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .historia-section {
+            background: #2c3e50;
+        }
+        
+        .historia-section h2 {
+            color: #34495e;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .historia-section h2 {
+            color: #ecf0f1;
+        }
+        
+        .timeline-castillo {
+            position: relative;
+            padding: var(--spacing-lg) 0;
+        }
+        
+        .timeline-castillo::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #34495e;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item-castillo {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .timeline-year {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #34495e;
+        }
+        
+        [data-theme="dark"] .timeline-year {
+            color: #ecf0f1;
+        }
+        
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #34495e;
+            border-radius: 50%;
+            border: 4px solid var(--card-bg);
+            box-shadow: 0 0 0 4px #34495e;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 4px solid #34495e;
+        }
+        
+        .timeline-content h3 {
+            color: #34495e;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .timeline-content h3 {
+            color: #ecf0f1;
+        }
+        
+        .timeline-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .arquitectura-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .arquitectura-section h2 {
+            color: #34495e;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        [data-theme="dark"] .arquitectura-section h2 {
+            color: #ecf0f1;
+        }
+        
+        .parte-castillo {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+            border-top: 4px solid #34495e;
+        }
+        
+        .parte-header {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .parte-icon {
+            font-size: 3rem;
+        }
+        
+        .parte-header h3 {
+            color: white;
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: 1.5rem;
+        }
+        
+        .parte-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: var(--font-size-small);
+        }
+        
+        .parte-content {
+            padding: var(--spacing-xl);
+        }
+        
+        .elementos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+        
+        .elemento-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 3px solid #34495e;
+        }
+        
+        .elemento-item h4 {
+            color: #34495e;
+            margin-bottom: var(--spacing-xs);
+            font-size: 1rem;
+        }
+        
+        [data-theme="dark"] .elemento-item h4 {
+            color: #ecf0f1;
+        }
+        
+        .elemento-item p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .materiales-box {
+            background: #fff3cd;
+            border-left: 4px solid #856404;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin: var(--spacing-md) 0;
+        }
+        
+        [data-theme="dark"] .materiales-box {
+            background: #3a3320;
+        }
+        
+        .materiales-box h4 {
+            color: #856404;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        [data-theme="dark"] .materiales-box h4 {
+            color: #ffc107;
+        }
+        
+        .materiales-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .materiales-box li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+        }
+        
+        .conservacion-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .conservacion-section h2 {
+            color: #34495e;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .conservacion-section h2 {
+            color: #ecf0f1;
+        }
+        
+        .bic-info {
+            background: #d4af37;
+            color: #000;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .bic-info h3 {
+            margin-bottom: var(--spacing-md);
+            font-size: 1.5rem;
+        }
+        
+        .bic-info p {
+            margin: var(--spacing-xs) 0;
+            font-weight: 600;
+        }
+        
+        .propiedad-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .propiedad-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .propiedad-item span {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .propiedad-item h4 {
+            color: #34495e;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        [data-theme="dark"] .propiedad-item h4 {
+            color: #ecf0f1;
+        }
+        
+        .propiedad-item p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .relacionados-section {
+            background: #ecf0f1;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .relacionados-section {
+            background: #2c3e50;
+        }
+        
+        .relacionados-section h2 {
+            color: #34495e;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .relacionados-section h2 {
+            color: #ecf0f1;
+        }
+        
+        .relacionados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .relacionado-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #34495e;
+        }
+        
+        .relacionado-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .relacionado-header {
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .relacionado-icon {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .relacionado-header h3 {
+            color: #34495e;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .relacionado-header h3 {
+            color: #ecf0f1;
+        }
+        
+        .relacionado-header p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .relacionado-body {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+        }
+        
+        .relacionado-body p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .relacionado-link {
+            display: block;
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .relacionado-link:hover {
+            background: #2c3e50;
+            text-decoration: none;
+        }
+        
+        .contacto-castillo {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-castillo h2 {
+            color: #34495e;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .contacto-castillo h2 {
+            color: #ecf0f1;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #34495e;
+            flex-shrink: 0;
+        }
+        
+        [data-theme="dark"] .contacto-icon {
+            color: #ecf0f1;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #34495e;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        [data-theme="dark"] .contacto-content strong {
+            color: #ecf0f1;
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #34495e;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        [data-theme="dark"] .contacto-content a {
+            color: #3498db;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 991px) {
+            .timeline-castillo::before {
+                left: 30px;
+            }
+            
+            .timeline-item-castillo {
+                grid-template-columns: auto 1fr;
+            }
+            
+            .timeline-year {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .hero-castillo h1 {
+                font-size: 2rem;
+            }
+            
+            .parte-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Castillo de Pioz</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container castillo-container">
+                <div class="hero-castillo">
+                    <h1>🏰 El Castillo de Pioz</h1>
+                    <p class="subtitle">Castillo del Cardenal Mendoza</p>
+                    <p>Fortaleza renacentista de mediados del siglo XV</p>
+                    <span class="bic-badge">⭐ BIEN DE INTERÉS CULTURAL ⭐</span>
+                </div>
+
+                <!-- Introducción Destacada -->
+                <article class="intro-destacada">
+                    <h2>Un Tesoro del Patrimonio Alcarreño</h2>
+                    <p>
+                        El <strong>Castillo de Pioz</strong> es descrito como <strong>fuerte y robusto</strong>, 
+                        habiendo resistido admirablemente el paso de los años. Se trata de un 
+                        <strong>castillo-palacio</strong> que combina las defensas de una fortaleza con una planta 
+                        residencial en su interior.
+                    </p>
+                    <p>
+                        Es considerado uno de los <strong>mejores castillos conservados de la provincia de Guadalajara</strong> 
+                        y destaca por <strong>no haber tenido restauración alguna</strong>, conservando su estructura 
+                        original del siglo XV prácticamente intacta.
+                    </p>
+
+                    <div class="destacados-grid">
+                        <div class="destacado-item">
+                            <span>📅</span>
+                            <strong>1470-1492</strong>
+                            <p>Periodo de construcción</p>
+                        </div>
+                        <div class="destacado-item">
+                            <span>🏛️</span>
+                            <strong>BIC 1990</strong>
+                            <p>Bien de Interés Cultural</p>
+                        </div>
+                        <div class="destacado-item">
+                            <span>🏰</span>
+                            <strong>Sin restaurar</strong>
+                            <p>Estructura original</p>
+                        </div>
+                        <div class="destacado-item">
+                            <span>⭐</span>
+                            <strong>Mejor conservado</strong>
+                            <p>De la provincia</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Historia -->
+                <section class="historia-section">
+                    <h2>📜 Historia y Promotores</h2>
+                    
+                    <div class="timeline-castillo">
+                        <div class="timeline-item-castillo">
+                            <div class="timeline-year">c. 1469</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Pedro González de Mendoza</h3>
+                                <p>
+                                    El <strong>Gran Cardenal Mendoza</strong>, Señor de Pioz, ordena la construcción 
+                                    del castillo hacia 1469.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-castillo">
+                            <div class="timeline-year">1469</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Trueque de Señoríos</h3>
+                                <p>
+                                    El Cardenal Mendoza trueca el señorío de Pioz por el de Maqueda con 
+                                    <strong>Álvar Gómez de Ciudad Real</strong>, secretario de Enrique IV.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-castillo">
+                            <div class="timeline-year">1470-1492</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Construcción Principal</h3>
+                                <p>
+                                    <strong>Álvar Gómez de Ciudad Real</strong>, primer Señor de Pioz bajo este linaje, 
+                                    impulsa y ordena la construcción del castillo-palacio en su forma actual. La construcción 
+                                    puede acotarse entre finales de la segunda mitad del siglo XV.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-castillo">
+                            <div class="timeline-year">Siglo XV</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Ubicación Estratégica</h3>
+                                <p>
+                                    Se decide edificar el castillo en Pioz por su posición con vistas a la 
+                                    <strong>Cañada Real Galiana</strong>, vía de paso de ganado y mercancías, lo que 
+                                    permitía el cobro de tributo (<em>montazgo</em>) por el paso por estas tierras.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-castillo">
+                            <div class="timeline-year">1999-2002</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Excavaciones Arqueológicas</h3>
+                                <p>
+                                    Las excavaciones revelan la estructura interna de la planta sótano: caballerizas, 
+                                    almacenes, bodega y un aljibe bajo el patio central.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-castillo">
+                            <div class="timeline-year">1990</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Declaración BIC</h3>
+                                <p>
+                                    El <strong>7 de diciembre de 1990</strong>, el Castillo de Pioz es declarado 
+                                    <strong>Bien de Interés Cultural (BIC)</strong> y Monumento.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Arquitectura -->
+                <section class="arquitectura-section">
+                    <h2>🏗️ Arquitectura y Elementos Constructivos</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        El castillo se divide en tres partes principales perfectamente diferenciadas
+                    </p>
+
+                    <!-- Parte 1: La Fortaleza -->
+                    <div class="parte-castillo">
+                        <div class="parte-header">
+                            <span class="parte-icon">🛡️</span>
+                            <div>
+                                <h3>1. La Fortaleza</h3>
+                                <p>Sistema defensivo exterior y accesos</p>
+                            </div>
+                        </div>
+                        <div class="parte-content">
+                            <div class="materiales-box">
+                                <h4>🏗️ Materiales de Construcción</h4>
+                                <ul>
+                                    <li><strong>• Mampostería:</strong> Piedras toscamente labradas en los muros del edificio principal</li>
+                                    <li><strong>• Sillería:</strong> Piedras finamente labradas en las torres y el muro exterior</li>
+                                </ul>
+                            </div>
+
+                            <div class="elementos-grid">
+                                <div class="elemento-item">
+                                    <h4>🌊 Foso</h4>
+                                    <p>El castillo está rodeado por un foso que proporcionaba la primera línea de defensa.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>🌉 Puente Levadizo</h4>
+                                    <p>La entrada se realiza a través de un puente levadizo del que se conserva el estribo, protegido por machones.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>🏗️ Falsabraga</h4>
+                                    <p>Construcción defensiva posterior con torreones que sobresalen de la muralla, equipados con troneras de cruz y orbe.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>📐 Alambor / Escarpa</h4>
+                                    <p>La parte inclinada de la falsabraga, diseñada para dificultar el asalto.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>🚪 Poterna</h4>
+                                    <p>En la cara norte se encuentra una puerta disimulada con escalera estrecha que conecta con el foso para salir sin ser visto.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>🎯 Troneras de Cruz y Orbe</h4>
+                                    <p>Aberturas defensivas en los torreones para la artillería, características del siglo XV.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte 2: La Liza -->
+                    <div class="parte-castillo">
+                        <div class="parte-header">
+                            <span class="parte-icon">🛤️</span>
+                            <div>
+                                <h3>2. La Liza</h3>
+                                <p>Camino interior de vigilancia</p>
+                            </div>
+                        </div>
+                        <div class="parte-content">
+                            <p style="color: var(--text-primary); line-height: 1.6;">
+                                Es el <strong>camino que separa la falsabraga del edificio principal</strong> del Castillo. 
+                                Este espacio permitía la circulación de los defensores y el mantenimiento de las murallas.
+                            </p>
+                            
+                            <div class="elemento-item" style="margin-top: var(--spacing-md);">
+                                <h4>💧 Pozo</h4>
+                                <p>En la liza, en la cara este, se encuentra un pozo con paredes de sillares que proporcionaba agua al castillo.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parte 3: Edificio Principal -->
+                    <div class="parte-castillo">
+                        <div class="parte-header">
+                            <span class="parte-icon">🏛️</span>
+                            <div>
+                                <h3>3. El Edificio Principal</h3>
+                                <p>Zona residencial del castillo-palacio</p>
+                            </div>
+                        </div>
+                        <div class="parte-content">
+                            <div class="elementos-grid">
+                                <div class="elemento-item">
+                                    <h4>📐 Planta Cuadrada</h4>
+                                    <p>El edificio principal tiene una planta cuadrada perfecta, típica de la arquitectura militar del siglo XV.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>🗼 Tres Torreones Cilíndricos</h4>
+                                    <p>En tres de las esquinas se levantan torreones cilíndricos que refuerzan la estructura.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>👑 Torre del Homenaje</h4>
+                                    <p>
+                                        La más defendida, de planta irregular (circular y cuadrada). Su acceso era independiente 
+                                        a través de otro puente levadizo. Contenía las habitaciones principales de los señores.
+                                    </p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>🎨 Decoración Interior</h4>
+                                    <p>Las paredes de la zona residencial estaban enlucidas y posiblemente policromadas.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>🪟 Amplios Ventanales</h4>
+                                    <p>La planta residencial superior contaba con amplios ventanales que proporcionaban luz natural.</p>
+                                </div>
+
+                                <div class="elemento-item">
+                                    <h4>🏛️ Patio Central</h4>
+                                    <p>El edificio se organiza en torno a un patio central bajo el cual se descubrió un aljibe.</p>
+                                </div>
+                            </div>
+
+                            <div class="materiales-box" style="margin-top: var(--spacing-lg);">
+                                <h4>🔍 Hallazgos Arqueológicos (1999-2002)</h4>
+                                <p style="color: var(--text-primary); margin-bottom: var(--spacing-sm);">
+                                    Las excavaciones revelaron la estructura de la planta sótano:
+                                </p>
+                                <ul>
+                                    <li><strong>• Caballerizas:</strong> Zona para el alojamiento de los caballos</li>
+                                    <li><strong>• Almacenes:</strong> Espacios de almacenamiento de provisiones</li>
+                                    <li><strong>• Bodega:</strong> Área de conservación de alimentos y vinos</li>
+                                    <li><strong>• Aljibe:</strong> Depósito de agua bajo el patio central</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Conservación y Estatus Legal -->
+                <section class="conservacion-section">
+                    <h2>⚖️ Conservación y Estatus Legal</h2>
+                    
+                    <div class="bic-info">
+                        <h3>⭐ Bien de Interés Cultural (BIC)</h3>
+                        <p>📅 Declarado Monumento</p>
+                        <p>📜 Fecha de declaración: 7 de diciembre de 1990</p>
+                        <p>🏛️ Categoría: Monumento / Bien de Interés Cultural</p>
+                    </div>
+
+                    <div class="propiedad-grid">
+                        <div class="propiedad-item">
+                            <span>🏛️</span>
+                            <h4>Propiedad Municipal</h4>
+                            <p>
+                                Actualmente el <strong>Ayuntamiento de Pioz</strong> es su propietario, tras haber sido 
+                                expropiado de manos privadas para su protección.
+                            </p>
+                        </div>
+
+                        <div class="propiedad-item">
+                            <span>🛡️</span>
+                            <h4>Protección Legal</h4>
+                            <p>
+                                La <strong>Ordenanza 1ª del Casco Antiguo</strong> se refiere específicamente a la 
+                                conservación del Castillo, estableciendo que solo se permiten obras de conservación y mantenimiento.
+                            </p>
+                        </div>
+
+                        <div class="propiedad-item">
+                            <span>🏗️</span>
+                            <h4>Estado de Conservación</h4>
+                            <p>
+                                Dado su buen estado, es deseable una <strong>recuperación física de los elementos esenciales</strong>, 
+                                sin que pierda en absoluto sus características originales.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="background: var(--bg-tertiary); padding: var(--spacing-lg); border-radius: 8px; margin-top: var(--spacing-lg); text-align: center;">
+                        <p style="color: var(--text-primary); margin: 0;">
+                            <strong>📌 Normativa de Protección:</strong> Consulta la 
+                            <a href="../tramites/ordenanzas.html#cat-urbanismo" style="color: #34495e; font-weight: 600; text-decoration: underline;">
+                                Ordenanza 1ª del Casco Antiguo
+                            </a> para conocer las condiciones de protección del patrimonio histórico.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Contenido Relacionado -->
+                <section class="relacionados-section">
+                    <h2>🔗 Contenido Relacionado</h2>
+                    
+                    <div class="relacionados-grid">
+                        <div class="relacionado-card">
+                            <div class="relacionado-header">
+                                <span class="relacionado-icon">🛡️</span>
+                                <h3>Guardianes del Castillo</h3>
+                                <p>Asociación cultural</p>
+                            </div>
+                            <div class="relacionado-body">
+                                <p>
+                                    Grupo dedicado a la promoción, difusión y conservación del Castillo de Pioz y 
+                                    su patrimonio histórico.
+                                </p>
+                                <a href="guardianes_castillo.html" class="relacionado-link">Conocer más →</a>
+                            </div>
+                        </div>
+
+                        <div class="relacionado-card">
+                            <div class="relacionado-header">
+                                <span class="relacionado-icon">🎭</span>
+                                <h3>Fiesta del Castillo</h3>
+                                <p>Jornada Medieval</p>
+                            </div>
+                            <div class="relacionado-body">
+                                <p>
+                                    Celebración anual que recrea la época medieval con mercado, actividades culturales 
+                                    y representaciones históricas en el entorno del castillo.
+                                </p>
+                                <a href="fiesta_castillo.html" class="relacionado-link">Ver información →</a>
+                            </div>
+                        </div>
+
+                        <div class="relacionado-card">
+                            <div class="relacionado-header">
+                                <span class="relacionado-icon">📜</span>
+                                <h3>Historia de Pioz</h3>
+                                <p>Contexto histórico</p>
+                            </div>
+                            <div class="relacionado-body">
+                                <p>
+                                    Descubre la historia completa del municipio, desde la Reconquista hasta nuestros días, 
+                                    incluyendo el papel del castillo en el señorío de Pioz.
+                                </p>
+                                <a href="historia.html" class="relacionado-link">Leer historia →</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-castillo">
+                    <h2>📞 Información y Visitas</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para información sobre visitas guiadas o actividades en el castillo
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Ubicación</strong>
+                                <p>
+                                    Castillo de Pioz<br>
+                                    19162 Pioz, Guadalajara<br>
+                                    (Visible desde la Cañada Real Galiana)
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Información Ayuntamiento</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

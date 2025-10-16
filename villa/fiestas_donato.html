@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fiestas en Honor a San Donato - Fiestas Patronales de Pioz, programa de actos y celebraciones">
+    <title>Fiestas de San Donato | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .donato-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-donato {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-donato::before {
+            content: '🎉';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-donato h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-donato .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-donato p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #27ae60;
+        }
+        
+        .intro-box h2 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .intro-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .fecha-box {
+            background: #d4edda;
+            padding: var(--spacing-lg);
+            border-left: 4px solid #28a745;
+            border-radius: 4px;
+            text-align: center;
+            margin-top: var(--spacing-lg);
+        }
+        
+        [data-theme="dark"] .fecha-box {
+            background: #1a3a2a;
+        }
+        
+        .fecha-box strong {
+            color: #28a745;
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .fecha-box p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .colaboracion-section {
+            background: #f0f9ff;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .colaboracion-section {
+            background: #1a3a47;
+        }
+        
+        .colaboracion-section h2 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .colaboracion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .colaboracion-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .colaboracion-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .colaboracion-card h3 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .colaboracion-card p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+        }
+        
+        .actividades-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .actividades-section h2 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .actividades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .actividad-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-top: 3px solid #27ae60;
+            text-align: center;
+        }
+        
+        .actividad-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .actividad-card h3 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-xs);
+            font-size: 1rem;
+        }
+        
+        .actividad-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .noticias-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .noticias-section h2 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .noticia-destacada {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .noticia-destacada h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.8rem;
+        }
+        
+        .noticia-destacada .fecha {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 20px;
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .noticia-destacada p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .timeline-noticias {
+            display: grid;
+            gap: var(--spacing-md);
+        }
+        
+        .noticia-item {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #27ae60;
+        }
+        
+        .noticia-fecha {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .noticia-titulo {
+            color: #27ae60;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.2rem;
+        }
+        
+        .noticia-descripcion {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .programas-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .programas-section h2 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .programas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .programa-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+            transition: all var(--transition-fast);
+        }
+        
+        .programa-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .programa-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .programa-card h3 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-sm);
+            text-align: center;
+        }
+        
+        .programa-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .btn-descargar-programa {
+            display: block;
+            text-align: center;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: #27ae60;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-descargar-programa:hover {
+            background: #229954;
+            text-decoration: none;
+        }
+        
+        .galeria-promo {
+            background: linear-gradient(135deg, #27ae60 0%, #229954 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .galeria-promo h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .galeria-promo p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-donato {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-donato h2 {
+            color: #27ae60;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #27ae60;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #27ae60;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #27ae60;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-donato h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="tradiciones.html">Tradiciones</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Fiestas de San Donato</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container donato-container">
+                <div class="hero-donato">
+                    <h1>🎉 Fiestas en Honor a San Donato</h1>
+                    <p class="subtitle">Patrón del Pueblo de Pioz</p>
+                    <p>Las fiestas mayores más esperadas y celebradas del municipio</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-box">
+                    <h2>Nuestras Fiestas Patronales</h2>
+                    <p>
+                        Las <strong>Fiestas en Honor a San Donato</strong> son las <strong>fiestas mayores</strong> 
+                        del municipio de Pioz, las más esperadas y celebradas por todos los vecinos. 
+                        <strong>San Donato</strong> es el <strong>Patrón del pueblo</strong> y durante varios días 
+                        el municipio se viste de fiesta para honrar su memoria.
+                    </p>
+                    <p>
+                        Estas fiestas requieren la <strong>colaboración imprescindible de los jóvenes, peñas y 
+                        prácticamente todo el pueblo</strong>, lo que permite reducir el coste de las celebraciones 
+                        a una cantidad asumible y, sobre todo, crear un ambiente de participación y convivencia único.
+                    </p>
+                    <p>
+                        Los días de disfrute se componen de <strong>música, baile, disfraces, concursos y actuaciones 
+                        del grupo aficionado de teatro</strong>, junto con multitud de actividades para todas las edades.
+                    </p>
+
+                    <div class="fecha-box">
+                        <strong>📅 Fecha de celebración</strong>
+                        <p>4º domingo del mes de agosto y días previos</p>
+                    </div>
+                </article>
+
+                <!-- Colaboración Comunitaria -->
+                <section class="colaboracion-section">
+                    <h2>🤝 Participación Vecinal</h2>
+                    <p style="text-align: center; color: var(--text-primary); margin-bottom: var(--spacing-lg);">
+                        El éxito de nuestras fiestas se basa en la implicación de toda la comunidad
+                    </p>
+                    
+                    <div class="colaboracion-grid">
+                        <div class="colaboracion-card">
+                            <span class="colaboracion-icon">👥</span>
+                            <h3>Jóvenes del Pueblo</h3>
+                            <p>
+                                Organizan actividades, concursos y coordinan eventos nocturnos y diurnos
+                            </p>
+                        </div>
+
+                        <div class="colaboracion-card">
+                            <span class="colaboracion-icon">🎪</span>
+                            <h3>Peñas</h3>
+                            <p>
+                                Gestionan las verbenas, concursos de carrozas y actividades festivas tradicionales
+                            </p>
+                        </div>
+
+                        <div class="colaboracion-card">
+                            <span class="colaboracion-icon">🎭</span>
+                            <h3>Grupo de Teatro</h3>
+                            <p>
+                                Representaciones teatrales aficionadas que forman parte del programa cultural
+                            </p>
+                        </div>
+
+                        <div class="colaboracion-card">
+                            <span class="colaboracion-icon">🏘️</span>
+                            <h3>Vecinos</h3>
+                            <p>
+                                Participación activa en concursos, comidas populares y todas las actividades programadas
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Actividades Tradicionales -->
+                <section class="actividades-section">
+                    <h2>🎊 Actividades y Eventos Tradicionales</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Selección de las actividades que forman parte del programa festivo
+                    </p>
+                    
+                    <div class="actividades-grid">
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎵</span>
+                            <h3>Ronda de Mujeres</h3>
+                            <p>Tradicional ronda musical por las calles del pueblo</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🚒</span>
+                            <h3>Exhibición Vehículos Emergencia</h3>
+                            <p>Muestra de vehículos de bomberos, protección civil y servicios de emergencia</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🌙</span>
+                            <h3>Marcha Nocturna</h3>
+                            <p>Recorrido por los parajes naturales de Pioz bajo las estrellas</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🥊</span>
+                            <h3>Exhibición de Boxeo</h3>
+                            <p>Demostraciones deportivas y competiciones</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🧁</span>
+                            <h3>Taller de Repostería Infantil</h3>
+                            <p>Actividades culinarias para los más pequeños</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">💦</span>
+                            <h3>Fiesta del Agua</h3>
+                            <p>Tobogán de agua y juegos acuáticos para refrescarse</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🏛️</span>
+                            <h3>Charla Patrimonio Cultural</h3>
+                            <p>Conferencias sobre la historia y patrimonio de Pioz</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎺</span>
+                            <h3>Concierto Banda Modéjar</h3>
+                            <p>Música en directo de la banda municipal</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">💃</span>
+                            <h3>Actuación de Ronda</h3>
+                            <p>Música tradicional y bailes folklóricos</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🥋</span>
+                            <h3>Defensa Personal para Mujeres</h3>
+                            <p>Talleres de autodefensa y seguridad personal</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">💃</span>
+                            <h3>Gipsy Dance</h3>
+                            <p>Exhibiciones de baile y música gitana</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎨</span>
+                            <h3>Certamen de Pintura</h3>
+                            <p>Concurso artístico para pintores locales y visitantes</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🏃</span>
+                            <h3>Zumba</h3>
+                            <p>Clases de baile y ejercicio al aire libre</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎪</span>
+                            <h3>Concurso de Carrozas</h3>
+                            <p>Desfile y competición de carrozas decoradas por las peñas</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎭</span>
+                            <h3>Humor Amarillo</h3>
+                            <p>Juegos y pruebas divertidas para participantes y espectadores</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🃏</span>
+                            <h3>Campeonato de Brisca</h3>
+                            <p>Torneo de cartas tradicional</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🎯</span>
+                            <h3>Campeonato de Petanca</h3>
+                            <p>Competición del juego tradicional de bolas</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🃏</span>
+                            <h3>Campeonato de Mus</h3>
+                            <p>Torneo del juego de cartas más popular</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">⚽</span>
+                            <h3>Campeonato de Fútbol</h3>
+                            <p>Torneos deportivos entre equipos locales</p>
+                        </div>
+
+                        <div class="actividad-card">
+                            <span class="actividad-icon">🐂</span>
+                            <h3>Concurso de Recortes</h3>
+                            <p>Competición taurina tradicional</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Últimas Noticias -->
+                <section class="noticias-section">
+                    <h2>📰 Últimas Noticias y Convocatorias</h2>
+                    
+                    <div class="noticia-destacada">
+                        <span class="fecha">📅 2025</span>
+                        <h3>PROGRAMA SAN DONATO 2025</h3>
+                        <p>
+                            Ya está disponible el programa completo de las Fiestas Patronales de San Donato 2025. 
+                            Consulta todos los actos, horarios y actividades programadas para disfrutar de nuestras 
+                            fiestas mayores.
+                        </p>
+                    </div>
+
+                    <div class="timeline-noticias">
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">2025</span>
+                            <h4 class="noticia-titulo">📢 BANDO CORTE SAN DONATO 2025</h4>
+                            <p class="noticia-descripcion">
+                                Bando municipal anunciando el corte de calles y medidas de seguridad durante las 
+                                fiestas patronales de San Donato. Consulta los horarios de corte y accesos alternativos.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">2024</span>
+                            <h4 class="noticia-titulo">🎉 Convocatoria Fiestas 2024</h4>
+                            <p class="noticia-descripcion">
+                                Convocatoria oficial de las fiestas patronales 2024. Llamamiento a vecinos, peñas 
+                                y colectivos para participar en la organización y desarrollo de los actos.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">2023</span>
+                            <h4 class="noticia-titulo">🏆 Concursos y Campeonatos 2023</h4>
+                            <p class="noticia-descripcion">
+                                Información sobre los concursos y campeonatos celebrados: Zumba, Recortes, Carrozas, 
+                                Humor Amarillo, Brisca, Petanca, Mus y Fútbol. Resultados y ganadores.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">2022</span>
+                            <h4 class="noticia-titulo">📋 Programa San Donato 2022</h4>
+                            <p class="noticia-descripcion">
+                                Programa completo de las fiestas de 2022 con todas las actividades organizadas: 
+                                actuaciones, concursos, talleres, deportes y actos religiosos.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Programas y Documentos -->
+                <section class="programas-section">
+                    <h2>📋 Programas y Bandos</h2>
+                    
+                    <div class="programas-grid">
+                        <div class="programa-card">
+                            <span class="programa-icon">📄</span>
+                            <h3>Programa Actual</h3>
+                            <p>Programa de actos de las próximas fiestas patronales con horarios completos</p>
+                            <a href="#" class="btn-descargar-programa" download>
+                                📥 Descargar Programa
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <span class="programa-icon">📢</span>
+                            <h3>Bando de Corte</h3>
+                            <p>Información oficial sobre cortes de tráfico y medidas especiales durante las fiestas</p>
+                            <a href="../ayuntamiento/bandos.html" class="btn-descargar-programa">
+                                📋 Ver Bandos
+                            </a>
+                        </div>
+
+                        <div class="programa-card">
+                            <span class="programa-icon">📚</span>
+                            <h3>Ediciones Anteriores</h3>
+                            <p>Consulta los programas y documentos de celebraciones pasadas</p>
+                            <a href="#" class="btn-descargar-programa">
+                                📂 Ver Archivo
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Galería de Fotos -->
+                <section class="galeria-promo">
+                    <h2>📸 Galería de Fotos</h2>
+                    <p>
+                        Revive los mejores momentos de las Fiestas de San Donato a través de imágenes
+                    </p>
+                    <a href="visita_fotografica.html" class="btn btn-primary" style="background: white; color: #27ae60;">
+                        Ver Galería Fotográfica →
+                    </a>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-donato">
+                    <h2>📞 Información sobre las Fiestas de San Donato</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para más información sobre programas, participación o actividades
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center; margin-top: var(--spacing-xl);">
+                        <a href="tradiciones.html" class="btn btn-secondary">
+                            ← Volver a Tradiciones
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

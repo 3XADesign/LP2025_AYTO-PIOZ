@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Iglesia Parroquial de San Sebastián - Bien de Interés Cultural, historia, arquitectura mudéjar y patrimonio religioso de Pioz">
+    <title>Iglesia de San Sebastián | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .iglesia-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-iglesia {
+            background: linear-gradient(135deg, #7d3c98 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-iglesia::before {
+            content: '⛪';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-iglesia h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-iglesia .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-iglesia p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .bic-badge {
+            background: #d4af37;
+            color: #000;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 700;
+            margin-top: var(--spacing-md);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .intro-destacada {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #7d3c98;
+        }
+        
+        .intro-destacada h2 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .intro-destacada p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .ubicacion-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .ubicacion-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .ubicacion-item span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .ubicacion-item strong {
+            display: block;
+            color: #7d3c98;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .historia-section {
+            background: #f4ecf7;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .historia-section {
+            background: #3d2a47;
+        }
+        
+        .historia-section h2 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .timeline-iglesia {
+            position: relative;
+            padding: var(--spacing-lg) 0;
+        }
+        
+        .timeline-iglesia::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #7d3c98;
+            transform: translateX(-50%);
+        }
+        
+        .timeline-item-iglesia {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: var(--spacing-lg);
+            align-items: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .timeline-year {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #7d3c98;
+        }
+        
+        .timeline-dot {
+            width: 20px;
+            height: 20px;
+            background: #7d3c98;
+            border-radius: 50%;
+            border: 4px solid var(--card-bg);
+            box-shadow: 0 0 0 4px #7d3c98;
+            z-index: 1;
+        }
+        
+        .timeline-content {
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 4px solid #7d3c98;
+        }
+        
+        .timeline-content h3 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .timeline-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .arquitectura-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .arquitectura-section h2 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .elemento-arquitectonico {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-lg);
+            border-top: 4px solid #7d3c98;
+        }
+        
+        .elemento-header {
+            background: linear-gradient(135deg, #7d3c98 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        .elemento-icon {
+            font-size: 3rem;
+        }
+        
+        .elemento-header h3 {
+            color: white;
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: 1.5rem;
+        }
+        
+        .elemento-header p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: var(--font-size-small);
+        }
+        
+        .elemento-content {
+            padding: var(--spacing-xl);
+        }
+        
+        .caracteristicas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+        
+        .caracteristica-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 3px solid #7d3c98;
+        }
+        
+        .caracteristica-item h4 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-xs);
+            font-size: 1rem;
+        }
+        
+        .caracteristica-item p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .tecnica-mudejar {
+            background: #fff3cd;
+            border-left: 4px solid #856404;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin: var(--spacing-md) 0;
+        }
+        
+        [data-theme="dark"] .tecnica-mudejar {
+            background: #3a3320;
+        }
+        
+        .tecnica-mudejar h4 {
+            color: #856404;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        [data-theme="dark"] .tecnica-mudejar h4 {
+            color: #ffc107;
+        }
+        
+        .patrimonio-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .patrimonio-section h2 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .patrimonio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .patrimonio-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            border-top: 3px solid #7d3c98;
+        }
+        
+        .patrimonio-card span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .patrimonio-card h3 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .patrimonio-card p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .culto-section {
+            background: #f4ecf7;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .culto-section {
+            background: #3d2a47;
+        }
+        
+        .culto-section h2 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .devociones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .devocion-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .devocion-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .devocion-icon {
+            font-size: 3rem;
+        }
+        
+        .devocion-header h3 {
+            color: #7d3c98;
+            margin: 0;
+        }
+        
+        .devocion-content p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .horario-box {
+            background: linear-gradient(135deg, #7d3c98 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .horario-box h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .horario-box p {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .hermandades-box {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .hermandades-box h3 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .hermandades-box ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .hermandades-box li {
+            padding: var(--spacing-sm) 0;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .hermandades-box li::before {
+            content: '✓';
+            color: #7d3c98;
+            font-weight: bold;
+        }
+        
+        .relacionados-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .relacionados-section h2 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .relacionados-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .relacionado-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 3px solid #7d3c98;
+        }
+        
+        .relacionado-card a {
+            color: #7d3c98;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .relacionado-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .cronista-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-top: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .cronista-box p {
+            margin: 0;
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+        }
+        
+        .contacto-iglesia {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-iglesia h2 {
+            color: #7d3c98;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #7d3c98;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #7d3c98;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #7d3c98;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 991px) {
+            .timeline-iglesia::before {
+                left: 30px;
+            }
+            
+            .timeline-item-iglesia {
+                grid-template-columns: auto 1fr;
+            }
+            
+            .timeline-year {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .hero-iglesia h1 {
+                font-size: 2rem;
+            }
+            
+            .elemento-header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Iglesia de San Sebastián</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container iglesia-container">
+                <div class="hero-iglesia">
+                    <h1>⛪ Iglesia Parroquial de San Sebastián</h1>
+                    <p class="subtitle">Joya del patrimonio mudéjar de Pioz</p>
+                    <p>Templo histórico en el corazón del casco urbano</p>
+                    <span class="bic-badge">⭐ BIEN DE INTERÉS CULTURAL ⭐</span>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-destacada">
+                    <h2>Un Templo con Siglos de Historia</h2>
+                    <p>
+                        La <strong>Iglesia Parroquial de San Sebastián</strong> es un monumento declarado 
+                        <strong>Bien de Interés Cultural (BIC)</strong> que representa una de las joyas del 
+                        patrimonio histórico y religioso de Pioz.
+                    </p>
+                    <p>
+                        Situada en la <strong>Plaza Mayor</strong> del casco urbano, la iglesia muestra sucesivas 
+                        ampliaciones realizadas desde el <strong>siglo XIV</strong> hasta el siglo XVI, destacando 
+                        especialmente por su <strong>ábside de técnica mudéjar</strong> y su magnífico atrio porticado 
+                        con trabajo de cantería.
+                    </p>
+
+                    <div class="ubicacion-box">
+                        <div class="ubicacion-item">
+                            <span>📍</span>
+                            <strong>Plaza Mayor</strong>
+                            <p>Casco Urbano de Pioz</p>
+                        </div>
+                        <div class="ubicacion-item">
+                            <span>⭐</span>
+                            <strong>BIC</strong>
+                            <p>Monumento protegido</p>
+                        </div>
+                        <div class="ubicacion-item">
+                            <span>📅</span>
+                            <strong>S. XIV-XVI</strong>
+                            <p>Construcción y ampliaciones</p>
+                        </div>
+                        <div class="ubicacion-item">
+                            <span>🏛️</span>
+                            <strong>Mudéjar</strong>
+                            <p>Técnica constructiva</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Historia y Construcción -->
+                <section class="historia-section">
+                    <h2>📜 Historia y Construcción</h2>
+                    
+                    <div class="tecnica-mudejar">
+                        <h4>🏛️ Orígenes Mudéjares</h4>
+                        <p style="color: var(--text-primary); margin: 0;">
+                            La fecha inicial de construcción es desconocida, pero la tipología constructiva de la 
+                            nave central, con <strong>piedra y ladrillo</strong> en el exterior del ábside, sugiere 
+                            una <strong>técnica mudéjar</strong>, por lo que su construcción inicial pudo darse en el 
+                            <strong>siglo XIV o incluso antes</strong>. A mediados del siglo XV ya estaba en pie, 
+                            constituida únicamente por la nave central.
+                        </p>
+                    </div>
+
+                    <div class="timeline-iglesia">
+                        <div class="timeline-item-iglesia">
+                            <div class="timeline-year">S. XIV</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Construcción Inicial</h3>
+                                <p>
+                                    Edificación de la nave central con técnica mudéjar. El ábside se construye 
+                                    con sillarejo de piedra alternado con hiladas de ladrillo cocido.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-iglesia">
+                            <div class="timeline-year">1470</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>El Coro</h3>
+                                <p>
+                                    El coro actual es probablemente el referido en los Libros de Fábrica de 1470, 
+                                    durante el señorío de la familia Álvar Gómez de Ciudad Real.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-iglesia">
+                            <div class="timeline-year">1493-1495</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Primera Ampliación</h3>
+                                <p>
+                                    Construcción de la <strong>nave lateral</strong> (actual capillas), ampliación 
+                                    de la puerta principal y apertura de los tres arcos que conectan ambas naves. 
+                                    Obra cofinanciada por <strong>Pedro Gómez de Ciudad Real</strong>, II Señor de Pioz.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-iglesia">
+                            <div class="timeline-year">1510-1513</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Reconstrucción de la Torre</h3>
+                                <p>
+                                    El maestro cantero <strong>Juan de los Helgueros</strong> dirige la reconstrucción 
+                                    de la torre campanario de planta cuadrada.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-iglesia">
+                            <div class="timeline-year">1522</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>La Barbacana</h3>
+                                <p>
+                                    Se amuralló el recinto frente a la entrada sur, formando la <strong>barbacana</strong> 
+                                    (atrio exterior). Dirigida por <strong>Juan de los Helgueros</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-iglesia">
+                            <div class="timeline-year">1547-1553</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Segunda Ampliación - Atrio Porticado</h3>
+                                <p>
+                                    Construcción del <strong>atrio porticado</strong> frente a la entrada y el piso superior, 
+                                    así como nueva sacristía. Destacable por su <strong>magnífico trabajo de cantería</strong> 
+                                    con columnas rectangulares.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-iglesia">
+                            <div class="timeline-year">1768</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Campana Actual</h3>
+                                <p>
+                                    La campana que alberga la torre fue fundida en 1768 y continúa en uso.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item-iglesia">
+                            <div class="timeline-year">1836</div>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Fin de Enterramientos Interiores</h3>
+                                <p>
+                                    Hasta 1836 se realizaban enterramientos en el interior de la iglesia. A partir 
+                                    de esta fecha se trasladan al cementerio municipal.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Arquitectura y Elementos -->
+                <section class="arquitectura-section">
+                    <h2>🏛️ Arquitectura y Elementos Destacados</h2>
+
+                    <!-- El Ábside -->
+                    <div class="elemento-arquitectonico">
+                        <div class="elemento-header">
+                            <span class="elemento-icon">🏛️</span>
+                            <div>
+                                <h3>El Ábside Mudéjar</h3>
+                                <p>Elemento más antiguo - Siglo XIV o anterior</p>
+                            </div>
+                        </div>
+                        <div class="elemento-content">
+                            <div class="tecnica-mudejar">
+                                <h4>🎨 Técnica Mudéjar</h4>
+                                <p style="color: var(--text-primary); margin-bottom: var(--spacing-sm);">
+                                    El ábside semicircular es el elemento más antiguo y característico de la iglesia:
+                                </p>
+                                <ul style="list-style: none; padding: 0; margin: 0;">
+                                    <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">
+                                        <strong>• Construcción:</strong> Sillarejo de piedra alternado con filas de ladrillo cocido
+                                    </li>
+                                    <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">
+                                        <strong>• Coronamiento:</strong> Cenefa en dientes de sierra
+                                    </li>
+                                    <li style="padding: var(--spacing-xs) 0; color: var(--text-primary);">
+                                        <strong>• Estilo:</strong> Técnica mudéjar característica de la arquitectura medieval
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Torre Campanario -->
+                    <div class="elemento-arquitectonico">
+                        <div class="elemento-header">
+                            <span class="elemento-icon">🗼</span>
+                            <div>
+                                <h3>Torre Campanario</h3>
+                                <p>Reconstruida 1510-1513 por Juan de los Helgueros</p>
+                            </div>
+                        </div>
+                        <div class="elemento-content">
+                            <div class="caracteristicas-grid">
+                                <div class="caracteristica-item">
+                                    <h4>Estructura</h4>
+                                    <p>Un solo cuerpo de planta cuadrada a los pies de la iglesia</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Aberturas</h4>
+                                    <p>Vanos en arco de medio punto para la ventilación y el tañido de campanas</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Campana</h4>
+                                    <p>Fundida en 1768, sigue en uso actualmente</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Función</h4>
+                                    <p>Llamada a los fieles y anuncios importantes del municipio</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Atrio Porticado -->
+                    <div class="elemento-arquitectonico">
+                        <div class="elemento-header">
+                            <span class="elemento-icon">🏛️</span>
+                            <div>
+                                <h3>Atrio Porticado y Barbacana</h3>
+                                <p>Construcción 1547-1553</p>
+                            </div>
+                        </div>
+                        <div class="elemento-content">
+                            <p style="color: var(--text-primary); line-height: 1.6; margin-bottom: var(--spacing-md);">
+                                El atrio porticado frente a la entrada y su piso superior destacan por su 
+                                <strong>magnífico trabajo de cantería</strong> con columnas rectangulares, 
+                                considerado una de las obras más notables de la iglesia.
+                            </p>
+                            <div class="caracteristicas-grid">
+                                <div class="caracteristica-item">
+                                    <h4>Barbacana (1522)</h4>
+                                    <p>Recinto amurallado frente a la entrada sur, atrio exterior protegido</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Atrio Porticado</h4>
+                                    <p>Pórtico de entrada con columnas de cantería de gran calidad artística</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Piso Superior</h4>
+                                    <p>Construcción sobre el atrio con funciones administrativas y almacenamiento</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Sacristía Nueva</h4>
+                                    <p>Ampliación de los espacios auxiliares del templo</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nave y Estructura -->
+                    <div class="elemento-arquitectonico">
+                        <div class="elemento-header">
+                            <span class="elemento-icon">⛪</span>
+                            <div>
+                                <h3>Nave y Estructura General</h3>
+                                <p>Fisonomía resultado de sucesivas modificaciones</p>
+                            </div>
+                        </div>
+                        <div class="elemento-content">
+                            <p style="color: var(--text-primary); line-height: 1.6; margin-bottom: var(--spacing-md);">
+                                La iglesia presenta <strong>nave rectangular</strong>, torre a los pies, y 
+                                <strong>crucero cuadrado sobreelevado</strong> que se cierra en un ábside semicircular.
+                            </p>
+                            <div class="caracteristicas-grid">
+                                <div class="caracteristica-item">
+                                    <h4>Nave Central</h4>
+                                    <p>Rectangular, construcción original del siglo XIV con técnica mudéjar</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Nave Lateral</h4>
+                                    <p>Ampliación 1493-1495, hoy alberga capillas laterales</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Arcos de Conexión</h4>
+                                    <p>Tres arcos que comunican ambas naves (s. XV)</p>
+                                </div>
+                                <div class="caracteristica-item">
+                                    <h4>Crucero</h4>
+                                    <p>Cuadrado sobreelevado que da paso al ábside semicircular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Patrimonio Artístico -->
+                <section class="patrimonio-section">
+                    <h2>🎨 Patrimonio Artístico y Objetos de Culto</h2>
+                    
+                    <div class="patrimonio-grid">
+                        <div class="patrimonio-card">
+                            <span>✝️</span>
+                            <h3>Altar Mayor</h3>
+                            <p>
+                                Retablo repuesto tras la Guerra Civil (1936) con la escultura de 
+                                <strong>San Sebastián</strong> en el centro y la imagen de 
+                                <strong>San Donato</strong>, patrón de la localidad.
+                            </p>
+                        </div>
+
+                        <div class="patrimonio-card">
+                            <span>💧</span>
+                            <h3>Pila Bautismal</h3>
+                            <p>
+                                Tallada en una <strong>sola pieza de piedra caliza</strong>, alojada en el 
+                                baptisterio. Ejemplo de cantería tradicional.
+                            </p>
+                        </div>
+
+                        <div class="patrimonio-card">
+                            <span>🎵</span>
+                            <h3>El Coro</h3>
+                            <p>
+                                Estructura exterior de madera, probablemente la referida en los Libros de 
+                                Fábrica de 1470. Alberga el órgano del templo.
+                            </p>
+                        </div>
+
+                        <div class="patrimonio-card">
+                            <span>✨</span>
+                            <h3>La Custodia</h3>
+                            <p>
+                                Pieza de orfebrería con la fecha grabada de <strong>1673</strong>, 
+                                utilizada en las procesiones del Corpus Christi.
+                            </p>
+                        </div>
+
+                        <div class="patrimonio-card">
+                            <span>✝️</span>
+                            <h3>Cruz Procesional</h3>
+                            <p>
+                                Labrada en <strong>1564 por Antonio Faraz</strong>. En su cuadrón delantero 
+                                incluye una <strong>fortaleza amurallada</strong>, símbolo de la villa de Pioz.
+                            </p>
+                        </div>
+
+                        <div class="patrimonio-card">
+                            <span>⛪</span>
+                            <h3>Enterramientos Históricos</h3>
+                            <p>
+                                Hasta 1836 se realizaban enterramientos en el interior de la iglesia, 
+                                práctica común en la época medieval y moderna.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Devociones y Culto Actual -->
+                <section class="culto-section">
+                    <h2>🙏 Devociones y Culto Actual</h2>
+                    
+                    <div class="devociones-grid">
+                        <div class="devocion-card">
+                            <div class="devocion-header">
+                                <span class="devocion-icon">⛪</span>
+                                <h3>San Sebastián</h3>
+                            </div>
+                            <div class="devocion-content">
+                                <p>
+                                    <strong>Titular de la iglesia</strong>. Patrón invocado contra la peste. 
+                                    Su festividad se celebra el <strong>20 de enero</strong>.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="devocion-card">
+                            <div class="devocion-header">
+                                <span class="devocion-icon">🎉</span>
+                                <h3>San Donato</h3>
+                            </div>
+                            <div class="devocion-content">
+                                <p>
+                                    <strong>Patrón del pueblo</strong>. Sus fiestas se celebran el 
+                                    <strong>4º domingo de agosto</strong> con procesión y actos religiosos.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="devocion-card">
+                            <div class="devocion-header">
+                                <span class="devocion-icon">🕯️</span>
+                                <h3>Virgen de La Candelaria</h3>
+                            </div>
+                            <div class="devocion-content">
+                                <p>
+                                    Devoción mariana tradicional. Festividad el <strong>2 de febrero</strong> 
+                                    con bendición de candelas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="devocion-card">
+                            <div class="devocion-header">
+                                <span class="devocion-icon">🌾</span>
+                                <h3>San Isidro Labrador</h3>
+                            </div>
+                            <div class="devocion-content">
+                                <p>
+                                    Patrón de los agricultores. Celebración el <strong>15 de mayo</strong> 
+                                    con bendición de campos y romería.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="devocion-card">
+                            <div class="devocion-header">
+                                <span class="devocion-icon">⛪</span>
+                                <h3>San Roque</h3>
+                            </div>
+                            <div class="devocion-content">
+                                <p>
+                                    Santo con tradición histórica en Pioz. Antigua ermita dedicada a su devoción 
+                                    (mencionada en 1579).
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="horario-box">
+                        <h3>🕐 Horario de Misas</h3>
+                        <p><strong>Domingos: 12:00 horas</strong></p>
+                    </div>
+
+                    <div class="hermandades-box">
+                        <h3>👥 Hermandades Activas</h3>
+                        <ul>
+                            <li><strong>Hermandad de San Donato</strong> - Organiza las fiestas patronales de agosto</li>
+                            <li><strong>Hermanas de La Candelaria</strong> - Mantiene la tradición de la festividad de febrero</li>
+                        </ul>
+                        <p style="color: var(--text-primary); margin-top: var(--spacing-md); font-size: var(--font-size-small);">
+                            La parroquia mantiene gran actividad con catequesis, bodas, bautizos y peregrinaciones.
+                        </p>
+                    </div>
+
+                    <div class="cronista-box">
+                        <p>
+                            📖 <strong>Documentación elaborada por:</strong> César Gómez Fraguas, 
+                            Cronista Oficial de Pioz
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Enlaces Relacionados -->
+                <section class="relacionados-section">
+                    <h2>🔗 Contenido Relacionado</h2>
+                    
+                    <div class="relacionados-grid">
+                        <div class="relacionado-card">
+                            <a href="historia.html">
+                                📜 Historia de Pioz → Contexto histórico del municipio
+                            </a>
+                        </div>
+                        <div class="relacionado-card">
+                            <a href="casco_urbano.html">
+                                🏛️ Casco Urbano → Monumentos del centro histórico
+                            </a>
+                        </div>
+                        <div class="relacionado-card">
+                            <a href="castillo.html">
+                                🏰 Castillo de Pioz → Otro BIC del municipio
+                            </a>
+                        </div>
+                        <div class="relacionado-card">
+                            <a href="../cultura.html">
+                                🎨 Cultura → Actividades y eventos culturales
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-iglesia">
+                    <h2>📞 Información y Contacto</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para información sobre actividades religiosas, bodas o visitas
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Ubicación</strong>
+                                <p>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara<br>
+                                    Casco Urbano
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Ayuntamiento de Pioz</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Misas</strong>
+                                <p>
+                                    Domingos<br>
+                                    12:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Información Cultural</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

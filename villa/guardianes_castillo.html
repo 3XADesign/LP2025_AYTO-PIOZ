@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Guardianes del Castillo de Pioz - Proyecto de voluntariado para la conservación y promoción del patrimonio histórico">
+    <title>Guardianes del Castillo | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .guardianes-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-guardianes {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-guardianes::before {
+            content: '🛡️';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-guardianes h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-guardianes .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-guardianes p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .mision-box {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+            border-left: 4px solid #8b4513;
+        }
+        
+        .mision-box h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .mision-box h2 span {
+            font-size: 2rem;
+        }
+        
+        .mision-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .objetivos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .objetivo-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            border-top: 3px solid #8b4513;
+        }
+        
+        .objetivo-item span {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .objetivo-item h3 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+        
+        .objetivo-item p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .noticias-section {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .noticias-section h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .noticia-destacada {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .noticia-destacada h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.8rem;
+        }
+        
+        .noticia-destacada .fecha {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 20px;
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .noticia-destacada p {
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        .timeline-noticias {
+            position: relative;
+            padding-left: var(--spacing-xl);
+        }
+        
+        .timeline-noticias::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #8b4513;
+        }
+        
+        .noticia-item {
+            position: relative;
+            margin-bottom: var(--spacing-lg);
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .noticia-item::before {
+            content: '';
+            position: absolute;
+            left: -23px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #8b4513;
+            border-radius: 50%;
+            border: 3px solid var(--card-bg);
+            box-shadow: 0 0 0 3px #8b4513;
+        }
+        
+        .noticia-fecha {
+            display: inline-block;
+            background: #8b4513;
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-md);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .noticia-titulo {
+            color: #8b4513;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.2rem;
+        }
+        
+        .noticia-descripcion {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .colaboradores-section {
+            background: #f5e6d3;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .colaboradores-section {
+            background: #3a2f20;
+        }
+        
+        .colaboradores-section h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .colaborador-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .colaborador-card span {
+            font-size: 4rem;
+            display: block;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .colaborador-card h3 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .colaborador-card p {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .colaborador-card strong {
+            display: block;
+            color: #8b4513;
+            margin-top: var(--spacing-md);
+        }
+        
+        .participa-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .participa-section h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .formas-participar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .forma-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #8b4513;
+        }
+        
+        .forma-item span {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .forma-item h3 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .forma-item p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .cta-box {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            text-align: center;
+            margin-top: var(--spacing-lg);
+        }
+        
+        .cta-box h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .cta-box p {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .btn-contacto {
+            display: inline-block;
+            background: white;
+            color: #8b4513;
+            padding: var(--spacing-md) var(--spacing-xl);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-contacto:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+        
+        .enlaces-relacionados {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .enlaces-relacionados h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .enlaces-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .enlace-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            border-left: 3px solid #8b4513;
+            transition: all var(--transition-fast);
+        }
+        
+        .enlace-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .enlace-card a {
+            color: #8b4513;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .enlace-card a:hover {
+            text-decoration: underline;
+        }
+        
+        .contacto-guardianes {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-guardianes h2 {
+            color: #8b4513;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #8b4513;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #8b4513;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #8b4513;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-guardianes h1 {
+                font-size: 2rem;
+            }
+            
+            .timeline-noticias {
+                padding-left: var(--spacing-lg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Guardianes del Castillo</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container guardianes-container">
+                <div class="hero-guardianes">
+                    <h1>🛡️ Guardianes del Castillo</h1>
+                    <p class="subtitle">Proyecto de Voluntariado y Conservación del Patrimonio</p>
+                    <p>
+                        Protegiendo y promoviendo nuestro legado histórico para las futuras generaciones
+                    </p>
+                </div>
+
+                <!-- Misión del Proyecto -->
+                <article class="mision-box">
+                    <h2><span>🏰</span> Nuestro Proyecto</h2>
+                    <p>
+                        <strong>Guardianes del Castillo</strong> es una iniciativa cívica que nace del compromiso 
+                        de los ciudadanos de Pioz con la preservación, protección y promoción del 
+                        <strong>Castillo de Pioz</strong>, monumento declarado <strong>Bien de Interés Cultural (BIC)</strong>.
+                    </p>
+                    <p>
+                        Este proyecto fomenta la <strong>colaboración ciudadana</strong> en actividades culturales, 
+                        educativas y de conservación relacionadas con nuestro patrimonio histórico más emblemático.
+                    </p>
+
+                    <div class="objetivos-grid">
+                        <div class="objetivo-item">
+                            <span>🛡️</span>
+                            <h3>Proteger</h3>
+                            <p>Velar por la conservación del castillo y su entorno histórico</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span>📚</span>
+                            <h3>Educar</h3>
+                            <p>Difundir el valor histórico y cultural del monumento</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span>👥</span>
+                            <h3>Participar</h3>
+                            <p>Involucrar a la ciudadanía en actividades culturales</p>
+                        </div>
+                        <div class="objetivo-item">
+                            <span>🎭</span>
+                            <h3>Promocionar</h3>
+                            <p>Organizar eventos y visitas que den vida al patrimonio</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Noticias y Actividades -->
+                <section class="noticias-section">
+                    <h2>📰 Noticias y Actividades Recientes</h2>
+                    
+                    <!-- Noticia Destacada -->
+                    <div class="noticia-destacada">
+                        <span class="fecha">📅 29 de enero de 2025</span>
+                        <h3>Guardianes del Castillo - Nueva Etapa</h3>
+                        <p>
+                            El proyecto Guardianes del Castillo inicia una nueva etapa con renovadas actividades 
+                            de voluntariado y conservación. Se invita a todos los ciudadanos interesados en el 
+                            patrimonio histórico a unirse a esta iniciativa que busca mantener vivo el legado 
+                            del Castillo de Pioz para las futuras generaciones.
+                        </p>
+                    </div>
+
+                    <!-- Timeline de Actividades -->
+                    <div class="timeline-noticias">
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">13 de junio de 2024</span>
+                            <h4 class="noticia-titulo">🎭 Fiesta Medieval de Pioz</h4>
+                            <p class="noticia-descripcion">
+                                Celebración de la jornada medieval anual con mercado, actividades culturales y 
+                                representaciones históricas en el entorno del castillo. Una de las actividades 
+                                más esperadas del año que recrea la época medieval.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">10 de octubre de 2023</span>
+                            <h4 class="noticia-titulo">🤝 Proyecto Guardianes - Voluntariado</h4>
+                            <p class="noticia-descripcion">
+                                Lanzamiento de la convocatoria de voluntarios para el proyecto Guardianes del Castillo. 
+                                Se buscan personas comprometidas con la conservación del patrimonio para participar 
+                                en actividades de mantenimiento, difusión y organización de eventos.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">15 de junio de 2023</span>
+                            <h4 class="noticia-titulo">🏰 Fiesta del Castillo de Pioz</h4>
+                            <p class="noticia-descripcion">
+                                Nueva edición de la Fiesta del Castillo con gran participación ciudadana. 
+                                Actividades para todas las edades que acercan la historia medieval a vecinos y visitantes.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">24 de mayo de 2023</span>
+                            <h4 class="noticia-titulo">📅 Preparativos Fiesta del Castillo</h4>
+                            <p class="noticia-descripcion">
+                                Los Guardianes del Castillo comienzan los preparativos para la celebración anual, 
+                                coordinando con asociaciones locales y voluntarios las actividades programadas.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">22 de noviembre de 2022</span>
+                            <h4 class="noticia-titulo">👥 Visita Guiada al Castillo</h4>
+                            <p class="noticia-descripcion">
+                                Jornada de puertas abiertas con visitas guiadas organizadas por los Guardianes del Castillo. 
+                                Explicación detallada de la historia, arquitectura y estado de conservación del monumento.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">2 de noviembre de 2022</span>
+                            <h4 class="noticia-titulo">📊 Seguimiento del Proyecto</h4>
+                            <p class="noticia-descripcion">
+                                Informe de la 1ª y 2ª semana de actividades del Castillo de Pioz. Balance positivo 
+                                de las primeras acciones de voluntariado y conservación realizadas.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">16 de octubre de 2022</span>
+                            <h4 class="noticia-titulo">🎯 Guardianes del Castillo</h4>
+                            <p class="noticia-descripcion">
+                                Presentación oficial del proyecto Guardianes del Castillo a la comunidad. 
+                                Objetivos, actividades planificadas y llamamiento a la participación ciudadana.
+                            </p>
+                        </div>
+
+                        <div class="noticia-item">
+                            <span class="noticia-fecha">10 de octubre de 2022</span>
+                            <h4 class="noticia-titulo">🚀 Inicio Proyecto Guardianes</h4>
+                            <p class="noticia-descripcion">
+                                Lanzamiento oficial del Proyecto Guardianes del Castillo. Primera reunión organizativa 
+                                y establecimiento de los pilares fundamentales de la iniciativa.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Colaboradores -->
+                <section class="colaboradores-section">
+                    <h2>🤝 Colaboradores y Promotores</h2>
+                    
+                    <div class="colaborador-card">
+                        <span>👥</span>
+                        <h3>Amigos del Castillo de Pioz</h3>
+                        <p>
+                            Grupo de ciudadanos comprometidos con la preservación y difusión del patrimonio histórico 
+                            del Castillo de Pioz. Trabajan activamente en la investigación histórica, organización 
+                            de actividades culturales y sensibilización sobre la importancia de nuestro legado medieval.
+                        </p>
+                        <strong>Colaborador Destacado:</strong>
+                        <p style="margin-top: var(--spacing-xs);">
+                            José Antonio Gutiérrez Cobo - Asociado a Amigos del Castillo de Pioz, ha contribuido 
+                            significativamente a la documentación histórica y arquitectónica del monumento.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Cómo Participar -->
+                <section class="participa-section">
+                    <h2>🙋 ¿Cómo Puedes Participar?</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Hay muchas formas de convertirte en Guardián del Castillo
+                    </p>
+
+                    <div class="formas-participar">
+                        <div class="forma-item">
+                            <span>🤝</span>
+                            <h3>Voluntariado</h3>
+                            <p>
+                                Participa en actividades de conservación, mantenimiento y limpieza del entorno 
+                                del castillo y sus alrededores.
+                            </p>
+                        </div>
+
+                        <div class="forma-item">
+                            <span>📚</span>
+                            <h3>Investigación</h3>
+                            <p>
+                                Colabora en la investigación histórica y documentación del castillo, sus ocupantes 
+                                y su papel en la historia de Pioz.
+                            </p>
+                        </div>
+
+                        <div class="forma-item">
+                            <span>👥</span>
+                            <h3>Visitas Guiadas</h3>
+                            <p>
+                                Conviértete en guía voluntario para explicar la historia y arquitectura del 
+                                monumento a visitantes.
+                            </p>
+                        </div>
+
+                        <div class="forma-item">
+                            <span>🎭</span>
+                            <h3>Eventos Culturales</h3>
+                            <p>
+                                Ayuda en la organización de la Fiesta Medieval, jornadas culturales y otros 
+                                eventos relacionados con el castillo.
+                            </p>
+                        </div>
+
+                        <div class="forma-item">
+                            <span>📸</span>
+                            <h3>Difusión</h3>
+                            <p>
+                                Contribuye a dar a conocer el castillo en redes sociales, fotografía y 
+                                promoción turística del patrimonio.
+                            </p>
+                        </div>
+
+                        <div class="forma-item">
+                            <span>🎓</span>
+                            <h3>Educación</h3>
+                            <p>
+                                Participa en talleres educativos para escolares sobre historia medieval, 
+                                arquitectura y patrimonio cultural.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="cta-box">
+                        <h3>¿Quieres ser Guardian del Castillo?</h3>
+                        <p>
+                            Únete a esta iniciativa y ayuda a preservar nuestro patrimonio histórico. 
+                            Contáctanos para más información sobre cómo participar.
+                        </p>
+                        <a href="#contacto" class="btn-contacto">
+                            📧 Contactar con el Proyecto
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Enlaces Relacionados -->
+                <section class="enlaces-relacionados">
+                    <h2>🔗 Contenido Relacionado</h2>
+                    
+                    <div class="enlaces-grid">
+                        <div class="enlace-card">
+                            <a href="castillo.html">
+                                🏰 Castillo de Pioz → Información completa del monumento
+                            </a>
+                        </div>
+                        <div class="enlace-card">
+                            <a href="fiesta_castillo.html">
+                                🎭 Fiesta del Castillo → Jornada Medieval anual
+                            </a>
+                        </div>
+                        <div class="enlace-card">
+                            <a href="historia.html">
+                                📜 Historia de Pioz → Contexto histórico del castillo
+                            </a>
+                        </div>
+                        <div class="enlace-card">
+                            <a href="../cultura.html">
+                                🎨 Cultura → Actividades culturales del municipio
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto -->
+                <section class="contacto-guardianes" id="contacto">
+                    <h2>📞 Información y Contacto</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Para más información sobre el proyecto o cómo participar
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>
