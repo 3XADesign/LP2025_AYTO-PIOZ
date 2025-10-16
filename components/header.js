@@ -124,12 +124,30 @@
             </header>
 
             <div class="search-overlay" id="searchOverlay">
-                <div class="search-container">
-                    <form class="search-form" role="search">
-                        <input type="search" placeholder="Buscar en el portal..." aria-label="Buscar">
-                        <button type="submit">Buscar</button>
+                <div class="search-overlay-content">
+                    <button class="search-close" aria-label="Cerrar búsqueda">✕</button>
+                    <form class="search-form">
+                        <input 
+                            type="search" 
+                            name="q" 
+                            placeholder="¿Qué estás buscando?" 
+                            aria-label="Buscar en el sitio"
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit" class="btn-search-submit">
+                            🔍 Buscar
+                        </button>
                     </form>
-                    <button class="search-close" aria-label="Cerrar búsqueda">&times;</button>
+                    <div class="search-suggestions">
+                        <p>Búsquedas sugeridas:</p>
+                        <ul>
+                            <li><a href="#" onclick="quickSearch('bandos'); return false;">Bandos municipales</a></li>
+                            <li><a href="#" onclick="quickSearch('trámites'); return false;">Trámites</a></li>
+                            <li><a href="#" onclick="quickSearch('empadronamiento'); return false;">Empadronamiento</a></li>
+                            <li><a href="#" onclick="quickSearch('impuestos'); return false;">Impuestos</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         `;
@@ -168,6 +186,50 @@
             window.dispatchEvent(new Event('headerLoaded'));
         }
     }
+
+    // Si no existe el overlay de búsqueda en el HTML, añadirlo al final del body
+    document.addEventListener('DOMContentLoaded', function() {
+        if (!document.getElementById('searchOverlay')) {
+            const searchOverlay = document.createElement('div');
+            searchOverlay.id = 'searchOverlay';
+            searchOverlay.className = 'search-overlay';
+            searchOverlay.innerHTML = `
+                <div class="search-overlay-content">
+                    <button class="search-close" aria-label="Cerrar búsqueda">✕</button>
+                    <form class="search-form">
+                        <input 
+                            type="search" 
+                            name="q" 
+                            placeholder="¿Qué estás buscando?" 
+                            aria-label="Buscar en el sitio"
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit" class="btn-search-submit">
+                            🔍 Buscar
+                        </button>
+                    </form>
+                    <div class="search-suggestions">
+                        <p>Búsquedas sugeridas:</p>
+                        <ul>
+                            <li><a href="#" onclick="quickSearch('bandos'); return false;">Bandos municipales</a></li>
+                            <li><a href="#" onclick="quickSearch('trámites'); return false;">Trámites</a></li>
+                            <li><a href="#" onclick="quickSearch('empadronamiento'); return false;">Empadronamiento</a></li>
+                            <li><a href="#" onclick="quickSearch('impuestos'); return false;">Impuestos</a></li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(searchOverlay);
+
+            // Función para búsquedas rápidas
+            window.quickSearch = function(term) {
+                sessionStorage.setItem('searchQuery', term);
+                const basePath = getBasePath();
+                window.location.href = basePath + 'busqueda.html';
+            };
+        }
+    });
 
     // Ejecutar cuando el DOM esté listo
     if (document.readyState === 'loading') {

@@ -3,39 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de Búsqueda | Ayuntamiento de Pioz</title>
+    <meta name="description" content="Resultados de búsqueda - Ayuntamiento de Pioz">
+    <title>Búsqueda | Ayuntamiento de Pioz</title>
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components.css">
     <style>
-        .search-page {
+        .busqueda-container {
             max-width: 1200px;
             margin: 0 auto;
         }
         
         .search-header {
-            background: white;
+            background: var(--card-bg);
             padding: var(--spacing-xl);
             border-radius: 8px;
             box-shadow: var(--shadow-sm);
             margin-bottom: var(--spacing-xl);
         }
         
-        .search-box-main {
+        .search-form-main {
             display: flex;
-            gap: var(--spacing-sm);
+            gap: var(--spacing-md);
             margin-bottom: var(--spacing-md);
         }
         
-        .search-box-main input {
+        .search-input-main {
             flex: 1;
             padding: var(--spacing-md);
-            border: 2px solid var(--color-border);
+            border: 2px solid var(--border-color);
             border-radius: 4px;
             font-size: var(--font-size-large);
+            background: var(--bg-primary);
+            color: var(--text-primary);
         }
         
-        .search-box-main button {
+        .search-input-main:focus {
+            outline: none;
+            border-color: var(--color-primary);
+        }
+        
+        .btn-search {
             padding: var(--spacing-md) var(--spacing-xl);
             background: var(--color-primary);
             color: white;
@@ -43,81 +51,122 @@
             border-radius: 4px;
             font-weight: 600;
             cursor: pointer;
+            transition: all var(--transition-fast);
         }
         
-        .search-info {
-            color: var(--color-text-light);
+        .btn-search:hover {
+            background: var(--color-teja-rojo);
+            transform: translateY(-2px);
+        }
+        
+        .search-query {
+            color: var(--text-secondary);
             font-size: var(--font-size-small);
         }
         
-        .search-layout {
-            display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: var(--spacing-xl);
+        .search-query strong {
+            color: var(--color-primary);
+            font-size: var(--font-size-large);
         }
         
-        .search-filters {
-            background: white;
-            padding: var(--spacing-lg);
-            border-radius: 8px;
-            box-shadow: var(--shadow-sm);
-            height: fit-content;
-            position: sticky;
-            top: var(--spacing-lg);
-        }
-        
-        .filter-group {
+        .search-suggestion {
+            background: #fff3cd;
+            padding: var(--spacing-md);
+            border-left: 4px solid #ffc107;
+            border-radius: 4px;
             margin-bottom: var(--spacing-lg);
         }
         
-        .filter-group h3 {
-            color: var(--color-primary);
-            font-size: 1rem;
-            margin-bottom: var(--spacing-sm);
+        [data-theme="dark"] .search-suggestion {
+            background: #3a3320;
         }
         
-        .filter-option {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
-            margin-bottom: var(--spacing-xs);
+        .search-suggestion p {
+            margin: 0;
+            color: var(--text-primary);
         }
         
-        .filter-option input {
+        .search-suggestion a {
+            color: #856404;
+            font-weight: 600;
+            text-decoration: underline;
             cursor: pointer;
         }
         
-        .filter-option label {
-            cursor: pointer;
-            font-size: var(--font-size-small);
+        [data-theme="dark"] .search-suggestion a {
+            color: #ffc107;
         }
         
         .search-results {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
         }
         
-        .result-card {
-            background: white;
-            padding: var(--spacing-lg);
+        .results-count {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+            font-size: var(--font-size-small);
+        }
+        
+        .result-item {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
             border-radius: 8px;
             box-shadow: var(--shadow-sm);
-            border-left: 4px solid var(--color-primary);
+            margin-bottom: var(--spacing-lg);
             transition: all var(--transition-base);
+            border-left: 4px solid var(--color-primary);
         }
         
-        .result-card:hover {
+        .result-item:hover {
             box-shadow: var(--shadow-md);
             transform: translateX(5px);
+        }
+        
+        .result-category {
+            display: inline-block;
+            background: var(--color-primary);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: 4px;
+            font-size: var(--font-size-small);
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .result-title {
+            margin: 0 0 var(--spacing-sm) 0;
+        }
+        
+        .result-title a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .result-title a:hover {
+            text-decoration: underline;
+        }
+        
+        .result-snippet {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .result-snippet mark {
+            background: #ffc107;
+            color: #000;
+            padding: 2px 4px;
+            border-radius: 2px;
+            font-weight: 600;
         }
         
         .result-meta {
             display: flex;
             gap: var(--spacing-md);
             font-size: var(--font-size-small);
-            color: var(--color-text-light);
-            margin-bottom: var(--spacing-xs);
+            color: var(--text-secondary);
         }
         
         .result-meta span {
@@ -126,168 +175,125 @@
             gap: var(--spacing-xs);
         }
         
-        .result-title {
-            color: var(--color-primary);
-            font-size: 1.25rem;
-            margin-bottom: var(--spacing-sm);
-            text-decoration: none;
-            display: block;
-        }
-        
-        .result-title:hover {
-            text-decoration: underline;
-        }
-        
-        .result-snippet {
-            color: var(--color-text);
-            line-height: 1.6;
-            margin-bottom: var(--spacing-sm);
-        }
-        
-        .result-snippet mark {
-            background-color: #fff3cd;
-            padding: 2px 4px;
-            border-radius: 2px;
-            font-weight: 600;
-        }
-        
-        .result-url {
-            font-size: var(--font-size-small);
-            color: var(--color-text-light);
-        }
-        
         .no-results {
-            text-align: center;
+            background: var(--card-bg);
             padding: var(--spacing-xl);
-            background: white;
             border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
         }
         
         .no-results-icon {
-            font-size: 4rem;
-            margin-bottom: var(--spacing-md);
-        }
-        
-        .suggestion-box {
-            background: #fff3cd;
-            padding: var(--spacing-md);
-            border-left: 4px solid #856404;
-            border-radius: 4px;
+            font-size: 5rem;
+            display: block;
             margin-bottom: var(--spacing-lg);
         }
         
+        .no-results h2 {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .no-results p {
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .suggestions-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-lg) 0;
+        }
+        
+        .suggestions-list li {
+            padding: var(--spacing-xs) 0;
+        }
+        
+        .suggestions-list li::before {
+            content: '•';
+            color: var(--color-primary);
+            font-weight: bold;
+            margin-right: var(--spacing-xs);
+        }
+        
         @media (max-width: 767px) {
-            .search-layout {
-                grid-template-columns: 1fr;
+            .search-form-main {
+                flex-direction: column;
             }
             
-            .search-filters {
-                position: static;
+            .result-meta {
+                flex-direction: column;
+                gap: var(--spacing-xs);
             }
         }
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
     <!-- Header Component -->
     <div id="header-placeholder"></div>
 
-    <main id="main-content" style="padding: var(--spacing-xl) 0;">
-        <section class="container search-page">
-            <div class="search-header">
-                <form class="search-box-main" id="searchBoxMain">
-                    <input type="search" id="mainSearchInput" placeholder="Buscar..." aria-label="Buscar">
-                    <button type="submit">Buscar</button>
-                </form>
-                <div class="search-info" id="searchInfo">
-                    <!-- Se llenará dinámicamente -->
-                </div>
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Resultados de búsqueda</li>
+                    </ol>
+                </nav>
             </div>
+        </section>
 
-            <div class="search-layout">
-                <aside class="search-filters">
-                    <div class="filter-group">
-                        <h3>Categoría</h3>
-                        <div class="filter-option">
-                            <input type="checkbox" id="cat-all" value="" checked>
-                            <label for="cat-all">Todas</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="cat-bandos" value="Bandos">
-                            <label for="cat-bandos">Bandos</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="cat-ayto" value="Ayuntamiento">
-                            <label for="cat-ayto">Ayuntamiento</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="cat-tramites" value="Trámites">
-                            <label for="cat-tramites">Trámites</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="cat-plenos" value="Plenos">
-                            <label for="cat-plenos">Plenos</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="cat-servicios" value="Servicios">
-                            <label for="cat-servicios">Servicios</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="cat-cultura" value="Cultura">
-                            <label for="cat-cultura">Cultura</label>
-                        </div>
-                    </div>
+        <section class="content-section">
+            <div class="container busqueda-container">
+                <!-- Cabecera de búsqueda -->
+                <div class="search-header">
+                    <form class="search-form-main" onsubmit="return performSearch()">
+                        <input 
+                            type="search" 
+                            id="searchInputMain" 
+                            class="search-input-main" 
+                            placeholder="¿Qué estás buscando?"
+                            autocomplete="off"
+                            required
+                        >
+                        <button type="submit" class="btn-search">
+                            🔍 Buscar
+                        </button>
+                    </form>
+                    <p class="search-query">
+                        Has buscado: <strong id="currentQuery"></strong>
+                    </p>
+                </div>
 
-                    <div class="filter-group">
-                        <h3>Tipo de Documento</h3>
-                        <div class="filter-option">
-                            <input type="checkbox" id="type-all" value="" checked>
-                            <label for="type-all">Todos</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="type-bando" value="bando">
-                            <label for="type-bando">Bando</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="type-ordenanza" value="ordenanza">
-                            <label for="type-ordenanza">Ordenanza</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="type-pleno" value="pleno">
-                            <label for="type-pleno">Acta de Pleno</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="checkbox" id="type-pagina" value="pagina">
-                            <label for="type-pagina">Página</label>
-                        </div>
-                    </div>
+                <!-- Sugerencia ortográfica -->
+                <div id="suggestionBox" class="search-suggestion" style="display: none;">
+                    <p>
+                        ¿Quizás quisiste decir: <a id="suggestionLink"></a>?
+                    </p>
+                </div>
 
-                    <div class="filter-group">
-                        <h3>Año</h3>
-                        <div class="filter-option">
-                            <input type="radio" name="year" id="year-all" value="" checked>
-                            <label for="year-all">Todos</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="radio" name="year" id="year-2025" value="2025">
-                            <label for="year-2025">2025</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="radio" name="year" id="year-2024" value="2024">
-                            <label for="year-2024">2024</label>
-                        </div>
-                        <div class="filter-option">
-                            <input type="radio" name="year" id="year-2023" value="2023">
-                            <label for="year-2023">2023</label>
-                        </div>
-                    </div>
+                <!-- Resultados -->
+                <div class="search-results">
+                    <p class="results-count" id="resultsCount"></p>
+                    <div id="resultsContainer"></div>
+                </div>
 
-                    <button class="btn btn-secondary" onclick="clearFilters()" style="width: 100%;">
-                        Limpiar filtros
-                    </button>
-                </aside>
-
-                <div class="search-results" id="searchResults">
-                    <!-- Se llenará dinámicamente -->
+                <!-- Sin resultados -->
+                <div id="noResults" class="no-results" style="display: none;">
+                    <span class="no-results-icon">🔍</span>
+                    <h2>No se encontraron resultados</h2>
+                    <p>No hemos encontrado ningún resultado para tu búsqueda.</p>
+                    <p><strong>Sugerencias:</strong></p>
+                    <ul class="suggestions-list">
+                        <li>Comprueba que todas las palabras estén escritas correctamente</li>
+                        <li>Intenta usar palabras clave diferentes</li>
+                        <li>Intenta usar palabras clave más generales</li>
+                        <li>Prueba con sinónimos o términos relacionados</li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -301,6 +307,113 @@
     <script src="js/theme-toggle.js"></script>
     <script src="js/search-engine.js"></script>
     <script src="js/navigation.js"></script>
-    <script src="js/search-results.js"></script>
+    <script>
+        // Ejecutar búsqueda al cargar la página
+        document.addEventListener('DOMContentLoaded', function() {
+            const query = sessionStorage.getItem('searchQuery');
+            if (query) {
+                document.getElementById('searchInputMain').value = query;
+                executeSearch(query);
+            } else {
+                // Si no hay query, redirigir a inicio
+                window.location.href = 'index.html';
+            }
+        });
+
+        // Función para ejecutar la búsqueda
+        function executeSearch(query) {
+            const currentQueryEl = document.getElementById('currentQuery');
+            const resultsCountEl = document.getElementById('resultsCount');
+            const resultsContainerEl = document.getElementById('resultsContainer');
+            const noResultsEl = document.getElementById('noResults');
+            const suggestionBoxEl = document.getElementById('suggestionBox');
+            const suggestionLinkEl = document.getElementById('suggestionLink');
+
+            // Mostrar consulta actual
+            currentQueryEl.textContent = query;
+
+            // Realizar búsqueda
+            const { results, suggestion } = window.SearchEngine.search(query);
+
+            // Ocultar elementos por defecto
+            noResultsEl.style.display = 'none';
+            suggestionBoxEl.style.display = 'none';
+            resultsContainerEl.innerHTML = '';
+
+            if (results.length > 0) {
+                // Mostrar contador de resultados
+                resultsCountEl.textContent = `${results.length} resultado${results.length !== 1 ? 's' : ''} encontrado${results.length !== 1 ? 's' : ''}`;
+
+                // Renderizar resultados
+                results.forEach(result => {
+                    const resultEl = document.createElement('div');
+                    resultEl.className = 'result-item';
+
+                    const categoryColor = getCategoryColor(result.category);
+                    
+                    resultEl.innerHTML = `
+                        <span class="result-category" style="background: ${categoryColor};">${result.category}</span>
+                        <h3 class="result-title">
+                            <a href="${result.url}">${window.SearchEngine.highlightText(result.title, query)}</a>
+                        </h3>
+                        <p class="result-snippet">${window.SearchEngine.highlightText(result.snippet, query)}</p>
+                        <div class="result-meta">
+                            <span>📅 ${formatDate(result.date)}</span>
+                            <span>📂 ${result.type}</span>
+                            <span>⭐ Relevancia: ${Math.round(result.relevance)}</span>
+                        </div>
+                    `;
+
+                    resultsContainerEl.appendChild(resultEl);
+                });
+            } else {
+                // Sin resultados
+                resultsCountEl.textContent = '0 resultados encontrados';
+                noResultsEl.style.display = 'block';
+
+                // Mostrar sugerencia ortográfica si existe
+                if (suggestion) {
+                    suggestionBoxEl.style.display = 'block';
+                    suggestionLinkEl.textContent = suggestion;
+                    suggestionLinkEl.onclick = function() {
+                        document.getElementById('searchInputMain').value = suggestion;
+                        executeSearch(suggestion);
+                        sessionStorage.setItem('searchQuery', suggestion);
+                    };
+                }
+            }
+        }
+
+        // Función para realizar nueva búsqueda
+        function performSearch() {
+            const query = document.getElementById('searchInputMain').value.trim();
+            if (query.length >= 2) {
+                sessionStorage.setItem('searchQuery', query);
+                executeSearch(query);
+            }
+            return false;
+        }
+
+        // Función para obtener color según categoría
+        function getCategoryColor(category) {
+            const colors = {
+                'Bandos': '#e74c3c',
+                'Trámites': '#3498db',
+                'Ayuntamiento': '#2c3e50',
+                'Cultura': '#9b59b6',
+                'Servicios': '#16a085',
+                'Villa': '#c0392b',
+                'Plenos': '#34495e'
+            };
+            return colors[category] || '#95a5a6';
+        }
+
+        // Función para formatear fecha
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('es-ES', options);
+        }
+    </script>
 </body>
 </html>

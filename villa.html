@@ -3,11 +3,440 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Villa de Pioz - Conoce nuestra localidad, su historia, patrimonio y características">
     <title>Villa de Pioz | Ayuntamiento de Pioz</title>
     <link rel="stylesheet" href="css/theme.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        .villa-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-villa {
+            background: linear-gradient(135deg, #16a085 0%, #1abc9c 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-villa::before {
+            content: '🏰';
+            position: absolute;
+            font-size: 20rem;
+            opacity: 0.1;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .hero-villa h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-villa p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .intro-villa {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-villa h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .intro-villa h2 span {
+            font-size: 2rem;
+        }
+        
+        .intro-content {
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        
+        .intro-content p {
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-large);
+        }
+        
+        .stats-destacadas {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .stats-destacadas h3 {
+            color: #16a085;
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            font-size: 1.5rem;
+        }
+        
+        .villa-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .stat-box {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-fast);
+        }
+        
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .stat-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: bold;
+            color: #16a085;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .stat-label {
+            display: block;
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+        }
+        
+        .secciones-villa {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .secciones-villa h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .info-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #16a085;
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .card-icon {
+            font-size: 3rem;
+            text-align: center;
+            padding: var(--spacing-lg) 0 var(--spacing-sm);
+        }
+        
+        .info-card h3 {
+            color: #16a085;
+            margin: 0 var(--spacing-lg) var(--spacing-sm);
+            text-align: center;
+        }
+        
+        .info-card p {
+            color: var(--text-primary);
+            margin: 0 var(--spacing-lg) var(--spacing-lg);
+            text-align: center;
+            font-size: var(--font-size-small);
+            line-height: 1.6;
+        }
+        
+        .btn-link {
+            display: block;
+            text-align: center;
+            color: #16a085;
+            text-decoration: none;
+            font-weight: 600;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            margin: 0 var(--spacing-lg) var(--spacing-lg);
+            border-top: 1px solid var(--border-color);
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-link:hover {
+            background: #f0f9f7;
+            text-decoration: none;
+        }
+        
+        [data-theme="dark"] .btn-link:hover {
+            background: rgba(22, 160, 133, 0.1);
+        }
+        
+        .datos-interes-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .datos-interes-section h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+        
+        .column h3 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .info-list li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-list strong {
+            color: #16a085;
+        }
+        
+        .mapa-section {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .mapa-section h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .mapa-section p {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+        
+        #map {
+            height: 400px;
+            margin-top: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .castillo-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .castillo-section h2 {
+            color: #16a085;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .content-with-sidebar {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: var(--spacing-xl);
+        }
+        
+        .main-content h3 {
+            color: #16a085;
+            margin: var(--spacing-lg) 0 var(--spacing-md);
+        }
+        
+        .main-content p {
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .main-content ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .main-content li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+        
+        .main-content li::before {
+            content: '✓';
+            color: #16a085;
+            font-weight: bold;
+        }
+        
+        .sidebar .info-box {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .sidebar .info-box h3 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .sidebar .info-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .btn-secondary {
+            display: inline-block;
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: #16a085;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-secondary:hover {
+            background: #1abc9c;
+            text-decoration: none;
+        }
+        
+        .feature-boxes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .feature-box {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border-left: 4px solid #16a085;
+        }
+        
+        .feature-box h3 {
+            color: #16a085;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .feature-box p {
+            color: var(--text-primary);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .link-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .link-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-decoration: none;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-fast);
+            border-top: 3px solid #16a085;
+            text-align: center;
+        }
+        
+        .link-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            text-decoration: none;
+        }
+        
+        .link-icon {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .link-card h3 {
+            color: #16a085;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+        
+        .link-card p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-villa h1 {
+                font-size: 2rem;
+            }
+            
+            .content-with-sidebar {
+                grid-template-columns: 1fr;
+            }
+            
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
@@ -18,34 +447,287 @@
     <main id="main-content">
         <section class="page-header">
             <div class="container">
-                <h1>Villa de Pioz</h1>
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Villa de Pioz</li>
+                    </ol>
+                </nav>
             </div>
         </section>
 
-        <section id="situacion" class="content-section">
-            <div class="container">
-                <h2>Situación y Población</h2>
-                <div class="villa-stats">
-                    <div class="stat-box">
-                        <span class="stat-number">5.131</span>
-                        <span class="stat-label">Habitantes</span>
+        <section class="content-section">
+            <div class="container villa-container">
+                <div class="hero-villa">
+                    <h1>🏰 Villa de Pioz</h1>
+                    <p>Descubre nuestra localidad, su historia, patrimonio y características</p>
+                </div>
+
+                <!-- Introducción -->
+                <article class="intro-villa">
+                    <h2><span>🏘️</span> Bienvenido a Pioz</h2>
+                    <div class="intro-content">
+                        <p>
+                            <strong>Pioz es un municipio de la provincia de Guadalajara</strong>, situado en la comarca de 
+                            La Alcarria. Con una rica historia que se remonta a épocas medievales, nuestra villa combina 
+                            tradición y modernidad, ofreciendo calidad de vida a sus habitantes.
+                        </p>
+                        <p>
+                            Situada a tan solo <strong>50 km de Madrid</strong>, Pioz se ha convertido en un lugar de residencia 
+                            atractivo gracias a sus excelentes comunicaciones, servicios municipales de calidad y un entorno 
+                            natural privilegiado.
+                        </p>
                     </div>
-                    <div class="stat-box">
-                        <span class="stat-number">19162</span>
-                        <span class="stat-label">Código Postal</span>
+                </article>
+
+                <!-- Estadísticas Destacadas -->
+                <div class="stats-destacadas">
+                    <h3>📊 Datos de Pioz en Cifras</h3>
+                    <div class="villa-stats">
+                        <div class="stat-box">
+                            <span class="stat-number">5.131</span>
+                            <span class="stat-label">Habitantes</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">19162</span>
+                            <span class="stat-label">Código Postal</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">40.46°N</span>
+                            <span class="stat-label">Latitud</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">3.29°W</span>
+                            <span class="stat-label">Longitud</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">~850m</span>
+                            <span class="stat-label">Altitud</span>
+                        </div>
+                        <div class="stat-box">
+                            <span class="stat-number">50 km</span>
+                            <span class="stat-label">Distancia a Madrid</span>
+                        </div>
                     </div>
                 </div>
-                <div id="map" style="height: 400px; margin-top: 2rem; border-radius: 8px;"></div>
-            </div>
-        </section>
 
-        <section id="castillo" class="content-section bg-light">
-            <div class="container">
-                <h2 class="section-title">Castillo de Pioz</h2>
-                <p>El Castillo de Pioz es uno de los monumentos más emblemáticos de la localidad. Construido en el siglo XV, representa un importante ejemplo de arquitectura militar castellana.</p>
-                <p><strong>Coordenadas:</strong> 40°27′49″N 3°17′27″W</p>
-                <h3>Guardianes del Castillo</h3>
-                <p>Asociación dedicada a la conservación y promoción del patrimonio histórico del Castillo de Pioz.</p>
+                <!-- Secciones de Villa -->
+                <section class="secciones-villa">
+                    <h2>🗺️ Conoce Nuestra Villa</h2>
+                    
+                    <div class="cards-grid">
+                        <article class="info-card">
+                            <div class="card-icon">📍</div>
+                            <h3>Situación y Población</h3>
+                            <p>Información sobre la ubicación geográfica de Pioz, datos demográficos, estadísticas poblacionales y características del municipio.</p>
+                            <a href="#situacion" class="btn-link">Ver ubicación en mapa →</a>
+                        </article>
+
+                        <article class="info-card">
+                            <div class="card-icon">🏰</div>
+                            <h3>Castillo de Pioz</h3>
+                            <p>Nuestro principal monumento histórico. Construcción militar del siglo XV que representa un importante ejemplo de arquitectura castellana medieval.</p>
+                            <a href="#castillo" class="btn-link">Más información →</a>
+                        </article>
+
+                        <article class="info-card">
+                            <div class="card-icon">📜</div>
+                            <h3>Historia</h3>
+                            <p>Descubre el pasado de Pioz, desde sus orígenes medievales hasta la actualidad, y los acontecimientos que han marcado nuestro pueblo.</p>
+                            <a href="historia.html" class="btn-link">Conocer nuestra historia →</a>
+                        </article>
+
+                        <article class="info-card">
+                            <div class="card-icon">⛪</div>
+                            <h3>Patrimonio</h3>
+                            <p>Monumentos, edificios históricos y lugares de interés que conforman el rico patrimonio cultural de nuestra localidad.</p>
+                            <a href="patrimonio.html" class="btn-link">Ver patrimonio →</a>
+                        </article>
+
+                        <article class="info-card">
+                            <div class="card-icon">🎭</div>
+                            <h3>Cultura y Tradiciones</h3>
+                            <p>Fiestas populares, eventos culturales y tradiciones que mantienen vivo el espíritu de nuestra villa.</p>
+                            <a href="cultura.html" class="btn-link">Descubre nuestras tradiciones →</a>
+                        </article>
+
+                        <article class="info-card">
+                            <div class="card-icon">🏛️</div>
+                            <h3>Servicios Municipales</h3>
+                            <p>Conoce todos los servicios que el Ayuntamiento pone a disposición de vecinos y visitantes.</p>
+                            <a href="servicios.html" class="btn-link">Ver servicios →</a>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Datos de Interés -->
+                <section class="datos-interes-section">
+                    <h2>📋 Datos de Interés</h2>
+                    <div class="two-columns">
+                        <div class="column">
+                            <h3>Información General</h3>
+                            <ul class="info-list">
+                                <li><strong>Comarca:</strong> La Alcarria</li>
+                                <li><strong>Provincia:</strong> Guadalajara</li>
+                                <li><strong>Comunidad Autónoma:</strong> Castilla-La Mancha</li>
+                                <li><strong>Superficie:</strong> Aproximadamente 51 km²</li>
+                                <li><strong>Densidad:</strong> ~100 hab/km²</li>
+                                <li><strong>Gentilicio:</strong> Piocense</li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Comunicaciones</h3>
+                            <ul class="info-list">
+                                <li><strong>Carreteras principales:</strong> GU-186, A-2</li>
+                                <li><strong>Distancia a Guadalajara:</strong> ~45 km</li>
+                                <li><strong>Distancia a Madrid:</strong> ~50 km</li>
+                                <li><strong>Distancia a Alcalá de Henares:</strong> ~30 km</li>
+                                <li><strong>Acceso a transporte público:</strong> Líneas de autobús interurbanas</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Situación Geográfica y Mapa -->
+                <section id="situacion" class="mapa-section">
+                    <h2>🗺️ Situación Geográfica</h2>
+                    <p>
+                        Pioz se encuentra en la comarca de La Alcarria, provincia de Guadalajara, Castilla-La Mancha. 
+                        Su ubicación estratégica y buenas comunicaciones la convierten en un lugar ideal para vivir.
+                    </p>
+                    <p>
+                        El municipio está bien conectado con las principales vías de comunicación, facilitando el acceso 
+                        tanto a la capital provincial como a Madrid y otras localidades cercanas.
+                    </p>
+                    <div id="map"></div>
+                </section>
+
+                <!-- Castillo de Pioz -->
+                <section id="castillo" class="castillo-section">
+                    <h2>🏰 Castillo de Pioz</h2>
+                    <div class="content-with-sidebar">
+                        <div class="main-content">
+                            <p>
+                                El Castillo de Pioz es uno de los monumentos más emblemáticos de la localidad. Construido 
+                                en el siglo XV, representa un importante ejemplo de arquitectura militar castellana.
+                            </p>
+                            <p>
+                                Esta fortaleza ha sido testigo de importantes acontecimientos históricos y actualmente es 
+                                objeto de trabajos de conservación y puesta en valor.
+                            </p>
+                            <p><strong>Coordenadas:</strong> 40°27′49″N 3°17′27″W</p>
+                            
+                            <h3>Características del Castillo</h3>
+                            <ul>
+                                <li>Construcción del siglo XV</li>
+                                <li>Estilo arquitectónico militar castellano</li>
+                                <li>Torre del homenaje visible desde varios puntos del municipio</li>
+                                <li>Declarado Bien de Interés Cultural</li>
+                                <li>En proceso de restauración y conservación</li>
+                            </ul>
+                        </div>
+                        <aside class="sidebar">
+                            <div class="info-box">
+                                <h3>Guardianes del Castillo</h3>
+                                <p>
+                                    Asociación dedicada a la conservación y promoción del patrimonio histórico del Castillo de Pioz.
+                                </p>
+                                <p>
+                                    Esta asociación organiza actividades culturales, visitas guiadas y eventos relacionados con 
+                                    el castillo y la historia local.
+                                </p>
+                                <a href="#" class="btn-secondary">Más información</a>
+                            </div>
+                            <div class="info-box">
+                                <h3>Visitas</h3>
+                                <p>
+                                    Para información sobre visitas al castillo, contacta con el Ayuntamiento o la Oficina de Turismo.
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
+                </section>
+
+                <!-- Clima y Entorno Natural -->
+                <section class="datos-interes-section">
+                    <h2>🌤️ Clima y Entorno Natural</h2>
+                    <div class="two-columns">
+                        <div class="column">
+                            <h3>Clima</h3>
+                            <p>Pioz disfruta de un clima mediterráneo continentalizado, característico de la meseta castellana:</p>
+                            <ul class="info-list">
+                                <li>Veranos calurosos y secos</li>
+                                <li>Inviernos fríos con posibles heladas</li>
+                                <li>Primaveras y otoños templados</li>
+                                <li>Precipitaciones moderadas, principalmente en primavera y otoño</li>
+                            </ul>
+                        </div>
+                        <div class="column">
+                            <h3>Entorno Natural</h3>
+                            <p>El municipio está rodeado de un paisaje típico de La Alcarria:</p>
+                            <ul class="info-list">
+                                <li>Campos de cultivo de cereales</li>
+                                <li>Zonas de olivares y viñedos</li>
+                                <li>Vegetación mediterránea autóctona</li>
+                                <li>Rutas de senderismo y espacios naturales</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Economía y Desarrollo -->
+                <section class="castillo-section">
+                    <h2>💼 Economía y Desarrollo</h2>
+                    <p style="text-align: center; max-width: 800px; margin: 0 auto var(--spacing-xl); color: var(--text-secondary);">
+                        La economía de Pioz se basa en una combinación equilibrada de sectores:
+                    </p>
+                    
+                    <div class="feature-boxes">
+                        <div class="feature-box">
+                            <h3>🌾 Sector Primario</h3>
+                            <p>Agricultura tradicional de la comarca alcarreña, con cultivos de cereal, olivar y pequeñas explotaciones ganaderas.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h3>🏭 Sector Secundario</h3>
+                            <p>Pequeñas empresas e industrias locales que generan empleo y desarrollo económico en la zona.</p>
+                        </div>
+                        <div class="feature-box">
+                            <h3>🛍️ Sector Terciario</h3>
+                            <p>Comercio local, servicios municipales y actividades relacionadas con el turismo rural y cultural.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Enlaces de Interés -->
+                <section class="mapa-section">
+                    <h2>🔗 Enlaces de Interés</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Explora más sobre nuestra villa y sus servicios
+                    </p>
+                    <div class="link-cards">
+                        <a href="historia.html" class="link-card">
+                            <span class="link-icon">📚</span>
+                            <h3>Historia de Pioz</h3>
+                            <p>Conoce el pasado de nuestra villa</p>
+                        </a>
+                        <a href="patrimonio.html" class="link-card">
+                            <span class="link-icon">🏛️</span>
+                            <h3>Patrimonio Cultural</h3>
+                            <p>Monumentos y lugares de interés</p>
+                        </a>
+                        <a href="cultura.html" class="link-card">
+                            <span class="link-icon">🎪</span>
+                            <h3>Cultura y Fiestas</h3>
+                            <p>Eventos y tradiciones locales</p>
+                        </a>
+                        <a href="servicios.html" class="link-card">
+                            <span class="link-icon">🏢</span>
+                            <h3>Servicios Municipales</h3>
+                            <p>Todo lo que necesitas saber</p>
+                        </a>
+                    </div>
+                </section>
             </div>
         </section>
     </main>
@@ -53,10 +735,35 @@
     <!-- Footer Component -->
     <div id="footer-placeholder"></div>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="components/header.js"></script>
     <script src="components/footer.js"></script>
     <script src="js/theme-toggle.js"></script>
     <script src="js/search-engine.js"></script>
     <script src="js/navigation.js"></script>
+    <script>
+        // Inicializar mapa de Leaflet
+        document.addEventListener('DOMContentLoaded', function() {
+            const map = L.map('map').setView([40.4636, -3.2908], 13);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+            
+            // Marcador de Pioz
+            const piozMarker = L.marker([40.4636, -3.2908]).addTo(map)
+                .bindPopup('<b>Pioz</b><br>Villa de Pioz, Guadalajara')
+                .openPopup();
+            
+            // Círculo para mostrar el área aproximada
+            L.circle([40.4636, -3.2908], {
+                color: '#16a085',
+                fillColor: '#16a085',
+                fillOpacity: 0.1,
+                radius: 3000
+            }).addTo(map);
+        });
+    </script>
 </body>
 </html>
