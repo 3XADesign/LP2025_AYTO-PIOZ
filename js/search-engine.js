@@ -202,6 +202,16 @@
                 date: '2024-01-01',
                 url: 'ayuntamiento/transparencia.html',
                 keywords: ['transparencia', 'datos', 'presupuestos', 'información', 'pública', 'cuentas']
+            },
+            {
+                id: 'i7',
+                type: 'pagina',
+                category: 'Villa',
+                title: 'Casco Urbano de Pioz - Mapa y Puntos de Interés',
+                content: 'Plano mapa interactivo casco urbano antiguo centro histórico Pioz puntos interés ayuntamiento iglesia castillo centro cultural salud equipamientos planos urbanísticos calles Plaza Mayor edificios públicos',
+                date: '2025-01-15',
+                url: 'villa/casco_urbano.html',
+                keywords: ['casco urbano', 'mapa', 'plano', 'centro', 'histórico', 'puntos interés', 'equipamientos', 'plaza mayor', 'calles', 'urbanismo']
             }
         ],
         plenos: [

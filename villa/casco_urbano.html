@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="../css/theme.css">
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/components.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
     <style>
         .villa-content {
             max-width: 1200px;
@@ -255,65 +259,66 @@
         
         .mapa-container {
             background: var(--bg-tertiary);
-            border-radius: 4px;
-            padding: var(--spacing-md);
-            text-align: center;
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .contacto-casco {
-            background: var(--card-bg);
-            padding: var(--spacing-xl);
             border-radius: 8px;
+            padding: 0;
+            overflow: hidden;
+            min-height: 500px;
             box-shadow: var(--shadow-sm);
         }
         
-        .contacto-casco h2 {
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-lg);
-            text-align: center;
+        #mapa {
+            width: 100%;
+            height: 500px;
+            border-radius: 8px;
         }
         
-        .contacto-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-lg);
-        }
-        
-        .contacto-item {
-            display: flex;
-            align-items: start;
-            gap: var(--spacing-md);
-        }
-        
-        .contacto-icon {
-            font-size: 1.5rem;
-            color: var(--color-primary);
-            flex-shrink: 0;
-        }
-        
-        .contacto-content strong {
-            display: block;
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-xs);
-        }
-        
-        .contacto-content p {
+        /* Estilos para popups de Leaflet adaptados al tema */
+        .leaflet-popup-content-wrapper {
+            background: var(--card-bg);
             color: var(--text-primary);
-            margin: 0;
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
         }
         
-        .contacto-content a {
+        .leaflet-popup-content {
+            margin: var(--spacing-md);
+            font-family: var(--font-family-base);
+        }
+        
+        .leaflet-popup-content h3 {
             color: var(--color-primary);
-            text-decoration: none;
-            font-weight: 600;
+            margin: 0 0 var(--spacing-xs) 0;
+            font-size: var(--font-size-base);
         }
         
-        .contacto-content a:hover {
-            text-decoration: underline;
+        .leaflet-popup-content p {
+            margin: 0;
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+        }
+        
+        .leaflet-popup-tip {
+            background: var(--card-bg);
+        }
+        
+        .leaflet-container a.leaflet-popup-close-button {
+            color: var(--text-primary);
+        }
+        
+        .leaflet-container a.leaflet-popup-close-button:hover {
+            color: var(--color-primary);
+        }
+        
+        /* Ajustar controles de zoom al tema */
+        .leaflet-control-zoom a {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border-color: var(--bg-tertiary);
+        }
+        
+        .leaflet-control-zoom a:hover {
+            background-color: var(--color-primary);
+            color: white;
         }
         
         @media (max-width: 991px) {
@@ -334,6 +339,10 @@
             .puntos-grid,
             .planos-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            #mapa {
+                height: 400px;
             }
         }
     </style>
@@ -543,17 +552,11 @@
                     <!-- Mapa Interactivo -->
                     <section class="mapa-interactivo">
                         <h2>📍 Ubicación del Casco Urbano</h2>
+                        <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-lg);">
+                            Explora el mapa interactivo del centro de Pioz y sus puntos de interés
+                        </p>
                         <div class="mapa-container">
-                            <div style="text-align: center;">
-                                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">
-                                    <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🗺️</span>
-                                    Mapa interactivo del casco urbano de Pioz
-                                </p>
-                                <p style="color: var(--text-primary); font-size: var(--font-size-small);">
-                                    Plaza Mayor, s/n, 19162 Pioz, Guadalajara<br>
-                                    Puedes consultar los planos descargables en la sección superior
-                                </p>
-                            </div>
+                            <div id="mapa"></div>
                         </div>
                     </section>
 
@@ -622,5 +625,128 @@
     <script src="../js/theme-toggle.js"></script>
     <script src="../js/search-engine.js"></script>
     <script src="../js/navigation.js"></script>
+    
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    
+    <!-- Script del Mapa -->
+    <script>
+        (function() {
+            'use strict';
+            
+            function initMap() {
+                // Coordenadas de la Plaza Mayor de Pioz
+                const centroPlaza = [40.4756, -3.1699];
+                
+                // Crear el mapa
+                const map = L.map('mapa', {
+                    center: centroPlaza,
+                    zoom: 17,
+                    zoomControl: true,
+                    scrollWheelZoom: true
+                });
+                
+                // Añadir capa de OpenStreetMap
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                    maxZoom: 19
+                }).addTo(map);
+                
+                // Icono personalizado para el ayuntamiento
+                const iconoAyto = L.icon({
+                    iconUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0iI2I4NWM0ZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0id2hpdGUiPvCfj5s8L3RleHQ+PC9zdmc+',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
+                });
+                
+                const iconoIglesia = L.icon({
+                    iconUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0iI2MwNzg1NCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0id2hpdGUiPuKbqjwvdGV4dD48L3N2Zz4=',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
+                });
+                
+                const iconoCastillo = L.icon({
+                    iconUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0iIzkyNjAzOCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0id2hpdGUiPvCfj7A8L3RleHQ+PC9zdmc+',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
+                });
+                
+                const iconoCultura = L.icon({
+                    iconUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0iIzcyNTZiZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0id2hpdGUiPvCfk5o8L3RleHQ+PC9zdmc+',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
+                });
+                
+                const iconoSalud = L.icon({
+                    iconUrl: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMiIgaGVpZ2h0PSIzMiIgdmlld0JveD0iMCAwIDMyIDMyIj48Y2lyY2xlIGN4PSIxNiIgY3k9IjE2IiByPSIxNCIgZmlsbD0iIzI3YWU2MCIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSIgZmlsbD0id2hpdGUiPvCfj6U8L3RleHQ+PC9zdmc+',
+                    iconSize: [32, 32],
+                    iconAnchor: [16, 32],
+                    popupAnchor: [0, -32]
+                });
+                
+                // Puntos de interés
+                const puntosInteres = [
+                    {
+                        coords: [40.4756, -3.1699],
+                        titulo: '🏛️ Ayuntamiento de Pioz',
+                        descripcion: 'Plaza Mayor, s/n - Sede Municipal',
+                        icono: iconoAyto
+                    },
+                    {
+                        coords: [40.4762, -3.1695],
+                        titulo: '⛪ Iglesia Parroquial',
+                        descripcion: 'Nuestra Señora de San Sebastián',
+                        icono: iconoIglesia
+                    },
+                    {
+                        coords: [40.4750, -3.1705],
+                        titulo: '🏰 Castillo de Pioz',
+                        descripcion: 'Castillo del Cardenal Mendoza - BIC',
+                        icono: iconoCastillo
+                    },
+                    {
+                        coords: [40.4765, -3.1702],
+                        titulo: '📚 Centro Cultural',
+                        descripcion: 'Centro Cultural "Miguel de Cervantes" - Biblioteca',
+                        icono: iconoCultura
+                    },
+                    {
+                        coords: [40.4748, -3.1692],
+                        titulo: '🏥 Centro de Salud',
+                        descripcion: 'Atención Primaria - Medicina y Pediatría',
+                        icono: iconoSalud
+                    }
+                ];
+                
+                // Añadir marcadores al mapa
+                puntosInteres.forEach(punto => {
+                    L.marker(punto.coords, { icon: punto.icono })
+                        .addTo(map)
+                        .bindPopup(`<h3>${punto.titulo}</h3><p>${punto.descripcion}</p>`);
+                });
+                
+                // Círculo semi-transparente para delimitar el casco urbano
+                L.circle(centroPlaza, {
+                    color: '#b85c4e',
+                    fillColor: '#b85c4e',
+                    fillOpacity: 0.1,
+                    radius: 250
+                }).addTo(map);
+            }
+            
+            // Inicializar cuando el DOM esté listo
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initMap);
+            } else {
+                initMap();
+            }
+        })();
+    </script>
 </body>
 </html>
