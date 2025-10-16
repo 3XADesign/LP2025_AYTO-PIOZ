@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Casco Urbano de Pioz - Planos, puntos de interés y equipamientos del centro histórico">
+    <title>Casco Urbano | Villa de Pioz | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .villa-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-casco {
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-casco h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-casco p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .intro-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-section p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .puntos-interes {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .puntos-interes h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .puntos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .punto-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid var(--color-primary);
+        }
+        
+        .punto-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .punto-header {
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .punto-icon {
+            font-size: 3.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .punto-header h3 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .punto-header p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .punto-body {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+        }
+        
+        .punto-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .punto-body li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            display: flex;
+            gap: var(--spacing-xs);
+            font-size: var(--font-size-small);
+        }
+        
+        .punto-body li::before {
+            content: '•';
+            color: var(--color-primary);
+            font-weight: bold;
+        }
+        
+        .punto-link {
+            display: block;
+            background: var(--color-primary);
+            color: white;
+            text-align: center;
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: var(--spacing-md);
+            transition: all var(--transition-fast);
+        }
+        
+        .punto-link:hover {
+            background: var(--color-teja-rojo);
+            text-decoration: none;
+        }
+        
+        .planos-section {
+            background: #f8f4fb;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .planos-section {
+            background: #2d1b3d;
+        }
+        
+        .planos-section h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .planos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .plano-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+            transition: all var(--transition-fast);
+        }
+        
+        .plano-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .plano-header {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .plano-icon {
+            font-size: 2.5rem;
+        }
+        
+        .plano-header h3 {
+            color: var(--color-primary);
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .plano-meta {
+            display: flex;
+            gap: var(--spacing-md);
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .plano-meta span {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+        }
+        
+        .plano-description {
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+            font-size: var(--font-size-small);
+        }
+        
+        .btn-descargar {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            padding: var(--spacing-sm) var(--spacing-lg);
+            background: var(--color-teja-rojo);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .btn-descargar:hover {
+            background: var(--color-teja-ocre);
+            text-decoration: none;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .mapa-interactivo {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .mapa-interactivo h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .mapa-container {
+            background: var(--bg-tertiary);
+            border-radius: 4px;
+            padding: var(--spacing-md);
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contacto-casco {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-casco h2 {
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 991px) {
+            .villa-layout {
+                grid-template-columns: 1fr;
+            }
+            
+            .villa-sidebar {
+                position: static;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .hero-casco h1 {
+                font-size: 2rem;
+            }
+            
+            .puntos-grid,
+            .planos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../villa.html">Villa de Pioz</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Casco Urbano</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <!-- Contenido principal -->
+                <div class="villa-content">
+                    <div class="hero-casco">
+                        <h1>🏛️ Casco Urbano de Pioz</h1>
+                        <p>El corazón histórico de nuestro municipio</p>
+                    </div>
+
+                    <!-- Introducción -->
+                    <article class="intro-section">
+                        <p>
+                            El <strong>Casco Urbano de Pioz</strong> representa el centro histórico y administrativo 
+                            de nuestro municipio, donde se concentran los principales equipamientos públicos, 
+                            monumentos y servicios para los ciudadanos.
+                        </p>
+                        <p>
+                            A continuación puedes visualizar varios <strong>planos del municipio y del casco antiguo</strong>, 
+                            así como conocer los puntos de interés más destacados que conforman el núcleo urbano de Pioz.
+                        </p>
+                    </article>
+
+                    <!-- Puntos de Interés -->
+                    <section class="puntos-interes">
+                        <h2>📍 Puntos de Interés del Casco Urbano</h2>
+                        
+                        <div class="puntos-grid">
+                            <div class="punto-card">
+                                <div class="punto-header">
+                                    <span class="punto-icon">🏛️</span>
+                                    <h3>Ayuntamiento de Pioz</h3>
+                                    <p>Sede Municipal</p>
+                                </div>
+                                <div class="punto-body">
+                                    <ul>
+                                        <li>Plaza Mayor, s/n</li>
+                                        <li>Oficinas municipales</li>
+                                        <li>Atención ciudadana</li>
+                                        <li>Servicios administrativos</li>
+                                    </ul>
+                                    <a href="../ayuntamiento.html" class="punto-link">Más información →</a>
+                                </div>
+                            </div>
+
+                            <div class="punto-card">
+                                <div class="punto-header">
+                                    <span class="punto-icon">🏥</span>
+                                    <h3>Centro de Salud</h3>
+                                    <p>Atención Sanitaria</p>
+                                </div>
+                                <div class="punto-body">
+                                    <ul>
+                                        <li>Consultas de medicina general</li>
+                                        <li>Pediatría</li>
+                                        <li>Enfermería</li>
+                                        <li>Servicios de urgencias</li>
+                                    </ul>
+                                    <a href="../servicios/sanidad.html" class="punto-link">Más información →</a>
+                                </div>
+                            </div>
+
+                            <div class="punto-card">
+                                <div class="punto-header">
+                                    <span class="punto-icon">📚</span>
+                                    <h3>Centro Cultural "Miguel de Cervantes"</h3>
+                                    <p>Cultura y Educación</p>
+                                </div>
+                                <div class="punto-body">
+                                    <ul>
+                                        <li>Biblioteca Municipal</li>
+                                        <li>Salas de exposiciones</li>
+                                        <li>Teatro municipal</li>
+                                        <li>Actividades culturales</li>
+                                    </ul>
+                                    <a href="../cultura/biblioteca.html" class="punto-link">Más información →</a>
+                                </div>
+                            </div>
+
+                            <div class="punto-card">
+                                <div class="punto-header">
+                                    <span class="punto-icon">⛪</span>
+                                    <h3>Iglesia Parroquial</h3>
+                                    <p>Nuestra Señora de San Sebastián</p>
+                                </div>
+                                <div class="punto-body">
+                                    <ul>
+                                        <li>Monumento histórico</li>
+                                        <li>Culto religioso</li>
+                                        <li>Patrimonio arquitectónico</li>
+                                        <li>Eventos religiosos</li>
+                                    </ul>
+                                    <a href="iglesia.html" class="punto-link">Más información →</a>
+                                </div>
+                            </div>
+
+                            <div class="punto-card">
+                                <div class="punto-header">
+                                    <span class="punto-icon">🏰</span>
+                                    <h3>Castillo de Pioz</h3>
+                                    <p>Castillo del Cardenal Mendoza</p>
+                                </div>
+                                <div class="punto-body">
+                                    <ul>
+                                        <li>Fortaleza histórica</li>
+                                        <li>Bien de Interés Cultural</li>
+                                        <li>Visitas guiadas</li>
+                                        <li>Eventos culturales</li>
+                                    </ul>
+                                    <a href="../villa.html#castillo" class="punto-link">Más información →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Planos y Documentos -->
+                    <section class="planos-section">
+                        <h2>🗺️ Planos y Documentos Urbanísticos</h2>
+                        <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                            Consulta y descarga los planos oficiales del casco urbano y del término municipal
+                        </p>
+                        
+                        <div class="planos-grid">
+                            <div class="plano-card">
+                                <div class="plano-header">
+                                    <span class="plano-icon">📐</span>
+                                    <h3>Plano del Casco Antiguo</h3>
+                                </div>
+                                <div class="plano-meta">
+                                    <span>📅 Actualizado</span>
+                                    <span>📄 PDF</span>
+                                    <span>💾 1.2 MB</span>
+                                </div>
+                                <p class="plano-description">
+                                    Plano detallado del casco histórico de Pioz con calles, plazas y edificios 
+                                    principales. Incluye denominación de vías y ubicación de equipamientos públicos.
+                                </p>
+                                <a href="#" class="btn-descargar" download>
+                                    📥 Descargar Plano
+                                </a>
+                            </div>
+
+                            <div class="plano-card">
+                                <div class="plano-header">
+                                    <span class="plano-icon">🗺️</span>
+                                    <h3>Plano de Todo el Término Municipal</h3>
+                                </div>
+                                <div class="plano-meta">
+                                    <span>📅 Actualizado</span>
+                                    <span>📄 PDF</span>
+                                    <span>💾 2.8 MB</span>
+                                </div>
+                                <p class="plano-description">
+                                    Plano completo del término municipal de Pioz incluyendo casco urbano, urbanizaciones, 
+                                    caminos rurales y límites municipales.
+                                </p>
+                                <a href="#" class="btn-descargar" download>
+                                    📥 Descargar Plano
+                                </a>
+                            </div>
+
+                            <div class="plano-card">
+                                <div class="plano-header">
+                                    <span class="plano-icon">📋</span>
+                                    <h3>Ordenanza Zona Expansión Casco Antiguo</h3>
+                                </div>
+                                <div class="plano-meta">
+                                    <span>📅 Vigente</span>
+                                    <span>📄 PDF</span>
+                                    <span>💾 450 KB</span>
+                                </div>
+                                <p class="plano-description">
+                                    Normativa urbanística que regula la zona de expansión del casco antiguo, 
+                                    condiciones de edificación y desarrollo urbano.
+                                </p>
+                                <a href="../tramites/ordenanzas.html#cat-urbanismo" class="btn-descargar">
+                                    📥 Ver Ordenanza
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Mapa Interactivo -->
+                    <section class="mapa-interactivo">
+                        <h2>📍 Ubicación del Casco Urbano</h2>
+                        <div class="mapa-container">
+                            <div style="text-align: center;">
+                                <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                                    <span style="font-size: 3rem; display: block; margin-bottom: var(--spacing-sm);">🗺️</span>
+                                    Mapa interactivo del casco urbano de Pioz
+                                </p>
+                                <p style="color: var(--text-primary); font-size: var(--font-size-small);">
+                                    Plaza Mayor, s/n, 19162 Pioz, Guadalajara<br>
+                                    Puedes consultar los planos descargables en la sección superior
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Contacto -->
+                    <section class="contacto-casco">
+                        <h2>📞 Información y Contacto</h2>
+                        <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                            Para más información sobre el casco urbano, urbanismo o cualquier consulta
+                        </p>
+                        
+                        <div class="contacto-grid">
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📍</span>
+                                <div class="contacto-content">
+                                    <strong>Dirección</strong>
+                                    <p>
+                                        Ayuntamiento de Pioz<br>
+                                        Plaza Mayor, s/n<br>
+                                        19162 Pioz, Guadalajara
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📞</span>
+                                <div class="contacto-content">
+                                    <strong>Teléfono / Fax</strong>
+                                    <p><a href="tel:949272076">949 272 076</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item">
+                                <span class="contacto-icon">🕐</span>
+                                <div class="contacto-content">
+                                    <strong>Horario de Atención</strong>
+                                    <p>
+                                        Lunes a Viernes<br>
+                                        9:00 - 14:00 horas
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item">
+                                <span class="contacto-icon">✉️</span>
+                                <div class="contacto-content">
+                                    <strong>Correos Electrónicos</strong>
+                                    <p>
+                                        <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                        <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a><br>
+                                        <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

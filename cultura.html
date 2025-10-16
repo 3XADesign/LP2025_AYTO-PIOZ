@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cultura en Pioz - Teatro, biblioteca, asociaciones culturales y actividades para todos">
+    <title>Cultura | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        .cultura-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-cultura {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-cultura h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-cultura p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        .intro-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .intro-section h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .intro-section h2 span {
+            font-size: 2rem;
+        }
+        
+        .intro-content {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+        }
+        
+        .intro-content p {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .teatro-destacado {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            text-align: center;
+        }
+        
+        .teatro-destacado h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.8rem;
+        }
+        
+        .teatro-destacado p {
+            font-size: var(--font-size-large);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .teatro-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .teatro-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+        }
+        
+        .teatro-feature span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .secciones-culturales {
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .secciones-culturales h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .secciones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .seccion-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            border-top: 4px solid #8e44ad;
+        }
+        
+        .seccion-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .seccion-header {
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .seccion-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .seccion-header h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .seccion-header p {
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .seccion-body {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+        }
+        
+        .seccion-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 var(--spacing-md) 0;
+        }
+        
+        .seccion-body li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            display: flex;
+            gap: var(--spacing-xs);
+            font-size: var(--font-size-small);
+        }
+        
+        .seccion-body li::before {
+            content: '✓';
+            color: #8e44ad;
+            font-weight: bold;
+        }
+        
+        .seccion-link {
+            display: block;
+            background: #8e44ad;
+            color: white;
+            text-align: center;
+            padding: var(--spacing-sm);
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .seccion-link:hover {
+            background: #9b59b6;
+            text-decoration: none;
+        }
+        
+        .tablon-section {
+            background: #f8f4fb;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .tablon-section {
+            background: #2d1b3d;
+        }
+        
+        .tablon-section h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+            font-size: 2rem;
+        }
+        
+        .noticias-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .noticia-card {
+            background: var(--card-bg);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #8e44ad;
+            transition: all var(--transition-fast);
+        }
+        
+        .noticia-card:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .noticia-fecha {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            color: var(--text-secondary);
+            font-size: var(--font-size-small);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .noticia-card h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.1rem;
+        }
+        
+        .noticia-card p {
+            color: var(--text-primary);
+            font-size: var(--font-size-small);
+            margin: 0;
+        }
+        
+        .noticia-link {
+            color: #8e44ad;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: var(--font-size-small);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-top: var(--spacing-sm);
+        }
+        
+        .noticia-link:hover {
+            text-decoration: underline;
+        }
+        
+        .contacto-cultura {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-cultura h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #8e44ad;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #8e44ad;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #8e44ad;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-cultura h1 {
+                font-size: 2rem;
+            }
+            
+            .secciones-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Cultura</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container cultura-container">
+                <div class="hero-cultura">
+                    <h1>🎭 Cultura en Pioz</h1>
+                    <p>
+                        Descubre la rica vida cultural de nuestro municipio: teatro, biblioteca, 
+                        asociaciones y actividades para todos los públicos
+                    </p>
+                </div>
+
+                <!-- Introducción y Teatro -->
+                <article class="intro-section">
+                    <h2><span>🎪</span> Nuestro Compromiso Cultural</h2>
+                    <div class="intro-content">
+                        <p>
+                            <strong>Pioz dispone de un magnífico teatro</strong> donde se llevan a cabo una gran variedad 
+                            de actos culturales durante todo el año. Al ser miembro de la <strong>red de teatros</strong>, 
+                            las representaciones son frecuentes y de alta calidad.
+                        </p>
+                        <p>
+                            Este espacio sirve como plataforma para el <strong>Grupo Teatral Aficionados de Pioz «Despertares»</strong>, 
+                            que ofrece espectáculos que llenan de orgullo a nuestro municipio.
+                        </p>
+                        <p>
+                            A través de esta página te mantendremos informado sobre todos los acontecimientos culturales: 
+                            <strong>fiestas patronales</strong>, <strong>representaciones navideñas</strong>, 
+                            la <strong>jornada medieval</strong> y mucho más. <strong>¡Entra e infórmate con puntualidad!</strong>
+                        </p>
+                    </div>
+                </article>
+
+                <!-- Teatro Destacado -->
+                <div class="teatro-destacado">
+                    <h3>🎭 Teatro Municipal de Pioz</h3>
+                    <p>Un espacio cultural de primer nivel para disfrutar de las mejores representaciones</p>
+                    
+                    <div class="teatro-features">
+                        <div class="teatro-feature">
+                            <span>🎪</span>
+                            <p><strong>Red de Teatros</strong><br>Programación continua</p>
+                        </div>
+                        <div class="teatro-feature">
+                            <span>🎭</span>
+                            <p><strong>Grupo Despertares</strong><br>Teatro local de calidad</p>
+                        </div>
+                        <div class="teatro-feature">
+                            <span>🎉</span>
+                            <p><strong>Eventos Especiales</strong><br>Festivales y celebraciones</p>
+                        </div>
+                        <div class="teatro-feature">
+                            <span>👨‍👩‍👧‍👦</span>
+                            <p><strong>Para Todos</strong><br>Actividades familiares</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Secciones Culturales -->
+                <section class="secciones-culturales">
+                    <h2>📚 Explora Nuestras Secciones Culturales</h2>
+                    
+                    <div class="secciones-grid">
+                        <div class="seccion-card">
+                            <div class="seccion-header">
+                                <span class="seccion-icon">📅</span>
+                                <h3>Calendario Cultural</h3>
+                                <p>Festividades y eventos del año</p>
+                            </div>
+                            <div class="seccion-body">
+                                <ul>
+                                    <li>San Sebastián (20 de enero)</li>
+                                    <li>La Candelaria (2 de febrero)</li>
+                                    <li>San Isidro (15 de mayo)</li>
+                                    <li>San Donato (Agosto)</li>
+                                    <li>Jornada Medieval</li>
+                                </ul>
+                                <a href="cultura/calendario.html" class="seccion-link">Ver calendario completo →</a>
+                            </div>
+                        </div>
+
+                        <div class="seccion-card">
+                            <div class="seccion-header">
+                                <span class="seccion-icon">👥</span>
+                                <h3>Asociaciones Culturales</h3>
+                                <p>Grupos y colectivos de Pioz</p>
+                            </div>
+                            <div class="seccion-body">
+                                <ul>
+                                    <li>Las Candelas</li>
+                                    <li>Club Social 3ª Edad San Sebastián</li>
+                                    <li>AMPA (Asociación de Padres)</li>
+                                    <li>Equality</li>
+                                    <li>Step by Step</li>
+                                </ul>
+                                <a href="cultura/asociaciones.html" class="seccion-link">Conocer asociaciones →</a>
+                            </div>
+                        </div>
+
+                        <div class="seccion-card">
+                            <div class="seccion-header">
+                                <span class="seccion-icon">🏫</span>
+                                <h3>Colegios de Pioz</h3>
+                                <p>Centros de educación primaria</p>
+                            </div>
+                            <div class="seccion-body">
+                                <ul>
+                                    <li>CEIP "La Arboleda de Pioz"</li>
+                                    <li>CEIP "Castillo de Pioz"</li>
+                                    <li>Información de contacto</li>
+                                    <li>Horarios y servicios</li>
+                                </ul>
+                                <a href="cultura/colegios.html" class="seccion-link">Información colegios →</a>
+                            </div>
+                        </div>
+
+                        <div class="seccion-card">
+                            <div class="seccion-header">
+                                <span class="seccion-icon">🎓</span>
+                                <h3>IES de Pioz</h3>
+                                <p>Instituto de Educación Secundaria</p>
+                            </div>
+                            <div class="seccion-body">
+                                <ul>
+                                    <li>IES La Peñalba (Chiloeches)</li>
+                                    <li>Transporte escolar</li>
+                                    <li>Bono de autobús</li>
+                                    <li>Plataforma P.A.P.A.S. 2.0</li>
+                                </ul>
+                                <a href="cultura/ies.html" class="seccion-link">Ver información IES →</a>
+                            </div>
+                        </div>
+
+                        <div class="seccion-card">
+                            <div class="seccion-header">
+                                <span class="seccion-icon">👨‍🎓</span>
+                                <h3>Escuela Secundaria para Adultos</h3>
+                                <p>ESPA - Educación de adultos</p>
+                            </div>
+                            <div class="seccion-body">
+                                <ul>
+                                    <li>Información actualizada</li>
+                                    <li>Centro de referencia</li>
+                                    <li>Clara Campoamor (Azuqueca)</li>
+                                    <li>Requisitos y matrícula</li>
+                                </ul>
+                                <a href="cultura/espa.html" class="seccion-link">Información ESPA →</a>
+                            </div>
+                        </div>
+
+                        <div class="seccion-card" id="biblioteca">
+                            <div class="seccion-header">
+                                <span class="seccion-icon">📚</span>
+                                <h3>Biblioteca Municipal</h3>
+                                <p>«Miguel de Cervantes»</p>
+                            </div>
+                            <div class="seccion-body">
+                                <ul>
+                                    <li>+8.500 volúmenes disponibles</li>
+                                    <li>Red de Bibliotecas CLM</li>
+                                    <li>Préstamos y multimedia</li>
+                                    <li>Actividades y talleres</li>
+                                    <li>Acceso a Internet</li>
+                                </ul>
+                                <a href="cultura/biblioteca.html" class="seccion-link">Visitar biblioteca →</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tablón de Anuncios -->
+                <section class="tablon-section">
+                    <h2>📰 Tablón de Anuncios - Educación y Cultura</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Últimas noticias y eventos culturales de Pioz
+                    </p>
+                    
+                    <div class="noticias-grid">
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>21 de noviembre de 2023</span>
+                            </div>
+                            <h3>Festival Musical Grupo El Despertar</h3>
+                            <p>El Grupo Teatral Despertares presenta su Festival Musical Anual con las mejores actuaciones del año.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>27 de octubre de 2023</span>
+                            </div>
+                            <h3>Juan Tenorio</h3>
+                            <p>Representación teatral del clásico de Zorrilla en nuestro teatro municipal.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>27 de octubre de 2023</span>
+                            </div>
+                            <h3>Las Mujeres de Lorca</h3>
+                            <p>Homenaje teatral a las figuras femeninas de la obra de Federico García Lorca.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>11 de octubre de 2023</span>
+                            </div>
+                            <h3>Taller de Robótica</h3>
+                            <p>Actividad educativa para niños y jóvenes interesados en la tecnología y la programación.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>10 de octubre de 2023</span>
+                            </div>
+                            <h3>Proyecto Guardianes</h3>
+                            <p>Iniciativa educativa para fomentar valores de responsabilidad y cuidado del entorno.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>10 de octubre de 2023</span>
+                            </div>
+                            <h3>Primeros Auxilios para Desempleados/as</h3>
+                            <p>Curso gratuito de formación en primeros auxilios dirigido a personas en situación de desempleo.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>6 de octubre de 2023</span>
+                            </div>
+                            <h3>Certificados y Papeles a un Click</h3>
+                            <p>Taller para mayores de 60 años sobre trámites electrónicos y administración digital.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>10 de mayo de 2023</span>
+                            </div>
+                            <h3>Escuela de Música de Pioz</h3>
+                            <p>Información sobre inscripciones y programación de la Escuela Municipal de Música.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>26 de abril de 2023</span>
+                            </div>
+                            <h3>Escuela Municipal de Idiomas</h3>
+                            <p>Cursos de inglés, francés y otros idiomas para todas las edades y niveles.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>14 de abril de 2023</span>
+                            </div>
+                            <h3>Cuentacuentos Adultos / Infantil</h3>
+                            <p>Sesiones de cuentacuentos en la biblioteca para niños y también para público adulto.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>12 de abril de 2023</span>
+                            </div>
+                            <h3>Taller Aulas de Familia: Conductas de Riesgo</h3>
+                            <p>Taller educativo sobre conductas de riesgo en la adolescencia dirigido a padres y madres.</p>
+                            <a href="#" class="noticia-link">Leer más →</a>
+                        </div>
+
+                        <div class="noticia-card">
+                            <div class="noticia-fecha">
+                                <span>📅</span>
+                                <span>Información actualizada</span>
+                            </div>
+                            <h3>Más Actividades Culturales</h3>
+                            <p>Consulta regularmente nuestro tablón para estar al día de todas las novedades culturales.</p>
+                            <a href="tablon.html" class="noticia-link">Ver tablón completo →</a>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto Departamento de Cultura -->
+                <section class="contacto-cultura">
+                    <h2>📞 Contacto - Departamento de Cultura</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        ¿Tienes alguna consulta sobre actividades culturales? Ponte en contacto con nosotros
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    Ayuntamiento de Pioz<br>
+                                    Plaza Mayor, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>
+                                    Lunes a Viernes<br>
+                                    9:00 - 14:00 horas
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="components/header.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="js/theme-toggle.js"></script>
+    <script src="js/search-engine.js"></script>
+    <script src="js/navigation.js"></script>
+</body>
+</html>

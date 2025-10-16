@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Escuela Secundaria para Adultos (ESPA) - Información sobre estudios para adultos en Pioz">
+    <title>Escuela Secundaria para Adultos (ESPA) | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .espa-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-espa {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-espa h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-espa .subtitle {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .hero-espa p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .aviso-importante {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            box-shadow: var(--shadow-md);
+        }
+        
+        [data-theme="dark"] .aviso-importante {
+            background: #3a3320;
+        }
+        
+        .aviso-importante h2 {
+            color: #856404;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        [data-theme="dark"] .aviso-importante h2 {
+            color: #ffc107;
+        }
+        
+        .aviso-importante p {
+            color: #856404;
+            font-size: var(--font-size-large);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        [data-theme="dark"] .aviso-importante p {
+            color: #f0e6d2;
+        }
+        
+        .centro-alternativo {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border-top: 4px solid #3498db;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .centro-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+        }
+        
+        .centro-icon {
+            font-size: 4rem;
+            flex-shrink: 0;
+        }
+        
+        .centro-header h2 {
+            color: white;
+            font-size: 1.75rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .centro-subtitle {
+            opacity: 0.95;
+            font-size: var(--font-size-small);
+        }
+        
+        .centro-body {
+            padding: var(--spacing-xl);
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #3498db;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #3498db;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .instrucciones-box {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-top: var(--spacing-lg);
+        }
+        
+        .instrucciones-box h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.3rem;
+        }
+        
+        .instrucciones-lista {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .instrucciones-lista li {
+            padding: var(--spacing-sm) 0;
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+            line-height: 1.6;
+        }
+        
+        .instrucciones-lista li::before {
+            content: '✓';
+            font-weight: bold;
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+        
+        .info-complementaria {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .info-complementaria h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .beneficios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .beneficio-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .beneficio-item span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .beneficio-item p {
+            color: var(--text-primary);
+            margin: 0;
+            font-size: var(--font-size-small);
+        }
+        
+        .contacto-ayto {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .contacto-ayto h2 {
+            color: #3498db;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        @media (max-width: 767px) {
+            .centro-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-espa h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-espa .subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../cultura.html">Cultura</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">ESPA</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container espa-container">
+                <div class="hero-espa">
+                    <h1>🎓 Escuela Secundaria para Adultos</h1>
+                    <p class="subtitle">ESPA</p>
+                    <p>Información sobre estudios de Secundaria para personas adultas</p>
+                </div>
+
+                <!-- Aviso Importante -->
+                <div class="aviso-importante">
+                    <h2>
+                        <span>⚠️</span>
+                        Información Importante sobre el Servicio en Pioz
+                    </h2>
+                    <p>
+                        <strong>En Pioz, para el próximo curso escolar, no disponemos de Escuela Secundaria para Adultos.</strong>
+                    </p>
+                    <p style="margin-top: var(--spacing-md);">
+                        Sin embargo, ponemos a tu disposición la información del centro de referencia más cercano 
+                        donde podrás cursar estos estudios.
+                    </p>
+                </div>
+
+                <!-- Centro Alternativo -->
+                <article class="centro-alternativo">
+                    <div class="centro-header">
+                        <span class="centro-icon">🏫</span>
+                        <div>
+                            <h2>Centro de Educación de Adultos Clara Campoamor</h2>
+                            <p class="centro-subtitle">Centro de referencia para cursar la Escuela Secundaria para Adultos (ESPA)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="centro-body">
+                        <div class="contacto-grid">
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📍</span>
+                                <div class="contacto-content">
+                                    <strong>Dirección</strong>
+                                    <p>Avenida Siglo XXI, s/n<br>19200 Azuqueca de Henares<br>Guadalajara</p>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📞</span>
+                                <div class="contacto-content">
+                                    <strong>Teléfono</strong>
+                                    <p><a href="tel:949262235">949 262 235</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item">
+                                <span class="contacto-icon">📧</span>
+                                <div class="contacto-content">
+                                    <strong>Correo Electrónico</strong>
+                                    <p><a href="mailto:19002950.cp@edu.jccm.es">19002950.cp@edu.jccm.es</a></p>
+                                </div>
+                            </div>
+
+                            <div class="contacto-item">
+                                <span class="contacto-icon">🎓</span>
+                                <div class="contacto-content">
+                                    <strong>Tipo de Centro</strong>
+                                    <p>Centro de Educación<br>de Adultos</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="instrucciones-box">
+                            <h3>📋 Pasos para Matricularte</h3>
+                            <ul class="instrucciones-lista">
+                                <li>
+                                    <strong>Contacta telefónicamente</strong> con el Centro de Educación de Adultos Clara Campoamor 
+                                    en el número <strong>949 262 235</strong>
+                                </li>
+                                <li>
+                                    El centro te informará sobre <strong>periodos de matrícula</strong> y 
+                                    <strong>documentación necesaria</strong>
+                                </li>
+                                <li>
+                                    Te indicarán si <strong>existen plazas disponibles</strong> para el curso que deseas realizar
+                                </li>
+                                <li>
+                                    Podrás resolver todas tus dudas sobre horarios, modalidades de estudio 
+                                    (presencial, semipresencial, distancia) y requisitos de acceso
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div style="background: var(--bg-tertiary); padding: var(--spacing-md); border-radius: 4px; margin-top: var(--spacing-lg);">
+                            <p style="text-align: center; color: var(--text-primary);">
+                                <strong>💡 Consejo:</strong> Te recomendamos contactar con el centro con antelación 
+                                para asegurar tu plaza y conocer todos los detalles del proceso de matriculación.
+                            </p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Información Complementaria -->
+                <div class="info-complementaria">
+                    <h2>📚 ¿Qué es la ESPA?</h2>
+                    <p style="color: var(--text-primary); text-align: center; margin-bottom: var(--spacing-lg);">
+                        La Escuela Secundaria para Adultos (ESPA) permite obtener el título de 
+                        <strong>Graduado en Educación Secundaria Obligatoria</strong> a personas adultas que no lo obtuvieron en su momento.
+                    </p>
+
+                    <div class="beneficios-grid">
+                        <div class="beneficio-item">
+                            <span>🎯</span>
+                            <p><strong>Flexibilidad Horaria</strong><br>Adaptada a personas que trabajan</p>
+                        </div>
+                        <div class="beneficio-item">
+                            <span>📖</span>
+                            <p><strong>Diferentes Modalidades</strong><br>Presencial, semipresencial y distancia</p>
+                        </div>
+                        <div class="beneficio-item">
+                            <span>🆓</span>
+                            <p><strong>Educación Gratuita</strong><br>Enseñanza pública sin coste</p>
+                        </div>
+                        <div class="beneficio-item">
+                            <span>🎓</span>
+                            <p><strong>Título Oficial</strong><br>Graduado en ESO válido</p>
+                        </div>
+                        <div class="beneficio-item">
+                            <span>👥</span>
+                            <p><strong>Grupos Reducidos</strong><br>Atención personalizada</p>
+                        </div>
+                        <div class="beneficio-item">
+                            <span>🚀</span>
+                            <p><strong>Nuevas Oportunidades</strong><br>Acceso a FP y Bachillerato</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contacto Ayuntamiento -->
+                <div class="contacto-ayto">
+                    <h2>📞 ¿Necesitas Más Información?</h2>
+                    <p style="text-align: center; margin-bottom: var(--spacing-lg); color: var(--text-secondary);">
+                        El Ayuntamiento de Pioz también puede orientarte sobre estudios para adultos
+                    </p>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>Ayuntamiento de Pioz<br>Plaza Mayor, s/n<br>19162 Pioz, Guadalajara</p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>Lunes a Viernes<br>9:00 - 14:00 horas</p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+</body>
+</html>

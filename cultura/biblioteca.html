@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Biblioteca Municipal Miguel de Cervantes de Pioz - Servicios, catálogo, actividades y horarios">
+    <title>Biblioteca Municipal | Ayuntamiento de Pioz</title>
+    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/components.css">
+    <style>
+        .biblioteca-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero-biblioteca {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .hero-biblioteca h1 {
+            color: white;
+            margin-bottom: var(--spacing-sm);
+            font-size: 2.5rem;
+        }
+        
+        .hero-biblioteca .subtitle {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            color: white;
+            opacity: 0.95;
+        }
+        
+        .hero-biblioteca p {
+            font-size: var(--font-size-large);
+            color: white;
+            opacity: 0.9;
+        }
+        
+        .quote-box {
+            background: var(--card-bg);
+            border-left: 4px solid #8e44ad;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+            font-style: italic;
+            box-shadow: var(--shadow-md);
+        }
+        
+        .quote-box p {
+            color: var(--text-primary);
+            font-size: var(--font-size-large);
+            line-height: 1.8;
+            margin: 0 0 var(--spacing-md) 0;
+        }
+        
+        .quote-author {
+            text-align: right;
+            color: #8e44ad;
+            font-weight: 600;
+            font-style: normal;
+        }
+        
+        .historia-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .historia-section h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .historia-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        .historia-item {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .historia-item span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .historia-item strong {
+            display: block;
+            color: #8e44ad;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .red-bibliotecas {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .red-bibliotecas h2 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .red-bibliotecas p {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .ventajas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .ventaja-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .ventaja-item span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .carne-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .carne-section h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .carne-tipos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .carne-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-top: 4px solid #8e44ad;
+        }
+        
+        .carne-card h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .carne-card h3 span {
+            font-size: 2rem;
+        }
+        
+        .carne-requisitos {
+            list-style: none;
+            padding: 0;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .carne-requisitos li {
+            padding: var(--spacing-xs) 0;
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-sm);
+            color: var(--text-primary);
+        }
+        
+        .carne-requisitos li::before {
+            content: '✓';
+            color: #8e44ad;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .carne-info {
+            background: #e8daef;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-top: var(--spacing-md);
+        }
+        
+        [data-theme="dark"] .carne-info {
+            background: #2d1b3d;
+        }
+        
+        .carne-info p {
+            margin: 0;
+            font-size: var(--font-size-small);
+            color: var(--text-primary);
+        }
+        
+        .mopac-section {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .mopac-section h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .mopac-steps {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-lg);
+            border-radius: 4px;
+            margin-top: var(--spacing-md);
+        }
+        
+        .mopac-steps ol {
+            margin: 0;
+            padding-left: var(--spacing-lg);
+        }
+        
+        .mopac-steps li {
+            padding: var(--spacing-xs) 0;
+        }
+        
+        .servicios-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .servicios-section h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .servicio-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            border-left: 4px solid #8e44ad;
+        }
+        
+        .servicio-card h3 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .servicio-card h3 span {
+            font-size: 2rem;
+        }
+        
+        .servicio-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .servicio-card li {
+            padding: var(--spacing-xs) 0;
+            color: var(--text-primary);
+            display: flex;
+            gap: var(--spacing-xs);
+        }
+        
+        .servicio-card li::before {
+            content: '•';
+            color: #8e44ad;
+        }
+        
+        .colecciones-section {
+            background: #f8f4fb;
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        [data-theme="dark"] .colecciones-section {
+            background: #2d1b3d;
+        }
+        
+        .colecciones-section h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .colecciones-tabs {
+            display: flex;
+            gap: var(--spacing-sm);
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .tab-button {
+            background: var(--card-bg);
+            border: 2px solid #8e44ad;
+            color: #8e44ad;
+            padding: var(--spacing-sm) var(--spacing-lg);
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+        
+        .tab-button:hover,
+        .tab-button.active {
+            background: #8e44ad;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .coleccion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .coleccion-item {
+            background: var(--card-bg);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .coleccion-item span {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .coleccion-item strong {
+            display: block;
+            color: #8e44ad;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .actividades-section {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .actividades-section h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-md);
+            text-align: center;
+        }
+        
+        .aviso-inscripcion {
+            background: #e8daef;
+            border-left: 4px solid #8e44ad;
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        [data-theme="dark"] .aviso-inscripcion {
+            background: #2d1b3d;
+        }
+        
+        .aviso-inscripcion p {
+            margin: 0;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        
+        .actividades-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-md);
+        }
+        
+        .actividad-card {
+            background: var(--bg-tertiary);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .actividad-card span {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .actividad-card h4 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .actividad-card p {
+            margin: 0;
+            font-size: var(--font-size-small);
+            color: var(--text-secondary);
+        }
+        
+        .contacto-biblioteca {
+            background: var(--card-bg);
+            padding: var(--spacing-xl);
+            border-radius: 8px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        .contacto-biblioteca h2 {
+            color: #8e44ad;
+            margin-bottom: var(--spacing-lg);
+            text-align: center;
+        }
+        
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+        
+        .contacto-item {
+            display: flex;
+            align-items: start;
+            gap: var(--spacing-md);
+        }
+        
+        .contacto-icon {
+            font-size: 1.5rem;
+            color: #8e44ad;
+            flex-shrink: 0;
+        }
+        
+        .contacto-content strong {
+            display: block;
+            color: #8e44ad;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .contacto-content p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+        
+        .contacto-content a {
+            color: #8e44ad;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .contacto-content a:hover {
+            text-decoration: underline;
+        }
+        
+        .horario-destacado {
+            background: linear-gradient(135deg, #8e44ad 0%, #9b59b6 100%);
+            color: white;
+            padding: var(--spacing-lg);
+            border-radius: 8px;
+            text-align: center;
+            margin-top: var(--spacing-lg);
+        }
+        
+        .horario-destacado h3 {
+            color: white;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .horario-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-md);
+        }
+        
+        .horario-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: var(--spacing-md);
+            border-radius: 4px;
+        }
+        
+        .horario-item strong {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        @media (max-width: 767px) {
+            .hero-biblioteca h1 {
+                font-size: 2rem;
+            }
+            
+            .colecciones-tabs {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
+    <!-- Header Component -->
+    <div id="header-placeholder"></div>
+
+    <main id="main-content">
+        <section class="page-header">
+            <div class="container">
+                <nav aria-label="Breadcrumb">
+                    <ol class="breadcrumb" style="list-style: none; display: flex; gap: 0.5rem; padding: 0;">
+                        <li><a href="../index.html">Inicio</a></li>
+                        <li>&raquo;</li>
+                        <li><a href="../cultura.html">Cultura</a></li>
+                        <li>&raquo;</li>
+                        <li aria-current="page">Biblioteca</li>
+                    </ol>
+                </nav>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container biblioteca-container">
+                <div class="hero-biblioteca">
+                    <h1>📚 Biblioteca Municipal</h1>
+                    <p class="subtitle">«Miguel de Cervantes»</p>
+                    <p>Un espacio de cultura, conocimiento y comunidad</p>
+                </div>
+
+                <!-- Cita de Borges -->
+                <div class="quote-box">
+                    <p>
+                        "De los diversos instrumentos inventados por el hombre, el más poderoso es el libro; 
+                        todos los demás son extensiones de su cuerpo... Sólo el libro es una extensión de la 
+                        imaginación y la memoria".
+                    </p>
+                    <p class="quote-author">— Jorge Luis Borges</p>
+                </div>
+
+                <!-- Historia y Reseña -->
+                <article class="historia-section">
+                    <h2>📖 Nuestra Historia</h2>
+                    <p style="color: var(--text-primary); line-height: 1.8; margin-bottom: var(--spacing-lg);">
+                        La <strong>Biblioteca Municipal «Miguel de Cervantes»</strong> inició su actividad en 
+                        <strong>noviembre de 2007</strong>. Desde entonces, ha experimentado un notable crecimiento, 
+                        incrementando su fondo documental en <strong>más de 8.500 volúmenes</strong> que incluyen 
+                        libros, CD, DVD, CD-ROM y revistas.
+                    </p>
+                    <p style="color: var(--text-primary); line-height: 1.8;">
+                        Tras un minucioso proceso de planificación, organización, adquisición de mobiliario y 
+                        equipamiento informático, además de la adecuación de espacios, hemos logrado poner a 
+                        disposición de todos los ciudadanos un amplio fondo bibliográfico y multimedia que continúa 
+                        creciendo día a día.
+                    </p>
+
+                    <div class="historia-grid">
+                        <div class="historia-item">
+                            <span>📅</span>
+                            <strong>Noviembre 2007</strong>
+                            <p>Inicio de actividad</p>
+                        </div>
+                        <div class="historia-item">
+                            <span>📚</span>
+                            <strong>+8.500</strong>
+                            <p>Volúmenes disponibles</p>
+                        </div>
+                        <div class="historia-item">
+                            <span>💻</span>
+                            <strong>12 Ordenadores</strong>
+                            <p>Con acceso a Internet</p>
+                        </div>
+                        <div class="historia-item">
+                            <span>🌐</span>
+                            <strong>Red Regional</strong>
+                            <p>Castilla-La Mancha</p>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Red de Bibliotecas -->
+                <div class="red-bibliotecas">
+                    <h2>🌐 Red de Bibliotecas de Castilla-La Mancha</h2>
+                    <p>
+                        Gracias a la <strong>Consejería de Educación, Cultura y Deportes</strong>, nuestra biblioteca 
+                        forma parte de un proyecto que permite a los centros pequeños acceder a los fondos y servicios 
+                        de <strong>todas las bibliotecas de Castilla-La Mancha</strong>.
+                    </p>
+
+                    <div class="ventajas-grid">
+                        <div class="ventaja-item">
+                            <span>🔍</span>
+                            <p><strong>Búsqueda Unificada</strong><br>Catálogo colectivo en línea</p>
+                        </div>
+                        <div class="ventaja-item">
+                            <span>📖</span>
+                            <p><strong>Reserva de Libros</strong><br>Desde cualquier biblioteca</p>
+                        </div>
+                        <div class="ventaja-item">
+                            <span>✅</span>
+                            <p><strong>Disponibilidad</strong><br>Consulta en tiempo real</p>
+                        </div>
+                        <div class="ventaja-item">
+                            <span>🔄</span>
+                            <p><strong>Renovaciones</strong><br>Gestiona tus préstamos online</p>
+                        </div>
+                        <div class="ventaja-item">
+                            <span>📅</span>
+                            <p><strong>Actividades</strong><br>Información de todos los centros</p>
+                        </div>
+                        <div class="ventaja-item">
+                            <span>💳</span>
+                            <p><strong>Carné Único</strong><br>Válido en toda la red</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Carné de Usuario -->
+                <section class="carne-section" id="carne">
+                    <h2>💳 Carné de Usuario</h2>
+                    <p style="text-align: center; color: var(--text-secondary); margin-bottom: var(--spacing-xl);">
+                        Obtén tu carné de forma gratuita y accede a todos los servicios de la biblioteca
+                    </p>
+
+                    <div class="carne-tipos">
+                        <div class="carne-card">
+                            <h3><span>👨</span> Carné Adulto</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                                <strong>A partir de 14 años</strong>
+                            </p>
+                            <h4 style="color: #8e44ad; margin-bottom: var(--spacing-sm);">Requisitos:</h4>
+                            <ul class="carne-requisitos">
+                                <li>Mostrar DNI o Pasaporte original</li>
+                                <li>Rellenar la solicitud facilitada en la biblioteca</li>
+                            </ul>
+                            <div class="carne-info">
+                                <p><strong>✓ Emisión inmediata</strong></p>
+                                <p>Válido durante 4 años</p>
+                            </div>
+                        </div>
+
+                        <div class="carne-card">
+                            <h3><span>👶</span> Carné Infantil</h3>
+                            <p style="color: var(--text-secondary); margin-bottom: var(--spacing-md);">
+                                <strong>De 0 a 13 años</strong>
+                            </p>
+                            <h4 style="color: #8e44ad; margin-bottom: var(--spacing-sm);">Requisitos:</h4>
+                            <ul class="carne-requisitos">
+                                <li>Mostrar DNI o Pasaporte del menor</li>
+                                <li>Rellenar solicitud con datos y firma del padre, madre, tutor o responsable legal</li>
+                            </ul>
+                            <div class="carne-info">
+                                <p><strong>✓ Emisión inmediata</strong></p>
+                                <p>No requiere fotografía</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carné Móvil MOPAC -->
+                    <div class="mopac-section">
+                        <h3>📱 Carné en tu Smartphone (MOPAC)</h3>
+                        <p>Lleva tu carné de biblioteca siempre contigo en formato digital</p>
+                        
+                        <div class="mopac-steps">
+                            <h4 style="color: white; margin-bottom: var(--spacing-md);">Pasos para activar tu carné móvil:</h4>
+                            <ol>
+                                <li>Accede desde tu móvil a: <strong>http://reddebibliotecas.jccm.es/mopac</strong></li>
+                                <li>Haz clic en <strong>">"</strong> para identificarte</li>
+                                <li>Introduce tu <strong>número de lector</strong> y <strong>clave</strong></li>
+                                <li>Pulsa <strong>"Conectar"</strong></li>
+                                <li>Haz clic en <strong>">"</strong> junto a tu nombre</li>
+                                <li>Selecciona <strong>"Mi biblioteca"</strong> para visualizar tu carné</li>
+                            </ol>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Servicios de la Biblioteca -->
+                <section class="servicios-section">
+                    <h2>🎯 Servicios Disponibles</h2>
+
+                    <div class="servicios-grid">
+                        <div class="servicio-card">
+                            <h3><span>📚</span> Préstamo de Libros</h3>
+                            <ul>
+                                <li><strong>4 libros</strong> durante 21 días</li>
+                                <li>Renovable hasta <strong>2 veces</strong></li>
+                                <li>Todos los géneros y materias</li>
+                            </ul>
+                        </div>
+
+                        <div class="servicio-card">
+                            <h3><span>💿</span> Material Multimedia</h3>
+                            <ul>
+                                <li><strong>2 unidades</strong> (DVD, CD, CD-ROM)</li>
+                                <li>Duración del préstamo: <strong>7 días</strong></li>
+                                <li>Música, cine y documentales</li>
+                            </ul>
+                        </div>
+
+                        <div class="servicio-card">
+                            <h3><span>💻</span> Centro de Internet</h3>
+                            <ul>
+                                <li><strong>12 ordenadores</strong> disponibles</li>
+                                <li>Acceso a Internet con reserva previa</li>
+                                <li><strong>Red Wi-Fi gratuita</strong></li>
+                                <li>Apoyo para gestiones online</li>
+                            </ul>
+                        </div>
+
+                        <div class="servicio-card">
+                            <h3><span>📖</span> Servicios en Sala</h3>
+                            <ul>
+                                <li>Información y consulta</li>
+                                <li>Lectura en sala</li>
+                                <li>Reserva para trabajos en grupo</li>
+                                <li>Consulta de referencia</li>
+                            </ul>
+                        </div>
+
+                        <div class="servicio-card">
+                            <h3><span>🎓</span> Formación y Apoyo</h3>
+                            <ul>
+                                <li>Formación en uso de redes</li>
+                                <li>Herramientas informáticas</li>
+                                <li>Acceso a cursos online gratuitos</li>
+                                <li>Centro de Apoyo Tecnológico (Bilib)</li>
+                            </ul>
+                        </div>
+
+                        <div class="servicio-card">
+                            <h3><span>🖨️</span> Otros Servicios</h3>
+                            <ul>
+                                <li>Reprografía</li>
+                                <li>Impresión de documentos</li>
+                                <li>Escaneado</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Colecciones y Fondos -->
+                <section class="colecciones-section">
+                    <h2>📚 Colecciones y Fondos</h2>
+                    
+                    <div class="colecciones-tabs">
+                        <button class="tab-button active" onclick="showTab('mediateca')">🎬 Mediateca</button>
+                        <button class="tab-button" onclick="showTab('infantil')">👶 Infantil y Juvenil</button>
+                        <button class="tab-button" onclick="showTab('adultos')">📖 Adultos</button>
+                        <button class="tab-button" onclick="showTab('especiales')">⭐ Centros de Interés</button>
+                    </div>
+
+                    <div id="mediateca" class="tab-content active">
+                        <h3 style="color: #8e44ad; margin-bottom: var(--spacing-lg);">Material Audiovisual</h3>
+                        <div class="coleccion-grid">
+                            <div class="coleccion-item">
+                                <span>🎬</span>
+                                <strong>DVD por Géneros</strong>
+                                <p>Acción, comedia, drama, terror, ciencia ficción, documentales...</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>🎵</span>
+                                <strong>Música</strong>
+                                <p>Pop-rock, clásica, jazz, música popular...</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>💿</span>
+                                <strong>Documentos Electrónicos</strong>
+                                <p>CD-ROM, DVD-ROM educativos y culturales</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>🎨</span>
+                                <strong>Material Infantil</strong>
+                                <p>DVD y CD para niños y jóvenes</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="infantil" class="tab-content">
+                        <h3 style="color: #8e44ad; margin-bottom: var(--spacing-lg);">Sección Infantil y Juvenil</h3>
+                        <div class="coleccion-grid">
+                            <div class="coleccion-item">
+                                <span>👶</span>
+                                <strong>Primeros Lectores</strong>
+                                <p>Libros para niños de 0 a 3 años</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>📚</span>
+                                <strong>Infantil</strong>
+                                <p>Libros a partir de 4 años</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>🎓</span>
+                                <strong>Narrativa Juvenil</strong>
+                                <p>Para jóvenes a partir de 12 años</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>📖</span>
+                                <strong>Libros de Materias</strong>
+                                <p>Conocimiento y aprendizaje</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>💭</span>
+                                <strong>Cómics</strong>
+                                <p>Tebeos y novelas gráficas</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>🧩</span>
+                                <strong>Juegos Infantiles</strong>
+                                <p>Puzles, abecedarios, construcciones</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="adultos" class="tab-content">
+                        <h3 style="color: #8e44ad; margin-bottom: var(--spacing-lg);">Fondo para Adultos</h3>
+                        <div class="coleccion-grid">
+                            <div class="coleccion-item">
+                                <span>📖</span>
+                                <strong>Narrativa</strong>
+                                <p>Novela nacional e internacional</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>📚</span>
+                                <strong>Libros por Materias</strong>
+                                <p>Ensayo, ciencia, arte, deportes...</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>🏛️</span>
+                                <strong>Historia</strong>
+                                <p>Historia de España y del mundo</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>📕</span>
+                                <strong>Consulta y Referencia</strong>
+                                <p>Diccionarios, enciclopedias, atlas</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>🗺️</span>
+                                <strong>Guías de Viajes</strong>
+                                <p>Turismo y viajes por el mundo</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="especiales" class="tab-content">
+                        <h3 style="color: #8e44ad; margin-bottom: var(--spacing-lg);">Centros de Interés Especiales</h3>
+                        <div class="coleccion-grid">
+                            <div class="coleccion-item">
+                                <span>🏰</span>
+                                <strong>Fondo Regional</strong>
+                                <p>Castilla-La Mancha y su cultura</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>👨‍👩‍👧</span>
+                                <strong>Padres y Educadores</strong>
+                                <p>Educación y crianza</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>✂️</span>
+                                <strong>Manualidades</strong>
+                                <p>DIY, artesanía y hobbies</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>🌍</span>
+                                <strong>Idiomas</strong>
+                                <p>Aprendizaje de lenguas extranjeras</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>💭</span>
+                                <strong>Cómics</strong>
+                                <p>Novela gráfica y tebeos</p>
+                            </div>
+                            <div class="coleccion-item">
+                                <span>💜</span>
+                                <strong>Estantería Violeta</strong>
+                                <p>Igualdad y perspectiva de género</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Actividades -->
+                <section class="actividades-section">
+                    <h2>🎨 Actividades y Talleres</h2>
+                    
+                    <div class="aviso-inscripcion">
+                        <p>⚠️ Para apuntarse a cualquier actividad es imprescindible el <strong>carné de la biblioteca</strong></p>
+                    </div>
+
+                    <div class="actividades-grid">
+                        <div class="actividad-card">
+                            <span>📖</span>
+                            <h4>Animación a la Lectura</h4>
+                            <p>Actividades dinámicas para fomentar el amor por la lectura</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>📚</span>
+                            <h4>Cuentacuentos</h4>
+                            <p>Sesiones de narración oral para todas las edades</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>✂️</span>
+                            <h4>Talleres de Manualidades</h4>
+                            <p>Creatividad y expresión artística</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>🎮</span>
+                            <h4>Juegos de Animación</h4>
+                            <p>Aprender jugando y divirtiéndose</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>👶</span>
+                            <h4>Taller Infantil (5 años)</h4>
+                            <p>Club de lectura para los más pequeños</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>📘</span>
+                            <h4>Taller 1º Primaria</h4>
+                            <p>Descubriendo el placer de leer</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>📗</span>
+                            <h4>Taller 2º Primaria</h4>
+                            <p>Lecturas adaptadas y divertidas</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>📙</span>
+                            <h4>Taller 3º y 4º Primaria</h4>
+                            <p>Aventuras literarias para lectores intermedios</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>📕</span>
+                            <h4>Taller 5º y 6º Primaria</h4>
+                            <p>Lecturas más complejas y debates</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>👥</span>
+                            <h4>Taller de Lectura Adultos</h4>
+                            <p>Club de lectura y tertulias literarias</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>💻</span>
+                            <h4>Formación de Usuarios</h4>
+                            <p>Uso de redes y herramientas informáticas</p>
+                        </div>
+                        <div class="actividad-card">
+                            <span>🎓</span>
+                            <h4>Cursos Online</h4>
+                            <p>Formación gratuita para jóvenes y adultos</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Contacto y Localización -->
+                <section class="contacto-biblioteca">
+                    <h2>📍 Contacto y Localización</h2>
+                    
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📍</span>
+                            <div class="contacto-content">
+                                <strong>Dirección</strong>
+                                <p>
+                                    1ª Planta Centro Cultural «Miguel de Cervantes»<br>
+                                    Calle Camino de las eras, s/n<br>
+                                    19162 Pioz, Guadalajara
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono</strong>
+                                <p><a href="tel:949272050">949 272 050</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📧</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p>
+                                    <a href="mailto:bibliotecamunicipal@ayto.pioz">bibliotecamunicipal@ayto.pioz</a><br>
+                                    <a href="mailto:biblioteca.aytopioz@gmail.com">biblioteca.aytopioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🌐</span>
+                            <div class="contacto-content">
+                                <strong>Red de Bibliotecas</strong>
+                                <p>
+                                    <a href="http://reddebibliotecas.jccm.es" target="_blank" rel="noopener noreferrer">
+                                        reddebibliotecas.jccm.es
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="horario-destacado">
+                        <h3>🕐 Horario de la Biblioteca</h3>
+                        <div class="horario-grid">
+                            <div class="horario-item">
+                                <strong>Lunes</strong>
+                                <p>10:30 - 19:00 horas</p>
+                            </div>
+                            <div class="horario-item">
+                                <strong>Martes a Viernes</strong>
+                                <p>14:30 - 19:30 horas</p>
+                            </div>
+                        </div>
+                        <p style="margin-top: var(--spacing-md); font-size: var(--font-size-small); opacity: 0.9;">
+                            Cerrado sábados, domingos y festivos
+                        </p>
+                    </div>
+                </section>
+
+                <!-- Información Ayuntamiento -->
+                <div style="background: var(--card-bg); padding: var(--spacing-lg); border-radius: 8px; box-shadow: var(--shadow-sm); margin-top: var(--spacing-xl);">
+                    <h3 style="color: #8e44ad; margin-bottom: var(--spacing-md); text-align: center;">
+                        ℹ️ Información del Ayuntamiento
+                    </h3>
+                    <div class="contacto-grid">
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🏛️</span>
+                            <div class="contacto-content">
+                                <strong>Ayuntamiento de Pioz</strong>
+                                <p>Plaza Mayor, s/n<br>19162 Pioz, Guadalajara</p>
+                            </div>
+                        </div>
+                        <div class="contacto-item">
+                            <span class="contacto-icon">📞</span>
+                            <div class="contacto-content">
+                                <strong>Teléfono / Fax</strong>
+                                <p><a href="tel:949272076">949 272 076</a></p>
+                            </div>
+                        </div>
+                        <div class="contacto-item">
+                            <span class="contacto-icon">🕐</span>
+                            <div class="contacto-content">
+                                <strong>Horario de Atención</strong>
+                                <p>Lunes a Viernes<br>9:00 - 14:00 horas</p>
+                            </div>
+                        </div>
+                        <div class="contacto-item">
+                            <span class="contacto-icon">✉️</span>
+                            <div class="contacto-content">
+                                <strong>Correos Electrónicos</strong>
+                                <p style="font-size: var(--font-size-small);">
+                                    <a href="mailto:oficinarecepcion@aytopioz.com">oficinarecepcion@aytopioz.com</a><br>
+                                    <a href="mailto:alcaldiaayto2327.pioz@gmail.com">alcaldiaayto2327.pioz@gmail.com</a><br>
+                                    <a href="mailto:cultura.ayto.2327.pioz@gmail.com">cultura.ayto.2327.pioz@gmail.com</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/header.js"></script>
+    <script src="../components/footer.js"></script>
+    <script src="../js/theme-toggle.js"></script>
+    <script src="../js/search-engine.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script>
+        // Función para cambiar entre tabs de colecciones
+        function showTab(tabId) {
+            // Ocultar todos los contenidos
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            // Desactivar todos los botones
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(button => button.classList.remove('active'));
+            
+            // Mostrar el contenido seleccionado
+            document.getElementById(tabId).classList.add('active');
+            
+            // Activar el botón correspondiente
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

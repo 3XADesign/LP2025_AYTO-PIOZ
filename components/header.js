@@ -4,7 +4,7 @@
     // Determinar la ruta base según la ubicación del archivo
     function getBasePath() {
         const path = window.location.pathname;
-        if (path.includes('/ayuntamiento/') || path.includes('/tramites/') || path.includes('/servicios/') || path.includes('/cultura/')) {
+        if (path.includes('/ayuntamiento/') || path.includes('/tramites/') || path.includes('/servicios/') || path.includes('/cultura/') || path.includes('/villa/')) {
             return '../';
         }
         return '';
@@ -85,15 +85,15 @@
                                     <li><a href="${basePath}cultura/asociaciones.html">Asociaciones</a></li>
                                     <li><a href="${basePath}cultura/colegios.html">Colegios</a></li>
                                     <li><a href="${basePath}cultura/ies.html">IES de Pioz</a></li>
-                                    <li><a href="${basePath}cultura.html#biblioteca">Biblioteca</a></li>
+                                    <li><a href="${basePath}cultura/espa.html">Escuela Secundaria para Adultos</a></li>
+                                    <li><a href="${basePath}cultura/biblioteca.html">Biblioteca</a></li>
                                 </ul>
                             </li>
                             <li class="has-submenu">
                                 <a href="${basePath}villa.html">Villa de Pioz</a>
                                 <ul class="submenu">
-                                    <li><a href="${basePath}villa.html#historia">Historia</a></li>
-                                    <li><a href="${basePath}villa.html#castillo">Castillo de Pioz</a></li>
-                                    <li><a href="${basePath}villa.html#tradiciones">Tradiciones</a></li>
+                                    <li><a href="${basePath}villa/poblacion.html">Población</a></li>
+                                    <li><a href="${basePath}villa/casco_urbano.html">Casco Urbano</a></li>
                                 </ul>
                             </li>
                             <li><a href="${basePath}tablon.html">Tablón / Contacto</a></li>
