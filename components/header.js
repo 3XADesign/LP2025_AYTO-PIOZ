@@ -163,6 +163,9 @@
         if (headerPlaceholder) {
             headerPlaceholder.outerHTML = generateHeader();
             markActiveLinks();
+            
+            // Disparar evento personalizado para notificar que el header está listo
+            window.dispatchEvent(new Event('headerLoaded'));
         }
     }
 
