@@ -87,6 +87,19 @@
                         item.classList.remove('submenu-open');
                     });
                 }
+
+                // NUEVO: Cerrar menú móvil al cambiar a desktop
+                if (window.innerWidth >= 1024 && currentNavList.classList.contains('active')) {
+                    currentNavList.classList.remove('active');
+                    currentNavToggle.setAttribute('aria-expanded', 'false');
+                    document.body.classList.remove('nav-open');
+                    
+                    // Cerrar todos los submenús abiertos en móvil
+                    const openSubmenus = document.querySelectorAll('.has-submenu.active');
+                    openSubmenus.forEach(function(submenu) {
+                        submenu.classList.remove('active');
+                    });
+                }
             }, 250);
         });
 

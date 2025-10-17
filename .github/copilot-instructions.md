@@ -40,6 +40,17 @@ Static municipal website for Ayuntamiento de Pioz (Guadalajara, Spain) built wit
 - Example: `news.js` → `newsContainer` → `createNewsCard()` → sort by date descending → render top 6
 - Files: `js/news.js`, `js/events.js`, `js/bandos.js`, `js/plenos.js`
 
+### Responsive Design System (Mobile-First)
+- **Mobile-first approach**: Base styles for 320px+, enhanced progressively
+- **Breakpoints**: 768px (tablet), 1024px (desktop-sm), 1280px (desktop-lg), 1920px (desktop-xl)
+- **CSS Variables**: Spacing system with `--spacing-xs` through `--spacing-2xl`
+- **Touch-friendly**: Minimum 44x44px tap targets for all interactive elements
+- **Fluid typography**: Using `clamp()` for responsive font sizing
+- **Grid layouts**: Cards adapt from 1 → 2 → 3 columns based on viewport
+- **Table responsive**: Tables convert to cards on mobile using `data-label` attributes
+- **Navigation**: Hamburger menu on mobile, horizontal nav on desktop (1024px+)
+- File: `css/responsive.css`
+
 ## File Structure Conventions
 
 ### HTML Structure
@@ -78,6 +89,7 @@ Subfolders: Detailed pages by category (ayuntamiento/bandos.html, servicios/sani
 - `theme.css`: Color variables, light/dark mode definitions
 - `styles.css`: Global typography, layout utilities, section styles
 - `components.css`: Reusable component styles (cards, buttons, forms)
+- `responsive.css`: **NEW** Mobile-first responsive styles, breakpoints, page-specific adaptations
 - **Inline styles**: Acceptable for page-specific layouts (see `busqueda.html`, `bandos.html`)
 
 ## Key Patterns & Conventions
@@ -108,6 +120,78 @@ element.addEventListener('click', handler);
 - Date formatting: `toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })`
 - Content: All text in Spanish, municipal terminology (bandos, plenos, empadronamiento, etc.)
 
+### Responsive Design Patterns
+
+**Breakpoint Usage:**
+```css
+/* Mobile-first base (no media query needed) */
+.element { /* styles for 320px+ */ }
+
+/* Tablet (768px+) */
+@media (min-width: 768px) { }
+
+/* Desktop Small (1024px+) */
+@media (min-width: 1024px) { }
+
+/* Desktop Large (1280px+) */
+@media (min-width: 1280px) { }
+```
+
+**Grid Patterns:**
+```css
+/* Standard responsive grid */
+.cards-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile */
+  gap: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr); /* Tablet */
+  }
+}
+
+@media (min-width: 1024px) {
+  .cards-grid {
+    grid-template-columns: repeat(3, 1fr); /* Desktop */
+  }
+}
+```
+
+**Touch-Friendly Elements:**
+- All buttons/links: `min-height: 44px`, `min-width: 44px`
+- Form inputs: `font-size: 16px` (prevents iOS zoom)
+- Navigation items: `min-height: 48px` on mobile
+- Adequate spacing between tappable elements (min 8px)
+
+**Table Responsive Pattern:**
+```html
+<div class="table-responsive">
+  <table>
+    <thead>
+      <tr>
+        <th>Column 1</th>
+        <th>Column 2</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Column 1">Value 1</td>
+        <td data-label="Column 2">Value 2</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+```
+
+**Utility Classes:**
+- `.hide-mobile` - Hidden on mobile, visible 768px+
+- `.hide-tablet` - Hidden on tablet (768-1023px)
+- `.hide-desktop` - Hidden on desktop 1024px+
+- `.text-center`, `.text-left`, `.text-right`
+- `.mt-{0-3}`, `.mb-{0-3}`, `.p-{0-3}` - Margin/padding utilities
+
 ## Development Workflow
 
 ### Testing Changes
@@ -115,16 +199,31 @@ element.addEventListener('click', handler);
 2. Test navigation across folder depths (root vs. subfolder pages)
 3. Verify theme toggle persists across page navigation
 4. Test search functionality: type query → check sessionStorage → verify redirect → confirm results render
+5. **NEW: Test responsive design**:
+   - Use Chrome DevTools Device Toolbar (Ctrl+Shift+M)
+   - Test breakpoints: 375px (iPhone), 768px (iPad), 1024px (Desktop), 1920px (Large Desktop)
+   - Verify hamburger menu works correctly on mobile
+   - Check tables convert to cards on mobile
+   - Ensure all interactive elements are touch-friendly (44x44px minimum)
 
 ### Adding New Content
 - **New page**: Copy existing page structure, adjust `[path]` prefixes for CSS/JS includes
 - **New navigation item**: Update `header.js` nav list (add to parent `.submenu` or root `.nav-list`)
 - **New search content**: Add entry to appropriate category in `searchIndex` (js/search-engine.js) with `title`, `content`, `keywords`, `url`, `date`
 
+### Adding Responsive Styles
+- **For new components**: Start with mobile styles (no media query)
+- **Progressive enhancement**: Add tablet/desktop styles in respective media queries
+- **Use spacing variables**: `var(--spacing-sm)` instead of hardcoded pixels
+- **Test at all breakpoints**: Ensure smooth transitions between layouts
+
 ### Common Pitfalls
 - **Relative paths**: Always test pages from subfolders - missing `../` prefix breaks assets
 - **Race conditions**: Navigation/search depend on header loading - use `headerLoaded` event or `setTimeout` fallback
 - **Theme flicker**: Apply theme in `initializeThemeEarly()` *before* DOMContentLoaded to prevent FOUC
+- **NEW: Mobile viewport**: Always include `<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">`
+- **NEW: iOS zoom prevention**: Use `font-size: 16px` minimum on form inputs
+- **NEW: Table data-labels**: Don't forget `data-label` attributes when adding table cells
 
 ## Color Palette (Terracotta/Adobe Theme)
 ```css
@@ -146,3 +245,51 @@ Use these variables in new components - never hardcode colors.
 - **Global components**: `components/header.js`, `components/footer.js`
 - **Core utilities**: `js/search-engine.js`, `js/theme-toggle.js`, `js/navigation.js`
 - **Theme definitions**: `css/theme.css`
+- **NEW: Responsive styles**: `css/responsive.css`
+
+## Responsive Design Guidelines
+
+### Mobile-First Principles
+1. **Start mobile**: Design and code for mobile devices first (320px base)
+2. **Progressive enhancement**: Add features/styles for larger screens
+3. **Content priority**: Most important content visible without scrolling on mobile
+4. **Touch targets**: 44x44px minimum for all tappable elements
+5. **Performance**: Optimize images, minimize reflows, use CSS transforms
+
+### Layout Strategies
+- **Single column on mobile**: Stack content vertically
+- **Multi-column on tablet**: 2-column grids (768px+)
+- **Full layout on desktop**: 3-4 column grids (1024px+)
+- **Max-width containers**: `1200px` default, `1400px` on XL screens
+
+### Typography Scale
+- **Mobile base**: 16px (1rem)
+- **Tablet**: 17px (increases line-height to 1.6)
+- **Desktop**: 18px
+- **Fluid headings**: Use `clamp()` for automatic scaling
+
+### Component Adaptations
+- **Header**: Logo 40px → 50px → 60px
+- **Footer**: 1 column → 2 columns → 4 columns
+- **Cards**: 1 column → 2 columns → 3 columns
+- **Forms**: Vertical → 2-column grid on tablet
+- **Navigation**: Hamburger menu → horizontal nav at 1024px
+
+### Testing Checklist
+- [ ] All pages load correctly on mobile (320px-767px)
+- [ ] Tablet layout works (768px-1023px)
+- [ ] Desktop layout displays properly (1024px+)
+- [ ] Navigation menu functions correctly at all breakpoints
+- [ ] Tables are readable on mobile (card layout)
+- [ ] Forms are usable on mobile (no iOS zoom)
+- [ ] Images scale properly without breaking layout
+- [ ] Touch targets are adequate (min 44x44px)
+- [ ] No horizontal scrolling at any breakpoint
+- [ ] Theme toggle works across all sizes
+- [ ] Search functionality works on mobile
+- [ ] Print styles render correctly
+
+### Browser Support
+- **Primary**: Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
+- **Mobile**: iOS Safari 14+, Chrome Android 90+, Samsung Internet 14+
+- **Graceful degradation**: Older browsers get functional but simplified layout
